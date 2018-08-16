@@ -1,0 +1,17 @@
+<!--pages/me/fa/mima.wxml-->
+<view class='zong'>
+  <view class='gong'>
+    <input password='true'  placeholder-style='color: #ccc;' placeholder='请输入注册手机号码'></input>
+  </view>
+  <view class='one gong'>
+    <input placeholder-style='color: #ccc;' placeholder='请输入验证码'></input>
+    <button style='background-color: {{hasPhone==true?"#FFD800":"#ccc"}}' disabled="{{buttonClicked}}" bindtap='ma'>{{msg}}</button>
+  </view>
+  <view class='gong'>
+    <input password='true'  placeholder-style='color: #ccc;' placeholder='设置密码'></input>
+  </view>
+  <view class='gong'>
+    <input password='true' placeholder-style='color: #ccc;' placeholder='请再次输入密码'></input>
+  </view>
+</view>
+<button class='zzz' style='{{state==true?"background-color: #FFCC00":"background-color: #CCC"}}' bindtap='tijiao'>提交</button>

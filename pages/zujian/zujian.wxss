@@ -1,0 +1,40 @@
+.num-controller {
+  height: 100rpx;
+  background-color: #fff;
+}
+
+.tab {
+  float: left;
+  width: 33.33333%;
+  height: 100rpx;
+  text-align: center;
+  position: relative;
+}
+
+.daohang {
+  width: 50rpx;
+  height: 50rpx;
+  position: absolute;
+  top: 5rpx;
+  left: 50%;
+  margin-left: -25rpx;
+}
+
+.tab_text {
+  display: inline-block;
+  width: 100%;
+  position: absolute;
+  bottom: 5rpx;
+  left: 0;
+  /* left:50%;
+margin-left:-33rpx; */
+  font-size: 28rpx;
+}
+
+.hide {
+  color: #ccc;
+}
+
+.show {
+  color: #FFC602;
+}

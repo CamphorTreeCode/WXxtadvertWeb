@@ -1,0 +1,48 @@
+<tabbar num="{{num}}" wo="{{true}}" class="foter"></tabbar>
+<!-- 上 -->
+<view class='up' bindtap='member'>
+  <view class='user'>
+    <view class='touxiang'>
+      <open-data type="userAvatarUrl"></open-data>
+    </view>
+    <view class='username'>
+      <open-data type="userNickName"></open-data>
+    </view>
+    <!-- <image class="userinfo-avatar" src="{{userInfo.avatarUrl}}"> </image>
+    <text class="userinfo-nickname">{{userInfo.nickName}}</text> -->
+  </view>
+  <image src="https://www.chuanshoucs.com/ServerImg/2018-07-24/33a5368a-02fb-4a56-b32b-bbb790af6db8.png"></image>
+</view>
+<!-- 中 -->
+<view class='middle'>
+  <view bindtap='fa'>
+    <image src='/img/wode/faguanggao.png'></image>
+    <text>我要发广告</text>
+  </view>
+  <view bindtap='jie'>
+    <image src='/img/wode/jieguanggao.png'></image>
+    <text>我要接广告</text>
+  </view>
+</view>
+<view class='down'>
+  <view class='jiange' bindtap='collect'>
+    <image src='/img/wode/shoucang.png'></image>
+    <text>收藏</text>
+  </view>
+  <view class='jiange' bindtap='contact'>
+    <image src='/img/wode/lianxi.png'></image>
+    <text>联系我们</text>
+  </view>
+  <view class='jiange' bindtap='fankui'>
+    <image src='/img/wode/fankui.png'></image>
+    <text>意见反馈</text>
+  </view>
+  <view class='jiange' bindtap='about'>
+    <image src='/img/wode/guanyu.png'></image>
+    <text>关于我们</text>
+  </view>
+  <view class='jiange' bindtap='more'>
+    <image src='/img/wode/mini.png'></image>
+    <text>开发小程序</text>
+  </view>
+</view>

@@ -1,0 +1,107 @@
+/* pages/me/member.wxss */
+page {
+  height: 100%;
+  width: 100%;
+  background-color: #F5F5F5;
+}
+.fou {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.fou image {
+  width: 402rpx;
+  height: 470rpx;
+}
+.shi {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+/* 上 */
+.shang {
+  background: url(https://www.chuanshoucs.com/ServerImg/2018-08-03/a7027313-0e95-463d-951d-43f31fb0743c.png) no-repeat center;
+  background-size: 750rpx 350rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 350rpx;
+  color: #fff;
+  font-size: 1rem;
+}
+.shang image {
+  width: 204rpx;
+  height: 204rpx;
+  margin-right: 30rpx;
+}
+/* 中 */
+.zhong {
+  text-align: center;
+  height: 100rpx;
+  line-height: 100rpx;
+  font-size: 0.9rem;
+  border-bottom: 8rpx solid #F2F2F2;
+}
+.zhong image {
+  width: 34rpx;
+  height: 34rpx;
+  vertical-align: text-bottom;
+  margin-right: 15rpx;
+}
+/* 下 */
+.xia {
+  padding: 80rpx 0;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.lie {
+  margin: 20rpx 0;
+  width: 43%;
+  font-size: 0.8rem;
+  border-radius: 30rpx;
+  box-shadow: 0 0 30rpx rgba(0, 0, 0, 0.05);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.lie image {
+  width: 204rpx;
+  height: 204rpx;
+}
+.lie button {
+  width: 60%;
+  height: 80rpx;
+  line-height: 80rpx;
+  border-radius: 50rpx;
+  background-color: #FFD200;
+  color: #fff;
+  margin: 20rpx 0 40rpx 0;
+}
+/* 弹框 */
+.tan {
+  position: absolute;
+  top: 40%;
+  width: 80%;
+  margin: 0 10%;
+  border: 1rpx solid #fff;
+  text-align: center;
+  padding-top: 100rpx;
+  border-radius: 30rpx;
+  box-shadow: 0 0 30rpx rgba(0, 0, 0, 0.1);
+  z-index: 999;
+  background-color: #fff;
+}
+.tan button {
+  width: 50%;
+  font-size: 1rem;
+  margin: 35rpx auto 70rpx auto;
+  background-color: #FFD200;
+  border-radius: 50rpx;
+  color: #fff;
+}

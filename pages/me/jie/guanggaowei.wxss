@@ -1,0 +1,37 @@
+/* pages/me/jie/guanggaowei.wxss */
+page {
+  background-color: #F2F2F2;
+}
+.hang {
+  font-size: 33rpx;
+  height: 100rpx;
+  line-height: 100rpx;
+  border-bottom: 5rpx solid #F5F5F5;
+  position: relative;
+  background-color: #fff;
+}
+.aaa {
+  border-bottom: none;
+}
+.hang image {
+  width: 40rpx;
+  height: 40rpx;
+  vertical-align: middle;
+  margin: 0 20rpx;
+}
+.hang input {
+  min-width: 61%;
+  height: 100rpx;
+  float: right;
+  color: #ccc;
+}
+.bbb {
+  background-color: #fff;
+  box-sizing: border-box;
+  width: 100%;
+  line-height: 1.2rem;
+  height: 200rpx;
+  padding-left: 80rpx;
+  overflow: hidden;
+  border-bottom: 5rpx solid #F5F5F5;
+}

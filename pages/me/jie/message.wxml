@@ -1,0 +1,84 @@
+<!--pages/me/jie/message.wxml-->
+<!--pages/me/fa/message.wxml-->
+<view class='hang' style='border-top: 10rpx solid #f5f5f5;'>
+  <image src='https://www.chuanshoucs.com/ServerImg/2018-08-02/9360ea3c-b6b7-4740-bd1a-4a56c2c255fc.png'></image>
+  <text>商家名称</text>
+  <input placeholder-style='color: #ccc;' placeholder='请输入商家名称'></input>
+</view>
+<!-- 加 -->
+<view class='hang'>
+  <image src='https://www.chuanshoucs.com/ServerImg/2018-08-02/9360ea3c-b6b7-4740-bd1a-4a56c2c255fc.png'></image>
+  <text>广告类型</text>
+  <input class='leixing' value="{{inputText}}" placeholder-style='color: #ccc;' disabled='true' placeholder='请选择广告类型'></input>
+  <image bindtap='guang' class='zhankai' src='https://www.chuanshoucs.com/ServerImg/2018-08-02/70321424-a61b-4872-b3a5-9fdba2b7ffbc.png'></image>
+</view>
+<!-- 状态控制 -->
+<view style='{{guang==true?"display:none;":"display: block;"}}' class='qian'>
+  <text data-index="{{index}}" wx:for="{{array}}" class='{{shu==index?"active":" "}}' bindtap='qian'>{{item.message}}</text>
+</view>
+<view class='hang'>
+  <image src='https://www.chuanshoucs.com/ServerImg/2018-08-02/0aa433d1-a905-4f9a-a2c5-6cd2e1be7311.png'></image>
+  <text>联系人姓名</text>
+  <input placeholder-style='color: #ccc;' placeholder='请输入联系人姓名'></input>
+</view>
+<view class='hang'>
+  <image src='https://www.chuanshoucs.com/ServerImg/2018-08-02/6f7abb04-2ecc-4011-b738-c996c43ffb1b.png'></image>
+  <text>联系人电话</text>
+  <input placeholder-style='color: #ccc;' placeholder='请输入联系人电话'></input>
+</view>
+<view class='hang'>
+  <image src='https://www.chuanshoucs.com/ServerImg/2018-08-02/e70e7f49-ee37-4da2-8a71-030fa5d12ca0.png'></image>
+  <text>联系地址</text>
+  <input class='dizhi' disabled='true' placeholder-style='color: #ccc;' placeholder='请选择地址' value='{{address}}'></input>
+  <image bindtap='dizhi' class='zhankai' src='https://www.chuanshoucs.com/ServerImg/2018-08-02/70321424-a61b-4872-b3a5-9fdba2b7ffbc.png'></image>
+</view>
+<!-- <picker mode="region" bindchange="bindRegionChange" value="{{region}}" custom-item="{{customItem}}">
+    <view class="picker" style='color: {{aaa}}'>
+      {{region[0]}}{{region[1]}}{{region[2]}}
+    </view>
+    <image class='zhankai' src='https://www.chuanshoucs.com/ServerImg/2018-08-02/70321424-a61b-4872-b3a5-9fdba2b7ffbc.png'></image>
+  </picker> -->
+<!-- 加 -->
+<view class='hang aaa'>
+  <image src='https://www.chuanshoucs.com/ServerImg/2018-08-03/d6dd8f60-a76c-47ea-b584-ee082b0041e8.png'></image>
+  <text>广告位简介</text>
+</view>
+<textarea placeholder-style='color: #ccc;' class='bbb jianjie' placeholder='请填写广告位简介' maxlength='100' style='font-size: 32rpx;'>
+</textarea>
+
+<view class='sc'>
+  <view class='bg' bindtap='logo'>
+    <!-- 默认状态 -->
+    <image class='{{state==true?"logo":"logo-y"}}' src='https://www.chuanshoucs.com/ServerImg/2018-08-03/76cdb1ad-11d2-4d22-a344-bd53b8fefed3.png'></image>
+    <!-- 上传后显示的图片预览 -->
+    <image class='{{state==true?"logo-y":"logo-x"}}' src='{{tempFilePath}}'></image>
+  </view>
+  <view class='wenzi'>上传前台显示LOGO（建议比例1：1）</view>
+</view>
+<view class='sc'>
+  <view class='bg' bindtap='zhizhao'>
+    <!-- 默认状态 -->
+    <image class='{{zhizhao==true?"logo":"logo-y"}}' src='https://www.chuanshoucs.com/ServerImg/2018-08-03/76cdb1ad-11d2-4d22-a344-bd53b8fefed3.png'></image>
+    <!-- 上传后显示的图片预览 -->
+    <image class='{{zhizhao==true?"logo-y":"logo-x"}}' src='{{zhao}}'></image>
+  </view>
+  <view class='wenzi'>上传运营主题营业执照或者个体工商户执照</view>
+</view>
+<view class='hang'>
+  <image src='https://www.chuanshoucs.com/ServerImg/2018-08-03/afc5e786-0305-4b54-940a-30c1fa6b1b91.png'></image>
+  <text>上传轮播图</text>
+</view>
+<!-- 轮播图 -->
+<view class='lunbo'>
+  <view wx:for="{{numberarray}}" data-dex="{{index}}" class='bg' bindtap='hou{{index}}'>
+    <!-- 默认状态 -->
+    <text class='num'>{{index+1}}</text>
+    <image class='dai' src='{{item.src1}}'></image>
+    <image class='logo {{item.lun==true?"logo-y":" "}}' src='{{item.src2}}'></image>
+    <!-- 上传后显示的图片预览 -->
+    <image class='logo-y {{item.lun==true?"logo-x":" "}}' src='{{item.lunbo}}'></image>
+  </view>
+</view>
+
+<button bindtap='tijiao' style='{{tianwan==true?"background-color: #FFD801;":" "}}'>提交审核</button>
+

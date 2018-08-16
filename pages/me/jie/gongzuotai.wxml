@@ -1,0 +1,51 @@
+<!--pages/me/jie/gongzuotai.wxml-->
+<tabbar num="{{num}}" shouye="{{true}}" class="foter"></tabbar>
+<!--pages/me/fa/gongzuotai.wxml-->
+<!-- 上 -->
+<view class='shang'>
+  <image src='https://www.chuanshoucs.com/ServerImg/2018-08-02/94eaab23-3f67-42ba-9a74-1711241ca81c.png' class='shouye'  bindtap='tuichu'></image>
+  <image class='logo' src='{{logo}}'></image>
+  <view>{{name}}</view>
+</view>
+<view class='xia'>
+  <view class='hang'>
+    <image src='https://www.chuanshoucs.com/ServerImg/2018-08-03/91b624af-708a-4526-98ba-2926b0715dd0.png'></image>
+    <text>财务管理</text>
+  </view>
+  <view class='kuai'>
+    <view style='text-align: right;padding-right: 10rpx;'>今日收益</view>
+    <view style="padding:0 0 30rpx 20rpx; font-weight:700; color: #FF6702;">7890</view>
+  </view>
+  <view class='kuai'>
+    <view style='text-align: right;padding-right: 10rpx;'>总计收益</view>
+    <view style="padding:0 0 30rpx 20rpx; font-weight:700; color: #FF6702;">6250</view>
+  </view>
+    <view class='kuai'>
+    <view style='text-align: right;padding-right: 10rpx;'>订单金额</view>
+    <view style="padding:0 0 30rpx 20rpx; font-weight:700; color: #FF6702;">3390</view>
+  </view>
+  <view class='kuai'>
+    <view style='text-align: right;padding-right: 10rpx;'>余额</view>
+    <view style="padding:0 0 30rpx 20rpx; font-weight:700; color: #FF6702;">3390</view>
+  </view>
+  <view class='kuai money'>
+    <image src='https://www.chuanshoucs.com/ServerImg/2018-08-03/455ce78c-e95e-4185-ab54-e13f1efd89f2.png'></image>
+    <view class='btn' bindtap='tixian'>我要提现</view>
+  </view>
+</view>
+<view class='lingqian' bindtap='mima'>
+  <text style='float:left; margin-left: 20rpx;'>设置支付密码</text>
+  <text style='float:right; margin-right: 20rpx;'>></text>
+</view>
+<!-- 退出登录弹框 -->
+<view class='shadow {{state==true?"kuang":" "}}'></view>
+<view class='tan {{state==true?"kuang":" "}}'>
+  <image src='https://www.chuanshoucs.com/ServerImg/2018-08-03/2a7479a5-07ca-4d83-8f8b-9127b3d7bd45.png'></image>
+  <view>确认退出登录吗</view>
+  <view class='anniu'>
+    <view class='quxiao' bindtap='quxiao'>取消</view>
+    <view class='queding' bindtap='queding'>确定</view>
+  </view>
+</view>
+
+

@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "tabbar": "/pages/tabbar/tabbar"
+  },
+  "navigationBarTitleText": "享投"
+}

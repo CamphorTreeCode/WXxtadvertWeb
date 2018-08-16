@@ -1,0 +1,108 @@
+/* pages/me/more.wxss */
+page {
+  position: relative;
+}
+.one image {
+  width: 90rpx;
+  height: 90rpx;
+  margin-bottom: 10rpx;
+}
+.one {
+  display: flex;
+  width: 25%;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.liebiao {
+  margin-bottom: 50rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+/* 弹框 */
+.shadow {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background-color: #7F7F7F;
+}
+.tan {
+  width: 90%;
+  border-radius: 30rpx;
+  display: none;
+  position: absolute;
+  top: 50%;
+  background-color: #fff;
+  margin: 0 5%;
+  z-index: 999;
+}
+.kuang {
+  display: block;
+}
+.message {
+  font-size: 30rpx;
+  padding: 20rpx;
+  position: relative;
+}
+.didian {
+  position: absolute;
+  right: 2%;
+  top: 25%;
+}
+.message image {
+  width: 40rpx;
+  height: 40rpx;
+  vertical-align: text-bottom;
+  margin-right: 20rpx;
+}
+/* .message text {
+  vertical-align: middle;
+} */
+.message input {
+  height: 22rpx !important;
+  line-height: 22rpx;
+  vertical-align: middle;
+  float: right;
+  width: 68%;
+}
+picker {
+  height: 42rpx;
+  line-height: 42rpx;
+  margin-right: 50rpx;
+  width: 61%;
+  float: right;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;   
+  max-height: 42px;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+}
+.teshu input {
+  width: 76%;
+}
+.henxian {
+  margin-right: 20rpx;
+  margin-left: 80rpx;
+  border-top: 1rpx solid #ccc;
+}
+button {
+  width: 92%;
+  margin: 40rpx 4%;
+  margin-top: 100rpx;
+  color: #fff;
+  background-color: #FFD800;
+}
+.shanchu {
+  width: 76rpx;
+  height: 76rpx;
+  position: absolute;
+  bottom: -20%;
+  left: 50%;
+  margin-left: -38rpx;
+}

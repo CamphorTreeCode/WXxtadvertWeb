@@ -1,0 +1,200 @@
+/* pages/me/jie/gongzuotai.wxss */
+/* pages/me/fa/gongzuotai.wxss */
+page {
+  position: relative;
+  background-color: #F2F2F2;
+}
+/* 上 */
+.shang {
+  margin-top: 10rpx;
+  background: url(https://www.chuanshoucs.com/ServerImg/2018-08-02/e1c53e54-1249-4054-8048-491002a5ce9d.png) no-repeat center center;
+  background-size: 750rpx 300rpx;
+  height: 300rpx;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+.shang .shouye {
+  position: absolute;
+  top: 30rpx;
+  left: 30rpx;
+  width: 76rpx;
+  height: 76rpx;
+}
+.shang .logo {
+  width: 150rpx;
+  height: 150rpx;
+  border-radius: 50%;
+  margin-bottom: 20rpx;
+}
+/* 中 */
+.zhong {
+  background-color: #fff;
+  margin-bottom: 10rpx;
+}
+.hang {
+  height: 100rpx;
+  line-height: 100rpx;
+}
+.hang image{
+  width: 40rpx;
+  height: 40rpx;
+  vertical-align: text-bottom;
+  margin: 0 20rpx;
+}
+.toudi {
+  padding-bottom: 20rpx;
+  display: flex;
+  justify-content: space-around;
+}
+.one, .two, .three {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.two {
+  position: relative;
+}
+.two .shu {
+  position: absolute;
+  top: 8rpx;
+  right: 8rpx;
+  text-align: center;
+  width: 40rpx;
+  height: 40rpx;
+  line-height: 40rpx;
+  border-radius: 50%;
+  background-color: #FF1055;
+  color: #fff; 
+}
+.one image,
+.two image,
+.three image {
+  width: 85rpx;
+  height: 85rpx;
+  margin: 20rpx 0;
+}
+/* 下 */
+.xia {
+  overflow: hidden;
+}
+.hang {
+  background-color: #fff;
+}
+.kuai {
+  height: 120rpx;
+  box-sizing: border-box;
+  border: 2rpx solid #F2F2F2;
+  width: 50%;
+  float: left;
+  background-color: #fff;
+}
+.kuai image {
+  width: 40rpx;
+  height: 40rpx;
+}
+.money {
+  background-color: #FFD801;
+}
+.money {
+  height: 120rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.btn {
+  margin-left: 10rpx;
+  color: #fff;
+  font-weight: 600; 
+}
+.lingqian {
+  margin-top: 10rpx;
+  height: 80rpx;
+  line-height: 80rpx;
+  background-color: #fff;
+}
+/* 下 */
+.footer {
+  background-color: #fff;
+  position: fixed;
+  height: 130rpx;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+}
+.footer image {
+  width: 50rpx;
+  height: 50rpx;
+  margin: 10rpx 0;
+}
+.footer .bar {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.bar view {
+  margin-bottom: 10rpx;
+}
+/* 弹框 */
+
+.shadow {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  bottom: 100rpx;
+  left: 0;
+  display: none;
+  background-color: #797979;
+  opacity: 0.7;
+}
+.tan {
+  display: none;
+  background-color: #fff;
+  border-radius: 30rpx;
+  text-align: center;
+  width: 600rpx;
+  height: 500rpx;
+  position: absolute;
+  top:50%;
+  left: 50%;
+  margin-top: -50rpx;
+  margin-left: -300rpx;
+}
+.tan image {
+  width: 124rpx;
+  height: 124rpx;
+  margin: 100rpx 0 30rpx 0;
+}
+.tan .anniu {
+  display: flex;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  color: #fff;
+  justify-content: space-around;
+}
+.quxiao,
+.queding{
+  width: 50%;
+  padding: 20rpx 0;
+  background-color: #ccc;
+}
+.quxiao {
+  border-bottom-left-radius: 30rpx;
+}
+.queding {
+  background-color: #FFD800;
+  border-bottom-right-radius: 30rpx;
+}
+.kuang {
+  display: block;
+}

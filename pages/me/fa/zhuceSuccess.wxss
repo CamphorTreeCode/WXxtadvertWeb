@@ -1,0 +1,22 @@
+/* pages/me/fa/zhuceSuccess.wxss */
+/* page {
+  position: relative;
+} */
+.zong {
+  text-align: center;
+  height: 50%;
+}
+.zong image {
+  width: 240rpx;
+  height: 240rpx;
+  margin: 180rpx 0 50rpx 0;
+}
+.zong view {
+  line-height: 1.5rem;
+}
+.zong button {
+  width: 80%;
+  color: #fff;
+  background-color: #FFD801;
+  margin-top: 90rpx;
+}

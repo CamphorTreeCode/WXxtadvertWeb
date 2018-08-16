@@ -1,0 +1,54 @@
+/* pages/me/fankui.wxss */
+page {
+  position: relative;
+}
+.up {
+  border-top: 1rpx solid #F2F2F2;
+  padding: 20rpx 0;
+}
+.up image {
+  width: 40rpx;
+  height: 40rpx;
+  margin: 0 20rpx;
+  vertical-align: middle;
+}
+.zhong {
+  height: 20rpx;
+  background-color: #F2F2F2;
+}
+textarea {
+  width: 710rpx;
+  height: 800rpx;
+  margin: 20rpx;
+  font-size: 32rpx;
+}
+button {
+  position: fixed;
+  bottom: 30rpx;
+  width: 90%;
+  margin: 0 5%;
+  color: #fff;
+  background-color: #FFD801;
+}
+/* 弹框 */
+.tan {
+  width: 460rpx;
+  height: 300rpx;
+  position: absolute;
+  border-radius: 30rpx;
+  box-shadow:0 0 15px #BBB;
+  top: 50%;
+  left: 50%;
+  margin-top: -150rpx;
+  margin-left: -230rpx;
+  display: none;
+  text-align: center;
+}
+.kuang {
+  display: block;
+}
+.tan image {
+  width: 119rpx;
+  height: 119rpx;
+  margin-top: 20rpx;
+}

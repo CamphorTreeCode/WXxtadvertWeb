@@ -1,0 +1,77 @@
+<!--pages/me/fa/gongzuotai.wxml-->
+<!-- 上 -->
+<view class='shang'>
+  <image src='https://www.chuanshoucs.com/ServerImg/2018-08-02/94eaab23-3f67-42ba-9a74-1711241ca81c.png' class='shouye'  bindtap='tuichu'></image>
+  <image class='logo' src='{{logo}}'></image>
+  <view>{{name}}</view>
+</view>
+<!-- 中 -->
+<view class='zhong'>
+  <view class='hang'>
+    <image src='https://www.chuanshoucs.com/ServerImg/2018-08-03/70944b2e-c029-4856-b120-e8e36c63006f.png'></image>
+    <text>投递管理</text>
+  </view>
+  <view class='toudi'>
+    <view class='one' bindtap='yizhifu'>
+      <image src='https://www.chuanshoucs.com/ServerImg/2018-08-03/fa942eff-dece-45ca-8f61-192bb2f8f3d1.png'></image>
+      <text>已支付</text>
+    </view>
+    <view class='two' bindtap='yitoufang'>
+      <image src='https://www.chuanshoucs.com/ServerImg/2018-08-03/6fd6e816-ff65-4348-91b2-694d1244aece.png'></image>
+      <text>已投放</text>
+      <view class='shu'>2</view>
+    </view>
+    <view class='three' bindtap='yiwancheng'>
+      <image src='https://www.chuanshoucs.com/ServerImg/2018-08-03/fbaf1e50-0686-418d-be4c-64f83996d0ab.png'></image>
+      <text>已完成</text>
+    </view>
+  </view>
+</view>
+<view class='xia'>
+  <view class='hang'>
+    <image src='https://www.chuanshoucs.com/ServerImg/2018-08-03/91b624af-708a-4526-98ba-2926b0715dd0.png'></image>
+    <text>财务管理</text>
+  </view>
+  <view class='kuai'>
+    <view style='text-align: right;padding-right: 10rpx;'>余额</view>
+    <view style="padding:0 0 30rpx 20rpx; font-weight:700; color: #FF6702;">7890</view>
+  </view>
+  <view class='kuai'>
+    <view style='text-align: right;padding-right: 10rpx;'>已支付</view>
+    <view style="padding:0 0 30rpx 20rpx; font-weight:700; color: #FF6702;">16840</view>
+  </view>
+  <view class='kuai'>
+    <view style='text-align: right;padding-right: 10rpx;'>待支付</view>
+    <view style="padding:0 0 30rpx 20rpx; font-weight:700; color: #FF6702;">3390</view>
+  </view>
+  <view class='kuai money'>
+    <image src='https://www.chuanshoucs.com/ServerImg/2018-08-03/455ce78c-e95e-4185-ab54-e13f1efd89f2.png'></image>
+    <view class='btn' bindtap='chongzhi'>充值</view>
+  </view>
+</view>
+<view class='lingqian' bindtap='mima'>
+  <text style='float:left; margin-left: 20rpx;'>设置零钱支付密码</text>
+  <text style='float:right; margin-right: 20rpx;'>></text>
+</view>
+<!-- 下 -->
+<view class='footer'>
+  <view class='bar'>
+    <image src='https://www.chuanshoucs.com/ServerImg/2018-08-03/99f50d16-83b3-47f3-94c6-93eac65ad44e.png'></image>
+    <view style='color: #FFD801'>工作台</view>
+  </view>
+  <view class='bar' bindtap='shezhi'>
+    <image src='https://www.chuanshoucs.com/ServerImg/2018-08-03/6798635d-5d20-4f24-b3ee-d93547e0e6be.png'></image>
+    <view style='color: #ccc;'>设置</view>
+  </view>
+</view>
+<!-- 退出登录弹框 -->
+<view class='shadow {{state==true?"kuang":" "}}'></view>
+<view class='tan {{state==true?"kuang":" "}}'>
+  <image src='https://www.chuanshoucs.com/ServerImg/2018-08-03/2a7479a5-07ca-4d83-8f8b-9127b3d7bd45.png'></image>
+  <view>确认退出登录吗</view>
+  <view class='anniu'>
+    <view class='quxiao' bindtap='quxiao'>取消</view>
+    <view class='queding' bindtap='queding'>确定</view>
+  </view>
+</view>
+

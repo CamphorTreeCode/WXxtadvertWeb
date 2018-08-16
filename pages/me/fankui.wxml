@@ -1,0 +1,15 @@
+<!--pages/me/fankui.wxml-->
+<view class='up'>
+  <image src='https://www.chuanshoucs.com/ServerImg/2018-07-24/783a54b3-bee4-44bc-a04c-14ea7d2098fc.png'></image>
+  <text>给我们留言</text>
+</view>
+<view class='zhong'></view>
+<form bindsubmit="bindFormSubmit">
+    <textarea maxlength='440' placeholder="请在此撰写您的留言，我们客服将会及时处理哦" name="textarea"/>
+    <button form-type="submit" bindtap='btn'>提交</button>
+  </form>
+  <view class="tan {{tankuang==true?'kuang':''}}">
+  <image src='https://www.chuanshoucs.com/ServerImg/2018-07-24/8d7fb869-1c29-483e-99c5-778fefa23182.png'></image>
+  <view style='padding: 20rpx 0;'>已提交</view>
+  <view style='color: #BBBBBB; font-size: 32rpx;'>感谢您的反馈！</view>
+  </view>

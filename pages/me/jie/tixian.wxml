@@ -1,0 +1,37 @@
+<!--pages/me/jie/tixian.wxml-->
+<view class='zong'>
+  <view class='shang'>
+    <view class='one'>
+      <text style='float: left;'>到账</text>
+      <view style='float:right;'>
+        <image src='https://www.chuanshoucs.com/ServerImg/2018-08-03/cb27e3ad-6205-45cf-a206-cd38582f27cf.png'></image>
+        <text>微信零钱</text>
+      </view>
+    </view>
+    <view class='two'>10分钟内到账</view>
+  </view>
+  <view class='zhong'>
+    <view style='margin: 40rpx 0; overflow: hidden;'>
+      <text style='float: left;'>提现金额</text>
+      <text style='float: right; color: #23496E;'>全部提现</text>
+    </view>
+    <view class='three'>
+      <text>￥</text>
+      <input type='digit' focus='true'></input>
+    </view>
+  </view>
+  <button bindtap='tixian'>提现</button>
+</view>
+<!-- 弹框 -->
+<view class='shadow' style='{{ state==true?"display:block;":"display: none;"}}'></view>
+<view class='kan' style='{{ state==true?"display:block;":"display: none;"}}'>
+  <view class='tan'>
+    <view style='margin-top: 40rpx;'>提现总额</view>
+    <view style='margin: 30rpx 0; color: #FFD802;'>￥2000</view>
+    <input placeholder='请输入支付密码' placeholder-style='color: #ccc;' password='true' type='digit'></input>
+    <button bindtap='queren'>确认提现</button>
+  </view>
+  <view style='margin-top: 40rpx; color: #fff;' bindtap='quxiao'>取消</view>
+</view>
+
+

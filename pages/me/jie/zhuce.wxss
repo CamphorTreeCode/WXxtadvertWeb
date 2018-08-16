@@ -1,0 +1,52 @@
+/* pages/me/jie/zhuce.wxss */
+/* pages/me/fa/zhuce.wxss */
+page {
+  background: url(https://www.chuanshoucs.com/ServerImg/2018-08-03/4fb2453d-a6d7-4659-a7ed-816078f5ea64.png) no-repeat center center;
+  background-size: 517rpx 636rpx;
+  position: relative;
+}
+image{
+  width: 180rpx;
+  height: 180rpx;
+  text-align: center;
+}
+.hang {
+  border-bottom: 1rpx solid #E2E2E2;
+  margin: 20rpx 40rpx;
+  padding: 20rpx 0;
+  overflow: hidden;
+  vertical-align: middle;
+}
+.hang image {
+  width: 46rpx;
+  height: 46rpx;
+}
+.hang input {
+  float: right;
+  width: 88%;
+  border: 1rpx solid bule;
+}
+.teshu input {
+  width: 58%;
+}
+.hang button {
+  width: 30%;
+  padding: 10rpx 0;
+  line-height: 45rpx;
+  border-radius: 30rpx;
+  font-size: 28rpx;
+  float: right;
+  color: #fff !important;
+}
+
+.wu {
+  color: #FED700;
+  margin-left: 40rpx;
+  margin-bottom: 20rpx;
+}
+.btn2 {
+  color: #fff;
+  background-color: #ccc;
+  margin: 40rpx 40rpx 0 40rpx;
+  border-radius: 50rpx;
+}
