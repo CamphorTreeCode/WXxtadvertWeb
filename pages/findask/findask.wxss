@@ -1,0 +1,135 @@
+/* pages/find/findask.wxss */
+
+/* find */
+
+.find {
+  width: 100%;
+  height: 100%;
+  /* margin-bottom: 200rpx; */
+}
+
+.find_content {
+  width: 100%;
+  height: 100%;
+  padding: 0 20rpx;
+  box-sizing: border-box;
+  background: #fff;
+}
+
+/* find_top */
+
+.find_top {
+  display: flex;
+  width: 100%;
+  height: 100rpx;
+  padding: 20rpx 0;
+  border-bottom: 1rpx solid #f5f5f5;
+}
+
+.find_top .find_top_img {
+  width: 100rpx;
+  height: 100rpx;
+  border-radius: 50rpx;
+}
+
+.find_top .find_title {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  padding: 10rpx 0;
+  margin: 0 20rpx;
+}
+
+.find_top .find_title .find_title_cn {
+  color: #333;
+}
+
+.find_top .find_title .find_title_en {
+  font-size: 30rpx;
+  color: #999;
+}
+
+.find .find_time {
+  flex: 1;
+  line-height: 100rpx;
+  font-size: 30rpx;
+  color: rgb(253, 211, 0);
+  text-align: right;
+}
+
+/* find_main */
+
+.find_main {
+  width: 100%;
+  margin-top: 20rpx;
+}
+
+.find_main .find_main_text {
+  text-indent: 40rpx;
+}
+
+.find_main .find_main_examine {
+  color: rgb(253, 211, 0);
+  padding: 5rpx;
+}
+
+.video {
+  margin: 20rpx 0;
+}
+
+.find_main video {
+  width: 100%;
+  height: 400rpx;
+  border-radius: 20rpx;
+  box-sizing: border-box;
+  margin: 20rpx 0;
+}
+
+.video_img {
+  width: 30%;
+  height: 200rpx;
+  margin: 0 1.5%;
+  border-radius: 10rpx;
+}
+
+/* find_praise */
+
+.find_praise {
+  display: flex;
+  width: 100%;
+  font-size: 30rpx;
+  color: #999;
+  margin: 20rpx 0;
+}
+
+.find_praise .find_read {
+  padding: 0 35rpx;
+  background: url(https://www.chuanshoucs.com/ServerImg/2018-08-03/ed6bb1da-d800-4c74-b604-64fb8cb4d17b.png)no-repeat;
+  background-size: 30rpx 30rpx;
+  background-position-x: 0;
+  background-position-y: 50%;
+}
+
+.find_praise_right {
+  width: 100%;
+  text-align: right;
+  color: #324169;
+}
+
+.find_praise_right .find_transmit {
+  line-height: 0;
+  display: inline;
+  padding: 0 35rpx;
+  background: url(https://www.chuanshoucs.com/ServerImg/2018-08-03/e7188585-e2d4-46a8-9e73-894250a5deb3.png)no-repeat;
+  background-size: 30rpx 30rpx;
+  background-position-x: 0;
+  background-position-y: 50%;
+}
+
+button::after{
+  border: none
+}
+.find_praise_right .find_like {
+  padding: 0 35rpx;
+  background-position-x: 0;
+}

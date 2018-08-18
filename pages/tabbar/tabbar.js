@@ -23,13 +23,13 @@ Component({
     navigation: function (event) {
       var link = '';
       if (event.currentTarget.dataset.id == 0) {
-        link = '../home/shouye';
+        link = '../index/index';
       }
       else if (event.currentTarget.dataset.id == 1) {
-        link = '../find/faxian';
+        link = '../find/find';
       }
       else if (event.currentTarget.dataset.id == 2) {
-        link = '../car/buy';
+        link = '../shoppingcart/shoppingcart';
       }
       else if (event.currentTarget.dataset.id == 3) {
         link = '../me/wode';

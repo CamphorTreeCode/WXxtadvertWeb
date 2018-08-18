@@ -1,4 +1,4 @@
-// pages/me/fa/tijiaoSuccess.js
+// pages/Paymentsuccess/Paymentsuccess.js
 Page({
 
   /**
@@ -62,10 +62,5 @@ Page({
    */
   onShareAppMessage: function () {
   
-  },
-  shouye: function(){
-    wx.reLaunch({
-      url: '/pages/index/index',
-    })
   }
 })

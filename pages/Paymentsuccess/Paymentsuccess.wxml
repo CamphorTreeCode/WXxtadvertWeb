@@ -1,0 +1,22 @@
+<!--pages/Paymentsuccess/Paymentsuccess.wxml-->
+<view class='top'>
+  <image src='/img/shopping/dagou.png'></image>
+  <text>支付成功</text>
+</view>
+
+<view class='content'>
+  订单提交后，工作日15分钟内客服将致电确认投放信息,请注意接听来电
+</view>
+
+<view class='foter1'>
+  <image class='liucheng1' src='/img/shopping/liucheng1.png'></image>
+  <image class='liucheng2' src='/img/shopping/liucheng2.png'></image>
+  <image class='liucheng3' src='/img/shopping/liucheng3.png'></image>
+  <image class='jiantou1' src='/img/shopping/xiayibu.png'></image>
+  <image class='jiantou2' src='/img/shopping/xiayibu.png'></image>
+  <text class='txt1'>支付成功</text>
+  <text class='txt2'>确认广告信息</text>
+  <text class='txt3'>广告发布成功</text>
+  <text class='txt4'>客服来电确认广告内容</text>
+  <text class='txt5'>客服提交广告信息</text>
+</view>

@@ -1,0 +1,343 @@
+/**index.wxss**/
+
+/* 全局 */
+
+.document {
+  overflow: hidden;
+  background: #f5f5f5;
+  /* background: rgb(251, 255, 0); */
+}
+
+/* head */
+
+.head {
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  background: #fff;
+}
+
+/* 定位 */
+
+.location {
+  width: 30%;
+  height: 80rpx;
+  line-height: 80rpx;
+  display: inline-block;
+  text-align: center;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.dw {
+  width: 50rpx;
+  height: 50rpx;
+  vertical-align: text-bottom;
+}
+
+.location text {
+}
+
+/* 搜索框 */
+
+.search {
+  width: 60%;
+  height: 80rpx;
+  display: inline-block;
+  position: relative;
+  padding: 0 2%;
+}
+
+.search input {
+  width: 100%;
+  height: 70rpx;
+  padding: 0 4%;
+  color: rgb(253, 211, 0);
+  line-height: 80rpx;
+  border: 2px solid rgb(253, 211, 0);
+  border-radius: 120rpx;
+}
+
+.ss {
+  width: 50rpx;
+  height: 50rpx;
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.place-holder {
+  color: rgb(253, 211, 0);
+}
+
+/* nav */
+
+.collagen {
+  width: 100%;
+  /* margin:  0  0 20rpx 0; */
+  padding: 20rpx 0;
+  background: #fff;
+}
+
+.quarter {
+  width: 25%;
+  float: left;
+  text-align: center;
+}
+
+.quarter image {
+  width: 120rpx;
+  height: 120rpx;
+}
+
+.quarter view {
+  text-align: center;
+}
+
+/* 清除浮动 */
+
+.clearfix {
+  overflow: auto;
+  _height: 1%;
+}
+
+/* 广告位推荐 */
+
+/* 广告位推荐导航栏 */
+
+.advertising {
+  /* border: 1rpx solid #f80; */
+  background: #fff;
+  padding: 20rpx 0;
+  margin: 20rpx 0;
+}
+
+.advertising_top {
+  width: 96%;
+  margin: 0 auto;
+  height: 50rpx;
+}
+
+.advertising_top_left image, .advertising_top_right image {
+  width: 50rpx;
+  height: 50rpx;
+  margin: 0 10rpx;
+  vertical-align: text-bottom;
+}
+
+.advertising_top_left {
+  float: left;
+  font-weight: 600;
+  color: rgb(253, 211, 0);
+}
+
+.advertising_top_right {
+  float: right;
+}
+
+/* 广告位推荐 主体 */
+
+.post {
+  width: 100%;
+  height: 100%;
+  display: flex;
+}
+
+.superior {
+  width: 431.6rpx;
+  height: 232.7rpx;
+  margin: 20rpx 20rpx 0 20rpx;
+  background-size: 100% 100%;
+}
+
+.superior_address {
+  width: 80%;
+  font-size: 40rpx;
+  font-weight: unset;
+  line-height: 80rpx;
+  margin: 5rpx 10rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.superior_flow {
+  width: 70%;
+  padding: 0 5%;
+  margin: 5rpx 10rpx;
+  border-radius: 10rpx;
+  background: #d5ebff;
+  border: 1px solid rgb(44, 143, 236);
+  color: rgb(44, 143, 236);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.superior_unit {
+  line-height: 80rpx;
+  margin: 5rpx 10rpx;
+  color: #f80;
+  font-weight: bold;
+}
+
+/* 选购列表 listbox start */
+
+.listbox {
+  width: 100%;
+  height: 100%;
+  margin-top: 20rpx;
+}
+
+/* listbox_box */
+
+.listbox_box {
+  width: 100%;
+  display: flex;
+  padding: 20rpx;
+  background: #fff;
+  box-sizing: border-box;
+  border-bottom: 1rpx solid #f5f5f5;
+}
+
+/* listbox_box_left */
+
+.listbox_box_left {
+  flex: 1;
+  margin: 10rpx 0;
+  position: relative;
+  border-radius: 20rpx;
+  overflow: hidden;
+}
+
+.listbox_box_img {
+  width: 100%;
+  height: 100%;
+}
+
+.listbox_box_lable {
+  color: #fff;
+  width: 100%;
+  height: 50rpx;
+  line-height: 50rpx;
+  text-align: center;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  background: rgba(0, 0, 0, 0.3);
+  position: absolute;
+  bottom: 0;
+  left: 0;
+}
+
+/* listbox_box_center */
+
+.listbox_box_center {
+  flex: 2;
+  margin-left: 20rpx;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.listbox_box_title {
+  width: 70%;
+  font-size: 40rpx;
+  font-weight: unset;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.listbox_box_flow {
+  max-width: 50%;
+  margin: 15rpx 0;
+  overflow: hidden;
+  text-align: center;
+  white-space: nowrap;
+  border-radius: 10rpx;
+  background: #d5ebff;
+  text-overflow: ellipsis;
+  color: rgb(44, 143, 236);
+  border: 1px solid rgb(44, 143, 236);
+}
+
+.listbox_box_distance {
+  color: #999;
+}
+
+.listbox_box_unit {
+  color: #f80;
+  font-size: 40rpx;
+  font-weight: 400;
+}
+
+/* listbox_box_right */
+
+.listbox_box_right {
+  flex: 1;
+  /* position: relative; */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+/* 屏数 */
+
+.listbox_box_surplus {
+  color: #999;
+  text-align: right;
+}
+
+/* 计算 */
+
+.listbox_box_computer {
+  height: 50rpx;
+  line-height: 50rpx;
+  display: flex;
+  justify-content: center;
+}
+
+/* 加 */
+
+.listbox_box_plus {
+  width: 50rpx;
+  height: 50rpx;
+}
+
+/* 数量 */
+
+.listbox_box_quantity {
+  height: 50rpx;
+  line-height: 50rpx;
+  color: rgb(253, 211, 0);
+  margin: 0 20rpx;
+}
+
+/* 减 */
+
+.listbox_box_subtract {
+  width: 50rpx;
+  height: 50rpx;
+}
+
+/* 地址 */
+
+.listbox_box_site {
+  color: #999;
+  background: url(https://www.chuanshoucs.com/ServerImg/2018-08-03/3faac444-23d2-4aaf-910c-9181ce4bdc4c.png)no-repeat;
+  background-size: 40rpx 40rpx;
+  padding-left: 40rpx;
+  text-align: right;
+  white-space: nowrap;
+  /* position: absolute;
+  bottom: 0;
+  right: 0; */
+}
+
+/* listbox end */
+
+/* tablebar */
+

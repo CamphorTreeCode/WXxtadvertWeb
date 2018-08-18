@@ -65,7 +65,7 @@ Page({
   },
   shouye: function () {
     wx.reLaunch({
-      url: '/pages/home/shouye',
+      url: '/pages/index/index',
     })
   }
 })

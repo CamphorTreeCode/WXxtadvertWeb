@@ -9,6 +9,7 @@ page {
   border-bottom: 5rpx solid #F5F5F5;
   position: relative;
   background-color: #fff;
+  overflow: hidden;
 }
 .aaa {
   border-bottom: none;
@@ -20,7 +21,7 @@ page {
   margin: 0 20rpx;
 }
 .hang input {
-  min-width: 61%;
+  max-width: 61%;
   height: 100rpx;
   float: right;
   color: #ccc;

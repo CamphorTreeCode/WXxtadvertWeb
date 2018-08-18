@@ -1,0 +1,100 @@
+<!-- 下拉选择 -->
+<view style='position:{{position}};top:0rpx;z-index:3'>
+  <!-- 点击下拉 -->
+  <view class='select'>
+    <view class='option'>
+      <view bindtap='one' style="color:{{zero==0 ? 'rgb(253, 211, 0)' : ''}}">{{city}}</view>
+      <image class='gg' src='https://www.chuanshoucs.com/ServerImg/2018-08-03/55c2e0c3-09e7-4b5d-9a06-d764f6156de0.png'></image>
+    </view>
+    <!--  -->
+    <view class='option'>
+      <view bindtap='two' style="color:{{zero==1 ? 'rgb(253, 211, 0)' : ''}}">{{banner}}</view>
+      <image class='gg' src='https://www.chuanshoucs.com/ServerImg/2018-08-03/55c2e0c3-09e7-4b5d-9a06-d764f6156de0.png'></image>
+    </view>
+    <!--  -->
+    <view class='option'>
+      <view bindtap='three' style="color:{{zero==2 ? 'rgb(253, 211, 0)' : ''}}">{{money}}</view>
+      <image class='gg' src='https://www.chuanshoucs.com/ServerImg/2018-08-03/55c2e0c3-09e7-4b5d-9a06-d764f6156de0.png'></image>
+    </view>
+    <!--  -->
+    <view class='option'>
+      <view bindtap='four' style="color:{{zero==3 ? 'rgb(253, 211, 0)' : ''}}">{{human}}</view>
+      <image class='gg' src='https://www.chuanshoucs.com/ServerImg/2018-08-03/55c2e0c3-09e7-4b5d-9a06-d764f6156de0.png'></image>
+    </view>
+  </view>
+
+  <!-- 下拉框 -->
+  <!-- 投放区域 -->
+  <view class='toggle' style='height:{{one_height}}rpx'>
+    <view class='box'>
+      <view class="swiper-tab">
+        <view class="swiper-tab-list {{tab==0 ? 'on' : ''}}" data-current="0" bindtap="tab_click">距离</view>
+        <view class="swiper-tab-list {{tab==1 ? 'on' : ''}}" data-current="1" bindtap="tab_click">行政区</view>
+      </view>
+      <swiper current="{{tab}}" class="swiper-box" duration="300" bindchange="tab_slide">
+        <!-- 距离 -->
+        <swiper-item>
+          <scroll-view scroll-y="true" class='district'>
+            <view wx:for='{{district}}' bindtap='change' data-index='{{index}}' class="{{juli == index ? 'selected' : ''}}">{{item.place}}</view>
+          </scroll-view>
+        </swiper-item>
+        <!-- 行政区 -->
+        <swiper-item>
+          <scroll-view scroll-y="true" class='district'>
+            <view wx:for='{{regionalism}}' bindtap='changeColor' data-index='{{index}}' class="{{xingzhengqu == index ? 'selected' : ''}}">{{item.area}}</view>
+          </scroll-view>
+        </swiper-item>
+      </swiper>
+    </view>
+    <!-- 按钮 -->
+    <view class='button'>
+      <view class='refresh' bindtap=''>{{refresh}}</view>
+      <view class='enter' bindtap='enter'>{{enter}}</view>
+    </view>
+  </view>
+
+  <!-- 广告类型 -->
+  <view class='toggle' style='height:{{two_height}}rpx'>
+    <view class='list'>
+      <text wx:for='{{region}}' bindtap='change_b' data-index='{{index}}' class="{{guangao == index ? 'border' : ''}}">{{item.text}}</text>
+    </view>
+    <!-- 按钮 -->
+    <view class='button'>
+      <view class='refresh' bindtap=''>{{refresh}}</view>
+      <view class='enter' bindtap='enter'>{{enter}}</view>
+    </view>
+  </view>
+
+  <!-- 天数/金额 -->
+  <view class='toggle' style='height:{{three_height}}rpx'>
+    <view class='list'>
+      <text wx:for='{{number}}' bindtap='change_bor' data-index='{{index}}' class="{{tianshu == index ? 'border' : ''}}">{{item.text}}</text>
+    </view>
+    <!-- 按钮 -->
+    <view class='button'>
+      <view class='refresh' bindtap=''>{{refresh}}</view>
+      <view class='enter' bindtap='enter'>{{enter}}</view>
+    </view>
+  </view>
+
+  <!-- 人流量 -->
+  <view class='toggle' style='height:{{four_height}}rpx'>
+    <view class='list'>
+      <text wx:for='{{list}}' bindtap='change_border' data-index='{{index}}' class="{{liuliang == index ? 'border' : ''}}">{{item.text}}</text>
+    </view>
+    <!-- 筛选 -->
+    <view class='screen'>
+      <input type='text'></input>
+      <image src='https://www.chuanshoucs.com/ServerImg/2018-08-03/2552c763-1369-4d9d-8f45-4644babd3dbe.png'></image>
+      <input type='text'></input>
+    </view>
+    <!-- 按钮 -->
+    <view class='button'>
+      <view class='refresh' bindtap=''>{{refresh}}</view>
+      <view class='enter' bindtap='enter'>{{enter}}</view>
+    </view>
+  </view>
+
+</view>
+<!--  -->
+<view class='zhe' hidden='{{show}}' catchtouchmove='aa'></view>

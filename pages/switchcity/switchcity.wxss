@@ -1,0 +1,110 @@
+.searchLetter {
+  position: fixed;
+  right: 0;
+  width: 40px;
+  height: 100%;
+  text-align: center;
+  justify-content: center;
+  display: flex;
+  flex-direction: column;
+  color: #666;
+  z-index: 1;
+}
+
+scroll-view {
+  position: fixed;
+  top: 290rpx;
+}
+
+.touchClass {
+  color: #f4c532;
+}
+
+.showSlectedLetter {
+  background-color: rgba(0, 0, 0, 0.5);
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  margin: -50px;
+  width: 100px;
+  height: 100px;
+  border-radius: 10px;
+  font-size: 26px;
+  z-index: 1;
+}
+
+.selection {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+}
+
+.item_letter {
+  display: flex;
+  background-color: #f8f8f8;
+  height: 30px;
+  padding-left: 10px;
+  align-items: center;
+}
+
+.item_city {
+  display: flex;
+  background-color: #fff;
+  height: 40px;
+  padding-left: 23rpx;
+  align-items: center;
+  border-bottom: 1px solid #f8f8f8;
+}
+
+.top {
+  color: #ccc;
+  font-size: 32rpx;
+  padding-left: 23rpx;
+}
+
+.top_title {
+  padding: 23rpx;
+}
+
+.top_title text, .top_title view {
+  font-size: 36rpx;
+  padding: 5rpx 20rpx;
+  border: 1px solid #f4d422;
+  border-radius: 10rpx;
+  color: #f4d422;
+}
+
+.top_text {
+  display: inline-block;
+  margin-left: 50rpx;
+  padding-left: 60rpx !important;
+  border: 1px solid #ccc !important;
+  background: url(https://www.chuanshoucs.com/ServerImg/2018-07-24/4bc5d507-7969-4a6a-935c-56097668a7ec.png) no-repeat;
+  background-size: 40rpx 40rpx;
+  background-position-x: 20rpx;
+  background-position-y: 50%;
+}
+
+.top_city {
+  padding: 23rpx;
+}
+
+.top_city text {
+  font-size: 36rpx;
+  padding: 5rpx 20rpx;
+  border: 1px solid #999;
+  border-radius: 10rpx;
+  color: black;
+  margin-right: 20rpx;
+}
+
+.top_map {
+  display: inline-block;
+  height: 40rpx;
+  width: 50rpx;
+  vertical-align: baseline;
+}

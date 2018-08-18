@@ -1,0 +1,120 @@
+<!--index.wxml-->
+<view class='document' style='padding-bottom:200rpx'>
+  <!-- head start -->
+  <view class='head'>
+    <!-- 定位 -->
+    <view class='location' bindtap='jump'>
+      <image src='{{dw}}' class='dw'></image>
+      <text>{{site}}</text>
+    </view>
+    <!-- search -->
+    <view class='search' bindtap='search'>
+      <input type='text' placeholder-class="place-holder" placeholder='{{place}}' value='' class='search' maxlength='12'></input>
+      <image src='{{ss}}' class='ss'></image>
+    </view>
+    <!-- head end -->
+  </view>
+  <!-- swiper -->
+  <slideshow></slideshow>
+
+  <!-- 导航栏 -->
+  <view class='collagen clearfix'>
+    <!-- 最新 -->
+    <view class='quarter' bindtap='news'>
+      <image src='{{news_img}}' mode='aspectFit'></image>
+      <view>{{news_text}}</view>
+    </view>
+    <!-- 推荐 -->
+    <view class='quarter' bindtap='recommend'>
+      <image src='{{recommend_img}}' mode='aspectFit'></image>
+      <view>{{recommend_text}}</view>
+    </view>
+    <!-- 优质 -->
+    <view class='quarter' bindtap='superior'>
+      <image src='{{superior_img}}' mode='aspectFit'></image>
+      <view>{{superior_text}}</view>
+    </view>
+    <!-- 本地 -->
+    <view class='quarter' bindtap='native'>
+      <image src='{{native_img}}' mode='aspectFit'></image>
+      <view>{{native_text}}</view>
+    </view>
+  </view>
+
+  <!-- 广告位推荐 -->
+  <view class='advertising'>
+    <!-- 广告位推荐头部 -->
+    <view class='advertising_top clearfix'>
+      <!-- 广告位推荐头部左侧 -->
+      <view class='advertising_top_left' wx:for="{{advertising_top_left}}">
+        <image src='{{item.img}}'></image>{{item.text}}
+      </view>
+      <!-- 广告位推荐头部右侧 -->
+      <view class='advertising_top_right' wx:for="{{advertising_top_right}}" bindtap='rotate'>
+        <image src='{{item.img}}' animation="{{animation}}"></image>{{item.text}}
+      </view>
+    </view>
+
+    <!-- 推荐岗位 -->
+    <view class='post clearfix'>
+      <view class='superior' wx:for="{{referrer}}" style='background-image:url({{item.img}})'>
+        <!-- 地址 -->
+        <view class='superior_address'>{{item.address}}</view>
+        <!-- 人流量 -->
+        <view class='superior_flow'> {{item.flow}} </view>
+        <!-- 单价 -->
+        <view class='superior_unit'> {{item.unit}} </view>
+      </view>
+    </view>
+
+  </view>
+
+  <!-- 下拉 -->
+  <select></select>
+
+  <!-- 列表 -->
+  <view class='listbox'>
+    <!-- 整体 -->
+    <view wx:for='{{listbox}}' class='listbox_box' bindtap='xiangqing'>
+      <!-- 左侧 -->
+      <view class='listbox_box_left'>
+        <!-- 图片 -->
+        <image src='{{item.img}}' class='listbox_box_img' mode='aspectFill'></image>
+        <!-- 介绍 -->
+        <view class='listbox_box_lable'>{{item.lable}}</view>
+      </view>
+
+      <!-- 中间 -->
+      <view class='listbox_box_center'>
+        <!-- 标题 -->
+        <view class='listbox_box_title'>{{item.title}}</view>
+        <!-- 人流量 -->
+        <view class='listbox_box_flow'>{{item.flow}}</view>
+        <!-- 距离 -->
+        <view class='listbox_box_distance'>{{item.distance}}</view>
+        <!-- 单价 -->
+        <view class='listbox_box_unit'>{{item.unit}}</view>
+      </view>
+
+      <!-- 右侧 -->
+      <view class='listbox_box_right'>
+        <!-- 屏数 -->
+        <view class='listbox_box_surplus'>销量 : {{item.surplus}}</view>
+        <!-- 计算 -->
+        <view class='listbox_box_computer'>
+          <!-- 减 -->
+          <image src='{{item.subtract}}' class='listbox_box_subtract' data-index='{{index}}' style='display:{{item.hide}}' catchtap='subtraction'></image>
+          <!-- 数量 -->
+          <view class='listbox_box_quantity' style='display:{{item.hide}}'>{{item.quantity}}</view>
+          <!-- 加 -->
+          <image src='{{item.plus}}' class='listbox_box_plus' catchtap='addition' data-index='{{index}}'></image>
+        </view>
+        <!-- 地址 -->
+        <view class='listbox_box_site'>{{item.site}}</view>
+      </view>
+    </view>
+  </view>
+
+  <!-- tablebr -->
+  <tablebar shouye="{{true}}" class="foter"></tablebar>
+</view>

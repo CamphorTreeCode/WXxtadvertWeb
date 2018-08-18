@@ -1,0 +1,25 @@
+/* pages/Paymentsuccess/Paymentsuccess.wxss */
+
+.top {display: flex;height: 450rpx;border-top: 3rpx solid #F5F5F5;border-bottom: 3rpx solid #F5F5F5;position: relative}
+.top image{width: 180rpx;height: 180rpx;position: absolute;left: 50%;margin-left: -90rpx;top: 20%}
+.top text{color: #ccc;position: absolute;top: 70%;left: 40%}
+
+.content{padding: 20rpx;font-size: 32rpx}
+
+.foter1{position: relative;margin-top: 70rpx}
+/* 图1 */
+.foter1 .liucheng1{width: 110rpx;height: 110rpx;position: absolute;left: 30rpx}
+.foter1 .jiantou1{width: 156rpx;height: 20rpx;position: absolute;top: 50rpx;left: 145rpx}
+.foter1 .txt1{position: absolute;top: 130rpx;left: 25rpx;font-size: 30rpx;color: #FFD800}
+
+/* 图2 */
+.foter1 .liucheng2{width: 110rpx;height: 110rpx;position: absolute;left: 305rpx}
+.foter1 .jiantou2{width: 160rpx;height: 20rpx;position: absolute;top: 50rpx;left: 423rpx}
+.foter1 .txt2{position: absolute;top: 130rpx;left: 260rpx;font-size: 30rpx;color: #FFD800}
+
+/* 图3 */
+.foter1 .liucheng3{width: 110rpx;height: 110rpx;position: absolute;left: 590rpx}
+.foter1 .txt3{position: absolute;top: 130rpx;left: 550rpx;font-size: 30rpx;color: #FFD800}
+
+.foter1 .txt4{position: absolute;top: -24rpx;left: 164rpx;font-size: 24rpx;width: 140rpx;color: #CCCCCC;}
+.foter1 .txt5{position: absolute;top: -24rpx;left: 440rpx;font-size: 24rpx;width: 140rpx;color: #CCCCCC;}
