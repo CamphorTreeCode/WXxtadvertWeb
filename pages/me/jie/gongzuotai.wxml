@@ -6,6 +6,7 @@
   <image src='https://www.chuanshoucs.com/ServerImg/2018-08-02/94eaab23-3f67-42ba-9a74-1711241ca81c.png' class='shouye'  bindtap='tuichu'></image>
   <image class='logo' src='{{logo}}'></image>
   <view>{{name}}</view>
+  <image bindtap='hui' class='hui' src='https://www.chuanshoucs.com/ServerImg/2018-08-03/3e0201c5-c1a0-46ed-a9e4-1af4de4afdba.png'></image>
 </view>
 <view class='xia'>
   <view class='hang'>

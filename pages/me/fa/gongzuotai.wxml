@@ -4,6 +4,7 @@
   <image src='https://www.chuanshoucs.com/ServerImg/2018-08-02/94eaab23-3f67-42ba-9a74-1711241ca81c.png' class='shouye'  bindtap='tuichu'></image>
   <image class='logo' src='{{logo}}'></image>
   <view>{{name}}</view>
+  <image bindtap='hui' class='hui' src='https://www.chuanshoucs.com/ServerImg/2018-08-03/3e0201c5-c1a0-46ed-a9e4-1af4de4afdba.png'></image>
 </view>
 <!-- 中 -->
 <view class='zhong'>
@@ -12,6 +13,10 @@
     <text>投递管理</text>
   </view>
   <view class='toudi'>
+    <view class='one' bindtap='daizhifu'>
+      <image src='https://www.chuanshoucs.com/ServerImg/2018-08-03/680fcf00-b004-48b4-892b-a22811b0416a.png'></image>
+      <text>待支付</text>
+    </view>
     <view class='one' bindtap='yizhifu'>
       <image src='https://www.chuanshoucs.com/ServerImg/2018-08-03/fa942eff-dece-45ca-8f61-192bb2f8f3d1.png'></image>
       <text>已支付</text>

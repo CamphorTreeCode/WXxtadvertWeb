@@ -105,9 +105,19 @@ Page({
       url: '/pages/me/fa/yizhifu',
     })
   },
+  daizhifu: function(){
+    wx.navigateTo({
+      url: '/pages/me/fa/daizhifu',
+    })
+  },
   chongzhi: function(){
     wx.navigateTo({
       url: '/pages/me/fa/chongzhi',
+    })
+  },
+  hui: function(){
+    wx.redirectTo({
+      url: '/pages/index/index',
     })
   }
 })

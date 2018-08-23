@@ -33,7 +33,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 9,
+			"current": 10,
 			"list": [
 				{
 					"id": -1,
@@ -94,6 +94,11 @@
 					"name": "发广告信息",
 					"pathName": "pages/me/fa/message",
 					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "fa mi",
+					"pathName": "pages/me/fa/mima"
 				}
 			]
 		}

@@ -16,6 +16,13 @@ page {
   align-items: center;
   position: relative;
 }
+.shang .hui {
+  position: absolute;
+  bottom: -55rpx;
+  right: 20rpx;
+  width: 115rpx;
+  height: 115rpx;
+}
 .shang .shouye {
   position: absolute;
   top: 30rpx;

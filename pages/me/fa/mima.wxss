@@ -23,7 +23,7 @@ input {
   overflow: hidden;
 }
 .one input {
-  max-width: 60%;
+  max-width: 50%;
   margin-right: 2%;
   float: left;
 }

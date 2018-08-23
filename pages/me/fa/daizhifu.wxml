@@ -1,0 +1,14 @@
+<!--pages/me/fa/daizhifu.wxml-->
+<view class='zong'>
+  <view class='shang'>
+    <view class='zuo'>
+      <view style='font-size: 40rpx; margin-bottom: 20rpx;'>永辉超市/5屏</view>
+      <text class='biao'>人流量：400/天</text>
+      <view style='margin-top: 20rpx; color: #999'>投放时间：7.29-8.08</view> 
+    </view>
+    <view class='you'>
+      <view style='color: #FC7F00;'>￥2000</view>
+     <button bindtap='quzhifu'>去支付</button>
+    </view>
+  </view>
+</view>
