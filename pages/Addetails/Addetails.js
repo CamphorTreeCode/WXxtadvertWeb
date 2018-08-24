@@ -21,6 +21,7 @@ Page({
     Shopping: true,
     // 购物车弹窗
     ShoppingCart: false, 
+
     // 是否已经添加过了
     Shoppinged: false,
     // 购物车弹窗
