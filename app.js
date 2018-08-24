@@ -37,6 +37,7 @@ App({
   //   })
   },
   globalData: {
-    userInfo: null
+    userInfo: null,
+    appUrl: "http://localhost/xtadvert/"
   }
 })

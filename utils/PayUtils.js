@@ -29,7 +29,7 @@ export default function WXUnifiedOrder(prepay_id, calbackUrl, calbackdata,naviga
         data: calbackdata,
         success:function(){
            wx.redirectTo({
-             url: 'navigateTo',
+             url: navigateTo,
            })
         }
       })
