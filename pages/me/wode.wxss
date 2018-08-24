@@ -1,0 +1,67 @@
+/* pages/me/wode.wxss */
+page {
+  background-color: #F9F9F9;
+}
+.up {
+  position: relative;
+  margin: 20rpx 0;
+  height: 250rpx;
+  text-align: center;
+}
+.up image {
+  width: 94%;
+  height: 250rpx;
+}
+.up .user {
+  position: absolute;
+  top: 0;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  height: 250rpx;
+  width: 750rpx;
+}
+.user .touxiang {
+  position: absolute;
+  height: 150rpx;
+  width: 150rpx;
+  overflow: hidden;
+  border-radius: 50%;
+  margin-left: 40rpx;
+  border: 5rpx solid #f1f1f1;
+}
+.username {
+  margin-left: 250rpx;
+}
+
+.middle {
+  margin: 20rpx 0;
+  background-color: #fff;
+  height: 100rpx;
+  display: flex;
+  align-items: center;
+  color: #FBCD00;
+  justify-content: space-around;
+}
+.middle image {
+  width: 50rpx;
+  height: 50rpx;
+  vertical-align: text-bottom;
+  padding-right: 10rpx;
+}
+
+
+.down image {
+  margin-left: 3%;
+  width: 40rpx;
+  height: 40rpx;
+  vertical-align: text-bottom;
+  padding-right: 10rpx;
+}
+.jiange {
+  height: 100rpx;
+  line-height: 100rpx;
+  margin-bottom: 5rpx;
+  background-color: #fff;
+}
+

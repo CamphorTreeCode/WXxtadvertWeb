@@ -1,0 +1,106 @@
+{
+	"description": "项目配置文件。",
+	"packOptions": {
+		"ignore": []
+	},
+	"setting": {
+		"urlCheck": true,
+		"es6": true,
+		"postcss": true,
+		"minified": true,
+		"newFeature": true
+	},
+	"compileType": "miniprogram",
+	"libVersion": "2.2.0",
+	"appid": "wxfbe5b59f9aef6f4f",
+	"projectname": "%E4%BA%AB%E6%8A%951.0",
+	"isGameTourist": false,
+	"condition": {
+		"search": {
+			"current": -1,
+			"list": []
+		},
+		"conversation": {
+			"current": -1,
+			"list": []
+		},
+		"plugin": {
+			"current": -1,
+			"list": []
+		},
+		"game": {
+			"currentL": -1,
+			"list": []
+		},
+		"miniprogram": {
+			"current": 10,
+			"list": [
+				{
+					"id": -1,
+					"name": "我的",
+					"pathName": "pages/me/wode",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "开发小程序",
+					"pathName": "pages/me/more",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "发广告",
+					"pathName": "pages/me/fa/login",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "发广告工作台",
+					"pathName": "pages/me/fa/gongzuotai",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "接广告",
+					"pathName": "pages/me/jie/login",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "接广告信息填写",
+					"pathName": "pages/me/jie/message",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "广告位",
+					"pathName": "pages/me/jie/guanggaowei",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "接广告提现",
+					"pathName": "pages/me/jie/tixian",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "会员中心",
+					"pathName": "pages/me/member",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "发广告信息",
+					"pathName": "pages/me/fa/message",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "fa mi",
+					"pathName": "pages/me/fa/mima"
+				}
+			]
+		}
+	}
+}

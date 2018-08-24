@@ -1,0 +1,54 @@
+<!-- pages/find/find.wxml-->
+<view class='find'>
+
+  <!-- find_content start -->
+  <view class='find_content' wx:for='{{find}}' bindtap='find' >
+
+    <!-- find_content_top start -->
+    <view class='find_top'>
+
+      <!-- find_top img -->
+      <image src='{{item.img}}' class='find_top_img'></image>
+      <!-- find_top title -->
+      <view class='find_title'>
+        <!-- title cn -->
+        <view class='find_title_cn'>{{item.title_cn}}</view>
+        <!-- title en -->
+        <view class='find_title_en'>{{item.title_en}}</view>
+      </view>
+      <!-- find_top time -->
+      <view class='find_time'>{{item.time}}</view>
+    </view>
+    <!-- find_top end -->
+
+    <!-- find_content_main start -->
+    <view class='find_main'>
+      <!-- find_content_main text -->
+      <view class='find_main_text'>{{item.text}}</view>
+      <!-- find_main_examine -->
+      <view class='find_main_examine'>{{item.examine}}</view>
+      <!-- video -->
+      <view class='video'>
+        <video id='myVideo' src='{{item.video}}' controls='controls' poster='{{item.poster}}' style="display:{{item.show}} "></video>
+        <image wx:for='{{item.videoimg}}' src='{{item.video_img}}' class='video_img' data-index='{{index}}'></image>
+      </view>
+    </view>
+    <!-- find content_main end -->
+
+    <!-- find_praise -->
+    <view class='find_praise'>
+      <!-- find_read -->
+      <text class='find_read'>{{item.read}}</text>
+      <!-- find_like-->
+      <text class='find_like'>{{item.like}}</text>
+    </view>
+
+  </view>
+  <!-- find_content end -->
+
+
+</view>
+
+
+<tablebar faxian="{{true}}" class="foter"></tablebar>
+<!-- poster='http://img.storage.17wanba.org.cn/game/2016/05/12/9310a65403902b6e286b93997172548f.jpg'

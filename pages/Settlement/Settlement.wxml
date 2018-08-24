@@ -1,0 +1,58 @@
+<!--pages/Settlement/Settlement.wxml-->
+<view class='top'>
+  <image src='/img/cat.jpg'></image>
+  <view class='t_left'>
+    <view class='title'>上海松江区万达广告位</view>
+    <view class='label'>
+      <text>人流量:900/天</text>
+    </view>
+    <view class='dizhi'>距离:1.5km</view>    
+    <view class='jiagep'>20元/1天</view>   
+  </view>
+</view>
+<view class='list'>
+  价格
+  <text>400元/10天</text>
+</view>
+<view class='list'>
+  投放时间
+  <text>7.29-8.3</text>
+</view>
+<view class='list'>
+  屏数
+  <text>5</text>
+</view>
+
+<!-- 底部 -->
+<view class='foter'>
+  合计 :
+  <text>￥2000</text>
+  <view bindtap='payment'>
+    <image src='/img/shopping/quzhifu.png'></image>
+    <text class='zhifu'>支付</text>
+  </view>
+</view>
+
+<!-- 遮罩层 -->
+<view class='mask' hidden='{{flag == false}}' catchtouchmove="preventTouchMove"></view>
+
+<!-- 支付图片 -->
+<view class='mesk'  hidden='{{flag == false}}'>
+  <image class='image1' bindtap='Smallchange' src='/img/shopping/lingqianzhifu.png'></image>
+  <image class='image2' src='/img/shopping/wechatzhifu.png'></image>
+  <image class='image3' bindtap='close' src='/img/shopping/cha.png'></image>
+  <text>选择支付方式</text>
+</view>
+
+<!-- 支付界面 -->
+<view class='mask' hidden='{{flage == false}}' catchtouchmove="preventTouchMove"></view>
+
+<view class='mack'  hidden='{{flage == false}}'>
+   <view class='viw'>
+        <text>商品总额</text>
+        <text class='price'>￥2000</text>
+        <input type='number' password='true' maxlength='6' placeholder='请输入支付密码'></input>
+        <text class='payment'>确认支付</text>
+        <text class='quxiao' bindtap='quxiao'>取消</text>
+    </view>
+</view>

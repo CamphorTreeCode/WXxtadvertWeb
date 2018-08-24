@@ -1,0 +1,21 @@
+<view class="num-controller">
+  <!-- <view class="goods-num" hidden="{{num<1}}">{{num}}</view> -->
+  <view class='tab' data-id="0" bindtap='navigation'>
+    <image class='daohang' hidden="{{shouye==false}}" src='/img/zujian/gongzuotai.png'></image>
+    <image class='daohang' hidden="{{shouye==true}}" src='/img/zujian/gongzuotai2.png'></image>
+    <view class='show tab_text' hidden="{{shouye==false}}">工作台</view>
+    <view class='hide tab_text' hidden="{{shouye==true}}">工作台</view>
+  </view>
+  <view class='tab' data-id="1" bindtap='navigation'>
+    <image class='daohang' hidden="{{faxian==false}}" src='/img/zujian/guanggaowei2.png'></image>
+    <image class='daohang' hidden="{{faxian==true}}" src='/img/zujian/guanggaowei.png'></image>
+    <view class='show tab_text' hidden="{{faxian==false}}">广告位</view>
+    <view class='hide tab_text' hidden="{{faxian==true}}">广告位</view>
+  </view>
+  <view class='tab' data-id="2" bindtap='navigation'>
+    <image class='daohang' hidden="{{gouwuche==false}}" src='/img/zujian/shezhi2.png'></image>
+    <image class='daohang' hidden="{{gouwuche==true}}" src='/img/zujian/shezhi.png'></image>
+    <view class='show tab_text' hidden="{{gouwuche==false}}">设置</view>
+    <view class='hide tab_text' hidden="{{gouwuche==true}}">设置</view>
+  </view>
+</view>

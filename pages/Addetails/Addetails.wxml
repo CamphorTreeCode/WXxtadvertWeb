@@ -1,0 +1,187 @@
+<!-- <video src='/img/movie.ogg'></video> -->
+<!-- 遮罩层 -->
+<view class='mask' hidden='{{flag==false}}' catchtouchmove="preventTouchMove"></view>
+
+<!-- 轮播图 -->
+<swiper indicator-dots='true' indicator-active-color='#33A1FF' indicator-color='white' circular='true'>
+  <swiper-item>
+    <image mode='scaleToFill' src='/img/cat.jpg'> </image>
+  </swiper-item>
+  <swiper-item>
+    <image mode='scaleToFill' src='/img/cat.jpg'> </image>
+  </swiper-item>
+  <swiper-item>
+    <image mode='scaleToFill' src='/img/cat.jpg'> </image>
+  </swiper-item>
+</swiper>
+<!-- 中间循环 -->
+<view class='content'>
+  <view class='c_left'>
+    <image src='/img/detail/guanggaowei.png'></image>
+    <text>上海松江万达广场</text>
+  </view>
+  <view class='c_right' style='color:#FF824B'>
+    累计投放60天
+  </view>
+</view>
+<!-- 剩余 -->
+<view class='content'>
+  <view class='c_left'>
+    <image src='/img/detail/shengyu.png'></image>
+    <text>剩余</text>
+  </view>
+  <view class='c_right' style='color:#ccc'>
+    5
+  </view>
+</view>
+<!-- 价格样式 -->
+<view class='content' bindtap='jiage'>
+  <view class='c_left'>
+    <image src='/img/detail/jiage.png'></image>
+    <text>价格</text>
+  </view>
+  <view class='c_right c_rightp' style='color:#FFD801'>
+    40元/天
+    <image wx:if="{{jiage=='block'}}" src='/img/detail/zhankai.png'></image>
+    <image wx:if="{{jiage=='none'}}" src='/img/detail/shouqi.png'></image>
+  </view>
+</view>
+<!-- 价格循环 -->
+<view class='jiage' style='display:{{jiage}}'>
+    <text wx:for="{{price}}" bindtap='textjiage' data-index='{{index}}' class="{{priceindex==index?'juse':''}}">{{item}}</text>
+</view>
+<!-- 广告类型 -->
+<view class='content'>
+  <view class='c_left'>
+    <image src='/img/detail/guanggaoleixing.png'></image>
+    <text>广告类型</text>
+  </view>
+  <view class='c_right' style='color:#999999'>
+    大型商业广场
+  </view>
+</view>
+<!-- 投放周期 -->
+<view class='content'>
+  <view class='c_left'>
+    <image src='/img/detail/zhouqi.png'></image>
+    <text>投放周期</text>
+  </view>
+  <view class='c_right c_rightp' style='color:#FFD801'>
+    7.29-7.30
+    <image src='/img/detail/shouqi.png'></image>
+  </view>
+</view>
+<!-- 地址 -->
+<view class='content'>
+  <view class='c_left'>
+    <image src='/img/detail/dizhix.png'></image>
+    <text>地址</text>
+  </view>
+  <view class='c_right' style='color:#999999'>
+    上海市 松江区 广富林路 万达广场
+  </view>
+</view>
+<!-- 广告位简介 -->
+<view class='addetails content'>
+  <view class='c_left a_left'>
+    <image src='/img/detail/guanggaoweijianjie.png'></image>
+    <text>广告位简介</text>
+  </view>
+  <view class='a_right'>
+    大连万达集团股份有限公司创建于1988年，形成商业、文化、网络、金融四大产业集团,2017年位列《财富》世界500强380名
+  </view>
+</view>
+<!-- 感兴趣的用户 -->
+<view class='content' style='border:0 '>
+  <view class='c_left'>
+    <image src='/img/detail/yonghu.png'></image>
+    <text>感兴趣的用户</text>
+  </view>
+  <view class='c_right c_left' style='color:#999999'>
+    <image src='/img/detail/liulan.png'></image>
+    79
+  </view>
+</view>
+<view class='yonghu'>
+  <view class='y_left'>
+    <image src='/img/me.jpg'></image>
+    <image src='/img/me.jpg'></image>
+    <image src='/img/me.jpg'></image>
+    <image src='/img/me.jpg'></image>
+  </view>
+  <image class='y_right' src='/img/detail/shenglue.png'></image>
+</view>
+<!-- 底部 -->
+<view class='foter'>
+  <view class='f_shoucang' bindtap='collection'>
+    <view class='f_center'>
+      <image wx:if="{{collection==false}}" src='/img/detail/weishoucang.png'></image>
+      <image wx:else="{{collection==true}}" src='/img/detail/yishoucang.png'></image>
+    </view>
+  </view>
+  <view class='f_gouwu' bindtap='ShoppingCart'>
+    <view class='f_center'>
+      <image src='/img/detail/jiarugouwuche.png'></image>
+    </view>
+  </view>
+  <view class='f_yuyue' bindtap='appointment'>
+    <view class='f_left'>
+      <image src='/img/detail/yuyue.png'></image>
+      <text>立即预约</text>
+    </view>
+  </view>
+  <view class='f_zhuanfa' bindtap='forward'>
+    <view class='f_left' >
+      <image src='/img/detail/zhuanfa.png'></image>
+      <text>转发</text>
+    </view>
+  </view>
+</view>
+
+<!-- 返回主页悬浮窗 -->
+<image src='/img/detail/huishouye.png' class='homebanner' bindtap='homebanner'></image>
+
+<!-- 收藏弹出框 -->
+<view class='t_shoucang' hidden='{{Tcollection==false}}'>
+    <!-- 已收藏 -->
+    <image wx:if="{{collection==true}}" src='/img/detail/tanchuang1.png'></image>
+    <text wx:if="{{collection==true}}">已收藏</text>
+    <!-- 未收藏 -->
+    <image wx:if="{{collection==false}}" src='/img/detail/tanch.png'></image>
+    <text wx:if="{{collection==false}}">已取消收藏</text>
+</view>
+
+<!-- 购物车弹出框 -->
+<view class='t_shoucang' hidden='{{ShoppingCart==false}}'>
+    <!-- 已加入购物车 -->
+    <image wx:if="{{Shopping==true}}" src='/img/detail/tanchuang4.png'></image>
+    <text wx:if="{{Shopping==true}}">您已经添加过了</text>
+    <!-- 未加入购物车 -->
+    <image wx:if="{{Shopping==false}}" src='/img/detail/tanchuang3.png'></image>
+    <text wx:if="{{Shopping==false}}">已加入购物车</text>
+</view>
+
+<!-- 购物车身份验证 -->
+<view class='G_gouwu' hidden='{{notshopping == false}}'>
+  <image src='/img/detail/tanchuang5.png'></image>
+  <text>{{Stxt}}</text>
+  <view class='button' bindtap='notshopping'>明白了</view>
+</view>
+
+
+<!-- 海报 -->
+<view class='poster' hidden='{{poster == false}}'>
+    <view class='poster_left'>
+      <image src='/img/detail/wechat.png'></image>
+      <text>分享给好友</text>
+    </view>
+    <view class='poster_right'>
+      <image src='/img/detail/fenxianghaibao.png'></image>
+      <text>生成海报</text>
+    </view>
+</view>
+
+<view class='poster_quxiao' bindtap='postercancel' hidden='{{poster == false}}'>
+    取消
+</view>
+

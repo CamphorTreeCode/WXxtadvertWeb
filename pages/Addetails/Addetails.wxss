@@ -1,0 +1,83 @@
+
+/* 轮播图 */
+swiper-item image{width: 100%;height: 100%;}
+swiper{height: 400rpx;}
+/* 遮罩层 */
+.mask{height: 2000rpx;width: 100%;background: black;opacity: 0.3;position: fixed;top: 0;left: 0;z-index: 10;}
+
+/* 中间内容 */
+.content{padding:20rpx;border-bottom: 1rpx solid #F9F9F9}
+.content .c_left{position: relative;padding-left: 60rpx;display: inline-block}
+.content .c_left image{width: 40rpx;height: 40rpx;position: absolute;top: 50%;margin-top: -20rpx;left: 0;}
+
+/* 右面 */
+.content text{font-size: 32rpx;}
+.content .c_rightp{padding-right: 50rpx;}
+.content .c_right{float: right;font-size: 32rpx;position: relative;}
+.content .c_right image{width: 30rpx;height: 30rpx;position: absolute;top: 50%;margin-top: -15rpx;right: 0}
+
+/* 价格 */
+.jiage{border-bottom: 1rpx solid #F9F9F9;padding:20rpx 0rpx 20rpx 22rpx}
+.jiage text{padding:5rpx 10rpx;color: #FFD800;display: inline-block;margin:  10rpx;border-radius: 10rpx;border: 1rpx solid #FFD800}
+.juse{background: #FFD800;color: white !important}
+
+/* 广告位 */
+.addetails{border: 0}
+.addetails .a_left{display: block}
+.addetails .a_right{margin-top: 20rpx;padding-bottom: 20rpx;border-bottom: 1rpx solid #F9F9F9; color: #999;font-size: 32rpx;}
+
+/* 用户图片 */
+.yonghu{padding: 0 30rpx;border-bottom: 300rpx solid #F5F5F5}
+.yonghu .y_left{display: inline-block}
+.yonghu .y_left image{width: 119rpx;height: 119rpx;border-radius: 50%;margin: 5px 15rpx 20rpx;}
+.y_right{float: right;height: 50rpx;width: 50rpx;margin-top: 47rpx;margin-right: 20rpx;}
+
+/* 底部 */
+.foter{padding: 20rpx 4rpx;background: white;text-align: center}
+.foter view{display: inline-block;height: 80rpx;border-radius: 10rpx;}
+.foter image{width: 50rpx;height: 50rpx;}
+/* 前两个居中显示 */
+/* .foter .f_center{position: relative;}
+.foter .f_center image{position: absolute;top:50%;margin-top: -25rpx;left: 50%;margin-left: -25rpx} */
+.foter .f_center{display: flex}
+.foter .f_center image{margin: auto}
+/* 后两个居中显示 */
+.foter .f_left{display: flex}
+.foter .f_left image{margin: auto 20rpx}
+.foter .f_left text{font-size: 30rpx;margin: auto;color: white;margin-left:-20rpx;}
+/* 收藏 */
+.foter .f_shoucang{width: 15%;}
+.foter .f_shoucang view{width: 80%;margin: 0 10%;background:#FFD800}
+/* 购物 */
+.foter .f_gouwu{width: 20%}
+.foter .f_gouwu view{width: 80%;margin: 0 10%;background: #FFD800}
+/* 预约 */
+.foter .f_yuyue{width: 35%}
+.foter .f_yuyue view{width: 80%;margin: 0 10%;background: #FFD800}
+/* 转发 */
+.foter .f_zhuanfa{width: 25%}
+.foter .f_zhuanfa view{width: 80%;margin: 0 10%;background: #FFD800}
+
+/* 返回主页悬浮窗 */
+.homebanner{position: fixed;bottom: 30%;right:20rpx;width: 100rpx;height: 100rpx;}
+
+/* 收藏弹出框 */
+.t_shoucang{width:300rpx;height:300rpx;background: white;position: fixed;top: 50%;margin-top: -200rpx;left: 50%;margin-left: -150rpx;box-shadow:0px 0px 16px #ccc;border-radius: 20rpx;}
+.t_shoucang image{height: 120rpx;width: 120rpx;margin: 50rpx auto 20rpx;display: block}
+.t_shoucang text{display: block;text-align: center;font-size: 32rpx}
+
+/* 购物车身份弹窗 */
+.G_gouwu{position: fixed;width: 400rpx;background: white;top: 25%;left: 50%;margin-left: -200rpx;z-index: 11;border-radius: 20rpx;}
+.G_gouwu image{width: 120rpx;height: 120rpx;margin: 40rpx auto 20rpx;display: block}
+.G_gouwu text{display: block;font-size: 32rpx; width: 80%;margin: 0 auto 40rpx;text-align: center}
+.G_gouwu .button{position: absolute;bottom: -130rpx;left: 50%;margin-left: -100rpx;background: #FFD800;padding:15rpx 40rpx;border-radius: 40rpx;text-align: center;color: white;font-size: 32rpx}
+
+/* 海报 */
+.poster {position: fixed;bottom: 160rpx;left: 50%;width: 94%;margin-left: -47%;z-index: 11;background: white;display: flex;padding: 40rpx 0;border-radius: 20rpx;}
+.poster .poster_left, .poster .poster_right {display: flex;width: 50%;flex-wrap: wrap} 
+.poster .poster_left{padding-left: 50rpx;}
+.poster .poster_right{padding-right: 50rpx;}
+.poster image{width: 120rpx;height: 120rpx;display: block;margin:0 auto}
+.poster text{display: block;width: 100%;text-align: center;font-size: 22rpx;margin-top: 20rpx;}
+/* 海报取消 */
+.poster_quxiao{position: fixed;bottom: 20rpx;width: 94%;left: 50%;margin-left: -47%;background: white;border-radius: 20rpx;z-index: 11;padding: 30rpx 0;text-align: center;color: #006BEC;}

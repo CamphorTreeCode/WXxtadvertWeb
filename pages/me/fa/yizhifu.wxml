@@ -1,0 +1,32 @@
+<!--pages/me/fa/yizhifu.wxml-->
+<view class='zong'>
+  <view class='shang'>
+    <view class='zuo'>
+      <view style='font-size: 40rpx; margin-bottom: 20rpx;'>永辉超市/5屏</view>
+      <text class='biao'>人流量：400/天</text>
+      <view style='margin-top: 20rpx; color: #999'>投放时间：7.29-8.08</view> 
+    </view>
+    <view class='you'>
+      <view style='color: #FC7F00;'>￥2000</view>
+      <view style='margin: 20rpx 0; font-size: 30rpx; color: #999;'>客服稍后将会联系您</view>
+      <view style='font-size: 30rpx; color: #2B486A;' bindtap='call'>没收到电话？</view>
+    </view>
+  </view>
+  <view class='xia'>
+    <text style='float: left;'>订单号</text>
+    <text style='float:right;'>20180726105149</text>
+  </view>
+</view>
+
+<!-- 退出登录弹框 -->
+<view class='shadow {{state==true?"kuang":" "}}'></view>
+<view class='tan {{state==true?"kuang":" "}}'>
+  <image src='https://www.chuanshoucs.com/ServerImg/2018-08-03/466014df-eaaa-4258-b67d-31444740f56e.png'></image>
+  <view>将为您拨打享投客</view>
+  <view>服，是否同意？</view>
+  <view class='anniu'>
+    <view class='quxiao' bindtap='quxiao'>取消</view>
+    <view class='queding' bindtap='queding'>确定</view>
+  </view>
+</view>
+

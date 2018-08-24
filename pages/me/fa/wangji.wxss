@@ -1,0 +1,45 @@
+/* pages/me/fa/wangji.wxss */
+page {
+  background-color: #f2f2f2;
+}
+.zong {
+  margin: 20rpx 30rpx;
+}
+input {
+  background-color: #fff;
+  border-radius: 50rpx;
+  height: 100rpx;
+  padding-left: 35rpx;
+  line-height: 100rpx;
+  color: #ccc;
+  font-size: 35rpx;
+}
+.gong {
+  height: 100rpx;
+  line-height: 100rpx;
+  margin: 15rpx 0;
+}
+.one {
+  overflow: hidden;
+}
+.one input {
+  max-width: 60%;
+  margin-right: 2%;
+  float: left;
+}
+.one button {
+  width: 35%;
+  line-height: 100rpx;
+  font-size: 30rpx;
+  float: right;
+  color: #fff !important;
+  border-radius: 50rpx;
+}
+.zzz {
+  position: fixed;
+  bottom: 100rpx;
+  width: 92%;
+  margin: 0 4%;
+  border-radius: 50rpx;
+  color: #fff;
+}

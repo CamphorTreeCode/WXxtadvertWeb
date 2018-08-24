@@ -1,0 +1,54 @@
+<!--pages/search/search.wxml-->
+<view class='body'>
+
+  <!-- 头部搜索 -->
+  <view class='header'>
+    <!-- 搜索框 -->
+    <view class='search'>
+      <input type='text' placeholder-class="place-holder" placeholder='{{placeholder}}' value='{{value}}' class='search_input' maxlength='12'></input>
+      <image src='{{ss}}' class='ss' bindtap='empty'></image>
+    </view>
+    <!-- 搜索 -->
+    <view class='sou'>搜索</view>
+  </view>
+
+
+  <!-- 历史搜索 -->
+  <view class='history_search'>
+    <!-- 历史搜索头部 -->
+    <view class='history_t clearfix'>
+      <!-- left -->
+      <view class='history_t_l'>{{history_search}}</view>
+      <!-- right -->
+      <view class='history_t_r' bindtap='eliminate'>{{eliminate}}</view>
+    </view>
+    <!-- 模块 -->
+    <view class='mm'>
+      <text wx:for='{{history}}' class='model'>{{item.city}}</text>
+    </view>
+  </view>
+
+
+  <!-- 热门搜索 -->
+  <view class='history_search'>
+    <!-- 热门搜索头部 -->
+    <view class='history_t clearfix'>
+      <!-- left -->
+      <view class='history_t_l hot_t_l'>{{hot_search}}</view>
+      <!-- right -->
+      <!-- <view class='history_t_r'>{{eliminate}}</view> -->
+    </view>
+    <!-- 模块 -->
+    <view class='mm'>
+      <text wx:for='{{hot}}' class='model'>{{item.city}}</text>
+    </view>
+  </view>
+
+
+
+
+
+
+
+
+</view>

@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "tabbar": "/pages/zujian/zujian"
+  },
+  "navigationBarTitleText": "接广告广告位"
+}

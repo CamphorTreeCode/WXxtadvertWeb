@@ -1,0 +1,9 @@
+/* 顶部星期 */
+page{padding-bottom: 50rpx;}
+.top{background: #F5F5F5;padding: 10rpx 0;}
+.top text{ display: inline-block;width: 14.285%;text-align: center;color: #CCCCCC;}
+.top .day{color: #FFDD20;}
+.data1 {margin-top: 20rpx;}
+.data1 text{ display: inline-block;width: 14.285%;text-align: center;color:#D2D2D2;margin-top: 20rpx;}
+.optional{color: #333 !important}
+.selected{color: #FFDD20 !important}

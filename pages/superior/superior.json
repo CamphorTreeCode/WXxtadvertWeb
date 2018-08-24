@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "优质",
+  "usingComponents": {
+    "select": "/pages/list/list"
+  }
+}

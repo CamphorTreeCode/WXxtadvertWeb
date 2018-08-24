@@ -1,0 +1,7 @@
+<!--pages/me/fa/tijiaoSuccess.wxml-->
+<view class='total'>
+<image class='shang' src='https://www.chuanshoucs.com/ServerImg/2018-08-02/8c1342fa-b851-4f1e-8cfe-a9c6be4d371e.png'></image>
+<view style="margin: 30rpx 0 50rpx 0;">提交成功，稍后将反馈给您审核结果</view>
+<image class='xia' src='https://www.chuanshoucs.com/ServerImg/2018-08-02/17b89025-07d3-4584-87df-98bfbf28b47a.png' bindtap='shouye'></image>
+<text style='margin-top: 20rpx; color: #F3D333;' bindtap='shouye'>回首页</text>
+</view>

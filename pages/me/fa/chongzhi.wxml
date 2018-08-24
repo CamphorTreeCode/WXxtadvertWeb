@@ -1,0 +1,21 @@
+<!--pages/me/fa/chongzhi.wxml-->
+<view class='zong'>
+  <view class='shang'>
+    <view class='one'>
+      <text style='float: left;'>到账</text>
+      <view style='float:right;'>
+        <image src='https://www.chuanshoucs.com/ServerImg/2018-08-02/d68c37b7-c420-42ee-ad39-8a32fd787e76.png'></image>
+        <text>享投我的金额</text>
+      </view>
+    </view>
+    <view class='two'>10分钟内到账</view>
+  </view>
+  <view class='zhong'>
+    <view style='margin: 40rpx 0;'>充值金额</view>
+    <view class='three'>
+      <text>￥</text>
+      <input type='digit' focus='true'></input>
+    </view>
+  </view>
+  <button bindtap='chongzhi'>充值</button>
+</view>

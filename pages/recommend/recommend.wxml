@@ -1,0 +1,46 @@
+<view>
+  <!-- 下拉选择列表 -->
+  <select></select>
+  <!-- 列表 -->
+  <view class='listbox'>
+    <!-- 整体 -->
+    <view wx:for='{{listbox}}' class='listbox_box'>
+      <!-- 左侧 -->
+      <view class='listbox_box_left'>
+        <!-- 图片 -->
+        <image src='{{item.img}}' class='listbox_box_img' mode='aspectFill'></image>
+        <!-- 介绍 -->
+        <view class='listbox_box_lable'>{{item.lable}}</view>
+      </view>
+
+      <!-- 中间 -->
+      <view class='listbox_box_center'>
+        <!-- 标题 -->
+        <view class='listbox_box_title'>{{item.title}}</view>
+        <!-- 人流量 -->
+        <view class='listbox_box_flow'>{{item.flow}}</view>
+        <!-- 距离 -->
+        <view class='listbox_box_distance'>{{item.distance}}</view>
+        <!-- 单价 -->
+        <view class='listbox_box_unit'>{{item.unit}}</view>
+      </view>
+
+      <!-- 右侧 -->
+      <view class='listbox_box_right'>
+        <!-- 屏数 -->
+        <view class='listbox_box_surplus'>销量 : {{item.surplus}}</view>
+        <!-- 计算 -->
+        <view class='listbox_box_computer'>
+          <!-- 减 -->
+          <image src='{{item.subtract}}' class='listbox_box_subtract' data-index='{{index}}' style='display:{{item.hide}}' bindtap='subtraction'></image>
+          <!-- 数量 -->
+          <view class='listbox_box_quantity' style='display:{{item.hide}}'>{{item.quantity}}</view>
+          <!-- 加 -->
+          <image src='{{item.plus}}' class='listbox_box_plus' bindtap='addition' data-index='{{index}}'></image>
+        </view>
+        <!-- 地址 -->
+        <view class='listbox_box_site'>{{item.site}}</view>
+      </view>
+    </view>
+  </view>
+</view>

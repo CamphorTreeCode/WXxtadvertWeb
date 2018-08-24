@@ -1,0 +1,9 @@
+<!--pages/me/jie/zhuceSuccess.wxml-->
+<!--pages/me/fa/zhuceSuccess.wxml-->
+<view class='zong'>
+  <image src='https://www.chuanshoucs.com/ServerImg/2018-08-03/865c6988-49be-4fd5-baed-fbd5f60719c8.png'></image>
+  <view>恭喜您已注册成功，根据条款</view>
+  <view>您还需填写店铺基本信息才能</view>
+  <view>进行发广告操作哦</view>
+  <button bindtap='tianxie'>去填写</button>
+</view>

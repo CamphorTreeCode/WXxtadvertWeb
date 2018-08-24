@@ -1,0 +1,60 @@
+{
+  "pages":[
+    "pages/index/index",
+    "pages/swipe/swipe",
+    "pages/list/list",
+    "pages/switchcity/switchcity",
+    "pages/search/search",
+    "pages/news/news",
+    "pages/recommend/recommend",
+    "pages/superior/superior",
+    "pages/native/native",
+    "pages/find/find",
+    "pages/findask/findask",
+
+    "pages/shoppingcart/shoppingcart",
+    "utils/getUserTemplate/getUserTemplate",
+    "pages/Settlement/Settlement",
+    "pages/Paymentsuccess/Paymentsuccess",
+    "pages/Addetails/Addetails",
+    "pages/Addetailspage/Addetailspage",
+
+    "pages/me/wode",
+    "pages/me/member",
+    "pages/me/fankui",
+    "pages/me/about",
+    "pages/me/more",
+    "pages/me/shoucang",
+
+    "pages/me/fa/login",
+    "pages/me/fa/zhuceSuccess",
+    "pages/me/fa/zhuce",
+    "pages/me/fa/message",
+    "pages/me/fa/yitoufang",
+    "pages/me/fa/yiwancheng",
+    "pages/me/fa/yizhifu",
+    "pages/me/fa/daizhifu",
+    "pages/me/fa/tijiaoSuccess",
+    "pages/me/fa/gongzuotai",
+    "pages/me/fa/mima",
+    "pages/me/fa/wangji",
+    "pages/me/fa/chongzhi",
+
+    "pages/me/jie/login",
+    "pages/me/jie/zhuce",
+    "pages/me/jie/zhuceSuccess",
+    "pages/me/jie/message",
+    "pages/me/jie/tijiaoSuccess",
+    "pages/me/jie/gongzuotai",
+    "pages/me/jie/tixian",
+    "pages/me/jie/wangji",
+    "pages/me/jie/mima",
+    "pages/me/jie/guanggaowei"
+  ],
+  "window":{
+    "backgroundTextStyle":"light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "WeChat",
+    "navigationBarTextStyle":"black"
+  }
+}

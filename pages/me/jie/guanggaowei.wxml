@@ -1,0 +1,20 @@
+<!--pages/me/jie/guanggaowei.wxml-->
+<tabbar num="{{num}}" faxian="{{true}}" class="foter"></tabbar>
+<view class='hang' style='border-top: 5rpx solid #f5f5f5;'>
+  <image src='https://www.chuanshoucs.com/ServerImg/2018-08-03/5e1ef119-183d-4b24-b1d1-f1b3efb68020.png'></image>
+  <text>广告位名称：</text>
+  <input placeholder-style='color: #ccc;' disabled='true' placeholder='{{name}}'></input>
+</view>
+
+<view class='hang aaa'>
+  <image src='https://www.chuanshoucs.com/ServerImg/2018-08-03/8792a5c5-827b-446f-afb3-1437b863d57d.png'></image>
+  <text>广告位地址：</text>
+</view>
+<textarea placeholder-style='color: #ccc;' class='bbb' disabled='true' placeholder='{{address}}' maxlength='35'>
+</textarea>
+
+<view class='hang'>
+  <image src='https://www.chuanshoucs.com/ServerImg/2018-08-03/7de1149b-5c48-401a-a976-93befb033e9a.png'></image>
+  <text>客服电话：</text>
+  <input placeholder-style='color: #ccc;' disabled='true' placeholder='{{phone}}'></input>
+</view>

@@ -1,0 +1,95 @@
+/* pages/me/fa/message.wxss */
+page {
+  background-color: #f5f5f5;
+}
+.hang {
+  height: 100rpx;
+  line-height: 100rpx;
+  border-bottom: 5rpx solid #F5F5F5;
+  position: relative;
+  background-color: #fff;
+}
+.aaa {
+  border-bottom: none;
+}
+.hang image {
+  width: 40rpx;
+  height: 40rpx;
+  vertical-align: text-bottom;
+  margin: 0 20rpx;
+}
+.hang input {
+  margin-right: 20rpx;
+  max-width: 60%;
+  height: 100rpx;
+  float: right;
+}
+.hang .dizhi {
+  margin-right: 80rpx; 
+  max-width: 51%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;   
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+}
+.hang .zhankai {
+  position: absolute;
+  top: 50%;
+  right: 0;
+  transform: translateY(-50%);
+}
+.bbb {
+  background-color: #fff;
+  box-sizing: border-box;
+  width: 100%;
+  line-height: 1.5rem;
+  height: 120rpx;
+  padding-left: 80rpx;
+  overflow: hidden;
+  border-bottom: 5rpx solid #F5F5F5;
+}
+.sc {
+  border-bottom: 5rpx solid #F5F5F5;
+  background-color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.bg {
+  margin: 20rpx;
+  width: 150rpx;
+  height: 150rpx;
+  border-radius: 15rpx;
+  background-color: #F2F2F2;
+  text-align: center;
+}
+/* 默认 */
+.bg .logo {
+  width: 60rpx;
+  height: 60rpx;
+  margin: 45rpx 0;
+}
+.bg .logo-y {
+  display: none;
+}
+/* 上传后 */
+.bg .logo-x {
+  display: block;
+  width: 150rpx;
+  height: 150rpx;
+}
+.wenzi {
+  margin-right: 20rpx;
+  width: 540rpx;
+  text-align: left;
+  float: right;
+  color: #CDCDCD;
+  font-size: 30rpx;
+}
+button {
+  margin: 30rpx 20rpx;
+  color: #fff;
+  background-color: #ccc;
+  line-height: 2;
+}

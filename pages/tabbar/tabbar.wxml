@@ -1,0 +1,27 @@
+<view class="num-controller">
+  <!-- <view class="goods-num" hidden="{{num<1}}">{{num}}</view> -->
+  <view class='tab' data-id="0" bindtap='navigation'>
+    <image class='daohang' hidden="{{shouye==false}}" src='/img/tabbar/shouye1.png'></image>
+    <image class='daohang' hidden="{{shouye==true}}" src='/img/tabbar/shouye2.png'></image>
+    <view class='show tab_text' hidden="{{shouye==false}}">首页</view>
+    <view class='hide tab_text' hidden="{{shouye==true}}">首页</view>
+  </view>
+  <view class='tab' data-id="1" bindtap='navigation'>
+    <image class='daohang' hidden="{{faxian==false}}" src='/img/tabbar/faxian1.png'></image>
+    <image class='daohang' hidden="{{faxian==true}}" src='/img/tabbar/faxian2.png'></image>
+    <view class='show tab_text' hidden="{{faxian==false}}">发现</view>
+    <view class='hide tab_text' hidden="{{faxian==true}}">发现</view>
+  </view>
+  <view class='tab' data-id="2" bindtap='navigation'>
+    <image class='daohang' hidden="{{gouwuche==false}}" src='/img/tabbar/gouwuche1.png'></image>
+    <image class='daohang' hidden="{{gouwuche==true}}" src='/img/tabbar/gouwuche2.png'></image>
+    <view class='show tab_text' hidden="{{gouwuche==false}}">购物车</view>
+    <view class='hide tab_text' hidden="{{gouwuche==true}}">购物车</view>
+  </view>
+  <view class='tab' data-id="3" bindtap='navigation'>
+    <image class='daohang' hidden="{{wo==false}}" src='/img/tabbar/wo1.png'></image>
+    <image class='daohang' hidden="{{wo==true}}" src='/img/tabbar/wo2.png'></image>
+    <view class='show tab_text' hidden="{{wo==false}}">我的</view>
+    <view class='hide tab_text' hidden="{{wo==true}}">我的</view>
+  </view>
+</view>

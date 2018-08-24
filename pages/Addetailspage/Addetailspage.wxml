@@ -1,0 +1,29 @@
+<!--pages/Addetailspage/Addetailspage.wxml-->
+<view class='top'>
+  <text class='day'>日</text>
+  <text>一</text>
+  <text>二</text>
+  <text>三</text>
+  <text>四</text>
+  <text>五</text>
+  <text class='day'>六</text>
+</view>
+<view style='text-align: center;margin-top:40rpx;'>{{year1}}年{{month1}}月</view>
+<view class='data1'>
+  <text wx:for="{{day1}}"></text>
+  <text wx:for="{{date1}}"  class="dignwei {{item.state == 0?'huise':item.state == 1?'optional':'selected'}}" data-date="{{item.date}}" data-dates="1" bindtap="{{item.state==1?'xuanze':item.state == 2?'xuanze':''}}">{{item.day}} </text>
+  
+</view>
+<view style='text-align: center;margin-top:40rpx;'>{{year2}}年{{month2}}月</view>
+<view class='data1'>
+  <text wx:for="{{day2}}"></text>
+  <!-- <text  wx:for="{{date2}}" bindtap='xuanze' data-dates="2">{{item.day}}</text> -->
+  <text wx:for="{{date2}}"  class="{{item.state == 0?'huise':item.state == 1?'optional':'selected'}}" data-date="{{item.date}}" data-dates="2" bindtap="{{item.state==1?'xuanze':item.state == 2?'xuanze':''}}">{{item.day}}</text>
+</view> 
+<view style='text-align: center;margin-top:40rpx;'>{{year3}}年{{month3}}月</view>
+<view class='data1'>
+  <text wx:for="{{day3}}"></text>
+  <!-- <text  wx:for="{{date3}}" bindtap='xuanze' data-dates="3">{{item.day}}</text> -->
+  <text wx:for="{{date3}}"  class="{{item.state == 0?'huise':item.state == 1?'optional':'selected'}}" data-date="{{item.date}}" data-dates="3" bindtap="{{item.state==1?'xuanze':''}}">{{item.day}}</text>
+</view>
+
