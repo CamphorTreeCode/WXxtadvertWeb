@@ -1,30 +1,25 @@
 
-function login(that){
+function login(that) {
   wx.login({
     success: function (res) {
+      console.log(res)
       var jscode = res.code
       wx.getUserInfo({
         success: function (res) {
-        
-         var app =getApp()
-         var user = app.globalData.user[0]  
-         console.log("<<<<<<<<<", user, app.globalData.appUrl)
-          var userInfo = res.userInfo
+          var app = getApp()
+          console.log(res)
+          var WeChatUser = res.userInfo
 
           getOpenid()
           var openid = wx.getStorageSync('openid')
-          userInfo.openid = openid
-          userInfo.nickname = userInfo.nickName
-
+          WeChatUser.openId = openid
           wx.request({
-            url: app.globalData.appUrl + 'WXUser/addUser', //仅为示例，并非真实的接口地址
-            data: userInfo,
+            url: app.globalData.appUrl + 'WXWeChatUser/addWeChatUser', //仅为示例，并非真实的接口地址
+            data: WeChatUser,
             header: {
               'content-type': 'application/x-www-form-urlencoded', // 默认值
               xcxuser_name: "xcxuser_name"
             },
-            
- 
             method: "post",
             success: function (res) {
               console.log(res)
@@ -35,7 +30,7 @@ function login(that){
 
     }
   })
-/**传用户数据 */
+  /**传用户数据 */
 }
 
 //获取openid
@@ -52,17 +47,19 @@ function getOpenid() {
           wx.request({
             url: app.globalData.appUrl + 'WXWeChatUser/getOpenid', //仅为示例，并非真实的接口地址
             data: { jscode: res.code },
-            method: "get",
+            method: "POST",
             header: {
-              // 'content-type': 'application/x-www-form-urlencoded' // 默认值
-              'content-type': 'application/json', // 默认值
+              'content-type': 'application/x-www-form-urlencoded',// 默认值
+              //'content-type': 'application/json', // 默认值
               xcxuser_name: "xcxuser_name"
             },
             success: function (res) {
               console.log(res)
-              
+              var that = this;
+
               try {
-                wx.setStorageSync('openid', res.data.openId)
+                wx.setStorageSync('openid', res.data.openId);
+                app.globalData.openid = res.data.openId
               } catch (e) {
               }
             }
