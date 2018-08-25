@@ -21,7 +21,7 @@
     <text>上海松江万达广场</text>
   </view>
   <view class='c_right' style='color:#FF824B'>
-    累计投放60天
+    累计投放{{put}}天
   </view>
 </view>
 <!-- 剩余 -->
@@ -30,9 +30,7 @@
     <image src='/img/detail/shengyu.png'></image>
     <text>剩余</text>
   </view>
-  <view class='c_right' style='color:#ccc'>
-    5
-  </view>
+  <view class='c_right' style='color:#ccc'>{{residue}}</view>
 </view>
 <!-- 价格样式 -->
 <view class='content' bindtap='jiage'>
@@ -41,14 +39,14 @@
     <text>价格</text>
   </view>
   <view class='c_right c_rightp' style='color:#FFD801'>
-    40元/天
+    {{price[0]}}
     <image wx:if="{{jiage=='block'}}" src='/img/detail/zhankai.png'></image>
     <image wx:if="{{jiage=='none'}}" src='/img/detail/shouqi.png'></image>
   </view>
 </view>
 <!-- 价格循环 -->
 <view class='jiage' style='display:{{jiage}}'>
-    <text wx:for="{{price}}" bindtap='textjiage' data-index='{{index}}' class="{{priceindex==index?'juse':''}}">{{item}}</text>
+  <text wx:for="{{price}}" bindtap='textjiage' data-index='{{index}}' class="{{priceindex==index?'juse':''}}">{{item}}</text>
 </view>
 <!-- 广告类型 -->
 <view class='content'>
@@ -61,7 +59,7 @@
   </view>
 </view>
 <!-- 投放周期 -->
-<view class='content'>
+<view class='content' bindtap='jump'>
   <view class='c_left'>
     <image src='/img/detail/zhouqi.png'></image>
     <text>投放周期</text>
@@ -111,8 +109,61 @@
   </view>
   <image class='y_right' src='/img/detail/shenglue.png'></image>
 </view>
+
+<!-- 同屏推荐 start -->
+<view class='recommend'>
+  <view class='recommend_main'>{{recommend}}</view>
+</view>
+
+<!-- 列表 -->
+<view class='listbox'>
+  <!-- 整体 -->
+  <view wx:for='{{listbox}}' class='listbox_box'>
+    <!-- 左侧 -->
+    <view class='listbox_box_left'>
+      <!-- 图片 -->
+      <image src='{{item.img}}' class='listbox_box_img' mode='aspectFill'></image>
+      <!-- 介绍 -->
+      <view class='listbox_box_lable'>{{item.lable}}</view>
+    </view>
+
+    <!-- 中间 -->
+    <view class='listbox_box_center'>
+      <!-- 标题 -->
+      <view class='listbox_box_title'>{{item.title}}</view>
+      <!-- 人流量 -->
+      <view class='listbox_box_flow'>
+        <text>{{item.flow}}</text>
+      </view>
+      <!-- 距离 -->
+      <view class='listbox_box_distance'>{{item.distance}}</view>
+      <!-- 单价 -->
+      <view class='listbox_box_unit'>{{item.unit}}</view>
+    </view>
+
+    <!-- 右侧 -->
+    <view class='listbox_box_right'>
+      <!-- 屏数 -->
+      <view class='listbox_box_surplus'>销量 : {{item.surplus}}</view>
+      <!-- 计算 -->
+      <view class='listbox_box_computer'>
+        <!-- 减 -->
+        <image src='{{item.subtract}}' class='listbox_box_subtract' data-index='{{index}}' style='display:{{item.hide}}' bindtap='subtraction'></image>
+        <!-- 数量 -->
+        <view class='listbox_box_quantity' style='display:{{item.hide}}'>{{item.quantity}}</view>
+        <!-- 加 -->
+        <image src='{{item.plus}}' class='listbox_box_plus' bindtap='addition' data-index='{{index}}'></image>
+      </view>
+      <!-- 地址 -->
+      <view class='listbox_box_site'>{{item.site}}</view>
+    </view>
+  </view>
+</view>
+<!-- --------- -->
+<view class='zhanwei'></view>
+<!-- 同屏推荐 end -->
 <!-- 底部 -->
-<view class='foter'>
+<view class='foter' style='display:{{foter}}'>
   <view class='f_shoucang' bindtap='collection'>
     <view class='f_center'>
       <image wx:if="{{collection==false}}" src='/img/detail/weishoucang.png'></image>
@@ -131,7 +182,7 @@
     </view>
   </view>
   <view class='f_zhuanfa' bindtap='forward'>
-    <view class='f_left' >
+    <view class='f_left'>
       <image src='/img/detail/zhuanfa.png'></image>
       <text>转发</text>
     </view>
@@ -143,22 +194,22 @@
 
 <!-- 收藏弹出框 -->
 <view class='t_shoucang' hidden='{{Tcollection==false}}'>
-    <!-- 已收藏 -->
-    <image wx:if="{{collection==true}}" src='/img/detail/tanchuang1.png'></image>
-    <text wx:if="{{collection==true}}">已收藏</text>
-    <!-- 未收藏 -->
-    <image wx:if="{{collection==false}}" src='/img/detail/tanch.png'></image>
-    <text wx:if="{{collection==false}}">已取消收藏</text>
+  <!-- 已收藏 -->
+  <image wx:if="{{collection==true}}" src='/img/detail/tanchuang1.png'></image>
+  <text wx:if="{{collection==true}}">已收藏</text>
+  <!-- 未收藏 -->
+  <image wx:if="{{collection==false}}" src='/img/detail/tanch.png'></image>
+  <text wx:if="{{collection==false}}">已取消收藏</text>
 </view>
 
 <!-- 购物车弹出框 -->
 <view class='t_shoucang' hidden='{{ShoppingCart==false}}'>
-    <!-- 已加入购物车 -->
-    <image wx:if="{{Shopping==true}}" src='/img/detail/tanchuang4.png'></image>
-    <text wx:if="{{Shopping==true}}">您已经添加过了</text>
-    <!-- 未加入购物车 -->
-    <image wx:if="{{Shopping==false}}" src='/img/detail/tanchuang3.png'></image>
-    <text wx:if="{{Shopping==false}}">已加入购物车</text>
+  <!-- 已加入购物车 -->
+  <image wx:if="{{Shopping==true}}" src='/img/detail/tanchuang4.png'></image>
+  <text wx:if="{{Shopping==true}}">您已经添加过了</text>
+  <!-- 未加入购物车 -->
+  <image wx:if="{{Shopping==false}}" src='/img/detail/tanchuang3.png'></image>
+  <text wx:if="{{Shopping==false}}">已加入购物车</text>
 </view>
 
 <!-- 购物车身份验证 -->
@@ -171,17 +222,16 @@
 
 <!-- 海报 -->
 <view class='poster' hidden='{{poster == false}}'>
-    <view class='poster_left'>
-      <image src='/img/detail/wechat.png'></image>
-      <text>分享给好友</text>
-    </view>
-    <view class='poster_right'>
-      <image src='/img/detail/fenxianghaibao.png'></image>
-      <text>生成海报</text>
-    </view>
+  <view class='poster_left'>
+    <image src='/img/detail/wechat.png'></image>
+    <text>分享给好友</text>
+  </view>
+  <view class='poster_right'>
+    <image src='/img/detail/fenxianghaibao.png'></image>
+    <text>生成海报</text>
+  </view>
 </view>
 
 <view class='poster_quxiao' bindtap='postercancel' hidden='{{poster == false}}'>
-    取消
+  取消
 </view>
-

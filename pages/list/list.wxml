@@ -97,4 +97,4 @@
 
 </view>
 <!--  -->
-<view class='zhe' hidden='{{show}}' catchtouchmove='aa'></view>
+<view class='zhe' hidden='{{show}}' catchtouchmove='aa' bindtap='enter'></view>

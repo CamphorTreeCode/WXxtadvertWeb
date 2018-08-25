@@ -4,7 +4,7 @@
   <image src='https://www.chuanshoucs.com/ServerImg/2018-08-02/94eaab23-3f67-42ba-9a74-1711241ca81c.png' class='shouye'  bindtap='tuichu'></image>
   <image class='logo' src='{{logo}}'></image>
   <view>{{name}}</view>
-  <image bindtap='hui' class='hui' src='https://www.chuanshoucs.com/ServerImg/2018-08-03/3e0201c5-c1a0-46ed-a9e4-1af4de4afdba.png'></image>
+  <!-- <image bindtap='hui' class='hui' src='https://www.chuanshoucs.com/ServerImg/2018-08-03/3e0201c5-c1a0-46ed-a9e4-1af4de4afdba.png'></image> -->
 </view>
 <!-- 中 -->
 <view class='zhong'>
@@ -60,6 +60,10 @@
 </view>
 <!-- 下 -->
 <view class='footer'>
+  <view class='bar' bindtap='hui'>
+    <image src='https://www.chuanshoucs.com/ServerImg/2018-08-03/08d71460-4c64-412e-b1cc-86ceed12c761.png'></image>
+    <view style='color: #ccc'>首页</view>
+  </view>
   <view class='bar'>
     <image src='https://www.chuanshoucs.com/ServerImg/2018-08-03/99f50d16-83b3-47f3-94c6-93eac65ad44e.png'></image>
     <view style='color: #FFD801'>工作台</view>

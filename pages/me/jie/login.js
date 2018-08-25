@@ -72,7 +72,7 @@ Page({
   login: function () {
     // 身份正确跳转
     if (this.data.shenfen) {
-      wx.redirectTo({
+      wx.reLaunch({
         url: '/pages/me/jie/gongzuotai',
       })
     }

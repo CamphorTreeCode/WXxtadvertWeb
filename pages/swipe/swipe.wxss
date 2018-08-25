@@ -5,7 +5,7 @@
 }
 
 .swiper-container .swiper {
-  height: 450rpx;
+  height: 500rpx;
 }
 
 .swiper-container .swiper .img {

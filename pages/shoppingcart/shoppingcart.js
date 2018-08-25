@@ -3,22 +3,25 @@ Page({
   data: {
     price: ["40元/1天", "200元/5天", "400元/10天", "800元/20天", "1200元/30天"],
     items: [{
+        money: "40元/1天",
         isTouchMove: false,
-        flag: false,
+        flag: true,
         priceindex: 0,
         number: 1,
         check: false
-      }, 
+      },
       {
+        money: "40元/1天",
         isTouchMove: false,
-        flag: false,
+        flag: true,
         priceindex: 0,
         number: 1,
         check: false
-      },    
+      },
       {
+        money: "40元/1天",
         isTouchMove: false,
-        flag: false,
+        flag: true,
         priceindex: 0,
         number: 1,
         check: false
@@ -38,9 +41,9 @@ Page({
     //   },1000)
   },
   onShow: function() {
-    
+
   },
-  
+
   //手指触摸动作开始 记录起点X坐标
   touchstart: function(e) {
 
@@ -55,10 +58,10 @@ Page({
       startY: e.changedTouches[0].clientY,
       items: this.data.items
     })
-    
+
   },
   //滑动事件处理
-  
+
   touchmove: function(e) {
 
     var that = this,
@@ -68,7 +71,7 @@ Page({
       touchMoveX = e.changedTouches[0].clientX, //滑动变化坐标
       touchMoveY = e.changedTouches[0].clientY, //滑动变化坐标
       //获取滑动角度
-      
+
       angle = that.angle({
         X: startX,
         Y: startY
@@ -90,7 +93,7 @@ Page({
           v.isTouchMove = true
       }
     })
-    
+
     //更新数据 
     that.setData({
       items: that.data.items
@@ -116,48 +119,56 @@ Page({
       items: this.data.items
     })
   },
-  //加号 
-  addpush: function(e) {
-    var index = e.target.dataset.index;
-    this.data.items[index].number++
-      this.setData({
-        items: this.data.items
-      })
-  },
-  //减号 
-  reduce: function(e) {
-    var index = e.target.dataset.index;
-    this.data.items[index].number--
-      this.setData({
-        items: this.data.items
-      })
-  },
+  // //加号 
+  // addpush: function(e) {
+  //   var index = e.target.dataset.index;
+  //   this.data.items[index].number++
+  //     this.setData({
+  //       items: this.data.items
+  //     })
+  // },
+  // //减号 
+  // reduce: function(e) {
+  //   var index = e.target.dataset.index;
+  //   this.data.items[index].number--
+  //     this.setData({
+  //       items: this.data.items
+  //     })
+  // },
   //选择价格 
   textjiage: function(e) {
+    var that = this;
     var data = e.target.dataset.data;
     var index = e.target.dataset.index;
-
-    this.data.items[data].priceindex = index
-    this.setData({
-      items: this.data.items
+    that.data.items[data].priceindex = index
+    // console.log(that.data.price[index]); 
+    // console.log(that.data.items[data].money);
+    that.data.items[data].money == that.data.price[index];
+    // "items[" + data + "].money";
+    var key = "items[" + data + "].money";
+    // var key = that.data.items[data].money
+    var item = that.data.price[index]
+    that.setData({
+      items: that.data.items,
+      [key]: item //选择的价格
     })
   },
   // 价格显示 
-  jiageshow: function(e) {
-    var that = this;
-    var index = e.target.dataset.index;
-    if (this.data.items[index].flag == false) {
-      this.data.items[index].flag = true
-      that.setData({
-        items: this.data.items
-      })
-    } else {
-      this.data.items[index].flag = false;
-      that.setData({
-        items: this.data.items
-      })
-    }
-  },
+  // jiageshow: function(e) {
+  //   var that = this;
+  //   var index = e.target.dataset.index;
+  //   if (this.data.items[index].flag == false) {
+  //     this.data.items[index].flag = true
+  //     that.setData({
+  //       items: this.data.items
+  //     })
+  //   } else {
+  //     this.data.items[index].flag = false;
+  //     that.setData({
+  //       items: this.data.items
+  //     })
+  //   }
+  // },
   //去支付
   payment: function() {
     console.log("123")
@@ -172,6 +183,12 @@ Page({
     this.data.items[index].check = !state
     this.setData({
       items: this.data.items
+    })
+  },
+  //日期
+  riqi: function() {
+    wx.navigateTo({
+      url: '/pages/Addetailspage/Addetailspage',
     })
   }
 })

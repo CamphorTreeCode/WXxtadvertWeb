@@ -97,12 +97,12 @@ Page({
     })
   },
   fa: function(){
-    wx.reLaunch({
+    wx.navigateTo({
       url: '/pages/me/fa/login',
     })
   },
   jie: function () {
-    wx.reLaunch({
+    wx.navigateTo({
       url: '/pages/me/jie/login',
     })
   }

@@ -116,7 +116,7 @@ Page({
     })
   },
   hui: function(){
-    wx.redirectTo({
+    wx.reLaunch({
       url: '/pages/index/index',
     })
   }

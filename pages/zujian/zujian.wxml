@@ -1,5 +1,11 @@
 <view class="num-controller">
   <!-- <view class="goods-num" hidden="{{num<1}}">{{num}}</view> -->
+  <view class='tab' data-id="3" bindtap='navigation'>
+    <image class='daohang' hidden="{{wo==false}}" src='https://www.chuanshoucs.com/ServerImg/2018-08-03/08d71460-4c64-412e-b1cc-86ceed12c761.png'></image>
+    <image class='daohang' hidden="{{wo==true}}" src='https://www.chuanshoucs.com/ServerImg/2018-08-03/08d71460-4c64-412e-b1cc-86ceed12c761.png'></image>
+    <view class='show tab_text' hidden="{{wo==false}}">首页</view>
+    <view class='hide tab_text' hidden="{{wo==true}}">首页</view>
+  </view>
   <view class='tab' data-id="0" bindtap='navigation'>
     <image class='daohang' hidden="{{shouye==false}}" src='/img/zujian/gongzuotai.png'></image>
     <image class='daohang' hidden="{{shouye==true}}" src='/img/zujian/gongzuotai2.png'></image>

@@ -64,6 +64,8 @@ Page({
   
   },
   quzhifu: function(){
-    //去支付跳转
+    wx.navigateTo({
+      url: '/pages/Settlement/Settlement',
+    })
   }
 })

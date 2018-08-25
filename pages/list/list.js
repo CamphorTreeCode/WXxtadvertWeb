@@ -7,27 +7,27 @@ Page({
     city: '投放区域',
     banner: '广告类型',
     money: '天数/金额',
-    human: '人流量',
+    human: '销量',
     list: [{
-        text: '300 /天'
+        text: '300'
       },
       {
-        text: '600 /天'
+        text: '600'
       },
       {
-        text: '900 /天'
+        text: '900'
       },
       {
-        text: '1200 /天'
+        text: '1200'
       },
       {
-        text: '1500 /天'
+        text: '1500'
       },
       {
-        text: '1800 /天'
+        text: '1800'
       },
       {
-        text: '2100 /天'
+        text: '2100'
       }
     ],
     region: [{
@@ -105,32 +105,35 @@ Page({
         place: '不限'
       },
       {
-        place: '1KM'
-      },
-      {
-        place: '2KM'
-      },
-      {
         place: '3KM'
-      },
-      {
-        place: '4KM'
       },
       {
         place: '5KM'
       },
       {
-        place: '6KM'
+        place: '8KM'
       },
       {
-        place: '7KM'
+        place: '10KM'
+      },
+      {
+        place: '13KM'
+      },
+      {
+        place: '15KM'
       },
       {
         place: '8KM'
       },
       {
-        place: '9KM'
+        place: '20KM'
       },
+      {
+        place: '25KM'
+      },
+      {
+        place: '30KM'
+      }
     ],
     refresh: '重置',
     enter: '完成',
@@ -297,5 +300,4 @@ Page({
       liuliang: index
     })
   },
-  // 页面滚动
 })

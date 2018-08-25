@@ -16,8 +16,9 @@
   <!-- 循环购物车商品 -->
   <view class="container" wx:for="{{items}}" wx:for-item="itemName">
     <view class='choice'>
-      <image data-index='{{index}}' bindtap='checkout' wx:if='{{itemName.check == false}}' src='/img/shopping/kong.png'></image>    
-      <image data-index='{{index}}' bindtap='checkout' wx:else='{{itemName.check == true}}' src='/img/shopping/gou.png'></image>        
+      <image data-index='{{index}}' bindtap='checkout' wx:if='{{itemName.check == false}}' src='/img/shopping/kong.png'></image>
+      <image data-index='{{index}}' bindtap='checkout' wx:else='{{itemName.check == true}}' src='/img/shopping/gou.png'></image>
+      <image data-index='{{index}}' catchtap="del" style='float:right;' src='https://www.chuanshoucs.com/ServerImg/2018-08-03/14092e66-d1b7-4349-8aa0-56d3836ba3df.png'></image>
     </view>
     <view class="touch-item {{itemName.isTouchMove ? 'touch-move-active' : ''}}" data-index="{{index}}" bindtouchstart="touchstart" bindtouchmove="touchmove" wx:key="">
       <view class="content">
@@ -35,14 +36,14 @@
           <view class='jiagep'>20元/1天</view>
         </view>
         <!-- 右面加减 -->
-        <view class='c_right'>
+        <!-- <view class='c_right'>
           <view class='surplus'>剩余：5</view>
           <view class='tupian'>
             <image data-index='{{index}}' catchtap='reduce' class='jian' src='/img/shopping/jian1.png'></image>
             <text>{{itemName.number}}</text>
             <image data-index='{{index}}' catchtap='addpush' class='jia' src='/img/shopping/jia1.png'></image>
           </view>
-        </view>
+        </view> -->
       </view>
       <!-- 左滑删除按钮 -->
       <view class="del" catchtap="del" data-index="{{index}}">移出</view>
@@ -50,8 +51,9 @@
     <!-- 选择价格 -->
     <view class='price' data-index='{{index}}' catchtap='jiageshow'>
       <text class='p_left' catchtap='jiageshow' data-index='{{index}}'>选择价格</text>
-      <view class='p_right' catchtap='jiageshow' data-index='{{index}}'>
-        100元/5天
+      <view class='p_right' catchtap='jiageshow' data-data='{{index}}'>
+        <!-- 显示金额 -->
+        {{itemName.money}}
         <image src='/img/shopping/shouqi.png'></image>
       </view>
     </view>
@@ -62,7 +64,7 @@
     <!-- 投放时间 -->
     <view class='price'>
       <text class='p_left'>选择投放时间</text>
-      <view class='p_right'>
+      <view class='p_right' bindtap='riqi'>
         7.29-8.3
         <image src='/img/shopping/shouqi.png'></image>
       </view>
