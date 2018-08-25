@@ -6,9 +6,9 @@ Page({
    */
   data: {
     // 判断是游客还是接广告的
-    jie: false,
+    jie: true,
     // 判断是否是会员
-    huiyuan:true,
+    huiyuan: true,
     //判断余额不足，是否出现弹框
     money: false
   },

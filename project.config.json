@@ -33,7 +33,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 10,
+			"current": 11,
 			"list": [
 				{
 					"id": -1,
@@ -98,7 +98,13 @@
 				{
 					"id": -1,
 					"name": "fa mi",
-					"pathName": "pages/me/fa/mima"
+					"pathName": "pages/me/fa/mima",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "购物车",
+					"pathName": "pages/shoppingcart/shoppingcart"
 				}
 			]
 		}

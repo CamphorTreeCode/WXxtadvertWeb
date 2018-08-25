@@ -27,7 +27,8 @@ select {
 /* listbox_box_left */
 
 .listbox_box_left {
-  flex: 1;
+  /* flex: 1; */
+  width: 30%;
   margin: 10rpx 0;
   position: relative;
   border-radius: 20rpx;
@@ -57,7 +58,8 @@ select {
 /* listbox_box_center */
 
 .listbox_box_center {
-  flex: 2;
+  /* flex: 2; */
+  width: 40%;
   margin-left: 20rpx;
   display: flex;
   flex-direction: column;
@@ -65,7 +67,7 @@ select {
 }
 
 .listbox_box_title {
-  width: 70%;
+  width: 100%;
   font-size: 40rpx;
   font-weight: unset;
   overflow: hidden;
@@ -74,14 +76,13 @@ select {
 }
 
 .listbox_box_flow {
-  max-width: 50%;
   margin: 15rpx 0;
-  overflow: hidden;
-  text-align: center;
-  white-space: nowrap;
+}
+
+.listbox_box_flow text{
+  padding: 0 10rpx;
   border-radius: 10rpx;
   background: #d5ebff;
-  text-overflow: ellipsis;
   color: rgb(44, 143, 236);
   border: 1px solid rgb(44, 143, 236);
 }
@@ -99,8 +100,8 @@ select {
 /* listbox_box_right */
 
 .listbox_box_right {
-  flex: 1;
-  /* position: relative; */
+  /* flex: 1; */
+  width: 30%;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -148,11 +149,13 @@ select {
 /* 地址 */
 
 .listbox_box_site {
+  width: 90%;
   color: #999;
   background: url(https://www.chuanshoucs.com/ServerImg/2018-08-03/3faac444-23d2-4aaf-910c-9181ce4bdc4c.png)no-repeat;
   background-size: 40rpx 40rpx;
   padding-left: 40rpx;
-  text-align: right;
+  font-size: 30rpx;
+  overflow: hidden;
   white-space: nowrap;
 }
 

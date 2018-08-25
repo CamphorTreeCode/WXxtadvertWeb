@@ -89,7 +89,9 @@
         <!-- 标题 -->
         <view class='listbox_box_title'>{{item.title}}</view>
         <!-- 人流量 -->
-        <view class='listbox_box_flow'>{{item.flow}}</view>
+        <view class='listbox_box_flow'>
+          <text>{{item.flow}}</text>
+        </view>
         <!-- 距离 -->
         <view class='listbox_box_distance'>{{item.distance}}</view>
         <!-- 单价 -->

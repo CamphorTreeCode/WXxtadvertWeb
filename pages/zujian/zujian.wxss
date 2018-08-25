@@ -5,7 +5,7 @@
 
 .tab {
   float: left;
-  width: 33.33333%;
+  width: 25%;
   height: 100rpx;
   text-align: center;
   position: relative;

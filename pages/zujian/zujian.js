@@ -31,6 +31,9 @@ Component({
       else if (event.currentTarget.dataset.id == 2) {
         link = '../jie/message';
       }
+      else if (event.currentTarget.dataset.id == 3) {
+        link = '/pages/index/index';
+      }
       wx.navigateTo({
         url: link,
       })

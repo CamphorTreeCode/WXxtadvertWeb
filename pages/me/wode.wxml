@@ -17,11 +17,11 @@
 <view class='middle'>
   <view bindtap='fa'>
     <image src='/img/wode/faguanggao.png'></image>
-    <text>我要发广告</text>
+    <text>我要投放</text>
   </view>
   <view bindtap='jie'>
     <image src='/img/wode/jieguanggao.png'></image>
-    <text>我要接广告</text>
+    <text>我要接单</text>
   </view>
 </view>
 <view class='down'>
