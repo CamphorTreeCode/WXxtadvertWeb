@@ -7,16 +7,20 @@ Page({
    * 页面的初始数据
    */
   data: {
-    page:""
+    page:"",
+    memberId:"",
+    memberMoney:""
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    console.info(options.page)
+    console.info(options)
     this.setData({
-      page: options.page
+      page: options.page,
+      memberId: options.memberId,
+      memberMoney: options.memberMoney
     })
   },
 
@@ -71,6 +75,7 @@ Page({
 
   chongzhi: function(){
     console.info(this.data.page)
+    console.info(this.data.memberId)
     if (this.data.page=="GZT") {
       //工作台充值
       wx.request({
@@ -98,19 +103,39 @@ Page({
 
         }
       })
-    }
+    } else if (this.data.page == "HY"){
+      console.info("会员充值")
+      //会员充值
+      console.info(this.data.page)
+      console.info(this.data.memberMoney)
+      console.info(this.data.memberId)
+      var memberId = this.data.memberId;
+      wx.request({
+        url: app.globalData.appUrl + 'WXMemberLink/rechargeMembershipBalance',
+        data: {
+          openId: "oBfPD5HiCQxV7UteHr1BeGbpqTXs",
+          total_fee: 1,
+          body: "享投会员余额充值",
+        },
+        header: {
+          'content-type': 'application/x-www-form-urlencoded', // 默认值
+          xcxuser_name: "xcxuser_name"
+        },
+        method: 'get',
+        success: function (res) {
 
-    
-    // wx.requestPayment({
-    //   'timeStamp': '',
-    //   'nonceStr': '',
-    //   'package': '',
-    //   'signType': 'MD5',
-    //   'paySign': '',
-    //   'success': function (res) {
-    //   },
-    //   'fail': function (res) {
-    //   }
-    // })
+          console.info(res)
+          
+          PayUtils(
+            res.data.prepay_id.prepay_id,
+            app.globalData.appUrl + "WXMemberLink/addRechargeMembershipBalance",
+            { openId: "oBfPD5HiCQxV7UteHr1BeGbpqTXs", total_fee: 5800, memberId: memberId},
+            "/pages/me/member"
+          );
+
+        }
+    })
+
   }
+}
 })

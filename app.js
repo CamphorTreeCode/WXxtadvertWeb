@@ -1,4 +1,5 @@
 //app.js
+var userLogin = require('utils/userlogin.js');
 App({
   data: {
     userInfo: false
@@ -36,6 +37,25 @@ App({
   //     }
   //   })
   },
+
+  getOpenId: function () {
+    console.log("获取opoenid")
+    var that = this
+    userLogin.getOpenid()
+  },
+  returnOpenId: function () {
+    var openid = wx.getStorageSync('openid')
+    console.log(openid)
+    if (openid) {
+      console.log("有openid")
+    } else {
+      console.log("沒有openid")
+      this.getOpenId();
+      openid = wx.getStorageSync('openid')
+    }
+    return openid
+  },
+
   globalData: {
     userInfo: null,
     appUrl: "http://localhost/xtadvert/"

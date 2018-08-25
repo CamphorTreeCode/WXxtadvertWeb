@@ -68,9 +68,11 @@ Page({
   onShareAppMessage: function () {
   
   },
-  chong: function(){
+  chong: function(e){
+    console.info(e.target.dataset.index)
+    
     wx.navigateTo({
-      url: '/pages/me/fa/chongzhi',
+      url: '/pages/me/fa/chongzhi?page=HY&memberId=' + e.target.dataset.index +'&memberMoney='+5800+'',
     })
   },
   sure: function(){
