@@ -51,7 +51,7 @@
   </view>
   <view class='kuai money'>
     <image src='https://www.chuanshoucs.com/ServerImg/2018-08-03/455ce78c-e95e-4185-ab54-e13f1efd89f2.png'></image>
-    <view class='btn' bindtap='chongzhi'>充值</view>
+    <view class='btn' bindtap='GZTchongzhi'>充值</view>
   </view>
 </view>
 <view class='lingqian' bindtap='mima'>

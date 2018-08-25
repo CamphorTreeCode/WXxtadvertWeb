@@ -110,9 +110,9 @@ Page({
       url: '/pages/me/fa/daizhifu',
     })
   },
-  chongzhi: function(){
+  GZTchongzhi: function(){
     wx.navigateTo({
-      url: '/pages/me/fa/chongzhi',
+      url: '/pages/me/fa/chongzhi?page=GZT',
     })
   },
   hui: function(){
