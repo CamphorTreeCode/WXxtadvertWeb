@@ -24,7 +24,7 @@ function login(that){
               xcxuser_name: "xcxuser_name"
             },
             
-
+ 
             method: "post",
             success: function (res) {
               console.log(res)
