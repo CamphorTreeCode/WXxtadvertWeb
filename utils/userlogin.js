@@ -41,6 +41,7 @@ function getOpenid() {
       var app = getApp()
       try {
         var value = wx.getStorageSync('openid')
+        console.info(res.code)
         if (value) {
 
         } else {
