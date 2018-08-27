@@ -1,5 +1,5 @@
 var app =getApp()
-var userLogin = require('../../utils/userlogin.js');
+var userLogin = require('../userlogin.js');
 Component({
   /**
    * 组件的属性列表
@@ -12,8 +12,7 @@ Component({
    * 组件的初始数据
    */
   data: {
-    flag: false,
-    noneShowButton:true,
+    flag: true,
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
   },
 
@@ -22,9 +21,6 @@ Component({
    * 组件的方法列表
    */
   methods: {
-    // onLoad: function (option) {
-    //   console.log(getApp().data.userInfo)
-    // },
     onGotUserInfo: function(e) {
       console.log(app.globalData.userInfo)
       var that = this
@@ -32,48 +28,46 @@ Component({
       if (e.detail.errMsg == "getUserInfo:ok") {
         that.setData({
           flag: true,
-          noneShowButton: false
         })
         userLogin.login();
       }
     },
-    ready: function () {
-      var that = this
-
-      wx.getSetting({
-        success: function (res) {
-
-          if (res.authSetting['scope.userInfo']) {
-            // 已经授权，可以直接调用 getUserInfo 获取头像昵称
-            userLogin.getOpenid()
-            console.log("yiji ", res)
-            wx.getUserInfo({
-              success: function (res) {
-                console.log("app.js start ")
-                console.log(res.errMsg)
-                if (res.errMsg == "getUserInfo:ok") {
-
-                  that.setData({
-                    flag: true
-                  })
-                  userLogin.login();
-                }
-              }
-            })
-
-          } else {
-            userLogin.getOpenid()
-            console.log("my", res)
-            that.setData({
-              flag: true
-            })
-
-          }
-        }
-      })
-      //权限验证
-
-    }
   },
+
+  ready: function () {
+    var that = this
+    wx.getSetting({
+      success: function (res) {
+        if (res.authSetting['scope.userInfo']) {
+          // 已经授权，可以直接调用 getUserInfo 获取头像昵称
+          userLogin.getOpenid()
+          console.log("yiji ", res)
+          wx.getUserInfo({
+            success: function (res) {
+              console.log("app.js start ")
+              console.log(res.errMsg)
+              if (res.errMsg == "getUserInfo:ok") {
+
+                that.setData({
+                  flag: true
+                })
+                userLogin.login();
+              }
+            }
+          })
+
+        } else {
+          userLogin.getOpenid()
+          console.log("my", res)
+          that.setData({
+            flag: false
+          })
+
+        }
+      }
+    })
+    //权限验证
+
+  }
 
 })

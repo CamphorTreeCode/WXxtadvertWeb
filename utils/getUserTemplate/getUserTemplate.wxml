@@ -1,7 +1,7 @@
 <!--utils/getUserTemplate/getUserTemplate.wxml-->
 <shouquan></shouquan>
 <view class='mask' hidden="{{flag}}" catchtouchmove="preventTouchMove"></view>
-<view class="getUser {{noneShowButton?'wux-notification--in':''}}" hidden="{{flag}}">
+<view class="getUser" hidden="{{flag}}">
   <image src='/img/tabbar/sicai.png'></image>
   <text class='xiangtou0'>享投请求授权</text>
   <text class='xiangtou1'>将会获取你的头像、昵称等信息</text>
