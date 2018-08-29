@@ -29,7 +29,7 @@
   text-overflow: ellipsis;
   white-space: nowrap;
 }
-
+  
 .dw {
   width: 50rpx;
   height: 50rpx;
@@ -104,6 +104,13 @@
 }
 
 /* 广告位推荐 */
+
+/* vip广告 start */
+.vip_banner{
+  width: 100%;
+  height: 200rpx;
+}
+/* vip广告 end */
 
 /* 广告位推荐导航栏 */
 

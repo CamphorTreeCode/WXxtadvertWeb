@@ -1,89 +1,102 @@
 // pages/me/fa/chongzhi.js
-import PayUtils from '../../../utils/PayUtils.js';
 var app = getApp()
+import PayUtils from "../../../utils/PayUtils.js"
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
+    val: '',
+    dis: '',
     page:"",
     memberId:"",
-    memberMoney:""
+
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
+
   onLoad: function (options) {
     console.info(options)
-    this.setData({
-      page: options.page,
-      memberId: options.memberId,
-      memberMoney: options.memberMoney
-    })
+    if (options.memberId){
+      this.setData({
+        val: options.memberMoney,
+        dis: options.dis,
+        page: options.page,
+        memberId: options.memberId,
+      })
+    }else{
+      this.setData({
+        val: options.memberMoney,
+        dis: options.dis,
+        page: options.page,
+      })
+    }
+    
   },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady: function () {
-  
+  onReady: function() {
+
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function () {
-  
+  onShow: function() {
+
   },
 
   /**
    * 生命周期函数--监听页面隐藏
    */
-  onHide: function () {
-  
+  onHide: function() {
+
   },
 
   /**
    * 生命周期函数--监听页面卸载
    */
-  onUnload: function () {
-  
+  onUnload: function() {
+
   },
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
-  onPullDownRefresh: function () {
-  
+  onPullDownRefresh: function() {
+
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
-  onReachBottom: function () {
-  
+  onReachBottom: function() {
+
   },
 
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function () {
-  
+  onShareAppMessage: function() {
+
+
   },
 
   chongzhi: function(){
     console.info(this.data.page)
-    console.info(this.data.memberId)
-    if (this.data.page=="GZT") {
+    if (this.data.page =="HuoDong") {
       //工作台充值
       wx.request({
         url: app.globalData.appUrl + 'WXBuyerAccount/RechargeBalance',
         data: {
           openId: "oBfPD5HiCQxV7UteHr1BeGbpqTXs",
           total_fee: 1,
-          body: "享投发广告余额充值"
+          body: "享投发广告活动会员余额充值"
         },
         header: {
           'content-type': 'application/x-www-form-urlencoded', // 默认值
@@ -108,12 +121,13 @@ Page({
       //会员充值
       console.info(this.data.page)
       console.info(this.data.memberMoney)
-      console.info(this.data.memberId)
+      console.info(app.returnOpenId())
       var memberId = this.data.memberId;
+      var openId = app.returnOpenId();
       wx.request({
-        url: app.globalData.appUrl + 'WXMemberLink/rechargeMembershipBalance',
+        url: app.globalData.appUrl + 'WXMemberLevel/rechargeMembershipBalance',
         data: {
-          openId: "oBfPD5HiCQxV7UteHr1BeGbpqTXs",
+          openId: openId,
           total_fee: 1,
           body: "享投会员余额充值",
         },
@@ -128,9 +142,9 @@ Page({
           
           PayUtils(
             res.data.prepay_id.prepay_id,
-            app.globalData.appUrl + "WXMemberLink/addRechargeMembershipBalance",
-            { openId: "oBfPD5HiCQxV7UteHr1BeGbpqTXs", total_fee: 5800, memberId: memberId},
-            "/pages/me/member"
+            app.globalData.appUrl + "WXMemberLevel/addRechargeMembershipBalance",
+            { openId: openId, total_fee: 5800, memberId: memberId},
+            "/pages/me/member?roles=1"
           );
 
         }

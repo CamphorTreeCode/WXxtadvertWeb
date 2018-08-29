@@ -58,6 +58,7 @@ App({
   globalData: {
     shopCarAdvertise:[],
     userInfo: null,
-    appUrl: "http://localhost/xtadvert/"
+    appUrl: "http://localhost/xtadvert/",
+    shareImg:"https://www.chuanshoucs.com/ServerImg/2018-08-03/97086b2d-b18e-4d57-a30d-70e0b8ddeedc.jpg",
   }
 })

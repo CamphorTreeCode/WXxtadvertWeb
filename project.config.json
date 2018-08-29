@@ -33,7 +33,9 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 12,
+
+			"current": 13,
+
 			"list": [
 				{
 					"id": -1,
@@ -109,9 +111,20 @@
 				},
 				{
 					"id": -1,
+
 					"name": "轮播图",
 					"pathName": "pages/swipe/swipe",
+					"query": "",
+
+					"name": "活动",
+					"pathName": "pages/vipbanner/vipbanner",
 					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "充值",
+					"pathName": "pages/me/fa/chongzhi"
+
 				}
 			]
 		}

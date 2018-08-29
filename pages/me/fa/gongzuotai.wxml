@@ -38,8 +38,12 @@
     <text>财务管理</text>
   </view>
   <view class='kuai'>
-    <view style='text-align: right;padding-right: 10rpx;'>余额</view>
+    <view style='text-align: right;padding-right: 10rpx;'>会员余额</view>
     <view style="padding:0 0 30rpx 20rpx; font-weight:700; color: #FF6702;">7890</view>
+  </view>
+  <view class='kuai'>
+    <view style='text-align: right;padding-right: 10rpx;'>活动会员余额</view>
+    <view style="padding:0 0 30rpx 20rpx; font-weight:700; color: #FF6702;">5800</view>
   </view>
   <view class='kuai'>
     <view style='text-align: right;padding-right: 10rpx;'>已支付</view>
@@ -49,9 +53,9 @@
     <view style='text-align: right;padding-right: 10rpx;'>待支付</view>
     <view style="padding:0 0 30rpx 20rpx; font-weight:700; color: #FF6702;">3390</view>
   </view>
-  <view class='kuai money'>
+  <view class='kuai money' bindtap='GZTchongzhi'>
     <image src='https://www.chuanshoucs.com/ServerImg/2018-08-03/455ce78c-e95e-4185-ab54-e13f1efd89f2.png'></image>
-    <view class='btn' bindtap='GZTchongzhi'>充值</view>
+    <view class='btn'>充值</view>
   </view>
 </view>
 <view class='lingqian' bindtap='mima'>
@@ -62,15 +66,15 @@
 <view class='footer'>
   <view class='bar' bindtap='hui'>
     <image src='https://www.chuanshoucs.com/ServerImg/2018-08-03/08d71460-4c64-412e-b1cc-86ceed12c761.png'></image>
-    <view style='color: #ccc'>首页</view>
+    <view style='color: #ccc; font-size: 28rpx;'>首页</view>
   </view>
   <view class='bar'>
     <image src='https://www.chuanshoucs.com/ServerImg/2018-08-03/99f50d16-83b3-47f3-94c6-93eac65ad44e.png'></image>
-    <view style='color: #FFD801'>工作台</view>
+    <view style='color: #FFD801; font-size: 28rpx;'>工作台</view>
   </view>
   <view class='bar' bindtap='shezhi'>
     <image src='https://www.chuanshoucs.com/ServerImg/2018-08-03/6798635d-5d20-4f24-b3ee-d93547e0e6be.png'></image>
-    <view style='color: #ccc;'>设置</view>
+    <view style='color: #ccc;; font-size: 28rpx;'>设置</view>
   </view>
 </view>
 <!-- 退出登录弹框 -->

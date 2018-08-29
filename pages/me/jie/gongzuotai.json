@@ -2,5 +2,5 @@
   "usingComponents": {
     "tabbar": "/pages/zujian/zujian"
   },
-  "navigationBarTitleText": "接广告工作台"
+  "navigationBarTitleText": "接单工作台"
 }

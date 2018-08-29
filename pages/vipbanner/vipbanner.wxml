@@ -1,0 +1,18 @@
+<!--pages/vipbanner/vipbanner.wxml-->
+<!-- vip banner start -->
+<view class='vipbanner'>
+  <view class='head'>
+    <image class='head_img' src='https://www.chuanshoucs.com/ServerImg/2018-08-03/79cf9238-efb6-4b78-8213-aaad6b14f0c8.jpg' mode='aspectFill'></image>
+  </view>
+
+  <view class='main'>
+    <image class='main_img' src='https://www.chuanshoucs.com/ServerImg/2018-08-03/42ab8e1e-a8f3-4807-a1fc-7716f6604288.jpg' mode='aspectFill'></image>
+    <view class='main_activity'>{{ActivityMemberLevel.activityMemberName}}</view>
+    <view class='main_discounts'>购买广告位享受{{ActivityMemberLevel.activityMemberDiscounts*10}}折优惠</view>
+    <image class='main_vip' src='{{ActivityMemberLevel.activityMemberIcon}}' mode='aspectFill'></image>
+    <view class='main_discount'>折扣价：{{ActivityMemberLevel.activityMemberMoney}}</view>
+    <image class='main_but' src='https://www.chuanshoucs.com/ServerImg/2018-08-03/2b9cc3ea-227b-43b6-ac22-997876781181.png' mode='aspectFill' bindtap='rush'></image>
+  </view>
+
+</view>
+<!-- vip banner end -->

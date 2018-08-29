@@ -1,18 +1,34 @@
 // pages/me/wode.js
+var app = getApp()
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
+    roles:0,
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    var that = this;
+    //查询用户当前身份
+    wx.request({
+      url: app.globalData.appUrl + 'WXLoginStatus/findUserRoles?openId=' + app.returnOpenId() + '',
+      header: {
+        'content-type': 'application/x-www-form-urlencoded',
+        xcxuser_name: "xcxuser_name"
+      },
+      success: function (res) {
+        console.info("下面是查询用户的身份信息：")
+        console.info(res.data.UserRoles)
+        that.setData({
+          roles: res.data.UserRoles
+        })
+      }
+    })
   },
 
   /**
@@ -61,12 +77,14 @@ Page({
    * 用户点击右上角分享
    */
   onShareAppMessage: function () {
-  
+    return {
+      imageUrl: app.globalData.shareImg
+    }
   },
   // 会员
   member: function(){
     wx.navigateTo({
-      url: '/pages/me/member',
+      url: '/pages/me/member?roles='+this.data.roles,
     })
   },
   // 联系
