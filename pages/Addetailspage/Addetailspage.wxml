@@ -26,4 +26,4 @@
   <!-- <text  wx:for="{{date3}}" bindtap='xuanze' data-dates="3">{{item.day}}</text> -->
   <text wx:for="{{date3}}"  class="{{item.state == 0?'huise':item.state == 1?'optional':'selected'}}" data-date="{{item.date}}" data-dates="3" bindtap="{{item.state==1?'xuanze':''}}">{{item.day}}</text>
 </view>
-
+<button>提交</button>

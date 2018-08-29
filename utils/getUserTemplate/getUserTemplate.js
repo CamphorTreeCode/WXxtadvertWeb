@@ -1,4 +1,4 @@
-var app =getApp()
+var app =getApp();
 var userLogin = require('../userlogin.js');
 Component({
   /**

@@ -1,4 +1,5 @@
 // 引入SDK核心类
+var app = getApp();
 var QQMapWX = require('../../map/qqmap-wx-jssdk.js');
 var qqmapsdk;
 var a = 0;
@@ -217,7 +218,18 @@ Page({
     qqmapsdk = new QQMapWX({
       key: 'MR3BZ-43WC2-CQQUD-CSUJU-4YVME-OLBLK'
     });
-
+    /*获取用户购物车对应的广告位*/
+    wx.request({
+      url: app.globalData.appUrl + 'WXShopCar/findListByOpenId',
+      data: { openId: app.returnOpenId() },
+      success: function (res) {
+        var shopCarAdvertise = [];
+        for (var i = 0; i < res.data.length;i++){
+          shopCarAdvertise.push(res.data[i].sellerAdvertiseId)
+        }
+        app.globalData.shopCarAdvertise = shopCarAdvertise
+      }
+    })
 
   },
 
@@ -321,46 +333,46 @@ Page({
     })
   },
   // 加
-  addition: function(e) {
-    const that = this;
-    const index = e.target.dataset.index;
+    addition: function(e) {
+      const that = this;
+      const index = e.target.dataset.index;
 
-    if (that.data.listbox[index].quantity < 1) {
-      that.data.listbox[index].quantity++;
-      that.data.listbox[index].hide = 'block'
+      if (that.data.listbox[index].quantity < 1) {
+        that.data.listbox[index].quantity++;
+        that.data.listbox[index].hide = 'block'
+        that.setData({
+          listbox: that.data.listbox
+        })
+      }
+      if (that.data.listbox[index].quantity >= 1) {
+        that.data.listbox[index].plus = 'https://www.chuanshoucs.com/ServerImg/2018-08-03/f7c71b12-4149-4277-ad92-f334d3194f39.png'
+        that.setData({
+          listbox: that.data.listbox
+        });
+      }
+
+    },
+
+    // 减
+    subtraction: function(e) {
+      const that = this;
+      const index = e.target.dataset.index;
+
+      that.data.listbox[index].quantity--;
       that.setData({
         listbox: that.data.listbox
       })
-    }
-    if (that.data.listbox[index].quantity >= 1) {
-      that.data.listbox[index].plus = 'https://www.chuanshoucs.com/ServerImg/2018-08-03/f7c71b12-4149-4277-ad92-f334d3194f39.png'
-      that.setData({
-        listbox: that.data.listbox
-      });
-    }
 
-  },
-
-  // 减
-  subtraction: function(e) {
-    const that = this;
-    const index = e.target.dataset.index;
-
-    that.data.listbox[index].quantity--;
-    that.setData({
-      listbox: that.data.listbox
-    })
-
-    if (that.data.listbox[index].quantity < 1) {
-      that.data.listbox[index].hide = 'none'
-      that.data.listbox[index].plus = 'https://www.chuanshoucs.com/ServerImg/2018-08-03/becb94a2-2ac3-4947-927d-e54b94604017.png'
-      that.setData({
-        listbox: that.data.listbox
-      })
-    }
+      if (that.data.listbox[index].quantity < 1) {
+        that.data.listbox[index].hide = 'none'
+        that.data.listbox[index].plus = 'https://www.chuanshoucs.com/ServerImg/2018-08-03/becb94a2-2ac3-4947-927d-e54b94604017.png'
+        that.setData({
+          listbox: that.data.listbox
+        })
+      }
 
 
-  },
+    },
   xiangqing: function(){
     wx.navigateTo({
       url: '../Addetails/Addetails',

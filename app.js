@@ -56,6 +56,7 @@ App({
   },
 
   globalData: {
+    shopCarAdvertise:[],
     userInfo: null,
     appUrl: "http://localhost/xtadvert/"
   }

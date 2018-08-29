@@ -2,7 +2,7 @@
   <swiper autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" circular='{{circular}}' current="{{swiperCurrent}}" bindchange="swiperChange" class="swiper">
     <block wx:for="{{slider}}" wx:key="unique">
       <swiper-item>
-        <image src="{{item.picUrl}}" class="img" mode='{{mode}}'></image>
+        <image src="{{item.swiperImg}}" class="img" mode='{{mode}}' data-sellerAdvertiseId='{{item.sellerAdvertiseId}}' bindtap='detail'></image>
       </swiper-item>
     </block>
   </swiper>

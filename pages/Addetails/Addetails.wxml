@@ -4,34 +4,28 @@
 
 <!-- 轮播图 -->
 <swiper indicator-dots='true' indicator-active-color='#33A1FF' indicator-color='white' circular='true'>
-  <swiper-item>
-    <image mode='scaleToFill' src='/img/cat.jpg'> </image>
-  </swiper-item>
-  <swiper-item>
-    <image mode='scaleToFill' src='/img/cat.jpg'> </image>
-  </swiper-item>
-  <swiper-item>
-    <image mode='scaleToFill' src='/img/cat.jpg'> </image>
+  <swiper-item wx:for="{{swiper}}">
+    <image mode='scaleToFill' src='{{item}}'> </image>
   </swiper-item>
 </swiper>
 <!-- 中间循环 -->
 <view class='content'>
   <view class='c_left'>
     <image src='/img/detail/guanggaowei.png'></image>
-    <text>上海松江万达广场</text>
+    <text>{{sellerName}}</text>
   </view>
   <view class='c_right' style='color:#FF824B'>
     累计投放{{put}}天
   </view>
 </view>
 <!-- 剩余 -->
-<view class='content'>
+<!-- <view class='content'>
   <view class='c_left'>
     <image src='/img/detail/shengyu.png'></image>
     <text>剩余</text>
   </view>
   <view class='c_right' style='color:#ccc'>{{residue}}</view>
-</view>
+</view> -->
 <!-- 价格样式 -->
 <view class='content' bindtap='jiage'>
   <view class='c_left'>
@@ -39,7 +33,7 @@
     <text>价格</text>
   </view>
   <view class='c_right c_rightp' style='color:#FFD801'>
-    {{price[0]}}
+    {{price[priceindex]}}
     <image wx:if="{{jiage=='block'}}" src='/img/detail/zhankai.png'></image>
     <image wx:if="{{jiage=='none'}}" src='/img/detail/shouqi.png'></image>
   </view>
@@ -55,7 +49,7 @@
     <text>广告类型</text>
   </view>
   <view class='c_right' style='color:#999999'>
-    大型商业广场
+    {{advertiseTypeName}}
   </view>
 </view>
 <!-- 投放周期 -->
@@ -76,7 +70,7 @@
     <text>地址</text>
   </view>
   <view class='c_right' style='color:#999999'>
-    上海市 松江区 广富林路 万达广场
+    {{sellerAddress}}
   </view>
 </view>
 <!-- 广告位简介 -->
@@ -86,7 +80,7 @@
     <text>广告位简介</text>
   </view>
   <view class='a_right'>
-    大连万达集团股份有限公司创建于1988年，形成商业、文化、网络、金融四大产业集团,2017年位列《财富》世界500强380名
+    {{advertiseIntro}}
   </view>
 </view>
 <!-- 感兴趣的用户 -->
@@ -97,15 +91,14 @@
   </view>
   <view class='c_right c_left' style='color:#999999'>
     <image src='/img/detail/liulan.png'></image>
-    79
+    {{advertiseBrowser}}
   </view>
 </view>
 <view class='yonghu'>
   <view class='y_left'>
-    <image src='/img/me.jpg'></image>
-    <image src='/img/me.jpg'></image>
-    <image src='/img/me.jpg'></image>
-    <image src='/img/me.jpg'></image>
+    <block wx:for="{{userImgList}}">
+    <image src='{{item}}'></image>
+    </block>
   </view>
   <image class='y_right' src='/img/detail/shenglue.png'></image>
 </view>
@@ -122,40 +115,44 @@
     <!-- 左侧 -->
     <view class='listbox_box_left'>
       <!-- 图片 -->
-      <image src='{{item.img}}' class='listbox_box_img' mode='aspectFill'></image>
+      <image src='{{item.sellerInfo.advertiseImgs[0]}}' class='listbox_box_img' mode='aspectFill'></image>
       <!-- 介绍 -->
-      <view class='listbox_box_lable'>{{item.lable}}</view>
+      <view class='listbox_box_lable'>{{item.sellerInfo.advertiseType.advertiseTypeName}}</view>
     </view>
 
     <!-- 中间 -->
     <view class='listbox_box_center'>
       <!-- 标题 -->
-      <view class='listbox_box_title'>{{item.title}}</view>
+      <view class='listbox_box_title'>
+           {{item.sellerInfo.sellerName}}-{{item.advertiseSN}}
+      </view>
       <!-- 人流量 -->
       <view class='listbox_box_flow'>
-        <text>{{item.flow}}</text>
+        <block wx:for="{{item.lableList}}" wx:for-item="lable">
+        <text>{{lable}}</text>
+        </block>
       </view>
       <!-- 距离 -->
-      <view class='listbox_box_distance'>{{item.distance}}</view>
+      <view class='listbox_box_distance'>约{{item.distances}}km</view>
       <!-- 单价 -->
-      <view class='listbox_box_unit'>{{item.unit}}</view>
+      <view class='listbox_box_unit'>{{item.unitPrice}}元/天</view>
     </view>
 
     <!-- 右侧 -->
     <view class='listbox_box_right'>
       <!-- 屏数 -->
-      <view class='listbox_box_surplus'>销量 : {{item.surplus}}</view>
+      <!-- <view class='listbox_box_surplus'>销量 : {{item.sellerVolume}}</view> -->
       <!-- 计算 -->
       <view class='listbox_box_computer'>
         <!-- 减 -->
         <image src='{{item.subtract}}' class='listbox_box_subtract' data-index='{{index}}' style='display:{{item.hide}}' bindtap='subtraction'></image>
         <!-- 数量 -->
-        <view class='listbox_box_quantity' style='display:{{item.hide}}'>{{item.quantity}}</view>
+         <view class='listbox_box_quantity' style='display:{{item.hide}}'>{{item.quantity}}</view>
         <!-- 加 -->
         <image src='{{item.plus}}' class='listbox_box_plus' bindtap='addition' data-index='{{index}}'></image>
       </view>
       <!-- 地址 -->
-      <view class='listbox_box_site'>{{item.site}}</view>
+      <view class='listbox_box_site'>{{item.sellerInfo.sellerAddress}}</view>
     </view>
   </view>
 </view>

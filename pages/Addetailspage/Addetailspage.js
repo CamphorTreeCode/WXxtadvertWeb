@@ -1,4 +1,5 @@
 // pages/Addetailspage/Addetailspage.js
+var app = getApp();
 Page({
   
   /**
@@ -6,342 +7,7 @@ Page({
    */
   data: {
     optionaldays: 20,
-    datelist: [{
-        shopid: "5",
-        dates: "2018-8-1",
-        number: "5"
-      },
-
-      {
-        shopid: "6",
-        dates: "2018-8-2",
-        number: "0"
-      },
-      {
-        shopid: "7",
-        dates: "2018-8-3",
-        number: "5"
-      },
-      {
-        shopid: "8",
-        dates: "2018-8-4",
-        number: "5"
-      },
-      {
-        shopid: "9",
-        dates: "2018-8-5",
-        number: "5"
-      },
-      {
-        shopid: "10",
-        dates: "2018-8-6",
-        number: "0"
-      },
-      {
-        shopid: "11",
-        dates: "2018-8-7",
-        number: "0"
-      },
-      {
-        shopid: "12",
-        dates: "2018-8-8",
-        number: "0"
-      },
-      {
-        shopid: "13",
-        dates: "2018-8-9",
-        number: "5"
-      },
-      {
-        shopid: "14",
-        dates: "2018-8-10",
-        number: "5"
-      },
-      {
-        shopid: "15",
-        dates: "2018-8-11",
-        number: "1"
-      },
-      {
-        shopid: "16",
-        dates: "2018-8-12",
-        number: "5"
-      },
-      {
-        shopid: "17",
-        dates: "2018-8-13",
-        number: "5"
-      },
-      {
-        shopid: "18",
-        dates: "2018-8-14",
-        number: "5"
-      },
-      {
-        shopid: "19",
-        dates: "2018-8-15",
-        number: "5"
-      },
-      {
-        shopid: "20",
-        dates: "2018-8-16",
-        number: "5"
-      },
-      {
-        shopid: "21",
-        dates: "2018-8-17",
-        number: "5"
-      },
-      {
-        shopid: "22",
-        dates: "2018-8-18",
-        number: "5"
-      },
-      {
-        shopid: "23",
-        dates: "2018-8-19",
-        number: "5"
-      },
-      {
-        shopid: "24",
-        dates: "2018-8-20",
-        number: "5"
-      },
-      {
-        shopid: "25",
-        dates: "2018-8-21",
-        number: "5"
-      },
-      {
-        shopid: "26",
-        dates: "2018-8-22",
-        number: "5"
-      },
-      {
-        shopid: "27",
-        dates: "2018-8-23",
-        number: "5"
-      },
-      {
-        shopid: "28",
-        dates: "2018-8-24",
-        number: "5"
-      },
-      {
-        shopid: "29",
-        dates: "2018-8-25",
-        number: "5"
-      },
-      {
-        shopid: "30",
-        dates: "2018-8-26",
-        number: "5"
-      },
-      {
-        shopid: "31",
-        dates: "2018-8-27",
-        number: "5"
-      },
-      {
-        shopid: "32",
-        dates: "2018-8-28",
-        number: "5"
-      },
-      {
-        shopid: "33",
-        dates: "2018-8-29",
-        number: "5"
-      },
-      {
-        shopid: "34",
-        dates: "2018-8-30",
-        number: "5"
-      },
-      {
-        shopid: "35",
-        dates: "2018-8-31",
-        number: "5"
-      },
-      {
-        shopid: "5",
-        dates: "2018-9-1",
-        number: "5"
-      },
-      {
-        shopid: "6",
-        dates: "2018-9-2",
-        number: "5"
-      },
-      {
-        shopid: "7",
-        dates: "2018-9-3",
-        number: "5"
-      },
-      {
-        shopid: "8",
-        dates: "2018-9-4",
-        number: "5"
-      },
-      {
-        shopid: "9",
-        dates: "2018-9-5",
-        number: "5"
-      },
-      {
-        shopid: "10",
-        dates: "2018-9-6",
-        number: "5"
-      },
-      {
-        shopid: "11",
-        dates: "2018-9-7",
-        number: "0"
-      },
-      {
-        shopid: "12",
-        dates: "2018-9-8",
-        number: "0"
-      },
-      {
-        shopid: "13",
-        dates: "2018-9-9",
-        number: "5"
-      },
-      {
-        shopid: "14",
-        dates: "2018-9-10",
-        number: "5"
-      },
-      {
-        shopid: "15",
-        dates: "2018-9-11",
-        number: "1"
-      },
-      {
-        shopid: "16",
-        dates: "2018-9-12",
-        number: "5"
-      },
-      {
-        shopid: "17",
-        dates: "2018-9-13",
-        number: "5"
-      },
-      {
-        shopid: "18",
-        dates: "2018-9-14",
-        number: "5"
-      },
-      {
-        shopid: "19",
-        dates: "2018-9-15",
-        number: "5"
-      },
-      {
-        shopid: "20",
-        dates: "2018-9-16",
-        number: "5"
-      },
-      {
-        shopid: "21",
-        dates: "2018-9-17",
-        number: "5"
-      },
-      {
-        shopid: "22",
-        dates: "2018-9-18",
-        number: "5"
-      },
-      {
-        shopid: "23",
-        dates: "2018-9-19",
-        number: "5"
-      },
-      {
-        shopid: "24",
-        dates: "2018-9-20",
-        number: "5"
-      },
-      {
-        shopid: "25",
-        dates: "2018-9-21",
-        number: "5"
-      },
-      {
-        shopid: "26",
-        dates: "2018-9-22",
-        number: "5"
-      },
-      {
-        shopid: "27",
-        dates: "2018-9-23",
-        number: "5"
-      },
-      {
-        shopid: "28",
-        dates: "2018-9-24",
-        number: "5"
-      },
-      {
-        shopid: "29",
-        dates: "2018-9-25",
-        number: "5"
-      },
-      {
-        shopid: "30",
-        dates: "2018-9-26",
-        number: "5"
-      },
-      {
-        shopid: "31",
-        dates: "2018-9-27",
-        number: "5"
-      },
-      {
-        shopid: "32",
-        dates: "2018-9-28",
-        number: "5"
-      },
-      {
-        shopid: "33",
-        dates: "2018-9-29",
-        number: "5"
-      },
-      {
-        shopid: "34",
-        dates: "2018-9-30",
-        number: "5"
-      },
-      {
-        shopid: "1",
-        dates: "2018-10-1",
-        number: "5"
-      },
-      {
-        shopid: "2",
-        dates: "2018-10-2",
-        number: "5"
-      },
-      {
-        shopid: "3",
-        dates: "2018-10-3",
-        number: "0"
-      },
-      {
-        shopid: "1",
-        dates: "2018-10-4",
-        number: "5"
-      },
-      {
-        shopid: "2",
-        dates: "2018-10-5",
-        number: "5"
-      },
-      {
-        shopid: "3",
-        dates: "2018-10-6",
-        number: "0"
-      },
+    datelist: [
       {
         shopid: "4",
         dates: "2018-10-7",
@@ -354,6 +20,14 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
+    //获取屏幕对应的库存
+    this.setData({
+      optionaldays: options.daynum
+    })
+    var that= this
+    var successList = {}
+  
+    
     // var s = '2018-7-28';
     // var b = new Date(Date.parse(s.replace(/\-/g, "/")));
     // var cc = b.getDay()
@@ -426,7 +100,7 @@ Page({
           arr1.push({
             day: y,
             state: 0,
-            date: year1 + "-" + month + "-" + y
+            date: year1 + "/" + month + "/" + y
           })
         }
       } else if (x == 1) {
@@ -455,7 +129,7 @@ Page({
           arr2.push({
             day: y,
             state: 0,
-            date: year2 + "-" + month + "-" + y
+            date: year2 + "/" + month + "/" + y
           })
         }
       } else if (x == 2) {
@@ -484,79 +158,14 @@ Page({
           arr3.push({
             day: y,
             state: 0,
-            date: year3 + "-" + month + "-" + y
+            date: year3 + "/" + month + "/" + y
           })
         }
       }
     }
 
-    var index;
-    if (this.data.optionaldays == 1) {
-      index = 3;
-    } else if (this.data.optionaldays == 5) {
-      index = 10;
-    } else if (this.data.optionaldays == 10) {
-      index = 20;
-    } else if (this.data.optionaldays == 20) {
-      index = 40;
-    } else if (this.data.optionaldays == 30) {
-      index = 60;
-    }
-    var datlist = this.data.datelist.slice(3);
-    datlist = datlist.slice(0, index)
 
-    for (x = 0; x < datlist.length; x++) {
-      if (datlist[x].number > 0) {
-        var sta = datlist[x].dates;
-        for (var t = 0; t < arr1.length; t++) {
-          if (arr1[t].date == sta) {
-            arr1[t].state = 1;
-          }
-        }
-      } else {
-        var sta = datlist[x].dates;
-        for (var t = 0; t < arr1.length; t++) {
-          if (arr1[t].date == sta) {
-            arr1[t].state = 0;
-          }
-        }
-      }
-    }
-    for (x = 0; x < datlist.length; x++) {
-      if (datlist[x].number > 0) {
-        var sta = datlist[x].dates;
-        for (var t = 0; t < arr2.length; t++) {
-          if (arr2[t].date == sta) {
-            arr2[t].state = 1;
-          }
-        }
-      } else {
-        var sta = datlist[x].dates;
-        for (var t = 0; t < arr2.length; t++) {
-          if (arr2[t].date == sta) {
-            arr2[t].state = 0;
-          }
-        }
-      }
-    }
 
-    for (x = 0; x < datlist.length; x++) {
-      if (datlist[x].number > 0) {
-        var sta = datlist[x].dates;
-        for (var t = 0; t < arr3.length; t++) {
-          if (arr3[t].date == sta) {
-            arr3[t].state = 1;
-          }
-        }
-      } else {
-        var sta = datlist[x].dates;
-        for (var t = 0; t < arr3.length; t++) {
-          if (arr3[t].date == sta) {
-            arr3[t].state = 0;
-          }
-        }
-      }
-    }
 
     this.setData({
       date1: arr1,
@@ -576,6 +185,130 @@ Page({
       month3
     })
 
+
+    wx.request({
+      url: app.globalData.appUrl + 'WXInventory/getBySellerAdvertiseId',
+      data: {
+        SellerAdvertiseId: options.sellerAdvertiseId
+      },
+      success: function (res) {
+        successList = res.data
+        console.info(res.data)
+        console.info(successList)
+        var datails = [];
+
+        // dates: "2018-10-7",
+        //   number: "5"
+
+
+        var index;
+        if (that.data.optionaldays == 1) {
+          index = 3;
+        } else if (that.data.optionaldays == 5) {
+          index = 10;
+        } else if (that.data.optionaldays == 10) {
+          index = 20;
+        } else if (that.data.optionaldays == 20) {
+          index = 40;
+        } else if (that.data.optionaldays == 30) {
+          index = 60;
+        }
+
+        for (var x = 0; x < index; x++) {
+          var dt = new Date();
+          dt.setDate(dt.getDate() + x + 4);
+          var riqi = dt.toLocaleDateString()
+          var kucun = successList[riqi]
+
+          datails.push({
+            dates: riqi,
+            number: kucun
+          })
+        }
+        that.setData({
+          datelist: datails
+        })
+        var datlist = datails;
+        console.log("日历1")
+        console.log(arr1)
+        for (x = 0; x < datlist.length; x++) {
+          if (datlist[x].number > 0) {
+            var sta = datlist[x].dates;
+            for (var t = 0; t < arr1.length; t++) {
+              if (arr1[t].date == sta) {
+                arr1[t].state = 1;
+              }
+            }
+          } else {
+            var sta = datlist[x].dates;
+            for (var t = 0; t < arr1.length; t++) {
+              if (arr1[t].date == sta) {
+                arr1[t].state = 0;
+              }
+            }
+          }
+        }
+        for (x = 0; x < datlist.length; x++) {
+          if (datlist[x].number > 0) {
+            var sta = datlist[x].dates;
+            for (var t = 0; t < arr2.length; t++) {
+              if (arr2[t].date == sta) {
+                arr2[t].state = 1;
+              }
+            }
+          } else {
+            var sta = datlist[x].dates;
+            for (var t = 0; t < arr2.length; t++) {
+              if (arr2[t].date == sta) {
+                arr2[t].state = 0;
+              }
+            }
+          }
+        }
+
+        for (x = 0; x < datlist.length; x++) {
+          if (datlist[x].number > 0) {
+            var sta = datlist[x].dates;
+            for (var t = 0; t < arr3.length; t++) {
+              if (arr3[t].date == sta) {
+                arr3[t].state = 1;
+              }
+            }
+          } else {
+            var sta = datlist[x].dates;
+            for (var t = 0; t < arr3.length; t++) {
+              if (arr3[t].date == sta) {
+                arr3[t].state = 0;
+              }
+            }
+          }
+        }
+
+
+
+        that.setData({
+          date1: arr1,
+          date2: arr2,
+          date3: arr3,
+          date01: arr1,
+          date02: arr2,
+          date03: arr3,
+          year1,
+          year2,
+          year3,
+          day1,
+          day2,
+          day3,
+          month1,
+          month2,
+          month3
+        })
+        console.info(successList)
+        console.log(successList["2018/8/30"])
+        console.log(datails)
+        console.log("---------------");
+      }
+    })
     // console.log(monthlist)
     // console.log(year1, year2, year3)
 
@@ -585,6 +318,8 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function() {
+
+
 
   },
 
@@ -701,7 +436,8 @@ Page({
     // console.log(arr2)
 
     // 给预留三天，然后截取当前的数组长度，留下对应的长度
-    var datlist = this.data.datelist.slice(3);
+    // var datlist = this.data.datelist.slice(3);
+    var datlist = this.data.datelist;
     // var datlist = this.data.datelist.slice(current1, index + current1);
     // arr1 = arr1.slice(0, index);
     // console.log(current1)
@@ -932,6 +668,8 @@ Page({
         })
       }
     }
+
+    
 
   }
   
