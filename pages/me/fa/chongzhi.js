@@ -108,12 +108,13 @@ Page({
       //会员充值
       console.info(this.data.page)
       console.info(this.data.memberMoney)
-      console.info(this.data.memberId)
+      console.info(app.returnOpenId())
       var memberId = this.data.memberId;
+      var openId = app.returnOpenId();
       wx.request({
-        url: app.globalData.appUrl + 'WXMemberLink/rechargeMembershipBalance',
+        url: app.globalData.appUrl + 'WXMemberLevel/rechargeMembershipBalance',
         data: {
-          openId: "oBfPD5HiCQxV7UteHr1BeGbpqTXs",
+          openId: openId,
           total_fee: 1,
           body: "享投会员余额充值",
         },
@@ -128,8 +129,8 @@ Page({
           
           PayUtils(
             res.data.prepay_id.prepay_id,
-            app.globalData.appUrl + "WXMemberLink/addRechargeMembershipBalance",
-            { openId: "oBfPD5HiCQxV7UteHr1BeGbpqTXs", total_fee: 5800, memberId: memberId},
+            app.globalData.appUrl + "WXMemberLevel/addRechargeMembershipBalance",
+            { openId: openId, total_fee: 5800, memberId: memberId},
             "/pages/me/member"
           );
 
