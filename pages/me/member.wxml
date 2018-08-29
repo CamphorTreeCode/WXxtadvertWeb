@@ -1,8 +1,8 @@
 <!--pages/me/member.wxml-->
 <!-- 不是会员 -->
-<view class='fou' wx:if="{{huiyuan==false}}">
+<view class='fou' wx:if="{{huiyuan==true}}">
   <image src='https://www.chuanshoucs.com/ServerImg/2018-08-03/63b8c5f2-6efb-4ce7-beba-f1c85d1fb473.png'></image>
-  <block wx:if="{{jie==false}}">
+  <block wx:if="{{jie==true}}">
     <view>游客需登录我要发广告帐</view>
     <view>号才能看到会员等级哦</view>
   </block>
@@ -14,7 +14,7 @@
     <image src='https://www.chuanshoucs.com/ServerImg/2018-08-03/86e299f9-cf25-4a27-bf14-8203accf4662.png'></image>
     <view>
       <view>等级： 注册会员</view>
-      <view style='margin: 10rpx 0;'>会员余额：0</view>
+      <view style='margin: 30rpx 0;'></view>
       <view>会员号： 12054166686</view>
     </view>    
   </view>
