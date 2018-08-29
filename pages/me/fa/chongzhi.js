@@ -1,77 +1,105 @@
 // pages/me/fa/chongzhi.js
-import PayUtils from '../../../utils/PayUtils.js';
 var app = getApp()
+// var PayUtils = require("../../../utils/PayUtils.js")
+import PayUtils from "../../../utils/PayUtils.js"
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
+
+    val: '',
+    dis: '',
     page:"",
     memberId:"",
     memberMoney:""
+
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
+
+  onLoad: function(options) {
+    // var goods = options.goodsId;
+    // var dis = options.dis;
+    // console.log(options);
+    // this.setData({
+    //   val: goods,
+    //   dis: dis
+    // })
+  },
+
   onLoad: function (options) {
     console.info(options)
     this.setData({
       page: options.page,
       memberId: options.memberId,
       memberMoney: options.memberMoney
+
     })
   },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady: function () {
-  
+  onReady: function() {
+
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function () {
-  
+  onShow: function() {
+
   },
 
   /**
    * 生命周期函数--监听页面隐藏
    */
-  onHide: function () {
-  
+  onHide: function() {
+
   },
 
   /**
    * 生命周期函数--监听页面卸载
    */
-  onUnload: function () {
-  
+  onUnload: function() {
+
   },
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
-  onPullDownRefresh: function () {
-  
+  onPullDownRefresh: function() {
+
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
-  onReachBottom: function () {
-  
+  onReachBottom: function() {
+
   },
 
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function () {
-  
+  onShareAppMessage: function() {
+
+
   },
+  // chongzhi: function() {
+  //   wx.requestPayment({
+  //     'timeStamp': '',
+  //     'nonceStr': '',
+  //     'package': '',
+  //     'signType': 'MD5',
+  //     'paySign': '',
+  //     'success': function(res) {},
+  //     'fail': function(res) {}
+  //   })
 
   chongzhi: function(){
     console.info(this.data.page)

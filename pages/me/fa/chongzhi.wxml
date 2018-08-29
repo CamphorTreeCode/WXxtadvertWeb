@@ -14,7 +14,7 @@
     <view style='margin: 40rpx 0;'>充值金额</view>
     <view class='three'>
       <text>￥</text>
-      <input type='digit' focus='true'></input>
+      <input type='digit' focus='true' disabled='{{dis}}' value='{{val}}'></input>
     </view>
   </view>
   <button bindtap='chongzhi'>充值</button>

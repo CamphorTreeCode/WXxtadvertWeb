@@ -29,9 +29,9 @@
     <view style='text-align: right;padding-right: 10rpx;'>余额</view>
     <view style="padding:0 0 30rpx 20rpx; font-weight:700; color: #FF6702;">3390</view>
   </view>
-  <view class='kuai money'>
+  <view class='kuai money' bindtap='tixian'>
     <image src='https://www.chuanshoucs.com/ServerImg/2018-08-03/455ce78c-e95e-4185-ab54-e13f1efd89f2.png'></image>
-    <view class='btn' bindtap='tixian'>我要提现</view>
+    <view class='btn'>我要提现</view>
   </view>
 </view>
 <view class='lingqian' bindtap='mima'>

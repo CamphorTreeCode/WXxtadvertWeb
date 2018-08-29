@@ -11,6 +11,7 @@
     "pages/native/native",
     "pages/find/find",
     "pages/findask/findask",
+    "pages/vipbanner/vipbanner",
 
     "pages/shoppingcart/shoppingcart",
     "utils/getUserTemplate/getUserTemplate",
