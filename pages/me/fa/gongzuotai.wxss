@@ -44,6 +44,7 @@ page {
 .hang {
   height: 80rpx;
   line-height: 80rpx;
+  background-color: #fff;
 }
 .hang image{
   width: 40rpx;
@@ -86,7 +87,7 @@ page {
 }
 /* 下 */
 .xia {
-  background-color: #fff;
+  background-color: #F2F2F2;
   overflow: hidden;
 }
 .kuai {
@@ -119,12 +120,13 @@ page {
   height: 80rpx;
   line-height: 80rpx;
   background-color: #fff;
+  margin-bottom: 200rpx;
 }
 /* 下 */
 .footer {
   background-color: #fff;
   position: fixed;
-  height: 130rpx;
+  height: 110rpx;
   bottom: 0;
   left: 0;
   width: 100%;
@@ -134,7 +136,7 @@ page {
 .footer image {
   width: 50rpx;
   height: 50rpx;
-  margin: 10rpx 0;
+  margin: 5rpx 0;
 }
 .footer .bar {
   width: 50%;

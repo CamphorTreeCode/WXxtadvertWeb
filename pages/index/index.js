@@ -20,6 +20,7 @@ Page({
     superior_text: '优质',
     native_img: 'https://www.chuanshoucs.com/ServerImg/2018-07-24/249c7606-662e-435b-a0d8-b0e8c139ff7e.png',
     native_text: '本地',
+    vip_banner: 'https://www.chuanshoucs.com/ServerImg/2018-08-03/973dac0f-979b-4133-a2ba-c5d476a8397b.jpg',
     advertising_top_left: [{
       img: 'https://www.chuanshoucs.com/ServerImg/2018-07-24/d134a7b2-77df-42a1-9552-97652b4a7723.png',
       text: '广告位推荐'
@@ -361,9 +362,15 @@ Page({
 
 
   },
-  xiangqing: function(){
+  xiangqing: function() {
     wx.navigateTo({
       url: '../Addetails/Addetails',
+    })
+  },
+  // vip_banner
+  vip_banner: function() {
+    wx.navigateTo({
+      url: '../vipbanner/vipbanner',
     })
   }
 })

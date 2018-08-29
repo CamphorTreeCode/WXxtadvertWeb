@@ -4,5 +4,6 @@
     "tablebar": "/pages/tabbar/tabbar",
     "slideshow": "/pages/swipe/swipe",
     "select": "/pages/list/list"
+    
   }
 }

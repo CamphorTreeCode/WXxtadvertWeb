@@ -41,6 +41,10 @@
     </view>
   </view>
 
+  <!-- 广告 start -->
+  <image src='{{vip_banner}}' mode='aspectFill' class='vip_banner' bindtap='vip_banner'></image>
+  <!-- 广告 end -->
+
   <!-- 广告位推荐 -->
   <view class='advertising'>
     <!-- 广告位推荐头部 -->

@@ -1,0 +1,18 @@
+<!--pages/vipbanner/vipbanner.wxml-->
+<!-- vip banner start -->
+<view class='vipbanner'>
+  <view class='head'>
+    <image class='head_img' src='{{head_img}}' mode='aspectFill'></image>
+  </view>
+
+  <view class='main'>
+    <image class='main_img' src='{{main_img}}'></image>
+    <view class='main_activity'>{{main_activity}}</view>
+    <view class='main_discounts'>{{main_discounts}}</view>
+    <image class='main_vip' src='{{main_vip}}'></image>
+    <view class='main_discount'>折扣价：{{main_discount}}</view>
+    <image class='main_but' src='{{main_but}}' bindtap='rush'></image>
+  </view>
+
+</view>
+<!-- vip banner end -->

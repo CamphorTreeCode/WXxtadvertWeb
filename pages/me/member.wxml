@@ -14,8 +14,7 @@
     <image src='https://www.chuanshoucs.com/ServerImg/2018-08-03/86e299f9-cf25-4a27-bf14-8203accf4662.png'></image>
     <view>
       <view>等级： 注册会员</view>
-      <view style='margin: 10rpx 0;'>会员余额：0</view>
-      <view>会员号： 12054166686</view>
+      <view style='margin-top: 40rpx;'>会员号： 12054166686</view>
     </view>    
   </view>
   <view class='zhong'>

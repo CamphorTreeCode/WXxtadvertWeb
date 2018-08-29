@@ -33,7 +33,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 11,
+			"current": 13,
 			"list": [
 				{
 					"id": -1,
@@ -104,7 +104,19 @@
 				{
 					"id": -1,
 					"name": "购物车",
-					"pathName": "pages/shoppingcart/shoppingcart"
+					"pathName": "pages/shoppingcart/shoppingcart",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "活动",
+					"pathName": "pages/vipbanner/vipbanner",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "充值",
+					"pathName": "pages/me/fa/chongzhi"
 				}
 			]
 		}
