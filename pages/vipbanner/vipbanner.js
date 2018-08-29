@@ -1,24 +1,35 @@
 // pages/vipbanner/vipbanner.js
+var app = getApp();
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    head_img: 'https://www.chuanshoucs.com/ServerImg/2018-08-03/79cf9238-efb6-4b78-8213-aaad6b14f0c8.jpg',
-    main_img: 'https://www.chuanshoucs.com/ServerImg/2018-08-03/42ab8e1e-a8f3-4807-a1fc-7716f6604288.jpg',
-    main_but: 'https://www.chuanshoucs.com/ServerImg/2018-08-03/2b9cc3ea-227b-43b6-ac22-997876781181.png',
-    main_activity: '活动会员',
-    main_discounts: '购买广告位享受7折优惠',
-    main_vip: 'https://www.chuanshoucs.com/ServerImg/2018-08-03/5768af59-de9a-4aaa-96de-2904053f3673.png',
-    main_discount: '999'
+    ActivityMemberLevel:'',
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-
+    var that = this;
+    //活动会员信息start
+    wx.request({
+      url: app.globalData.appUrl + 'WXActivityMemberLevel/findAllActivityMemberLevel',
+      header: {
+        'content-type': 'application/x-www-form-urlencoded',
+        xcxuser_name: "xcxuser_name"
+      },
+      success: function (res) {
+        console.info("下面是查询活动会员信息：")
+        console.info(res.data.ActivityMemberLevel)
+        that.setData({
+          ActivityMemberLevel: res.data.ActivityMemberLevel
+        })
+      }
+    })
+    //活动会员end
   },
 
   /**
@@ -70,9 +81,9 @@ Page({
 
   },
   rush: function() {
-    var val = this.data.main_discount;
+    var memberMoney = this.data.ActivityMemberLevel.activityMemberMoney;
     wx.navigateTo({
-      url: '../me/fa/chongzhi?goodsId=' + val + '&dis=disabled'
+      url: '../me/fa/chongzhi?memberMoney=' + memberMoney + '&dis=disabled'+'&page=HuoDong'
     })
   }
 })

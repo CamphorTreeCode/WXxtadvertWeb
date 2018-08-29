@@ -11,7 +11,6 @@ Page({
     dis: '',
     page:"",
     memberId:"",
-    memberMoney:""
 
   },
 
@@ -21,12 +20,21 @@ Page({
 
   onLoad: function (options) {
     console.info(options)
-    this.setData({
-      val: options.memberMoney,
-      dis: options.dis,
-      page: options.page,
-      memberId: options.memberId,
-    })
+    if (options.memberId){
+      this.setData({
+        val: options.memberMoney,
+        dis: options.dis,
+        page: options.page,
+        memberId: options.memberId,
+      })
+    }else{
+      this.setData({
+        val: options.memberMoney,
+        dis: options.dis,
+        page: options.page,
+      })
+    }
+    
   },
 
   /**
@@ -81,15 +89,14 @@ Page({
 
   chongzhi: function(){
     console.info(this.data.page)
-    console.info(this.data.memberId)
-    if (this.data.page=="GZT") {
+    if (this.data.page =="HuoDong") {
       //工作台充值
       wx.request({
         url: app.globalData.appUrl + 'WXBuyerAccount/RechargeBalance',
         data: {
           openId: "oBfPD5HiCQxV7UteHr1BeGbpqTXs",
           total_fee: 1,
-          body: "享投发广告余额充值"
+          body: "享投发广告活动会员余额充值"
         },
         header: {
           'content-type': 'application/x-www-form-urlencoded', // 默认值

@@ -2,12 +2,17 @@
 var QQMapWX = require('../../map/qqmap-wx-jssdk.js');
 var qqmapsdk;
 var a = 0;
+var app = getApp()
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
+    //首页活动会员banner是否显示
+    vipIsShow:true,
+    //首页活动会员展示图
+    vip_banner:'',
     dw: "https://www.chuanshoucs.com/ServerImg/2018-07-24/4bc5d507-7969-4a6a-935c-56097668a7ec.png",
     ss: 'https://www.chuanshoucs.com/ServerImg/2018-07-24/db1613ea-713e-41df-badb-eed83fc7e27a.png',
     site: '',
@@ -20,7 +25,6 @@ Page({
     superior_text: '优质',
     native_img: 'https://www.chuanshoucs.com/ServerImg/2018-07-24/249c7606-662e-435b-a0d8-b0e8c139ff7e.png',
     native_text: '本地',
-    vip_banner: 'https://www.chuanshoucs.com/ServerImg/2018-08-03/973dac0f-979b-4133-a2ba-c5d476a8397b.jpg',
     advertising_top_left: [{
       img: 'https://www.chuanshoucs.com/ServerImg/2018-07-24/d134a7b2-77df-42a1-9552-97652b4a7723.png',
       text: '广告位推荐'
@@ -213,12 +217,40 @@ Page({
         })
 
       },
+      
     });
     // 实例化API核心类
     qqmapsdk = new QQMapWX({
       key: 'MR3BZ-43WC2-CQQUD-CSUJU-4YVME-OLBLK'
     });
 
+    //首页活动会员图片start
+    wx.request({
+      url: app.globalData.appUrl + 'WXActivityMemberLevel/findAllActivityMemberLevel',
+      header: {
+        'content-type': 'application/x-www-form-urlencoded',
+        xcxuser_name: "xcxuser_name"
+      },
+      success: function (res) {
+        console.info("下面是查询活动会员信息：")
+        console.info(res.data.ActivityMemberLevel)
+        var isOpen = res.data.ActivityMemberLevel.isOpen;
+        if (isOpen == 1){
+          //活动开启
+          that.setData({
+            vipIsShow:false,
+            vip_banner: res.data.ActivityMemberLevel.specialActivitiesImg,
+          })
+        } else if (isOpen == 0){
+          //活动关闭
+          that.setData({
+            vipIsShow: true,
+          })
+        }
+        
+      }
+    })
+    //首页活动会员图片end
 
   },
 
