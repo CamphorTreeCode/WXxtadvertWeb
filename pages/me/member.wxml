@@ -1,8 +1,8 @@
 <!--pages/me/member.wxml-->
 <!-- 不是会员 -->
-<view class='fou' wx:if="{{huiyuan==false}}">
+<view class='fou' wx:if="{{huiyuan}}">
   <image src='https://www.chuanshoucs.com/ServerImg/2018-08-03/63b8c5f2-6efb-4ce7-beba-f1c85d1fb473.png'></image>
-  <block wx:if="{{jie==false}}">
+  <block wx:if="{{jie}}">
     <view>游客需登录我要发广告帐</view>
     <view>号才能看到会员等级哦</view>
   </block>
@@ -10,11 +10,11 @@
 </view>
 <!-- 是会员 -->
 <view class='shi' wx:else>
-  <view class='shang'>
-    <image src='https://www.chuanshoucs.com/ServerImg/2018-08-03/86e299f9-cf25-4a27-bf14-8203accf4662.png'></image>
+  <view class='shang' wx:for="{{MemberLevelMsg}}">
+    <image src='{{item.memberContent.MemberLevel.memberIcon}}'></image>
     <view>
-      <view>等级： 注册会员</view>
-      <view style='margin-top: 40rpx;'>会员号： 12054166686</view>
+      <view>等级： {{item.memberContent.MemberLevel.memberName}}</view>
+      <view style='margin-top: 40rpx;'>会员号： {{item.membershipNumber}}</view>
     </view>    
   </view>
   <view class='zhong'>
@@ -22,30 +22,15 @@
     <text>充值指定会员可获得超值权益！</text>
   </view>
   <view class='xia'>
-    <view class='lie'>
-      <image src='https://www.chuanshoucs.com/ServerImg/2018-08-03/a6360f4e-51e2-4574-a369-eb9de109d056.png'></image>
-      <text>充值白银会员\n余额任意消费9折</text>
-      <button bindtap='chong' data-index='2'>去充值</button>
-    </view>
-    <view class='lie'>
-      <image src='https://www.chuanshoucs.com/ServerImg/2018-08-03/5142c4c9-8ef4-4f37-a6e4-c3e69cf059cb.png'></image>
-      <text>充值黄金会员\n余额任意消费8.5折</text>
-      <button bindtap='chong'>去充值</button>
-    </view>
-    <view class='lie'>
-      <image src='https://www.chuanshoucs.com/ServerImg/2018-08-03/5d99d379-f2b5-4cdc-9e87-f7d0277bdb97.png'></image>
-      <text>充值铂金会员\n余额任意消费7折</text>
-      <button bindtap='chong'>去充值</button>
-    </view>
-    <view class='lie'>
-      <image src='https://www.chuanshoucs.com/ServerImg/2018-08-03/34ff5223-33dd-4ab7-a5d1-a8e25de2ac65.png'></image>
-      <text>充值金钻会员\n余额任意消费6.5折</text>
-      <button bindtap='chong'>去充值</button>
+    <view class='lie' wx:for="{{MemberLevel}}" data-index="{{index}}">
+      <image src='{{item.memberIcon}}'></image>
+      <text>充值{{item.memberName}}\n会员余额任意消费{{item.memberDiscounts*10}}折</text>
+      <button bindtap='chong' data-index="{{index}}">去充值</button>
     </view>
   </view>
   <!-- 弹框 -->
   <view class='tan' style='display:{{money==true?"block":"none"}}'>
-    <text>您的会员余额已经不足，已退\n回注册会员快去充值继续享\n用超值权益吧</text>
+    <text>您的会员余额不满足\n当前会员充值条件，\n请选择更高等级的会员,\n享受更超值权益吧!</text>
     <button bindtap='sure'>确认</button>
   </view>
 </view>

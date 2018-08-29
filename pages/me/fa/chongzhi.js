@@ -1,6 +1,5 @@
 // pages/me/fa/chongzhi.js
 var app = getApp()
-// var PayUtils = require("../../../utils/PayUtils.js")
 import PayUtils from "../../../utils/PayUtils.js"
 Page({
 
@@ -8,7 +7,6 @@ Page({
    * 页面的初始数据
    */
   data: {
-
     val: '',
     dis: '',
     page:"",
@@ -21,23 +19,13 @@ Page({
    * 生命周期函数--监听页面加载
    */
 
-  onLoad: function(options) {
-    // var goods = options.goodsId;
-    // var dis = options.dis;
-    // console.log(options);
-    // this.setData({
-    //   val: goods,
-    //   dis: dis
-    // })
-  },
-
   onLoad: function (options) {
     console.info(options)
     this.setData({
+      val: options.memberMoney,
+      dis: options.dis,
       page: options.page,
       memberId: options.memberId,
-      memberMoney: options.memberMoney
-
     })
   },
 
@@ -90,16 +78,6 @@ Page({
 
 
   },
-  // chongzhi: function() {
-  //   wx.requestPayment({
-  //     'timeStamp': '',
-  //     'nonceStr': '',
-  //     'package': '',
-  //     'signType': 'MD5',
-  //     'paySign': '',
-  //     'success': function(res) {},
-  //     'fail': function(res) {}
-  //   })
 
   chongzhi: function(){
     console.info(this.data.page)
@@ -159,7 +137,7 @@ Page({
             res.data.prepay_id.prepay_id,
             app.globalData.appUrl + "WXMemberLevel/addRechargeMembershipBalance",
             { openId: openId, total_fee: 5800, memberId: memberId},
-            "/pages/me/member"
+            "/pages/me/member?roles=1"
           );
 
         }
