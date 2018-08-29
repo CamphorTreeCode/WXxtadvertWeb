@@ -5,13 +5,20 @@ Page({
    * 页面的初始数据
    */
   data: {
+<<<<<<< HEAD
     val: '',
     dis: ''
+=======
+    page:"",
+    memberId:"",
+    memberMoney:""
+>>>>>>> 1a6db56a5d6ff8f8e34820553b2b1c48a6713105
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
+<<<<<<< HEAD
   onLoad: function(options) {
     var goods = options.goodsId;
     var dis = options.dis;
@@ -19,6 +26,14 @@ Page({
     this.setData({
       val: goods,
       dis: dis
+=======
+  onLoad: function (options) {
+    console.info(options)
+    this.setData({
+      page: options.page,
+      memberId: options.memberId,
+      memberMoney: options.memberMoney
+>>>>>>> 1a6db56a5d6ff8f8e34820553b2b1c48a6713105
     })
   },
 
@@ -69,6 +84,7 @@ Page({
    */
   onShareAppMessage: function() {
 
+<<<<<<< HEAD
   },
   chongzhi: function() {
     wx.requestPayment({
@@ -80,5 +96,72 @@ Page({
       'success': function(res) {},
       'fail': function(res) {}
     })
+=======
+  chongzhi: function(){
+    console.info(this.data.page)
+    console.info(this.data.memberId)
+    if (this.data.page=="GZT") {
+      //工作台充值
+      wx.request({
+        url: app.globalData.appUrl + 'WXBuyerAccount/RechargeBalance',
+        data: {
+          openId: "oBfPD5HiCQxV7UteHr1BeGbpqTXs",
+          total_fee: 1,
+          body: "享投发广告余额充值"
+        },
+        header: {
+          'content-type': 'application/x-www-form-urlencoded', // 默认值
+          xcxuser_name: "xcxuser_name"
+        },
+        method: 'get',
+        success: function (res) {
+
+          console.info(res)
+
+          PayUtils(
+            res.data.prepay_id.prepay_id,
+            app.globalData.appUrl + "WXBuyerAccount/addRechargeBalance",
+            { openId: "oBfPD5HiCQxV7UteHr1BeGbpqTXs", total_fee: 1 },
+            "/pages/me/fa/gongzuotai"
+          );
+
+        }
+      })
+    } else if (this.data.page == "HY"){
+      console.info("会员充值")
+      //会员充值
+      console.info(this.data.page)
+      console.info(this.data.memberMoney)
+      console.info(app.returnOpenId())
+      var memberId = this.data.memberId;
+      var openId = app.returnOpenId();
+      wx.request({
+        url: app.globalData.appUrl + 'WXMemberLevel/rechargeMembershipBalance',
+        data: {
+          openId: openId,
+          total_fee: 1,
+          body: "享投会员余额充值",
+        },
+        header: {
+          'content-type': 'application/x-www-form-urlencoded', // 默认值
+          xcxuser_name: "xcxuser_name"
+        },
+        method: 'get',
+        success: function (res) {
+
+          console.info(res)
+          
+          PayUtils(
+            res.data.prepay_id.prepay_id,
+            app.globalData.appUrl + "WXMemberLevel/addRechargeMembershipBalance",
+            { openId: openId, total_fee: 5800, memberId: memberId},
+            "/pages/me/member"
+          );
+
+        }
+    })
+
+>>>>>>> 1a6db56a5d6ff8f8e34820553b2b1c48a6713105
   }
+}
 })

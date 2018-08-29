@@ -25,7 +25,7 @@
     <view class='lie'>
       <image src='https://www.chuanshoucs.com/ServerImg/2018-08-03/a6360f4e-51e2-4574-a369-eb9de109d056.png'></image>
       <text>充值白银会员\n余额任意消费9折</text>
-      <button bindtap='chong'>去充值</button>
+      <button bindtap='chong' data-index='2'>去充值</button>
     </view>
     <view class='lie'>
       <image src='https://www.chuanshoucs.com/ServerImg/2018-08-03/5142c4c9-8ef4-4f37-a6e4-c3e69cf059cb.png'></image>

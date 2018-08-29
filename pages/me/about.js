@@ -1,18 +1,20 @@
 // pages/me/about.js
+var app = getApp()
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-  
+    aboutUs:'',
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-  
+    findAboutUsDetails(this);
+
   },
 
   /**
@@ -26,7 +28,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-  
+    findAboutUsDetails(this);
   },
 
   /**
@@ -64,3 +66,20 @@ Page({
   
   }
 })
+
+function findAboutUsDetails(that) {
+  wx.request({
+    url: app.globalData.appUrl + 'WXAboutUs/findAboutUsDetails', //仅为示例，并非真实的接口地址
+    method: "GET",
+    header: {
+      'content-type': 'application/x-www-form-urlencoded', // 默认值
+      xcxuser_name: "xcxuser_name"
+    },
+    success: function (res) {
+      console.log(res)
+      that.setData({
+        aboutUs: res.data
+      })
+    }
+  })
+}

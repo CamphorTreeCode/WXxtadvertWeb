@@ -1,9 +1,10 @@
 <!--utils/getUserTemplate/getUserTemplate.wxml-->
-
-<view class='mask' hidden='{{flag==false}}' catchtouchmove="preventTouchMove"></view>
-<view class='getUser' hidden='{{flag==false}}'>
+<shouquan></shouquan>
+<view class='mask' hidden="{{flag}}" catchtouchmove="preventTouchMove"></view>
+<view class="getUser" hidden="{{flag}}">
   <image src='/img/tabbar/sicai.png'></image>
   <text class='xiangtou0'>享投请求授权</text>
   <text class='xiangtou1'>将会获取你的头像、昵称等信息</text>
-  <button class='getUserbutton'open-type="getUserInfo" lang="zh_CN" bindgetuserinfo="onGotUserInfo"  >确定</button>
+  <button class='getUserbutton' wx:if="{{canIUse}}" open-type="getUserInfo"  bindgetuserinfo="onGotUserInfo">确定</button>
+  <view wx:else>请升级微信版本</view>
 </view>

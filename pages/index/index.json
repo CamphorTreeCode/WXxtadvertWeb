@@ -3,7 +3,12 @@
   "usingComponents": {
     "tablebar": "/pages/tabbar/tabbar",
     "slideshow": "/pages/swipe/swipe",
+<<<<<<< HEAD
     "select": "/pages/list/list"
     
+=======
+    "select": "/pages/list/list",
+    "shouquan":"/utils/getUserTemplate/getUserTemplate"
+>>>>>>> 1a6db56a5d6ff8f8e34820553b2b1c48a6713105
   }
 }

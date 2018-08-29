@@ -1,5 +1,6 @@
 <!--pages/me/about.wxml-->
-<image src='https://www.chuanshoucs.com/ServerImg/2018-07-24/b22ece3a-09fa-4efb-be9f-b6f177d84032.png'></image>
+<shouquan></shouquan>
+<image src='{{aboutUs.aboutUsImg}}' mode="aspectFill"></image>
 <view class='kong'></view>
 <view class='hang'>
   <image src='https://www.chuanshoucs.com/ServerImg/2018-07-24/e596fd10-913b-45aa-9de6-e22286a04680.png'></image>
@@ -10,6 +11,4 @@
   <image src='https://www.chuanshoucs.com/ServerImg/2018-07-24/8b6891ff-ec81-4418-aa76-59bd3ca7eb6b.png'></image>
   <text>简介</text>
 </view>
-<view style='margin: 10rpx 20rpx; line-height: 1.8rem; color: #999999; font-size: 32rpx;'>
-  爱看发动机昂克赛拉房间打扫了房间打开垃圾发啦大家发了肯定撒飞机撒打开链接发的深刻理解反倒是看见福利卡健康萨拉丁艰苦奋斗就哭了进口量的阿胶颗粒加了深刻打飞机都是垃圾发生大家开始了第三届啦健康丢三落四的健康雷声大安静了的萨芬金卡的说法姐夫答复都是了肯定撒放假啊。
-</view>
+<view style='margin: 10rpx 20rpx; line-height: 1.8rem; color: #999999; font-size: 32rpx;'>{{aboutUs.aboutUsDetails}}</view>

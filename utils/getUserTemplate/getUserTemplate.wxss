@@ -1,5 +1,14 @@
 /* utils/getUserTemplate/getUserTemplate.wxss */
-.mask{height: 2000rpx;width: 100%;background: black;opacity: 0.3;position: fixed;top: 0;left: 0;z-index: 10;}
+.mask{
+    height: 2000rpx;
+    width: 100%;
+    background: black;
+    opacity: 0.3;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 10;
+  }
 .getUser{width: 70%;position: fixed;top: 20%;margin-left: -35%;left: 50%;z-index: 11;background: #FFFFFF;border-radius: 40rpx;overflow: hidden}
 .getUser image{display: block;width: 80rpx;height: 80rpx;margin: 80rpx auto 30rpx}
 .getUser text{display: block;width: 100%;text-align: center}
