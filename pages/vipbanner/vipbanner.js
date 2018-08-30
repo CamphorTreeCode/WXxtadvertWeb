@@ -82,8 +82,9 @@ Page({
   },
   rush: function() {
     var memberMoney = this.data.ActivityMemberLevel.activityMemberMoney;
+    var activityMemberLevelId = this.data.ActivityMemberLevel.activityMemberLevelId;
     wx.navigateTo({
-      url: '../me/fa/chongzhi?memberMoney=' + memberMoney + '&dis=disabled'+'&page=HuoDong'
+      url: '../me/fa/chongzhi?memberMoney=' + memberMoney + '&dis=disabled' + '&page=HuoDong' + '&activityMemberLevelId=' + activityMemberLevelId
     })
   }
 })

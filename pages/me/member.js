@@ -168,7 +168,7 @@ Page({
       })
       //跳转充值页面
       wx.navigateTo({
-        url: '/pages/me/fa/chongzhi?page=HY&memberId=' + memberId + '&memberMoney=' + money + '&dis=disabled',
+        url: '/pages/me/fa/chongzhi?page=HY&memberId=' + memberId + '&memberMoney=' + money + '&dis=disabled' + '&YuanJia=' + memberMoney,
       })
     }
    

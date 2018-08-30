@@ -19,3 +19,4 @@
   </view>
   <button bindtap='chongzhi'>充值</button>
 </view>
+<view class='ZhuShi' hidden="{{HuiYuan}}">原价{{YuanJia}}元，现在您只要充值差价为{{val}}元，即可享受该会员折扣。</view>
