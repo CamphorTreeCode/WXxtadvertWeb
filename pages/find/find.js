@@ -1,12 +1,13 @@
 // pages/find/find.js
 var app = getApp()
-var pageSize = 0;
+
 
 function findAllDiscoverMsg(that) {
+  console.log(that.data.pageSize)
   wx.request({
     url: app.globalData.appUrl + 'WXDiscover/findAllDiscoverMsg', //仅为示例，并非真实的接口地址
     data: {
-      currentPage: ++pageSize
+      currentPage: ++that.data.pageSize
     },
     method: "GET",
     header: {
@@ -15,12 +16,13 @@ function findAllDiscoverMsg(that) {
     },
     success: function(res) {
       console.info("下面是发现列表数据:")
+      console.info(res)
       if (res.data[0].lists.length > 0) {
         var DiscoverList = that.data.DiscoverList
         for (var i = 0; i < res.data[0].lists.length; i++) {
           if (res.data[0].lists[i].discoverImgs){
             //图片存在，视频不存在
-            res.data[0].lists[i].discoverImgs = JSON.parse(res.data[0].lists[i].discoverImgs);
+            res.data[0].lists[i].discoverImgs = JSON.parse(res.data[0].lists[i].discoverImgs).slice(0, 3);
           } else if (res.data[0].lists[i].discoverVideo){
             //图片不存在，视频存在
             res.data[0].lists[i].discoverVideo = JSON.parse(res.data[0].lists[i].discoverVideo);
@@ -31,6 +33,7 @@ function findAllDiscoverMsg(that) {
           DiscoverList: DiscoverList,
           showLoading: true,
         })
+        console.info(DiscoverList);
       }else{
         that.setData({
           bottomText: false,
@@ -48,10 +51,7 @@ Page({
   data: {
     //发现列表
     DiscoverList: [],
-    //加载块
-    showLoading: true,
-    //已经没有了
-    bottomText: true,
+    pageSize:0
   },
 
   /**
@@ -62,6 +62,7 @@ Page({
     this.setData({
       scrollHeight: scrollHeight
     });
+   
   },
 
   /**
@@ -75,7 +76,11 @@ Page({
    */
   onShow: function() {
     var that = this;
-    var pageSize = 0;
+    that.setData({
+      pageSize:0,
+      DiscoverList: [],
+    })
+
     //查询发现列表start
     findAllDiscoverMsg(that);
     //查询发现列表end
@@ -116,15 +121,16 @@ Page({
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function() {
+  onShareAppMessage: function(res) {
+    console.info(res)
     return {
-      imageUrl: app.globalData.shareImg
+      imageUrl: app.globalData.shareImg,
     }
   },
   // 跳转发现详情
   find: function(e) {
     console.info(e.currentTarget.dataset.lid)
-    wx.reLaunch({
+    wx.navigateTo({
       url: '../findask/findask?lid=' + e.currentTarget.dataset.lid,
     })
   },

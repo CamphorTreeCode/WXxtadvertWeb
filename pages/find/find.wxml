@@ -1,5 +1,4 @@
 <!-- pages/find/find.wxml-->
-
 <view class='find'>
 
   <!-- find_content start -->
@@ -33,10 +32,12 @@
       <!-- video -->
       <view class='video'>
         <i wx:if="{{item.discoverVideo!=''}}">
-          <video id='myVideo' src='{{item.discoverVideo}}' controls='{{false}}' custom-cache="{{false}}"></video>
+          <video id='myVideo' src='{{item.discoverVideo}}'  custom-cache="{{false}}" show-center-play-btn='{{false}}'></video>
         </i>
         <i wx:if="{{item.discoverVideo ==''}}">
-        <image src="{{item.discoverImgs}}" class='video_img' data-index='{{index}}' mode="aspectFill"></image>
+          <block wx:for="{{item.discoverImgs}}" wx:for-item="img">
+          <image src="{{img}}" class='video_img' data-index='{{index}}' mode="aspectFill"></image>
+          </block>
         </i>
       </view>
     </view>
@@ -53,13 +54,5 @@
   </view>
   <!-- find_content end -->
 </view>
-<!-- <view class="spinner" hidden='{{showLoading}}'>
-  <view class="rect1"></view>
-  <view class="rect2"></view>
-  <view class="rect3"></view>
-  <view class="rect4"></view>
-  <view class="rect5"></view>
-</view>
-<view class="bottomText" hidden='{{bottomText}}'>已经到底了</view> -->
 <tablebar faxian="{{true}}" class="foter"></tablebar>
 <!-- poster='http://img.storage.17wanba.org.cn/game/2016/05/12/9310a65403902b6e286b93997172548f.jpg'

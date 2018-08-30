@@ -78,7 +78,7 @@ Page({
    */
   onShareAppMessage: function () {
     return {
-      imageUrl: app.globalData.shareImg
+      imageUrl: app.globalData.shareImg,
     }
   },
   // 会员

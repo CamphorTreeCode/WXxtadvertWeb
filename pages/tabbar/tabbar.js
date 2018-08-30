@@ -27,6 +27,7 @@ Component({
       }
       else if (event.currentTarget.dataset.id == 1) {
         link = '../find/find';
+        console.log("!!111")
       }
       else if (event.currentTarget.dataset.id == 2) {
         link = '../shoppingcart/shoppingcart';
@@ -34,7 +35,7 @@ Component({
       else if (event.currentTarget.dataset.id == 3) {
         link = '../me/wode';
       }
-      wx.redirectTo({
+      wx.reLaunch({
         url: link
       })
     }
