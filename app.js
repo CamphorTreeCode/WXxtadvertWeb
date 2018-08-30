@@ -35,6 +35,22 @@ App({
         }
       }
     })
+
+    //查询用户当前身份
+    var that = this;
+    wx.request({
+      url: that.globalData.appUrl + 'WXLoginStatus/findUserRoles?openId=' + that.returnOpenId() + '',
+      header: {
+        'content-type': 'application/x-www-form-urlencoded',
+        xcxuser_name: "xcxuser_name"
+      },
+      success: function (res) {
+        console.info("下面是查询用户的身份信息：")
+        console.info(res.data.UserRoles)
+        that.globalData.UserRoles = res.data.UserRoles;
+      }
+    })
+
   },
 
   getOpenId: function () {
@@ -60,5 +76,6 @@ App({
     userInfo: null,
     appUrl: "http://localhost/xtadvert/",
     shareImg:"https://www.chuanshoucs.com/ServerImg/2018-08-03/97086b2d-b18e-4d57-a30d-70e0b8ddeedc.jpg",
+    UserRoles:0,
   }
 })

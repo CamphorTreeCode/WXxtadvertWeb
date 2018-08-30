@@ -1,36 +1,43 @@
 <!-- pages/find/find.wxml-->
+
 <view class='find'>
 
   <!-- find_content start -->
-  <view class='find_content' wx:for='{{find}}' bindtap='find' >
+  <view class='find_content' wx:for='{{DiscoverList}}' bindtap='find' data-lid="{{item.discoverId}}">
 
     <!-- find_content_top start -->
     <view class='find_top'>
 
       <!-- find_top img -->
-      <image src='{{item.img}}' class='find_top_img'></image>
+      <image src='https://www.chuanshoucs.com/ServerImg/2018-08-03/7a499704-504b-442f-9e90-2f3a395e13e8.png' class='find_top_img'></image>
       <!-- find_top title -->
       <view class='find_title'>
         <!-- title cn -->
-        <view class='find_title_cn'>{{item.title_cn}}</view>
+        <view class='find_title_cn'>享投官方</view>
         <!-- title en -->
-        <view class='find_title_en'>{{item.title_en}}</view>
+        <view class='find_title_en'>Share Advertising</view>
       </view>
       <!-- find_top time -->
-      <view class='find_time'>{{item.time}}</view>
+      <view class='find_time'>{{item.createTime}}</view>
     </view>
     <!-- find_top end -->
 
     <!-- find_content_main start -->
     <view class='find_main'>
+      <!-- find_content_main title -->
+      <view class='find_main_title'>{{item.discoverTitle}}</view>
       <!-- find_content_main text -->
-      <view class='find_main_text'>{{item.text}}</view>
+      <view class='find_main_text'>{{item.discoverDeatils}}</view>
       <!-- find_main_examine -->
-      <view class='find_main_examine'>{{item.examine}}</view>
+      <view class='find_main_examine'>查看详情</view>
       <!-- video -->
       <view class='video'>
-        <video id='myVideo' src='{{item.video}}' controls='controls' poster='{{item.poster}}' style="display:{{item.show}} "></video>
-        <image wx:for='{{item.videoimg}}' src='{{item.video_img}}' class='video_img' data-index='{{index}}'></image>
+        <i wx:if="{{item.discoverVideo!=''}}">
+          <video id='myVideo' src='{{item.discoverVideo}}' controls='{{false}}' custom-cache="{{false}}"></video>
+        </i>
+        <i wx:if="{{item.discoverVideo ==''}}">
+        <image src="{{item.discoverImgs}}" class='video_img' data-index='{{index}}' mode="aspectFill"></image>
+        </i>
       </view>
     </view>
     <!-- find content_main end -->
@@ -38,17 +45,21 @@
     <!-- find_praise -->
     <view class='find_praise'>
       <!-- find_read -->
-      <text class='find_read'>{{item.read}}</text>
+      <text class='find_read'>{{item.discoverViews}}</text>
       <!-- find_like-->
-      <text class='find_like'>{{item.like}}</text>
+      <text class='find_like'>{{item.discoverFabulous}}</text>
     </view>
 
   </view>
   <!-- find_content end -->
-
-
 </view>
-
-
+<!-- <view class="spinner" hidden='{{showLoading}}'>
+  <view class="rect1"></view>
+  <view class="rect2"></view>
+  <view class="rect3"></view>
+  <view class="rect4"></view>
+  <view class="rect5"></view>
+</view>
+<view class="bottomText" hidden='{{bottomText}}'>已经到底了</view> -->
 <tablebar faxian="{{true}}" class="foter"></tablebar>
 <!-- poster='http://img.storage.17wanba.org.cn/game/2016/05/12/9310a65403902b6e286b93997172548f.jpg'

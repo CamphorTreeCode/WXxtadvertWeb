@@ -62,7 +62,15 @@
   margin-top: 20rpx;
 }
 
+.find_main .find_main_title {
+  text-indent: 40rpx;
+  line-height: 80rpx;
+  font-weight: unset;
+  font-size: 40rpx;
+}
+
 .find_main .find_main_text {
+  color: #666;
   text-indent: 40rpx;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -83,7 +91,7 @@
   height: 400rpx;
   border-radius: 20rpx;
   box-sizing: border-box;
-  margin: 20rpx 0;  
+  margin: 20rpx 0;
 }
 
 .video_img {
@@ -126,3 +134,9 @@
   left: 0;
   z-index: 1;
 }
+.spinner{
+   background:transparent;
+ }
+.bottomText{
+   background: transparent;
+ }
