@@ -1,4 +1,34 @@
 // pages/me/more.js
+//表单验证
+function yanzheng(applicantMiniProgram) {
+  if (applicantMiniProgram.applicantName == '') {
+    wx.showToast({
+      title: '请填写姓名',
+      icon: 'none',
+      duration: 1000
+    })
+    return false;
+  }
+  if (applicantMiniProgram.applicantPhone == '') {
+    wx.showToast({
+      title: '请填写联系电话',
+      icon: 'none',
+      duration: 1000
+    })
+    return false;
+  } else {
+    if (!/^((\d{3,4}-)?\d{7,8})$|(1[0-9]{10})/.test(applicantMiniProgram.applicantPhone)) {
+      wx.showToast({
+        title: '请按照正确联系方式填写',
+        icon: 'none',
+        duration: 1000
+      })
+      return false;
+    }else{
+      return true;
+    }
+  }
+}
 var app = getApp();
 Page({
 
@@ -7,7 +37,7 @@ Page({
    */
   data: {
     state: false,
-    region: ['请选择地区'],
+    region: ["江苏省", "南京市", "玄武区"],
     customItem: '全部',
     //全部小程序信息
     MiniProgram:[],
@@ -29,11 +59,11 @@ Page({
       },
       success: function (res) {
         console.info("下面是查询全部小程序类型列表信息：")
-        console.info(res.data)
+        // console.info(res.data)
         if(res.data.length > 0){
           var MiniProgram = that.data.MiniProgram;
           for (var i = 0; i < res.data.length; i++){
-            res.data[i].miniProgramIcon = JSON.parse(res.data[i].miniProgramIcon).slice(0, 1);
+            res.data[i].miniProgramIcon = JSON.parse(res.data[i].miniProgramIcon)[0];
             MiniProgram.push(res.data[i])
           }
           console.info(MiniProgram)
@@ -113,18 +143,46 @@ Page({
     })
   },
 
-  //获取用户选择的地区
-  bindRegionChange: function (e) {
-    console.log('picker发送选择改变，携带值为', e.detail.value)
-    this.setData({
-      region: e.detail.value
-    })
-  },
-
   //提交申请开发小程序信息
   testSubmit:function(e){
-    console.info(e.detail.formId)
+    console.info(e)
     var formId = e.detail.formId;
+    var miniProgramTypeId = this.data.miniProgramTypeId;
+    var applicantMiniProgram = e.detail.value;
+    applicantMiniProgram.applicantLocation = applicantMiniProgram.region.join('');
+    applicantMiniProgram.miniProgramTypeId = miniProgramTypeId;
+    applicantMiniProgram.openId = app.returnOpenId();
+    applicantMiniProgram.formId = formId;
+    console.info("********************************")
+    console.info(applicantMiniProgram)
+
+    if (yanzheng(applicantMiniProgram)){
+      console.info("增加")
+      var that = this;
+      //数据验证正确
+      wx.request({
+        url: app.globalData.appUrl + 'WXApplicantMiniProgram/addApplicantMiniProgramMsg',
+        data:  applicantMiniProgram,
+        header: {
+          'content-type': 'application/x-www-form-urlencoded',
+          xcxuser_name: "xcxuser_name"
+        },
+        success: function (res) {
+          that.setData({
+            state: false
+          })
+          wx.showToast({
+            title: '提交成功',
+            icon: 'success',
+            duration: 1000
+          })
+        }
+      })
+      wx.navigateTo({
+        url: '/pages/me/wode',
+      })
+    }
+    
   },
   
 })
