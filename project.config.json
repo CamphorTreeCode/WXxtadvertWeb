@@ -33,7 +33,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 16,
+			"current": 18,
 			"list": [
 				{
 					"id": -1,
@@ -136,6 +136,17 @@
 					"name": "开发小程序",
 					"pathName": "pages/me/more",
 					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "发广告注册",
+					"pathName": "pages/me/fa/zhuce",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "发广告注册账号成功",
+					"pathName": "pages/me/fa/zhuceSuccess"
 				}
 			]
 		}

@@ -51,6 +51,7 @@ Page({
   data: {
     //发现列表
     DiscoverList: [],
+    //页码
     pageSize:0
   },
 
