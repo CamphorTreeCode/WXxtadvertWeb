@@ -24,6 +24,8 @@ Page({
       success: function (res) {
         console.info("下面是查询活动会员信息：")
         console.info(res.data.ActivityMemberLevel)
+        res.data.ActivityMemberLevel.activityMemberIcon = JSON.parse(res.data.ActivityMemberLevel.activityMemberIcon)[0]
+        res.data.ActivityMemberLevel.specialActivitiesImg = JSON.parse(res.data.ActivityMemberLevel.specialActivitiesImg)[0]
         that.setData({
           ActivityMemberLevel: res.data.ActivityMemberLevel
         })
