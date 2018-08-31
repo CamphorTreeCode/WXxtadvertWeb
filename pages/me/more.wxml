@@ -1,32 +1,28 @@
 <!--pages/me/more.wxml-->
 <view style='height: 10rpx; background-color: #f5f5f5;'></view>
-<view style='text-align: center; margin:40rpx 0;'>{{title}}</view>
+<view style='text-align: center; margin:40rpx 0;'>选择您要开发的小程序类型</view>
 <view class='liebiao'>
-  <view wx:for="{{array}}" class='one' bindtap='tan'>
-    <image src='{{item.img}}'></image>
-    <text>{{item.message}}</text>
+  <view wx:for="{{MiniProgram}}" class='one' bindtap='tan' data-lid="{{item.miniProgramTypeId}}">
+    <image src='{{item.miniProgramIcon}}'></image>
+    <text>{{item.miniProgramName}}</text>
   </view>
 </view>
-<view class='liebiao'>
-  <view wx:for="{{lie}}" wx:for-item="items" class='one' bindtap='tan'>
-    <image src='{{items.img}}'></image>
-    <text>{{items.message}}</text>
-  </view>
-</view>
+
 <!-- 弹框 -->
 <view class='shadow {{state==true?"kuang":" "}}'></view>
+<form bind:submit="testSubmit" report-submit="true">
 <view class='tan {{state==true?"kuang":" "}}'>
   <view style='text-align: center; padding: 30rpx 0;'>填写信息</view>
   <view class='message teshu'>
     <image src='/img/wode/xingming.png'></image>
     <text>姓名</text>
-    <input placeholder='请输入姓名'></input>
+    <input placeholder='请输入姓名' name="applicantName"></input>
   </view>
    <view class='henxian'></view>
   <view class='message'>
     <image src='/img/wode/phone.png'></image>
     <text>联系方式</text>
-    <input placeholder='请输入联系方式'></input>
+    <input placeholder='请输入联系方式' name="applicantPhone"></input>
   </view>
   <view class='henxian'></view>
   <view class='message'>
@@ -34,12 +30,13 @@
     <text>所在地区</text>
     <picker mode="region" bindchange="bindRegionChange" value="{{region}}" custom-item="{{customItem}}">
     <view class="picker">
-      {{region[0]}}，{{region[1]}}，{{region[2]}}
+      {{region}}
     </view>
     <image class='didian' src='/img/wode/didian2.png'></image>
   </picker>
   </view>
    <view class='henxian'></view>
-  <button>提交</button>
+  <button form-type="submit">提交</button>
   <image class='shanchu' bindtap='shanchu' src='/img/wode/shanchu.png'></image>
 </view>
+</form>

@@ -13,12 +13,14 @@ page {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  margin-bottom: 50rpx;
 }
 .liebiao {
   margin-bottom: 50rpx;
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-wrap: wrap;
 }
 /* 弹框 */
 .shadow {

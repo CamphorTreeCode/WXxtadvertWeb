@@ -121,8 +121,7 @@ Page({
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function(res) {
-    console.info(res)
+  onShareAppMessage: function() {
     return {
       imageUrl: app.globalData.shareImg,
     }
