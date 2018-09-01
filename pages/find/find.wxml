@@ -8,7 +8,7 @@
     <view class='find_top'>
 
       <!-- find_top img -->
-      <image src='https://www.chuanshoucs.com/ServerImg/2018-08-03/7a499704-504b-442f-9e90-2f3a395e13e8.png' class='find_top_img'></image>
+      <image src='https://www.chuanshoucs.com/ServerImg/2018-08-03/7a499704-504b-442f-9e90-2f3a395e13e8.png' class='find_top_img' mode="aspectFill"></image>
       <!-- find_top title -->
       <view class='find_title'>
         <!-- title cn -->

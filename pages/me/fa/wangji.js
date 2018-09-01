@@ -197,8 +197,6 @@ Page({
             duration: 1000
           })
           return false;
-        } else {
-          return true;
         }
       }
       if (verificationCode == '') {
@@ -216,8 +214,6 @@ Page({
             duration: 1000
           })
           return false;
-        } else {
-          return true;
         }
       }
       if (accountPassword == '') {
@@ -235,8 +231,6 @@ Page({
             duration: 1000
           })
           return false;
-        } else {
-          return true;
         }
       }
       if (that.data.matchpwd == '') {

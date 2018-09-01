@@ -220,9 +220,7 @@ Page({
             duration: 1000
           })
           return false;
-        } else {
-          return true;
-        }
+        } 
       }
       if (buyerAccount.accountName == '') {
         wx.showToast({
@@ -239,8 +237,6 @@ Page({
             duration: 1000
           })
           return false;
-        }else{
-          return true;
         }
       }
       if (buyerAccount.accountPassword == '') {
@@ -258,8 +254,6 @@ Page({
             duration: 1000
           })
           return false;
-        }else{
-          return true;
         }
       }
       if (that.data.matchpwd == '') {
@@ -280,7 +274,6 @@ Page({
         } else {
           return true;
         }
-
       }
 
     }
