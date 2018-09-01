@@ -132,7 +132,7 @@ Page({
             xcxuser_name: "xcxuser_name"
           },
           success: function(res) {
-            console.info("下面是查询全部小程序类型列表信息：")
+            console.info("下面是信息：")
             console.info(res.data)
             if (res.data.phoneNoRepeat == true) {
               //手机号重复

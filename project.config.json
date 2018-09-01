@@ -33,7 +33,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 18,
+			"current": 19,
 			"list": [
 				{
 					"id": -1,
@@ -146,7 +146,13 @@
 				{
 					"id": -1,
 					"name": "发广告注册账号成功",
-					"pathName": "pages/me/fa/zhuceSuccess"
+					"pathName": "pages/me/fa/zhuceSuccess",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "忘记密码",
+					"pathName": "pages/me/fa/wangji"
 				}
 			]
 		}

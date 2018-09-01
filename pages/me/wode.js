@@ -7,7 +7,9 @@ Page({
    */
   data: {
     //用户是否填写商家信息
-    IsBuyerInfo:true,
+    Info:true,
+    //用户是否注册
+    Reg:true,
   },
 
   /**
@@ -29,9 +31,9 @@ Page({
    */
   onShow: function () {
     var that = this;
-    //查询用户是否填写商家信息start
+    //查询用户是否填写买家商家账号信息start
     wx.request({
-      url: app.globalData.appUrl + 'WXBuyerInfo/findBuyerInfoCount?openId=' + app.returnOpenId() + '',
+      url: app.globalData.appUrl + 'WXBuyerInfo/findUserRegAndInfo?openId=' + app.returnOpenId() + '',
       header: {
         'content-type': 'application/x-www-form-urlencoded',
         xcxuser_name: "xcxuser_name"
@@ -40,11 +42,12 @@ Page({
         console.info("下面查询用户是否填写商家信息：")
         console.info(res.data)
         that.setData({
-          IsBuyerInfo: res.data.BuyerInfo,
+          Info: res.data.Info,
+          Reg: res.data.Reg,
         })
       }
     })
-    //查询用户是否填写商家信息end
+    //查询用户是否填写买家商家账号信息end
   },
   
   /**
@@ -118,19 +121,40 @@ Page({
   },
   //我要发广告
   fa: function(){
-    //判断用户身份状态
-    if (this.data.IsBuyerInfo == true){
-      //信息填写
+    var roles = app.globalData.UserRoles;
+    var Info = this.data.Info;
+    var Reg = this.data.Reg;
+
+    //根据用户身份状态判断跳转页面
+    if(roles == 0){
+      //用户游客状态了，判断用户填写信息
+      if (Reg == true && Info == true){
+        //信息全部填写完整，进入登陆页面
+        wx.navigateTo({
+          url: '/pages/me/fa/login',
+        })
+      } else if (Reg == true && Info == false){
+        //注册但没填写信息
+        wx.navigateTo({
+          url: '/pages/me/fa/zhuceSuccess',
+        })
+      } else if (Reg == false && Info == false){
+        //没有注册，没有填写信息
+        wx.navigateTo({
+          url: '/pages/me/fa/login',
+        })
+      }
+    }else if(roles == 1){
+      //用户登陆发广告状态
       wx.navigateTo({
-        url: '/pages/me/fa/login?roles=' + app.globalData.UserRoles,
+        url: '/pages/me/fa/gongzuotai',
       })
-    } else if (this.data.IsBuyerInfo == false){
-      //信息没有填写
+    } else if (roles == 2){
+      //用户登陆接广告身份
       wx.navigateTo({
-        url: '/pages/me/fa/zhuceSuccess',
+        url: '/pages/me/fa/login',
       })
     }
-   
   },
   //我要接广告
   jie: function () {
