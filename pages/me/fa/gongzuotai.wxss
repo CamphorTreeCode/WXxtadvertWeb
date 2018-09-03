@@ -63,10 +63,12 @@ page {
   justify-content: center;
   align-items: center;
 }
-.two {
+.one,
+.two,
+.three{
   position: relative;
 }
-.two .shu {
+.shu {
   position: absolute;
   top: 6rpx;
   right: 6rpx;

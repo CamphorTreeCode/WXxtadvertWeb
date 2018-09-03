@@ -32,7 +32,35 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
+    var that = this;
+    //查询用户商户信息start
+    wx.request({
+      url: app.globalData.appUrl + 'WXBuyerInfo/findBuyerInfoMsg',
+      data: { openId: app.returnOpenId() },
+      header: {
+        'content-type': 'application/x-www-form-urlencoded',
+        xcxuser_name: "xcxuser_name"
+      },
+      success: function (res) {
+        console.info("下面是查询商家信息返回的结果：")
+        console.info(res)
+        if (res.data.BuyerInfoMsg){
+          that.setData({
+            buyerInfo: res.data.BuyerInfoMsg,
+            logo: res.data.BuyerInfoMsg.advertiseLogo,
+            license: res.data.BuyerInfoMsg.businessLicense,
+            address: res.data.BuyerInfoMsg.buyerAddress,
+            state: false,
+            zhizhao: false,
+          })
+        }else{
 
+        }
+      
+
+      }
+    })
+    //查询用户商户信息end
   },
 
   /**
@@ -46,7 +74,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function() {
-
+    
   },
 
   /**
@@ -168,112 +196,239 @@ Page({
 
   //提交信息
   formSubmit: function(e) {
+    console.info(this.data.buyerInfo.buyerInfoId)
     var that = this;
-    var buyerInfo = e.detail.value;
-    buyerInfo.openId = app.returnOpenId();
-    buyerInfo.buyerAddress = that.data.address;
-    buyerInfo.advertiseLogo = that.data.advertiseLogo;
-    buyerInfo.businessLicense = that.data.businessLicense;
-    buyerInfo.buyerLongitude = that.data.longitude;
-    buyerInfo.buyerLatitude = that.data.latitude;
-    buyerInfo.formId = e.detail.formId;
-    console.info("***************************************")
-    console.info(buyerInfo.buyerAddress)
-    console.info(buyerInfo.advertiseLogo)
-    console.info(buyerInfo.businessLicense)
-    console.info("***************************************")
-    console.info(buyerInfo)
+    if (!that.data.buyerInfo.buyerInfoId){
+      console.info("没有数据")
+      var buyerInfo = e.detail.value;
+      buyerInfo.openId = app.returnOpenId();
+      buyerInfo.buyerAddress = that.data.address;
+      buyerInfo.advertiseLogo = that.data.advertiseLogo;
+      buyerInfo.businessLicense = that.data.businessLicense;
+      buyerInfo.buyerLongitude = that.data.longitude;
+      buyerInfo.buyerLatitude = that.data.latitude;
+      buyerInfo.formId = e.detail.formId;
+      console.info("***************************************")
+      console.info(buyerInfo.buyerAddress)
+      console.info(buyerInfo.advertiseLogo)
+      console.info(buyerInfo.businessLicense)
+      console.info("***************************************")
+      console.info(buyerInfo)
 
-    //表单验证
-    function check(buyerInfo){
-      if (buyerInfo.buyerName == ''){
-        wx.showToast({
-          title: '商家名称不能为空',
-          icon: 'none',
-          duration: 1000
-        })
-        return false;
-      }
-      if (buyerInfo.buyerUserName == ''){
-        wx.showToast({
-          title: '联系人姓名不能为空',
-          icon: 'none',
-          duration: 1000
-        })
-        return false;
-      }
-      if (buyerInfo.buyerPhone == '') {
-        wx.showToast({
-          title: '请填写联系电话',
-          icon: 'none',
-          duration: 1000
-        })
-        return false;
-      } else {
-        if (!/^((\d{3,4}-)?\d{7,8})$|(1[0-9]{10})/.test(buyerInfo.buyerPhone)) {
+      //表单验证
+      function check(buyerInfo) {
+        if (buyerInfo.buyerName == '') {
           wx.showToast({
-            title: '请按照正确联系方式填写',
+            title: '商家名称不能为空',
             icon: 'none',
             duration: 1000
           })
           return false;
         }
-      }
-      if (buyerInfo.buyerAddress == ''){
-        wx.showToast({
-          title: '请选择联系地址',
-          icon: 'none',
-          duration: 1000
-        })
-        return false;
-      }
-      if (buyerInfo.advertiseLogo == ''){
-        wx.showToast({
-          title: '请上传Logo',
-          icon: 'none',
-          duration: 1000
-        })
-        return false;
-      }
-      if (buyerInfo.businessLicense == ''){
-        wx.showToast({
-          title: '请上传执照',
-          icon: 'none',
-          duration: 1000
-        })
-        return false;
-      }else{
-        return true;
-      }
-    }
-
-    if (check(buyerInfo)){
-      //验证通过，添加商户数据
-      wx.request({
-        url: app.globalData.appUrl + 'WXBuyerInfo/addBuyerInfoMsg',
-        data: buyerInfo,
-        header: {
-          'content-type': 'application/x-www-form-urlencoded',
-          xcxuser_name: "xcxuser_name"
-        },
-        success: function (res) {
-          console.info("下面是提交商家信息返回的结果：")
-          console.info(res)
-          if (res.data.addBuyerInfoMsg == true) {
-            //修改成功
+        if (buyerInfo.buyerUserName == '') {
+          wx.showToast({
+            title: '联系人姓名不能为空',
+            icon: 'none',
+            duration: 1000
+          })
+          return false;
+        }
+        if (buyerInfo.buyerPhone == '') {
+          wx.showToast({
+            title: '请填写联系电话',
+            icon: 'none',
+            duration: 1000
+          })
+          return false;
+        } else {
+          if (!/^((\d{3,4}-)?\d{7,8})$|(1[0-9]{10})/.test(buyerInfo.buyerPhone)) {
             wx.showToast({
-              title: '提交成功',
-              icon: 'success',
+              title: '请按照正确联系方式填写',
+              icon: 'none',
               duration: 1000
-            }),
-              setTimeout(function () {
-                wx.navigateTo({
-                  url: '/pages/me/fa/tijiaoSuccess',
+            })
+            return false;
+          }
+        }
+        if (buyerInfo.buyerAddress == '') {
+          wx.showToast({
+            title: '请选择联系地址',
+            icon: 'none',
+            duration: 1000
+          })
+          return false;
+        }
+        if (buyerInfo.advertiseLogo == '') {
+          wx.showToast({
+            title: '请上传Logo',
+            icon: 'none',
+            duration: 1000
+          })
+          return false;
+        }
+        if (buyerInfo.businessLicense == '') {
+          wx.showToast({
+            title: '请上传执照',
+            icon: 'none',
+            duration: 1000
+          })
+          return false;
+        } else {
+          return true;
+        }
+      }
+
+      if (check(buyerInfo)) {
+        //验证通过，添加商户数据
+        wx.request({
+          url: app.globalData.appUrl + 'WXBuyerInfo/addBuyerInfoMsg',
+          data: buyerInfo,
+          header: {
+            'content-type': 'application/x-www-form-urlencoded',
+            xcxuser_name: "xcxuser_name"
+          },
+          success: function (res) {
+            console.info("下面是提交商家信息返回的结果：")
+            console.info(res)
+            if (res.data.addBuyerInfoMsg == true) {
+              //提交成功
+              wx.showToast({
+                title: '提交成功',
+                icon: 'success',
+                duration: 1000
+              }),
+                setTimeout(function () {
+                  wx.navigateTo({
+                    url: '/pages/me/fa/tijiaoSuccess',
+                  })
+                }, 1000)
+            }
+          }
+        })
+      }
+    }else{
+      console.info("有数据")
+      wx.showModal({
+        title: '提示',
+        content: '修改信息，将会重新审核您的商户信息，期间您的账号将暂不能登陆。',
+        success: function (res) {
+          console.info(res)
+          if (res.confirm) {
+            console.log('用户点击确定')
+            //修改用户商户信息
+            var buyerInfo = e.detail.value;
+            buyerInfo.openId = app.returnOpenId();
+            buyerInfo.buyerAddress = that.data.address;
+            buyerInfo.advertiseLogo = that.data.advertiseLogo;
+            buyerInfo.businessLicense = that.data.businessLicense;
+            buyerInfo.buyerLongitude = that.data.longitude;
+            buyerInfo.buyerLatitude = that.data.latitude;
+            buyerInfo.formId = e.detail.formId;
+            buyerInfo.buyerInfoId = that.data.buyerInfo.buyerInfoId;
+            console.info("***************************************")
+            console.info(buyerInfo.buyerAddress)
+            console.info(buyerInfo.advertiseLogo)
+            console.info(buyerInfo.businessLicense)
+            console.info("***************************************")
+            console.info(buyerInfo)
+
+            //表单验证
+            function check(buyerInfo) {
+              if (buyerInfo.buyerName == '') {
+                wx.showToast({
+                  title: '商家名称不能为空',
+                  icon: 'none',
+                  duration: 1000
                 })
-              }, 1000)
+                return false;
+              }
+              if (buyerInfo.buyerUserName == '') {
+                wx.showToast({
+                  title: '联系人姓名不能为空',
+                  icon: 'none',
+                  duration: 1000
+                })
+                return false;
+              }
+              if (buyerInfo.buyerPhone == '') {
+                wx.showToast({
+                  title: '请填写联系电话',
+                  icon: 'none',
+                  duration: 1000
+                })
+                return false;
+              } else {
+                if (!/^((\d{3,4}-)?\d{7,8})$|(1[0-9]{10})/.test(buyerInfo.buyerPhone)) {
+                  wx.showToast({
+                    title: '请按照正确联系方式填写',
+                    icon: 'none',
+                    duration: 1000
+                  })
+                  return false;
+                }
+              }
+              if (buyerInfo.buyerAddress == '') {
+                wx.showToast({
+                  title: '请选择联系地址',
+                  icon: 'none',
+                  duration: 1000
+                })
+                return false;
+              }
+              if (buyerInfo.advertiseLogo == '') {
+                wx.showToast({
+                  title: '请上传Logo',
+                  icon: 'none',
+                  duration: 1000
+                })
+                return false;
+              }
+              if (buyerInfo.businessLicense == '') {
+                wx.showToast({
+                  title: '请上传执照',
+                  icon: 'none',
+                  duration: 1000
+                })
+                return false;
+              } else {
+                return true;
+              }
+            }
+
+            if (check(buyerInfo)) {
+              //验证通过，添加商户数据
+              wx.request({
+                url: app.globalData.appUrl + 'WXBuyerInfo/modifyBuyerInfoMsg',
+                data: buyerInfo,
+                header: {
+                  'content-type': 'application/x-www-form-urlencoded',
+                  xcxuser_name: "xcxuser_name"
+                },
+                success: function (res) {
+                  console.info("下面是提交商家信息返回的结果：")
+                  console.info(res)
+                  if (res.data.addBuyerInfoMsg == true) {
+                    //提交成功
+                    wx.showToast({
+                      title: '提交成功',
+                      icon: 'success',
+                      duration: 1000
+                    }),
+                      setTimeout(function () {
+                        wx.navigateTo({
+                          url: '/pages/me/fa/tijiaoSuccess',
+                        })
+                      }, 1000)
+                  }
+                }
+              })
+            }
+          } else if (res.cancel) {
+            console.log('用户点击取消')
           }
         }
       })
     }
+ 
   },
 })

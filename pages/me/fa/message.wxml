@@ -3,17 +3,17 @@
 <view class='hang' style='border-top: 10rpx solid #f5f5f5;'>
   <image src='https://www.chuanshoucs.com/ServerImg/2018-08-02/9360ea3c-b6b7-4740-bd1a-4a56c2c255fc.png' mode="aspectFill"></image>
   <text>商家名称</text>
-  <input placeholder-style='color: #ccc;' placeholder='请输入商家名称' name="buyerName"></input>
+  <input placeholder-style='color: #ccc;' placeholder='请输入商家名称' name="buyerName" value="{{buyerInfo.buyerName}}"></input>
 </view>
 <view class='hang'>
   <image src='https://www.chuanshoucs.com/ServerImg/2018-08-02/0aa433d1-a905-4f9a-a2c5-6cd2e1be7311.png' mode="aspectFill"></image>
   <text>联系人姓名</text>
-  <input placeholder-style='color: #ccc;' placeholder='请输入联系人姓名' name="buyerUserName"></input>
+  <input placeholder-style='color: #ccc;' placeholder='请输入联系人姓名' name="buyerUserName" value="{{buyerInfo.buyerUserName}}"></input>
 </view>
 <view class='hang'>
   <image src='https://www.chuanshoucs.com/ServerImg/2018-08-02/6f7abb04-2ecc-4011-b738-c996c43ffb1b.png' mode="aspectFill"></image>
   <text>联系人电话</text>
-  <input placeholder-style='color: #ccc;' placeholder='请输入联系人电话' name="buyerPhone"></input>
+  <input placeholder-style='color: #ccc;' placeholder='请输入联系人电话' name="buyerPhone" value="{{buyerInfo.buyerPhone}}"></input>
 </view>
 <view class='hang'>
   <image src='https://www.chuanshoucs.com/ServerImg/2018-08-02/e70e7f49-ee37-4da2-8a71-030fa5d12ca0.png' mode="aspectFill"></image>

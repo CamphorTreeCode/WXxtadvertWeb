@@ -1,60 +1,63 @@
 <!--pages/me/fa/gongzuotai.wxml-->
 <!-- 上 -->
 <view class='shang'>
-  <image src='https://www.chuanshoucs.com/ServerImg/2018-08-02/94eaab23-3f67-42ba-9a74-1711241ca81c.png' class='shouye'  bindtap='tuichu'></image>
-  <image class='logo' src='{{logo}}'></image>
-  <view>{{name}}</view>
+  <image src='https://www.chuanshoucs.com/ServerImg/2018-08-02/94eaab23-3f67-42ba-9a74-1711241ca81c.png' class='shouye'  bindtap='tuichu' mode="aspectFill"></image>
+  <image class='logo' src='{{BuyerInfo.advertiseLogo}}' mode="aspectFill"></image>
+  <view>{{BuyerInfo.buyerName}}</view>
   <!-- <image bindtap='hui' class='hui' src='https://www.chuanshoucs.com/ServerImg/2018-08-03/3e0201c5-c1a0-46ed-a9e4-1af4de4afdba.png'></image> -->
 </view>
 <!-- 中 -->
 <view class='zhong'>
   <view class='hang'>
-    <image src='https://www.chuanshoucs.com/ServerImg/2018-08-03/70944b2e-c029-4856-b120-e8e36c63006f.png'></image>
+    <image src='https://www.chuanshoucs.com/ServerImg/2018-08-03/70944b2e-c029-4856-b120-e8e36c63006f.png' mode="aspectFill"></image>
     <text>投递管理</text>
   </view>
   <view class='toudi'>
     <view class='one' bindtap='daizhifu'>
-      <image src='https://www.chuanshoucs.com/ServerImg/2018-08-03/680fcf00-b004-48b4-892b-a22811b0416a.png'></image>
+      <image src='https://www.chuanshoucs.com/ServerImg/2018-08-03/680fcf00-b004-48b4-892b-a22811b0416a.png' mode="aspectFill"></image>
       <text>待支付</text>
+      <view class='shu' hidden="{{ShowDZF}}">{{DZFOrder}}</view>
     </view>
     <view class='one' bindtap='yizhifu'>
-      <image src='https://www.chuanshoucs.com/ServerImg/2018-08-03/fa942eff-dece-45ca-8f61-192bb2f8f3d1.png'></image>
+      <image src='https://www.chuanshoucs.com/ServerImg/2018-08-03/fa942eff-dece-45ca-8f61-192bb2f8f3d1.png' mode="aspectFill"></image>
       <text>已支付</text>
+      <view class='shu'hidden="{{ShowYZF}}">{{YZFOrder}}</view>
     </view>
     <view class='two' bindtap='yitoufang'>
-      <image src='https://www.chuanshoucs.com/ServerImg/2018-08-03/6fd6e816-ff65-4348-91b2-694d1244aece.png'></image>
+      <image src='https://www.chuanshoucs.com/ServerImg/2018-08-03/6fd6e816-ff65-4348-91b2-694d1244aece.png' mode="aspectFill"></image>
       <text>已投放</text>
-      <view class='shu'>2</view>
+      <view class='shu' hidden="{{ShowYTF}}">{{YTFOrder}}</view>
     </view>
     <view class='three' bindtap='yiwancheng'>
-      <image src='https://www.chuanshoucs.com/ServerImg/2018-08-03/fbaf1e50-0686-418d-be4c-64f83996d0ab.png'></image>
+      <image src='https://www.chuanshoucs.com/ServerImg/2018-08-03/fbaf1e50-0686-418d-be4c-64f83996d0ab.png' mode="aspectFill"></image>
       <text>已完成</text>
+      <view class='shu' hidden="{{ShowYWC}}">{{YWCOrder}}</view>
     </view>
   </view>
 </view>
 <view class='xia'>
   <view class='hang'>
-    <image src='https://www.chuanshoucs.com/ServerImg/2018-08-03/91b624af-708a-4526-98ba-2926b0715dd0.png'></image>
+    <image src='https://www.chuanshoucs.com/ServerImg/2018-08-03/91b624af-708a-4526-98ba-2926b0715dd0.png' mode="aspectFill"></image>
     <text>财务管理</text>
   </view>
   <view class='kuai'>
     <view style='text-align: right;padding-right: 10rpx;'>会员余额</view>
-    <view style="padding:0 0 30rpx 20rpx; font-weight:700; color: #FF6702;">7890</view>
+    <view style="padding:0 0 30rpx 20rpx; font-weight:700; color: #FF6702;">{{BuyerInfo.buyerAccount.balance}}</view>
   </view>
   <view class='kuai'>
     <view style='text-align: right;padding-right: 10rpx;'>活动会员余额</view>
-    <view style="padding:0 0 30rpx 20rpx; font-weight:700; color: #FF6702;">5800</view>
+    <view style="padding:0 0 30rpx 20rpx; font-weight:700; color: #FF6702;">{{BuyerInfo.buyerAccount.activityBalance}}</view>
   </view>
   <view class='kuai'>
     <view style='text-align: right;padding-right: 10rpx;'>已支付</view>
-    <view style="padding:0 0 30rpx 20rpx; font-weight:700; color: #FF6702;">16840</view>
+    <view style="padding:0 0 30rpx 20rpx; font-weight:700; color: #FF6702;">{{BuyerInfo.buyerAccount.paid}}</view>
   </view>
   <view class='kuai'>
     <view style='text-align: right;padding-right: 10rpx;'>待支付</view>
-    <view style="padding:0 0 30rpx 20rpx; font-weight:700; color: #FF6702;">3390</view>
+    <view style="padding:0 0 30rpx 20rpx; font-weight:700; color: #FF6702;">{{BuyerInfo.buyerAccount.unpaid}}</view>
   </view>
   <view class='kuai money' bindtap='GZTchongzhi'>
-    <image src='https://www.chuanshoucs.com/ServerImg/2018-08-03/455ce78c-e95e-4185-ab54-e13f1efd89f2.png'></image>
+    <image src='https://www.chuanshoucs.com/ServerImg/2018-08-03/455ce78c-e95e-4185-ab54-e13f1efd89f2.png' mode="aspectFill"></image>
     <view class='btn'>充值</view>
   </view>
 </view>
@@ -65,22 +68,22 @@
 <!-- 下 -->
 <view class='footer'>
   <view class='bar' bindtap='hui'>
-    <image src='https://www.chuanshoucs.com/ServerImg/2018-08-03/08d71460-4c64-412e-b1cc-86ceed12c761.png'></image>
+    <image src='https://www.chuanshoucs.com/ServerImg/2018-08-03/08d71460-4c64-412e-b1cc-86ceed12c761.png' mode="aspectFill"></image>
     <view style='color: #ccc; font-size: 28rpx;'>首页</view>
   </view>
   <view class='bar'>
-    <image src='https://www.chuanshoucs.com/ServerImg/2018-08-03/99f50d16-83b3-47f3-94c6-93eac65ad44e.png'></image>
+    <image src='https://www.chuanshoucs.com/ServerImg/2018-08-03/99f50d16-83b3-47f3-94c6-93eac65ad44e.png' mode="aspectFill"></image>
     <view style='color: #FFD801; font-size: 28rpx;'>工作台</view>
   </view>
   <view class='bar' bindtap='shezhi'>
-    <image src='https://www.chuanshoucs.com/ServerImg/2018-08-03/6798635d-5d20-4f24-b3ee-d93547e0e6be.png'></image>
+    <image src='https://www.chuanshoucs.com/ServerImg/2018-08-03/6798635d-5d20-4f24-b3ee-d93547e0e6be.png' mode="aspectFill"></image>
     <view style='color: #ccc;; font-size: 28rpx;'>设置</view>
   </view>
 </view>
 <!-- 退出登录弹框 -->
 <view class='shadow {{state==true?"kuang":" "}}'></view>
 <view class='tan {{state==true?"kuang":" "}}'>
-  <image src='https://www.chuanshoucs.com/ServerImg/2018-08-03/2a7479a5-07ca-4d83-8f8b-9127b3d7bd45.png'></image>
+  <image src='https://www.chuanshoucs.com/ServerImg/2018-08-03/2a7479a5-07ca-4d83-8f8b-9127b3d7bd45.png' mode="aspectFill"></image>
   <view>确认退出登录吗</view>
   <view class='anniu'>
     <view class='quxiao' bindtap='quxiao'>取消</view>

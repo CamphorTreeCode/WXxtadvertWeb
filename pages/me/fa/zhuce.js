@@ -230,7 +230,7 @@ Page({
         })
         return false;
       }else{
-        if (!/?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{6,}/.test(buyerAccount.accountName)) {
+        if (!/(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{6,}/.test(buyerAccount.accountName)) {
           wx.showToast({
             title: '账号名称:数字与字母混合，最少六位',
             icon: 'none',
