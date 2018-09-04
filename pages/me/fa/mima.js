@@ -268,12 +268,12 @@ Page({
           xcxuser_name: "xcxuser_name"
         },
         success: function (res) {
-          console.info("下面是注册返回信息：")
+          console.info("下面是设置支付密码信息：")
           console.info(res)
           if (res.data.SUCCESS == true) {
             //修改成功
             wx.showToast({
-              title: '修改成功',
+              title: '设置成功',
               icon: 'success',
               duration: 1000
             }),
