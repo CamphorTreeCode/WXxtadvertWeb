@@ -22,6 +22,7 @@ select {
   background: #fff;
   box-sizing: border-box;
   border-bottom: 1rpx solid #f5f5f5;
+  height: 248rpx;
 }
 
 /* listbox_box_left */
@@ -76,7 +77,7 @@ select {
 }
 
 .listbox_box_flow {
-  margin: 15rpx 0;
+  /* margin: 15rpx 0; */
 }
 
 .listbox_box_flow text {
@@ -85,6 +86,8 @@ select {
   background: #d5ebff;
   color: rgb(44, 143, 236);
   border: 1px solid rgb(44, 143, 236);
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .listbox_box_distance {

@@ -1,4 +1,5 @@
 // pages/Addetailspage/Addetailspage.js
+var util = require('../../utils/util.js');
 var app = getApp();
 Page({
   
@@ -20,6 +21,9 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
+
+    var datatime = util.formatTime(new Date());
+
     //获取屏幕对应的库存
     this.setData({
       optionaldays: options.daynum
@@ -37,7 +41,8 @@ Page({
     // var d = new Date().getDay();
     // var str = "今天是星期" + l[d];
 
-    var data = new Date();
+    var data = new Date(datatime);
+    console.log(data)
     var year = data.getFullYear(); //当前月份的年份
     var montha = data.getMonth() + 1; //当前月份
     var monthlist = []; //3个月份
@@ -48,6 +53,7 @@ Page({
       day3 = []; //3各月份，每月第一天星期几
     year1 = year2 = year3 = year; //初始化都为同一年
     //循环加1，超过12月份变为1月，年份自动加1
+    console.log(year,montha)
     for (var x = 0; x < 3; x++) {
       var mont = montha + x;
       if (mont > 12) {
@@ -82,6 +88,9 @@ Page({
 
         //判断当前月份有多少天
         var month = monthlist[0];
+        if (month < 10) {
+          month = "0" + month
+        }
         month1 = month;
         var monthDaySize;
         if (month == 1 || month == 3 || month == 5 || month == 7 || month == 8 || month == 10 || month == 12) {
@@ -97,10 +106,14 @@ Page({
           }
         }
         for (var y = 1; y <= monthDaySize; y++) {
+          var datey = y;
+          if (datey < 10) {
+            datey = "0" + datey
+          }
           arr1.push({
             day: y,
             state: 0,
-            date: year1 + "/" + month + "/" + y
+            date: year1 + "." + month + "." + datey
           })
         }
       } else if (x == 1) {
@@ -111,6 +124,9 @@ Page({
           day2.push("1");
         }
         var month = monthlist[1];
+        if (month < 10) {
+          month = "0" + month
+        }
         month2 = month;
         var monthDaySize;
         if (month == 1 || month == 3 || month == 5 || month == 7 || month == 8 || month == 10 || month == 12) {
@@ -126,10 +142,14 @@ Page({
           }
         };
         for (var y = 1; y <= monthDaySize; y++) {
+          var datey = y;
+          if(datey < 10 ){
+            datey = "0"+ datey  
+          }
           arr2.push({
             day: y,
             state: 0,
-            date: year2 + "/" + month + "/" + y
+            date: year2 + "." + month + "." + datey
           })
         }
       } else if (x == 2) {
@@ -140,6 +160,9 @@ Page({
           day3.push("1");
         }
         var month = monthlist[2];
+        if (month < 10){
+          month = "0" + month
+        }
         month3 = month;
         var monthDaySize;
         if (month == 1 || month == 3 || month == 5 || month == 7 || month == 8 || month == 10 || month == 12) {
@@ -155,10 +178,14 @@ Page({
           }
         };
         for (var y = 1; y <= monthDaySize; y++) {
+          var datey = y;
+          if (datey < 10) {
+            datey = "0" + datey
+          }
           arr3.push({
             day: y,
             state: 0,
-            date: year3 + "/" + month + "/" + y
+            date: year3 + "." + month + "." + datey
           })
         }
       }
@@ -189,124 +216,150 @@ Page({
     wx.request({
       url: app.globalData.appUrl + 'WXInventory/getBySellerAdvertiseId',
       data: {
-        SellerAdvertiseId: options.sellerAdvertiseId
+        SellerAdvertiseId: options.sellerAdvertiseId,
+        daynum: options.daynum
       },
       success: function (res) {
-        successList = res.data
-        console.info(res.data)
-        console.info(successList)
-        var datails = [];
+        wx.request({
+          url: app.globalData.appUrl +'Index/showcurrenttime',
+          success:function(req){
+             
+              
+            console.log(res)
+            successList = res.data
+            var datails = [];
 
-        // dates: "2018-10-7",
-        //   number: "5"
+            // dates: "2018-10-7",
+            //   number: "5"
+            var index;
+            if (that.data.optionaldays == 1) {
+              index = 3;
+            } else if (that.data.optionaldays == 5) {
+              index = 10;
+            } else if (that.data.optionaldays == 10) {
+              index = 20;
+            } else if (that.data.optionaldays == 20) {
+              index = 40;
+            } else if (that.data.optionaldays == 30) {
+              index = 60;
+            }
+            
+           
+            for (var x = 0; x < index; x++) {
+              // var data = '2018-03-09 12:00:00'
+              // var countDown = Date.parse(new Date(data))
+              // var ddt = Date.parse(new Date(datatime));
+              var dt = new Date(req.data.data)
+              // console.log("时间")              
+              // console.log(dt, datatime)
+              dt.setDate(dt.getDate() + x + 4);
+              // var dd
+              // var riqi = dt.toLocaleDateString()
+              // console.log(dt.getDate())
+              var datearr = []
+              // datearr = riqi.split("/")
+              var yearonly = dt.getUTCFullYear()
+              var monthonly = dt.getMonth()+1
+              var dayonly = dt.getDate()
+              if (monthonly < 10) {
+                monthonly = "0" + monthonly
+              }
+              if (dayonly < 10) {
+                dayonly = "0" + dayonly
+              }
+              var riqi = yearonly + "." + monthonly + "." + dayonly;
+              var kucun = successList[riqi]
+
+              datails.push({
+                dates: riqi,
+                number: kucun
+              })
+
+            }
+
+            console.log(datails)
+
+            that.setData({
+              datelist: datails
+            })
+
+            var datlist = datails;
+            for (x = 0; x < datlist.length; x++) {
+              if (datlist[x].number > 0) {
+                var sta = datlist[x].dates;
+                for (var t = 0; t < arr1.length; t++) {
+                  if (arr1[t].date == sta) {
+                    arr1[t].state = 1;
+                  }
+                }
+              } else {
+                var sta = datlist[x].dates;
+                for (var t = 0; t < arr1.length; t++) {
+                  if (arr1[t].date == sta) {
+                    arr1[t].state = 0;
+                  }
+                }
+              }
+            }
+            for (x = 0; x < datlist.length; x++) {
+              if (datlist[x].number > 0) {
+                var sta = datlist[x].dates;
+                for (var t = 0; t < arr2.length; t++) {
+                  if (arr2[t].date == sta) {
+                    arr2[t].state = 1;
+                  }
+                }
+              } else {
+                var sta = datlist[x].dates;
+                for (var t = 0; t < arr2.length; t++) {
+                  if (arr2[t].date == sta) {
+                    arr2[t].state = 0;
+                  }
+                }
+              }
+            }
+
+            for (x = 0; x < datlist.length; x++) {
+              if (datlist[x].number > 0) {
+                var sta = datlist[x].dates;
+                for (var t = 0; t < arr3.length; t++) {
+                  if (arr3[t].date == sta) {
+                    arr3[t].state = 1;
+                  }
+                }
+              } else {
+                var sta = datlist[x].dates;
+                for (var t = 0; t < arr3.length; t++) {
+                  if (arr3[t].date == sta) {
+                    arr3[t].state = 0;
+                  }
+                }
+              }
+            }
+            that.setData({
+              date1: arr1,
+              date2: arr2,
+              date3: arr3,
+              date01: arr1,
+              date02: arr2,
+              date03: arr3,
+              year1,
+              year2,
+              year3,
+              day1,
+              day2,
+              day3,
+              month1,
+              month2,
+              month3
+            })
 
 
-        var index;
-        if (that.data.optionaldays == 1) {
-          index = 3;
-        } else if (that.data.optionaldays == 5) {
-          index = 10;
-        } else if (that.data.optionaldays == 10) {
-          index = 20;
-        } else if (that.data.optionaldays == 20) {
-          index = 40;
-        } else if (that.data.optionaldays == 30) {
-          index = 60;
-        }
 
-        for (var x = 0; x < index; x++) {
-          var dt = new Date();
-          dt.setDate(dt.getDate() + x + 4);
-          var riqi = dt.toLocaleDateString()
-          var kucun = successList[riqi]
-
-          datails.push({
-            dates: riqi,
-            number: kucun
-          })
-        }
-        that.setData({
-          datelist: datails
+          }
         })
-        var datlist = datails;
-        console.log("日历1")
-        console.log(arr1)
-        for (x = 0; x < datlist.length; x++) {
-          if (datlist[x].number > 0) {
-            var sta = datlist[x].dates;
-            for (var t = 0; t < arr1.length; t++) {
-              if (arr1[t].date == sta) {
-                arr1[t].state = 1;
-              }
-            }
-          } else {
-            var sta = datlist[x].dates;
-            for (var t = 0; t < arr1.length; t++) {
-              if (arr1[t].date == sta) {
-                arr1[t].state = 0;
-              }
-            }
-          }
-        }
-        for (x = 0; x < datlist.length; x++) {
-          if (datlist[x].number > 0) {
-            var sta = datlist[x].dates;
-            for (var t = 0; t < arr2.length; t++) {
-              if (arr2[t].date == sta) {
-                arr2[t].state = 1;
-              }
-            }
-          } else {
-            var sta = datlist[x].dates;
-            for (var t = 0; t < arr2.length; t++) {
-              if (arr2[t].date == sta) {
-                arr2[t].state = 0;
-              }
-            }
-          }
-        }
-
-        for (x = 0; x < datlist.length; x++) {
-          if (datlist[x].number > 0) {
-            var sta = datlist[x].dates;
-            for (var t = 0; t < arr3.length; t++) {
-              if (arr3[t].date == sta) {
-                arr3[t].state = 1;
-              }
-            }
-          } else {
-            var sta = datlist[x].dates;
-            for (var t = 0; t < arr3.length; t++) {
-              if (arr3[t].date == sta) {
-                arr3[t].state = 0;
-              }
-            }
-          }
-        }
 
 
-
-        that.setData({
-          date1: arr1,
-          date2: arr2,
-          date3: arr3,
-          date01: arr1,
-          date02: arr2,
-          date03: arr3,
-          year1,
-          year2,
-          year3,
-          day1,
-          day2,
-          day3,
-          month1,
-          month2,
-          month3
-        })
-        console.info(successList)
-        console.log(successList["2018/8/30"])
-        console.log(datails)
-        console.log("---------------");
       }
     })
     // console.log(monthlist)
@@ -668,9 +721,108 @@ Page({
         })
       }
     }
-
     
 
+
+  },
+  confirm:function(){
+    var pages = getCurrentPages();
+    var prevPage = pages[pages.length - 2];
+    prevPage.setData({
+      period: this.getchoosedate()
+    })
+    wx.navigateBack({
+      delta: 1
+    })
+   
+  },
+  getchoosedate:function(){
+      var arr1 = this.data.date1
+      var arr2 = this.data.date2
+      var arr3 = this.data.date3
+      var arr1 = arr1.concat(arr2,arr3);
+      
+    var arrdatelist = []
+    var arrdate = []
+
+    var startdate = ''
+    var enddatae = ''
+    var riqi = ''
+
+    for (var x = 0; x < arr1.length;x++){
+      // var startdate = ''
+      // var enddatae = ''
+      if (arr1[x].state == 2 && arr1[x - 1].state != 2) {
+        startdate = arr1[x].date
+      }
+      if (arr1[x].state == 2 && arr1[x + 1].state != 2) {
+        enddatae = arr1[x].date
+         riqi = startdate + "-" + enddatae
+        arrdate.push(riqi)
+        startdate = ''
+        enddatae = ''
+        riqi = ''
+      }
+      
+
+      if(arr1[x].state == 2){
+        arrdatelist.push(arr1[x].date)
+      }
+
+      
+    }
+
+
+    // for (var x = 0; x < arr2.length; x++) {
+    //   // var startdate = ''
+    //   // var enddatae = ''
+
+    //   if (x >= 1 && x < arr2.length-1){
+
+     
+    //   if (arr2[x].state == 2 && arr2[x - 1].state != 2) {
+    //     startdate = arr2[x].date
+    //   }
+    //   if (arr2[x].state == 2 && arr2[x + 1].state != 2) {
+    //     enddatae = arr2[x].date
+    //     riqi = startdate + "-" + enddatae
+    //     arrdate.push(riqi)
+    //     startdate = ''
+    //     enddatae = ''
+    //     riqi = ''
+    //   }
+
+    //   }
+    //   if (arr2[x].state == 2) {
+    //     arrdatelist.push(arr2[x].date)
+    //   }
+
+
+    // }
+
+    return { "orderDate": arrdate, "orderday": arrdatelist }
+    // for (var x = 0; x < arr3.length; x++) {
+    //   // var startdate = ''
+    //   // var enddatae = ''
+    //   if (x >= 1 && x < arr2.length - 1) {
+    //   if (arr3[x].state == 2 && arr3[x - 1].state != 2) {
+    //     startdate = arr3[x].date
+    //   }
+    //   if (arr3[x].state == 2 && arr3[x + 1].state != 2) {
+    //     enddatae = arr3[x].date
+    //      riqi = startdate + "-" + enddatae
+    //     arrdate.push(riqi)
+    //     startdate = ''
+    //     enddatae = ''
+    //     riqi = ''
+    //   }
+    //   }
+      
+    //   if (arr3[x].state == 2) {
+    //     arrdatelist.push(arr3[x].date)
+    //   }
+
+    // }
   }
   
 })

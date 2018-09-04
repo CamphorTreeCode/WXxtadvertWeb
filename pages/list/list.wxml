@@ -3,7 +3,7 @@
   <!-- 点击下拉 -->
   <view class='select'>
     <view class='option'>
-      <view bindtap='one' style="color:{{zero==0 ? 'rgb(253, 211, 0)' : ''}}">{{city}}</view>
+      <view bind:tap='one' style="color:{{zero==0 ? 'rgb(253, 211, 0)' : ''}}">{{city}}</view>
       <image class='gg' src='https://www.chuanshoucs.com/ServerImg/2018-08-03/55c2e0c3-09e7-4b5d-9a06-d764f6156de0.png'></image>
     </view>
     <!--  -->
@@ -35,20 +35,20 @@
         <!-- 距离 -->
         <swiper-item>
           <scroll-view scroll-y="true" class='district'>
-            <view wx:for='{{district}}' bindtap='change' data-index='{{index}}' class="{{juli == index ? 'selected' : ''}}">{{item.place}}</view>
+            <view wx:for='{{district}}' bindtap='change' data-index='{{index}}' data-distance='{{item.place}}' class="{{juli == index ? 'selected' : ''}}">{{item.place == "不限" ? item.place : item.place+"KM"}} </view>
           </scroll-view>
         </swiper-item>
         <!-- 行政区 -->
         <swiper-item>
           <scroll-view scroll-y="true" class='district'>
-            <view wx:for='{{regionalism}}' bindtap='changeColor' data-index='{{index}}' class="{{xingzhengqu == index ? 'selected' : ''}}">{{item.area}}</view>
+            <view wx:for='{{regionalism}}' bindtap='changeColor' data-index='{{index}}' data-SellerAddress='{{item.area}}' class="{{xingzhengqu == index ? 'selected' : ''}}">{{item.area}}</view>
           </scroll-view>
         </swiper-item>
       </swiper>
     </view>
     <!-- 按钮 -->
     <view class='button'>
-      <view class='refresh' bindtap=''>{{refresh}}</view>
+      <view class='refresh' data-index='1' bindtap='refresh'>{{refresh}}</view>
       <view class='enter' bindtap='enter'>{{enter}}</view>
     </view>
   </view>
@@ -56,11 +56,11 @@
   <!-- 广告类型 -->
   <view class='toggle' style='height:{{two_height}}rpx'>
     <view class='list'>
-      <text wx:for='{{region}}' bindtap='change_b' data-index='{{index}}' class="{{guangao == index ? 'border' : ''}}">{{item.text}}</text>
+      <text wx:for='{{region}}' bindtap='change_b' data-index='{{index}}' data-AdvertiseTypeId='{{item.advertiseTypeId}}' class="{{guangao == index ? 'border' : ''}}">{{item.advertiseTypeName}}</text>
     </view>
     <!-- 按钮 -->
     <view class='button'>
-      <view class='refresh' bindtap=''>{{refresh}}</view>
+      <view class='refresh' data-index='2' bindtap='refresh'>{{refresh}}</view>
       <view class='enter' bindtap='enter'>{{enter}}</view>
     </view>
   </view>
@@ -68,31 +68,38 @@
   <!-- 天数/金额 -->
   <view class='toggle' style='height:{{three_height}}rpx'>
     <view class='list'>
-      <text wx:for='{{number}}' bindtap='change_bor' data-index='{{index}}' class="{{tianshu == index ? 'border' : ''}}">{{item.text}}</text>
+      <text wx:for='{{number}}' bindtap='change_bor' data-index='{{index}}' data-unitPrice='{{item.unitPriceAmount}}' class="{{tianshu == index ? 'border' : ''}}">{{item.unitPriceAmount =="不限" ? item.unitPriceAmount :item.unitPriceAmount+"元/天"}}</text>
     </view>
     <!-- 按钮 -->
     <view class='button'>
-      <view class='refresh' bindtap=''>{{refresh}}</view>
+      <view class='refresh' data-index='3' bindtap='refresh'>{{refresh}}</view>
       <view class='enter' bindtap='enter'>{{enter}}</view>
     </view>
   </view>
 
   <!-- 人流量 -->
   <view class='toggle' style='height:{{four_height}}rpx'>
-    <view class='list'>
-      <text wx:for='{{list}}' bindtap='change_border' data-index='{{index}}' class="{{liuliang == index ? 'border' : ''}}">{{item.text}}</text>
-    </view>
-    <!-- 筛选 -->
-    <view class='screen'>
-      <input type='text'></input>
-      <image src='https://www.chuanshoucs.com/ServerImg/2018-08-03/2552c763-1369-4d9d-8f45-4644babd3dbe.png'></image>
-      <input type='text'></input>
-    </view>
-    <!-- 按钮 -->
-    <view class='button'>
-      <view class='refresh' bindtap=''>{{refresh}}</view>
-      <view class='enter' bindtap='enter'>{{enter}}</view>
-    </view>
+    <form bindsubmit=''>
+      <view class='list'>
+        <text wx:for='{{list}}' bindtap='change_border' data-index='{{index}}' data-sellerVolume='{{item}}' class="{{liuliang == index ? 'border' : ''}}">{{item}}</text>
+      </view>
+      <!-- 筛选 -->
+      <view class='screen'>
+        <view class='outInpt'>
+          <input type='text' bindblur='firstinput' value='{{firstinput}}'></input>
+        </view>
+        <image src='https://www.chuanshoucs.com/ServerImg/2018-08-03/2552c763-1369-4d9d-8f45-4644babd3dbe.png'></image>
+        <view class='outInpt'>
+          <input type='text' bindblur='secondinput' value='{{secondinput}}'></input>
+        </view>
+      </view>
+      <!-- 按钮 -->
+      <view class='button'>
+        <view class='refresh' data-index='4' bindtap='refresh'>{{refresh}}</view>
+        <view class='enter' data-index='4' bindtap='enter'>{{enter}}</view>
+
+      </view>
+    </form>
   </view>
 
 </view>

@@ -1,6 +1,7 @@
 // 引入SDK核心类
 var app = getApp();
 var QQMapWX = require('../../map/qqmap-wx-jssdk.js');
+import dynamicSearch from '../../utils/dynamicSearch.js'
 var qqmapsdk;
 var a = 0;
 var app = getApp()
@@ -14,178 +15,22 @@ Page({
     vipIsShow:true,
     //首页活动会员展示图
     vip_banner:'',
-    dw: "https://www.chuanshoucs.com/ServerImg/2018-07-24/4bc5d507-7969-4a6a-935c-56097668a7ec.png",
-    ss: 'https://www.chuanshoucs.com/ServerImg/2018-07-24/db1613ea-713e-41df-badb-eed83fc7e27a.png',
     site: '',
-    place: '搜索投放点名称、地址',
-    news_img: 'https://www.chuanshoucs.com/ServerImg/2018-07-24/60bb9f57-211e-4bd1-af2e-78398f168eb1.png',
-    news_text: '最新',
-    recommend_img: 'https://www.chuanshoucs.com/ServerImg/2018-07-24/171d28eb-3de7-4518-81fa-7c116e63c00c.png',
-    recommend_text: '推荐',
-    superior_img: 'https://www.chuanshoucs.com/ServerImg/2018-07-24/21379e69-373e-462b-bb85-bb7b06a1667a.png',
-    superior_text: '优质',
-    native_img: 'https://www.chuanshoucs.com/ServerImg/2018-07-24/249c7606-662e-435b-a0d8-b0e8c139ff7e.png',
-    native_text: '本地',
+    HomeNavigation:[],
     advertising_top_left: [{
-      img: 'https://www.chuanshoucs.com/ServerImg/2018-07-24/d134a7b2-77df-42a1-9552-97652b4a7723.png',
+      img: '/img/lefthand.png',
       text: '广告位推荐'
     }],
     advertising_top_right: [{
-      img: 'https://www.chuanshoucs.com/ServerImg/2018-07-24/118a713a-364d-4d59-80b2-8a72be22996c.png',
+      img: '/img/huanyipi.png',
       text: '换一批'
     }],
     referrer: [{
-      img: 'https://www.chuanshoucs.com/ServerImg/2018-07-24/a7644d4b-a06a-401a-a21c-d312eaf61139.png',
-      address: '上海松江万达',
-      flow: '人流量:900/天',
-      unit: '20元/天'
+      img: '/img/round1.png',
     }, {
-      img: 'https://www.chuanshoucs.com/ServerImg/2018-07-24/f36a7fe6-b690-4122-bbea-4c0b2b04f28b.png',
-      address: '东方明珠电视塔',
-      flow: '人流量:3000/天',
-      unit: '100元/天'
+      img: '/img/round2.png',
     }],
-    listbox: [{
-        img: 'http://up.enterdesk.com/edpic_source/f5/34/83/f53483429ccc69d00ae98dd5f05317a4.jpg',
-        lable: '水母田',
-        title: '比奇堡水母田',
-        flow: '人多',
-        distance: '据您 100000km',
-        unit: '500元/天',
-        site: '美国 比奇堡',
-        surplus: 235,
-        plus: 'https://www.chuanshoucs.com/ServerImg/2018-08-03/becb94a2-2ac3-4947-927d-e54b94604017.png',
-        quantity: 0,
-        subtract: 'https://www.chuanshoucs.com/ServerImg/2018-08-03/3ee6f420-95cc-4800-9ca1-15aa26c3b663.png',
-        hide: 'none'
-      },
-      {
-        img: 'http://fe.topitme.com/e/13/41/11315694278344113eo.jpg',
-        lable: '四维空间',
-        title: '哆啦A梦',
-        flow: '地段优越',
-        distance: '据您 500km',
-        unit: '20元/天',
-        site: '日本 东京',
-        surplus: 4244,
-        plus: 'https://www.chuanshoucs.com/ServerImg/2018-08-03/becb94a2-2ac3-4947-927d-e54b94604017.png',
-        quantity: 0,
-        subtract: 'https://www.chuanshoucs.com/ServerImg/2018-08-03/3ee6f420-95cc-4800-9ca1-15aa26c3b663.png',
-        hide: 'none'
-      },
-      {
-        img: 'http://pic.58pic.com/58pic/13/14/26/44Z58PICaEP_1024.jpg',
-        lable: '足球场',
-        title: '上海体育中心',
-        flow: '靠近地铁',
-        distance: '据您24.7km',
-        unit: '230元/天',
-        site: '上海 长宁',
-        surplus: 781,
-        plus: 'https://www.chuanshoucs.com/ServerImg/2018-08-03/becb94a2-2ac3-4947-927d-e54b94604017.png',
-        quantity: 0,
-        subtract: 'https://www.chuanshoucs.com/ServerImg/2018-08-03/3ee6f420-95cc-4800-9ca1-15aa26c3b663.png',
-        hide: 'none'
-      },
-      {
-        img: 'http://uploads.5068.com/allimg/1806/189-1P613160353-50.jpg',
-        lable: '手办馆',
-        title: '杜莎蜡像馆',
-        flow: '市中心',
-        distance: '据您44.5km',
-        unit: '200元/天',
-        site: '上海 徐汇区',
-        surplus: 451,
-        plus: 'https://www.chuanshoucs.com/ServerImg/2018-08-03/becb94a2-2ac3-4947-927d-e54b94604017.png',
-        quantity: 0,
-        subtract: 'https://www.chuanshoucs.com/ServerImg/2018-08-03/3ee6f420-95cc-4800-9ca1-15aa26c3b663.png',
-        hide: 'none'
-      },
-      {
-        img: 'http://pic.ffpic.com/files/2013/0418/sj0419dmt05.jpg',
-        lable: '臭脸服务员',
-        title: '上海本帮菜酒店',
-        flow: '质量优',
-        distance: '据您34km',
-        unit: '5000元/天',
-        site: '上海 浦东',
-        surplus: 765,
-        plus: 'https://www.chuanshoucs.com/ServerImg/2018-08-03/becb94a2-2ac3-4947-927d-e54b94604017.png',
-        quantity: 0,
-        subtract: 'https://www.chuanshoucs.com/ServerImg/2018-08-03/3ee6f420-95cc-4800-9ca1-15aa26c3b663.png',
-        hide: 'none'
-      },
-      {
-        img: 'http://up.enterdesk.com/edpic_source/f5/34/83/f53483429ccc69d00ae98dd5f05317a4.jpg',
-        lable: '水母田',
-        title: '比奇堡水母田',
-        flow: '车祸高发',
-        distance: '据您 100000km',
-        unit: '500元/天',
-        site: '美国 比奇堡',
-        surplus: 455,
-        plus: 'https://www.chuanshoucs.com/ServerImg/2018-08-03/becb94a2-2ac3-4947-927d-e54b94604017.png',
-        quantity: 0,
-        subtract: 'https://www.chuanshoucs.com/ServerImg/2018-08-03/3ee6f420-95cc-4800-9ca1-15aa26c3b663.png',
-        hide: 'none'
-      },
-      {
-        img: 'http://fe.topitme.com/e/13/41/11315694278344113eo.jpg',
-        lable: '四维空间',
-        title: '哆啦A梦',
-        flow: '集体跳楼',
-        distance: '据您 500km',
-        unit: '20元/天',
-        site: '日本 东京',
-        surplus: 5440,
-        plus: 'https://www.chuanshoucs.com/ServerImg/2018-08-03/becb94a2-2ac3-4947-927d-e54b94604017.png',
-        quantity: 0,
-        subtract: 'https://www.chuanshoucs.com/ServerImg/2018-08-03/3ee6f420-95cc-4800-9ca1-15aa26c3b663.png',
-        hide: 'none'
-      },
-      {
-        img: 'http://pic.58pic.com/58pic/13/14/26/44Z58PICaEP_1024.jpg',
-        lable: '足球场',
-        title: '上海体育中心',
-        flow: '午夜亡魂',
-        distance: '据您24.7km',
-        unit: '230元/天',
-        site: '上海 长宁',
-        surplus: 454,
-        plus: 'https://www.chuanshoucs.com/ServerImg/2018-08-03/becb94a2-2ac3-4947-927d-e54b94604017.png',
-        quantity: 0,
-        subtract: 'https://www.chuanshoucs.com/ServerImg/2018-08-03/3ee6f420-95cc-4800-9ca1-15aa26c3b663.png',
-        hide: 'none'
-      },
-      {
-        img: 'http://uploads.5068.com/allimg/1806/189-1P613160353-50.jpg',
-        lable: '手办馆',
-        title: '杜莎蜡像馆',
-        flow: '单身狗',
-        distance: '据您44.5km',
-        unit: '200元/天',
-        site: '上海 徐汇区',
-        surplus: 786,
-        plus: 'https://www.chuanshoucs.com/ServerImg/2018-08-03/becb94a2-2ac3-4947-927d-e54b94604017.png',
-        quantity: 0,
-        subtract: 'https://www.chuanshoucs.com/ServerImg/2018-08-03/3ee6f420-95cc-4800-9ca1-15aa26c3b663.png',
-        hide: 'none'
-      },
-      {
-        img: 'http://pic.ffpic.com/files/2013/0418/sj0419dmt05.jpg',
-        lable: '臭脸服务员',
-        title: '上海本帮菜酒店',
-        flow: '地球爆炸',
-        distance: '据您34km',
-        unit: '5000元/天',
-        site: '上海 浦东',
-        surplus: 456,
-        plus: 'https://www.chuanshoucs.com/ServerImg/2018-08-03/becb94a2-2ac3-4947-927d-e54b94604017.png',
-        quantity: 0,
-        subtract: 'https://www.chuanshoucs.com/ServerImg/2018-08-03/3ee6f420-95cc-4800-9ca1-15aa26c3b663.png',
-        hide: 'none'
-      }
-    ]
+    listbox: [],
   },
   /**
    * 生命周期函数--监听页面加载
@@ -238,6 +83,21 @@ Page({
       }
     })
 
+    /*获取首页导航栏*/
+    wx.request({
+      url: app.globalData.appUrl + 'WXNavigation/findAll',
+      success:function(res){
+        that.setData({
+          HomeNavigation: res.data
+        })
+      }
+    })
+    
+    //广告位列表
+    dynamicSearch(that, {}, app)
+    
+    //随机两个广告位
+    that.roundTwoAdvertise(that)
 
     //首页活动会员图片start
     wx.request({
@@ -286,11 +146,12 @@ Page({
    */
   rotate: function() {
     a = a + 1;
-    console.log(a)
     this.animation.rotate(a * 180).step();
     this.setData({
       animation: this.animation.export()
     });
+    this.roundTwoAdvertise(this)
+
   },
   /**
    * 生命周期函数--监听页面显示
@@ -346,9 +207,10 @@ Page({
     })
   },
   // 跳转到最新
-  news: function() {
+  news: function(e) {
+    var lableId = e.currentTarget.dataset.lableid
     wx.navigateTo({
-      url: '../news/news',
+      url: '../news/news?lableId=' + lableId,
     })
   },
   // 跳转到推荐
@@ -411,11 +273,60 @@ Page({
 
 
     },
- 
-  xiangqing: function() {
+  enter: function (event) {
+    var that = this
+    var returnDate = event.detail
+    console.info(returnDate)
 
+    if (returnDate == 'error'){
+      return false;
+    }
+    var qqdata = {}
+    
+    if (returnDate.distance != null) {
+      qqdata.distance = returnDate.distance
+    }
+    if (returnDate.SellerAddress != null) {
+      qqdata.SellerAddress = returnDate.SellerAddress
+    }
+    if (returnDate.AdvertiseTypeId != null) {
+      qqdata.AdvertiseTypeId = returnDate.AdvertiseTypeId
+    }
+    if (returnDate.unitPrice != null) {
+      qqdata.unitPrice = returnDate.unitPrice
+    }
+    if (returnDate.sellerVolume != null) {
+      qqdata.sellerVolume = returnDate.sellerVolume
+    }
+
+    console.info(qqdata)
+
+    dynamicSearch(that, qqdata, app)
+
+  },
+  //随机两个广告位
+  roundTwoAdvertise:function(that){
+    wx.request({
+      url: app.globalData.appUrl + 'WXSellerAdvertise/findTwoRandomSellerAdvertise',
+      success: function (res) {
+        var referrer = that.data.referrer;
+        for (var i = 0; i < res.data.length; i++) {
+          referrer[i].sellerName = res.data[i].sellerInfo.sellerName
+          referrer[i].lableList = res.data[i].lableList
+          referrer[i].unitPrice = res.data[i].unitPrice
+        }
+        that.setData({
+          referrer: referrer
+        })
+      }
+    })
+  },
+
+  //跳转详情页
+  detail: function (e) {
+    console.info(e)
     wx.navigateTo({
-      url: '../Addetails/Addetails',
+      url: '/pages/Addetails/Addetails?sellerAdvertiseId=' + e.currentTarget.dataset.selleradvertiseid
     })
   },
   // vip_banner

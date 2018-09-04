@@ -10,8 +10,10 @@ Page({
     flag: false,
     // 海报
     poster: false,
+    //投放周期
+    period: {},
     //广告位id
-    sellerAdvertiseId:0,
+    sellerAdvertiseId: 0,
     //轮播图
     swiper: [],
     //广告名称
@@ -24,9 +26,13 @@ Page({
     jiage: "block",
     price: ["40元/1天", "200元/5天", "400元/10天", "800元/20天", "1200元/30天"],
     priceindex: 0,
+    //单价
+    unitPrice:0,
     //选择的天数和总价
     daynum: 1,
     totalPrice: '',
+    //标签集合
+    lableList:[],
     //广告类型
     advertiseTypeName: '广告类型',
     //地址
@@ -84,7 +90,10 @@ Page({
           sellerAddress: adv.sellerInfo.sellerAddress,
           advertiseIntro: adv.sellerInfo.advertiseIntro,
           advertiseBrowser: adv.advertiseBrowser,
-          userImgList: adv.userImgList
+          userImgList: adv.userImgList,
+          unitPrice: adv.unitPrice,
+          lableList: adv.lableList
+
         })
         //渲染同屏推荐
         wx.getLocation({
@@ -292,25 +301,86 @@ Page({
   //预约
   appointment: function() {
     var that = this;
-    if (this.data.identit == "1") {
-      that.setData({
-        notshopping: true,
-        flag: true,
-        Stxt: "你所注册的账号还在审核中,稍后将告知你结果"
+    // if (this.data.identit == "1") {
+    //   that.setData({
+    //     notshopping: true,
+    //     flag: true,
+    //     Stxt: "你所注册的账号还在审核中,稍后将告知你结果"
+    //   })
+    // } else if (this.data.identit == "2") {
+    //   that.setData({
+    //     notshopping: true,
+    //     flag: true,
+    //     Stxt: "你所登陆的账号身份不符,如需预约.请退出当前账号,登录我要发广告账号"
+    //   })
+    // } else if (this.data.identit == "3") {
+    //   that.setData({
+    //     notshopping: true,
+    //     flag: true,
+    //     Stxt: "你还是游客,不能进行此操作。如需预约,请登录（我要发广告）"
+    //   })
+    // }
+    console.info(that.data.period)
+    
+    var that = this
+    if (that.data.period.orderday == undefined) {
+
+      wx.showModal({
+        title: '提示',
+        content: '请选择投放周期',
       })
-    } else if (this.data.identit == "2") {
-      that.setData({
-        notshopping: true,
-        flag: true,
-        Stxt: "你所登陆的账号身份不符,如需预约.请退出当前账号,登录我要发广告账号"
-      })
-    } else if (this.data.identit == "3") {
-      that.setData({
-        notshopping: true,
-        flag: true,
-        Stxt: "你还是游客,不能进行此操作。如需预约,请登录（我要发广告）"
-      })
+      return false;
     }
+    var orderDate = that.data.period.orderDate
+    var orderday = that.data.period.orderday
+    // wx.request({
+    //   url: app.globalData.appUrl + 'WXPay/SellerAdvertisePay',
+    //   data: {
+    //     sellerAdvertiseId: that.data.sellerAdvertiseId,
+    //     orderDate: JSON.stringify(that.data.period.orderDate),
+    //     orderday: orderday,
+    //     SellerAdvertiseBody: "对应的广告位信息",
+    //     openid: app.returnOpenId(),
+    //     // total_fee: that.data.totalPrice,
+    //     total_fee: 1,
+    //     body: '享投广告屏购买',
+    //     payMode: 0,
+    //     buyerAccountId: 10,
+    //   },
+    //   success: function(res) {
+    //     if (res.data.error != undefined) {
+
+    //       wx.showModal({
+    //         title: '提示',
+    //         content: res.data.error,
+    //       })
+    //     }else{
+    //       PayUtils(res.data.prepay_id, app.globalData.appUrl + 'WXPay/SellerAdvertisePaySuccess', { orderListId: res.data.orderId, orderday: JSON.stringify(that.data.period.orderday)},'/pages/index/index')
+    //     }
+
+    //   }
+    // })
+    var date = {
+      swiper: that.data.swiper,
+      sellerName: that.data.sellerName,
+      lableList: that.data.lableList,
+      distances: that.data.listbox[0].distances,
+      unitPrice: that.data.unitPrice,
+      sellerAdvertiseId: that.data.sellerAdvertiseId,
+      openid: app.returnOpenId(),
+      // total_fee: that.data.totalPrice,
+      total_fee: 1,
+      body: '享投广告屏购买',
+      buyerAccountId: 5,
+      orderDate: that.data.period.orderDate,
+      orderday: orderday,
+      daynum: that.data.daynum,
+      
+    };
+    wx.navigateTo({
+      url: '/pages/Settlement/Settlement?data='+JSON.stringify(date),
+    })
+    
   },
   // 海报转发
   forward: function() {
@@ -341,7 +411,7 @@ Page({
       })
     }
     if (that.data.listbox[index].quantity >= 1) {
-      that.data.listbox[index].plus = 'https://www.chuanshoucs.com/ServerImg/2018-08-03/f7c71b12-4149-4277-ad92-f334d3194f39.png'
+      that.data.listbox[index].plus = '/img/detail/hjia.png'
       that.setData({
         listbox: that.data.listbox
       });
@@ -361,7 +431,7 @@ Page({
 
     if (that.data.listbox[index].quantity < 1) {
       that.data.listbox[index].hide = 'none'
-      that.data.listbox[index].plus = 'https://www.chuanshoucs.com/ServerImg/2018-08-03/becb94a2-2ac3-4947-927d-e54b94604017.png'
+      that.data.listbox[index].plus = '/img/detail/yjia.png'
       that.setData({
         listbox: that.data.listbox
       })
@@ -372,7 +442,13 @@ Page({
     wx.navigateTo({
       url: '../Addetailspage/Addetailspage?daynum=' + this.data.daynum + "&sellerAdvertiseId=" + this.data.sellerAdvertiseId,
     })
+  },
+  //跳转详情页
+  detail: function (e) {
+    console.info(e)
+    wx.navigateTo({
+      url: '/pages/Addetails/Addetails?sellerAdvertiseId=' + e.currentTarget.dataset.selleradvertiseid
+    })
   }
-  /*自定义加减*/
 
 })
