@@ -40,3 +40,8 @@ button {
   background-color: #FFD801;
   color: #fff;
 }
+.ZhuShi {
+  font-size: 32rpx;
+  color:#999;
+  padding: 0 40rpx;
+}

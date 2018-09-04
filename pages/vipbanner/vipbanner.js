@@ -24,6 +24,8 @@ Page({
       success: function (res) {
         console.info("下面是查询活动会员信息：")
         console.info(res.data.ActivityMemberLevel)
+        res.data.ActivityMemberLevel.activityMemberIcon = JSON.parse(res.data.ActivityMemberLevel.activityMemberIcon)[0]
+        res.data.ActivityMemberLevel.specialActivitiesImg = JSON.parse(res.data.ActivityMemberLevel.specialActivitiesImg)[0]
         that.setData({
           ActivityMemberLevel: res.data.ActivityMemberLevel
         })
@@ -82,8 +84,9 @@ Page({
   },
   rush: function() {
     var memberMoney = this.data.ActivityMemberLevel.activityMemberMoney;
+    var activityMemberLevelId = this.data.ActivityMemberLevel.activityMemberLevelId;
     wx.navigateTo({
-      url: '../me/fa/chongzhi?memberMoney=' + memberMoney + '&dis=disabled'+'&page=HuoDong'
+      url: '../me/fa/chongzhi?memberMoney=' + memberMoney + '&dis=disabled' + '&page=HuoDong' + '&activityMemberLevelId=' + activityMemberLevelId
     })
   }
 })

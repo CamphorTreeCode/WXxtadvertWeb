@@ -1,48 +1,31 @@
 // pages/find/findask.js
+var app = getApp()
 Page({
   /**
    * 页面的初始数据
    */
   data: {
-    img: 'https://www.chuanshoucs.com/ServerImg/2018-08-03/7a499704-504b-442f-9e90-2f3a395e13e8.png',
-    title_cn: '享投官方',
-    title_en: 'Share Advertising',
-    time: '2018-04-17 14:40',
-    text: '你不愿意种花，你说，我不愿看见它一点点凋落。是的，为了避免结束，你避免了一切开始。',
-    show: 'block',
-    video: 'http://dwz.cn/BN3CWYIq',
-    poster: 'http://dwz.cn/L7st6WRa',
-    read: '129',
-    like: '56',
-    transmit: '100',
-    videoimg: [{
-        video_img: 'http://t.cn/RDu6gpV',
-      },
-      {
-        video_img: 'http://t.cn/RDuXUHB',
-      },
-      {
-        video_img: 'http://t.cn/RDuXfQz',
-      },
-      {
-        video_img: 'http://t.cn/RDuXKFJ',
-      },
-      {
-        video_img: 'http://t.cn/RDuXj63',
-      },
-      {
-        video_img: 'http://t.cn/RDuXnlD',
-      },
-    ],
+    //点赞start
     find_like: 'https://www.chuanshoucs.com/ServerImg/2018-08-03/cc0dc619-d625-47a4-8963-2cc87a24ea07.png',
     color: '#324169',
     transmit_color: '#324169',
+    //列表页传递过来的discoverId
+    discoverId:'',
+    //发现详情
+    Discover:{},
+    //用户是否点过赞
+    UserDiscoverLike:true,
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
+    var that = this;
+    console.info(options.lid)
+    that.setData({
+      discoverId: options.lid,
+    })
 
   },
 
@@ -50,25 +33,67 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function(res) {
-    const that = this;
-    this.videoContext = wx.createVideoContext('myVideo')
-
-    if (that.data.videoimg != "") {
-      // that.data.show = "none"
-      that.setData({
-        show: "none"
-      })
-    } else {
-      that.setData({
-        show: "block"
-      })
-    }
-
+  
   },
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function() {},
+  onShow: function() {
+    var that = this;
+    wx.request({
+      url: app.globalData.appUrl + 'WXDiscover/findDiscoverDetails', //仅为示例，并非真实的接口地址
+      data: {
+        discoverId: that.data.discoverId,
+      },
+      method: "GET",
+      header: {
+        'content-type': 'application/x-www-form-urlencoded', // 默认值
+        xcxuser_name: "xcxuser_name"
+      },
+      success: function (res) {
+        console.info("下面是发现详情数据:")
+        console.info(res.data)
+        if (res.data.Discover.discoverImgs) {
+          //图片存在，视频不存在
+          res.data.Discover.discoverImgs = JSON.parse(res.data.Discover.discoverImgs);
+        } else if (res.data.Discover.discoverVideo) {
+          //图片不存在，视频存在
+          res.data.Discover.discoverVideo = JSON.parse(res.data.Discover.discoverVideo);
+        }
+        that.setData({
+          Discover: res.data
+        })
+
+        //查询用户是否点过赞start
+        wx.request({
+          url: app.globalData.appUrl + 'WXDiscover/findUserDiscoverLike', //仅为示例，并非真实的接口地址
+          data: {
+            discoverId: that.data.discoverId,
+            openId: wx.getStorageSync('openid'),
+          },
+          method: "GET",
+          header: {
+            'content-type': 'application/x-www-form-urlencoded', // 默认值
+            xcxuser_name: "xcxuser_name"
+          },
+          success: function (res) {
+            console.info("下面是发现详情用户是否点赞数据:")
+            console.info(res.data.UserDiscoverLike)
+            that.setData({
+              UserDiscoverLike: res.data.UserDiscoverLike
+            })
+            if (res.data.UserDiscoverLike == false) {
+              that.setData({
+                find_like: "https://www.chuanshoucs.com/ServerImg/2018-08-03/2415e140-2cb2-48d8-8675-ff2795b955ef.png",
+                color: "rgb(253, 211, 0)",
+              })
+            }
+          }
+        })
+        //查询用户是否点过赞end
+      }
+    })
+  },
 
   /**
    * 生命周期函数--监听页面隐藏
@@ -102,20 +127,89 @@ Page({
    * 用户点击右上角分享
    */
   onShareAppMessage: function() {
+    //转发增加转发量start
+    var that = this
     return {
-      title: '我在拼多多抢屎，快来帮我砍一刀'
+      imageUrl: app.globalData.shareImg,
+      success: function (e) {
+        console.log(e)
+        if (e.errMsg == "shareAppMessage:ok") {
+          wx.request({
+            url: app.globalData.appUrl + 'WXDiscover/addDiscoverForward',
+            data: {
+              discoverId: that.data.discoverId,
+            },
+            header: {
+              'content-type': 'application/x-www-form-urlencoded', // 默认值
+              xcxuser_name: "xcxuser_name"
+            },
+            success: function (res) {
+              console.info(res);
+              that.data.Discover.Discover.discoverForward = that.data.Discover.Discover.discoverForward + 1;
+              that.setData({
+                Discover: that.data.Discover,
+              })
+              wx.showToast({
+                title: '分享成功',
+                icon: 'none',
+                duration: 1500
+              })
+            }
+          })
+        }
+      }
     }
+    //转发增加转发量end
   },
   // 点赞
   find_like: function() {
-
-    if (this.data.color == "#324169") {
-      this.data.like++;
-      this.setData({
-        find_like: "https://www.chuanshoucs.com/ServerImg/2018-08-03/2415e140-2cb2-48d8-8675-ff2795b955ef.png",
-        color: "rgb(253, 211, 0)",
-        like: this.data.like
+    console.info("点赞啦")
+    var that = this;  
+    if (that.data.UserDiscoverLike==false){
+      //已经点过赞
+      wx.showToast({
+        title: '你已点过赞了',
+        icon: 'none',
+        duration: 1500
       })
-    } else if (this.data.color == "rgb(253, 211, 0)") {}
+    } else if (that.data.UserDiscoverLike == true){
+      //没有点过赞可以点赞
+      wx.request({
+        url: app.globalData.appUrl + 'WXDiscover/addDiscoverLike', //仅为示例，并非真实的接口地址
+        data: {
+          discoverId: that.data.discoverId,
+          openId: wx.getStorageSync('openid'),
+        },
+        method: "GET",
+        header: {
+          'content-type': 'application/x-www-form-urlencoded', // 默认值
+          xcxuser_name: "xcxuser_name"
+        },
+        success: function (res) {
+          console.info("下面是发现详情点赞数据:")
+          console.info(res)
+          if (res.data.DiscoverLike == true){
+            that.data.Discover.Discover.discoverFabulous = that.data.Discover.Discover.discoverFabulous+1
+            that.setData({
+              Discover: that.data.Discover,
+              find_like: "https://www.chuanshoucs.com/ServerImg/2018-08-03/2415e140-2cb2-48d8-8675-ff2795b955ef.png",
+              color: "rgb(253, 211, 0)",
+            })
+            wx.showToast({
+              title: '点赞成功',
+              icon: 'none',
+              duration: 1500
+            })
+          } else if (res.data.DiscoverLike == false){
+            wx.showToast({
+              title: '你已点过赞了',
+              icon: 'none',
+              duration: 1500
+            })
+          }
+        
+        }
+      })
+    }
   }
 })

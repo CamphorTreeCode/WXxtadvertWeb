@@ -79,11 +79,19 @@ Page({
       },
       success: function(res) {
         console.info("下面是查询全部的会员信息：")
-        console.info(res.data.MemberLevel)
+        console.info(res.data)
         //不取数组中第一个注册会员
         res.data.MemberLevel.shift();
+        if (res.data.MemberLevel.length > 0) {
+          var MemberLevel = that.data.MemberLevel;
+          for (var i = 0; i < res.data.MemberLevel.length; i++){
+            res.data.MemberLevel[i].memberIcon = JSON.parse(res.data.MemberLevel[i].memberIcon)[0]
+            MemberLevel.push(res.data.MemberLevel[i]);
+          }
+        }
+
         that.setData({
-          MemberLevel: res.data.MemberLevel
+          MemberLevel: MemberLevel
         })
         console.info(that.data.MemberLevel)
       }
@@ -156,7 +164,7 @@ Page({
     console.info("用户当前余额：" + balance);
     //用户最终充值金额
     var money = memberMoney - balance;
-    if (balance > memberMoney){
+    if (balance >= memberMoney){
       //会员余额比充值会员金额大，不能充值
       this.setData({
         money: true
@@ -168,7 +176,7 @@ Page({
       })
       //跳转充值页面
       wx.navigateTo({
-        url: '/pages/me/fa/chongzhi?page=HY&memberId=' + memberId + '&memberMoney=' + money + '&dis=disabled',
+        url: '/pages/me/fa/chongzhi?page=HY&memberId=' + memberId + '&memberMoney=' + money + '&dis=disabled' + '&YuanJia=' + memberMoney,
       })
     }
    

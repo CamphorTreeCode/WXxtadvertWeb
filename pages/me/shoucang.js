@@ -1,4 +1,21 @@
 // pages/me/shoucang.js
+var app = getApp();
+function findBuyerCollectionList(that){
+  var openId = app.returnOpenId();
+  wx.request({
+    url: app.globalData.appUrl + 'WXBuyerController/findBuyerCollectionList',
+    data: { openId: openId, currentPage: ++that.data.pageSize},
+    header: {
+      'content-type': 'application/x-www-form-urlencoded',
+      xcxuser_name: "xcxuser_name"
+    },
+    success: function (res) {
+      console.info("下面是查询用户收藏列表信息：")
+      console.info(res.data)
+    
+    }
+  })
+}
 Page({
 
   /**
@@ -8,6 +25,12 @@ Page({
     //aaa判断用户有没有收藏
     aaa: true,
     state: false,
+    //接广告进来显示暂未开放
+    jie: false,
+    //页码
+    pageSize: 0,
+    //收藏列表
+    buyerCollectionList:[],
     array: 
       [{
         name: '上海松江区万达广告位',
@@ -36,7 +59,16 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-  
+    var that = this;
+    var roles = options.roles;
+    if (roles == 2){
+      //接广告暂未开放
+      that.setData({
+        aaa:false,
+        jie:true,
+      })
+    }
+
   },
 
   /**
@@ -50,7 +82,15 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-  
+    var that = this;
+    that.setData({
+      pageSize: 0,
+      buyerCollectionList: [],
+    })
+
+    //查询收藏列表start
+    findBuyerCollectionList(that);
+    //查询收藏列表end
   },
 
   /**

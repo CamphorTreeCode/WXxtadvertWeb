@@ -1,4 +1,35 @@
 // pages/me/more.js
+//表单验证
+function yanzheng(applicantMiniProgram) {
+  if (applicantMiniProgram.applicantName == '') {
+    wx.showToast({
+      title: '请填写姓名',
+      icon: 'none',
+      duration: 1000
+    })
+    return false;
+  }
+  if (applicantMiniProgram.applicantPhone == '') {
+    wx.showToast({
+      title: '请填写联系电话',
+      icon: 'none',
+      duration: 1000
+    })
+    return false;
+  } else {
+    if (!/^((\d{3,4}-)?\d{7,8})$|(1[0-9]{10})/.test(applicantMiniProgram.applicantPhone)) {
+      wx.showToast({
+        title: '请按照正确联系方式填写',
+        icon: 'none',
+        duration: 1000
+      })
+      return false;
+    }else{
+      return true;
+    }
+  }
+}
+var app = getApp();
 Page({
 
   /**
@@ -6,54 +37,43 @@ Page({
    */
   data: {
     state: false,
-    title: "选择您要开发的小程序类型",
-    array: 
-      [
-        {
-          img: 'https://www.chuanshoucs.com/ServerImg/2018-07-24/b6282afd-16fd-43a4-b8b4-f307ee72c794.png',
-          message:'电商'
-        },
-        {
-          img: 'https://www.chuanshoucs.com/ServerImg/2018-07-24/212a458d-f0c4-434c-b242-2d1e9301da2f.png',
-          message: '花店'
-        },
-        {
-          img: 'https://www.chuanshoucs.com/ServerImg/2018-07-24/5e9c16cc-ae08-4723-adb7-bc0edad8cce6.png',
-          message: '商超'
-        },
-        {
-          img: 'https://www.chuanshoucs.com/ServerImg/2018-07-24/9327a7a7-6ef8-4a70-9b2c-e01f44abfd4a.png',
-          message: '水果生鲜'
-        },
-      ],
-    lie:
-      [
-        {
-          img: 'https://www.chuanshoucs.com/ServerImg/2018-07-24/3f6381e6-1630-42f9-84e8-21a7f46588de.png',
-          message: '外卖'
-        },
-        {
-          img: 'https://www.chuanshoucs.com/ServerImg/2018-07-24/60f3c1ec-364a-4ad4-9948-4f1865338629.png',
-          message: '家政'
-        },
-        {
-          img: 'https://www.chuanshoucs.com/ServerImg/2018-07-24/f164fad8-313e-4161-94e0-d90974cece6a.png',
-          message: '商务'
-        },
-        {
-          img: 'https://www.chuanshoucs.com/ServerImg/2018-07-24/d49ccea1-2883-47aa-9e05-f3525b0fe75f.png',
-          message: '餐饮'
-        },
-      ],
-    region: ['广东省', '广州市', '海珠区'],
-    customItem: '全部'
+    region: ["江苏省", "南京市", "玄武区"],
+    customItem: '全部',
+    //全部小程序信息
+    MiniProgram:[],
+    //选择小程序id
+    miniProgramTypeId:'',
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-  
+    var that = this;
+    //查询全部小程序类型列表信息start
+    wx.request({
+      url: app.globalData.appUrl + 'WXApplicantMiniProgram/findAllMiniProgram',
+      header: {
+        'content-type': 'application/x-www-form-urlencoded',
+        xcxuser_name: "xcxuser_name"
+      },
+      success: function (res) {
+        console.info("下面是查询全部小程序类型列表信息：")
+        // console.info(res.data)
+        if(res.data.length > 0){
+          var MiniProgram = that.data.MiniProgram;
+          for (var i = 0; i < res.data.length; i++){
+            res.data[i].miniProgramIcon = JSON.parse(res.data[i].miniProgramIcon)[0];
+            MiniProgram.push(res.data[i])
+          }
+          console.info(MiniProgram)
+        }
+        that.setData({
+          MiniProgram: res.data,
+        })
+      }
+    })
+    //查询全部小程序类型列表信息end
   },
 
   /**
@@ -102,22 +122,67 @@ Page({
    * 用户点击右上角分享
    */
   onShareAppMessage: function () {
-  
+    return {
+      imageUrl: app.globalData.shareImg,
+    }
   },
-  tan: function(){
+
+  //出现弹框
+  tan: function(e){
+    console.info(e.currentTarget.dataset.lid)
     this.setData({
-      state: true
+      state: true,
+      miniProgramTypeId: e.currentTarget.dataset.lid,
     })
   },
+
+  //返回按钮
   shanchu: function(){
     this.setData({
       state: false
     })
   },
-  bindRegionChange: function (e) {
-    console.log('picker发送选择改变，携带值为', e.detail.value)
-    this.setData({
-      region: e.detail.value
-    })
-  }
+
+  //提交申请开发小程序信息
+  testSubmit:function(e){
+    console.info(e)
+    var formId = e.detail.formId;
+    var miniProgramTypeId = this.data.miniProgramTypeId;
+    var applicantMiniProgram = e.detail.value;
+    applicantMiniProgram.applicantLocation = applicantMiniProgram.region.join('');
+    applicantMiniProgram.miniProgramTypeId = miniProgramTypeId;
+    applicantMiniProgram.openId = app.returnOpenId();
+    applicantMiniProgram.formId = formId;
+    console.info("********************************")
+    console.info(applicantMiniProgram)
+
+    if (yanzheng(applicantMiniProgram)){
+      console.info("增加")
+      var that = this;
+      //数据验证正确
+      wx.request({
+        url: app.globalData.appUrl + 'WXApplicantMiniProgram/addApplicantMiniProgramMsg',
+        data:  applicantMiniProgram,
+        header: {
+          'content-type': 'application/x-www-form-urlencoded',
+          xcxuser_name: "xcxuser_name"
+        },
+        success: function (res) {
+          that.setData({
+            state: false
+          })
+          wx.showToast({
+            title: '提交成功',
+            icon: 'success',
+            duration: 1000
+          })
+        }
+      })
+      wx.navigateTo({
+        url: '/pages/me/wode',
+      })
+    }
+    
+  },
+  
 })

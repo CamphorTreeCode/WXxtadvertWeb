@@ -33,7 +33,10 @@
 			"list": []
 		},
 		"miniprogram": {
+
 			"current": 15,
+
+
 			"list": [
 				{
 					"id": -1,
@@ -121,14 +124,50 @@
 				},
 				{
 					"id": -1,
-					"name": "最新",
-					"pathName": "pages/news/news",
+					"name": "发现",
+					"pathName": "pages/find/find",
 					"query": ""
 				},
 				{
 					"id": -1,
-					"name": "结算",
-					"pathName": "pages/Settlement/Settlement"
+					"name": "发现详情",
+					"pathName": "pages/findask/findask",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "开发小程序",
+					"pathName": "pages/me/more",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "发广告注册",
+					"pathName": "pages/me/fa/zhuce",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "发广告注册账号成功",
+					"pathName": "pages/me/fa/zhuceSuccess",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "忘记密码",
+					"pathName": "pages/me/fa/wangji",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "发广告商家信息添加",
+					"pathName": "pages/me/fa/message",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "发广告设置支付密码",
+					"pathName": "pages/me/fa/mima"
 				}
 			]
 		}

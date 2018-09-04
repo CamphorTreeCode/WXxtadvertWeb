@@ -2,35 +2,41 @@
 <view class='find'>
 
   <!-- find_content start -->
-  <view class='find_content'>
+  <view class='find_content' wx:for="{{Discover}}">
 
     <!-- find_content_top start -->
     <view class='find_top'>
 
       <!-- find_top img -->
-      <image src='{{img}}' class='find_top_img'></image>
+      <image src='https://www.chuanshoucs.com/ServerImg/2018-08-03/7a499704-504b-442f-9e90-2f3a395e13e8.png' class='find_top_img'></image>
       <!-- find_top title -->
       <view class='find_title'>
         <!-- title cn -->
-        <view class='find_title_cn'>{{title_cn}}</view>
+        <view class='find_title_cn'>享投官方</view>
         <!-- title en -->
-        <view class='find_title_en'>{{title_en}}</view>
+        <view class='find_title_en'>Share Advertising</view>
       </view>
       <!-- find_top time -->
-      <view class='find_time'>{{time}}</view>
+      <view class='find_time'>{{item.createTime}}</view>
     </view>
     <!-- find_top end -->
 
     <!-- find_content_main start -->
     <view class='find_main'>
+      <!-- find_content_main title -->
+      <view class='find_main_title'>{{item.discoverTitle}}</view>
       <!-- find_content_main text -->
-      <view class='find_main_text'>{{text}}</view>
+      <view class='find_main_text'>{{item.discoverDeatils}}</view>
       <!-- find_main_examine -->
       <!-- <view class='find_main_examine'>{{item.examine}}</view> -->
       <!-- video -->
-      <view class='video'>
-        <video id='myVideo' src='{{video}}' controls='controls' poster='{{poster}}' style="display:{{show}} "></video>
-        <image wx:for='{{videoimg}}' src='{{item.video_img}}' class='video_img'></image>
+         <view class='video'>
+        <i wx:if="{{item.discoverVideo!=''}}">
+          <video id='myVideo' src='{{item.discoverVideo}}' controls='{{false}}' custom-cache="{{false}}"></video>
+        </i>
+        <i wx:if="{{item.discoverVideo ==''}}">
+        <image src="{{item.discoverImgs}}" class='video_img' data-index='{{index}}' mode="aspectFill"></image>
+        </i>
       </view>
     </view>
     <!-- find content_main end -->
@@ -38,12 +44,12 @@
     <!-- find_praise -->
     <view class='find_praise'>
       <!-- find_read -->
-      <view class='find_read'>{{read}}</view>
+      <view class='find_read'>{{item.discoverViews}}</view>
       <view class='find_praise_right'>
         <!-- find_transmit -->
-        <button class='find_transmit' open-type='share'>{{transmit}}</button>
+        <button class='find_transmit' open-type='share'>{{item.discoverForward}}</button>
         <!-- find_like-->
-        <text class='find_like' bindtap='find_like' style=' color:{{color}}; background: url({{find_like}})no-repeat;background-size: 30rpx 30rpx; background-position-y: 50%;'>{{like}}</text>
+        <text class='find_like' bindtap='find_like' style=' color:{{color}}; background: url({{find_like}})no-repeat;background-size: 30rpx 30rpx; background-position-y: 50%;'>{{item.discoverFabulous}}</text>
       </view>
 
     </view>

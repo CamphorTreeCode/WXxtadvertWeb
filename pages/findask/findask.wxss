@@ -64,8 +64,16 @@
   margin-top: 20rpx;
 }
 
+.find_main .find_main_title {
+  text-indent: 40rpx;
+  line-height: 80rpx;
+  font-weight: unset;
+  font-size: 40rpx;
+}
+
 .find_main .find_main_text {
   text-indent: 40rpx;
+  color: #333;
 }
 
 .find_main .find_main_examine {
@@ -117,6 +125,8 @@
 }
 
 .find_praise_right .find_transmit {
+  font-size: 30rpx;
+  color: #324169;
   line-height: 0;
   display: inline;
   padding: 0 35rpx;
@@ -126,9 +136,10 @@
   background-position-y: 50%;
 }
 
-button::after{
-  border: none
+button::after {
+  border: none;
 }
+
 .find_praise_right .find_like {
   padding: 0 35rpx;
   background-position-x: 0;

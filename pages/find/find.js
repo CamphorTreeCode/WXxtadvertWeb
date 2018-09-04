@@ -1,126 +1,90 @@
 // pages/find/find.js
+var app = getApp()
+
+
+function findAllDiscoverMsg(that) {
+  console.log(that.data.pageSize)
+  wx.request({
+    url: app.globalData.appUrl + 'WXDiscover/findAllDiscoverMsg', //仅为示例，并非真实的接口地址
+    data: {
+      currentPage: ++that.data.pageSize
+    },
+    method: "GET",
+    header: {
+      'content-type': 'application/x-www-form-urlencoded', // 默认值
+      xcxuser_name: "xcxuser_name"
+    },
+    success: function(res) {
+      console.info("下面是发现列表数据:")
+      console.info(res)
+      if (res.data[0].lists.length > 0) {
+        var DiscoverList = that.data.DiscoverList
+        for (var i = 0; i < res.data[0].lists.length; i++) {
+          if (res.data[0].lists[i].discoverImgs){
+            //图片存在，视频不存在
+            res.data[0].lists[i].discoverImgs = JSON.parse(res.data[0].lists[i].discoverImgs).slice(0, 3);
+          } else if (res.data[0].lists[i].discoverVideo){
+            //图片不存在，视频存在
+            res.data[0].lists[i].discoverVideo = JSON.parse(res.data[0].lists[i].discoverVideo);
+          }
+          DiscoverList.push(res.data[0].lists[i])
+        }
+        that.setData({
+          DiscoverList: DiscoverList,
+          showLoading: true,
+        })
+        console.info(DiscoverList);
+      }else{
+        that.setData({
+          bottomText: false,
+          showLoading: true
+        })
+      }
+    }
+  })
+}
 Page({
   /**
    * 页面的初始数据
    */
   inputValue: '',
   data: {
-    find: [{
-        img: 'https://www.chuanshoucs.com/ServerImg/2018-08-03/7a499704-504b-442f-9e90-2f3a395e13e8.png',
-        title_cn: '享投官方',
-        title_en: 'Share Advertising',
-        time: '2018-04-17 14:40',
-        text: '你不愿意种花，你说，我不愿看见它一点点凋落。是的，为了避免结束，你避免了一切开始。',
-        examine: '查看详情',
-        show: 'block',
-        video: 'http://tb-video.bdstatic.com/tieba-smallvideo-transcode/1645899_99a2bee874c960a9db411081e8eaad6e_1.mp4',
-        poster: 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1534163777907&di=516d62ecad8bfb7c4fea54f24b6cafed&imgtype=0&src=http%3A%2F%2Fh.hiphotos.baidu.com%2Fimage%2Fpic%2Fitem%2F6609c93d70cf3bc768974522dd00baa1cc112a6d.jpg',
-        read: '129',
-        like: '99',
-      videoimg: [{
-        video_img: 'http://t.cn/RDu6gpV',
-      },
-      {
-        video_img: 'http://t.cn/RDuXUHB',
-      },
-      {
-        video_img: 'http://t.cn/RDuXfQz',
-      },
-      {
-        video_img: 'http://t.cn/RDuXKFJ',
-      },
-      {
-        video_img: 'http://t.cn/RDuXj63',
-      },
-      {
-        video_img: 'http://t.cn/RDuXnlD',
-      },
-      ],
-      },
-      {
-        img: 'https://www.chuanshoucs.com/ServerImg/2018-08-03/7a499704-504b-442f-9e90-2f3a395e13e8.png',
-        title_cn: '享投官方',
-        title_en: 'Share Advertising',
-        time: '2018-04-17 14:40',
-        text: '你不愿意种花，你说，我不愿看见它一点点凋落。是的，为了避免结束，你避免了一切开始。',
-        examine: '查看详情',
-        show: 'block',
-        video: 'http://tb-video.bdstatic.com/tieba-smallvideo-transcode/1645899_99a2bee874c960a9db411081e8eaad6e_1.mp4',
-        poster: 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1534163777907&di=516d62ecad8bfb7c4fea54f24b6cafed&imgtype=0&src=http%3A%2F%2Fh.hiphotos.baidu.com%2Fimage%2Fpic%2Fitem%2F6609c93d70cf3bc768974522dd00baa1cc112a6d.jpg',
-        read: '129',
-        like: '99',
-        videoimg: []
-      },
-      {
-        img: 'https://www.chuanshoucs.com/ServerImg/2018-08-03/7a499704-504b-442f-9e90-2f3a395e13e8.png',
-        title_cn: '享投官方',
-        title_en: 'Share Advertising',
-        time: '2018-04-17 14:40',
-        text: '你不愿意种花，你说，我不愿看见它一点点凋落。是的，为了避免结束，你避免了一切开始。',
-        examine: '查看详情',
-        show: 'block',
-        video: 'http://tb-video.bdstatic.com/tieba-smallvideo-transcode/1645899_99a2bee874c960a9db411081e8eaad6e_1.mp4',
-        poster: 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1534163777907&di=516d62ecad8bfb7c4fea54f24b6cafed&imgtype=0&src=http%3A%2F%2Fh.hiphotos.baidu.com%2Fimage%2Fpic%2Fitem%2F6609c93d70cf3bc768974522dd00baa1cc112a6d.jpg',
-        read: '129',
-        like: '99',
-        videoimg: [{
-          video_img: 'http://t.cn/RDu6gpV',
-        },
-        {
-          video_img: 'http://t.cn/RDuXUHB',
-        },
-        {
-          video_img: 'http://t.cn/RDuXfQz',
-        },
-        {
-          video_img: 'http://t.cn/RDuXKFJ',
-        },
-        {
-          video_img: 'http://t.cn/RDuXj63',
-        },
-        {
-          video_img: 'http://t.cn/RDuXnlD',
-        },
-        ],
-      },
-    ],
-
+    //发现列表
+    DiscoverList: [],
+    //页码
+    pageSize:0
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-
+    let scrollHeight = wx.getSystemInfoSync().windowHeight;
+    this.setData({
+      scrollHeight: scrollHeight
+    });
+   
   },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function(res) {
-    this.videoContext = wx.createVideoContext('myVideo');
 
-    const that = this;
-    const length = that.data.find.length;
-    for (var x = 0; x < length; x++) {
-      if (that.data.find[x].videoimg != "") {
-        that.data.find[x].show = "none"
-        that.setData({
-          find: that.data.find
-        })
-      } else {
-        that.data.find[x].show = "block";
-        that.setData({
-          find: that.data.find
-        })
-      }
-    }
   },
   /**
    * 生命周期函数--监听页面显示
    */
   onShow: function() {
+    var that = this;
+    that.setData({
+      pageSize:0,
+      DiscoverList: [],
+    })
 
+    //查询发现列表start
+    findAllDiscoverMsg(that);
+    //查询发现列表end
   },
 
   /**
@@ -148,20 +112,27 @@ Page({
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function() {
-
+    this.setData({
+      showLoading: false
+    })
+    console.log(1)
+    findAllDiscoverMsg(this)
   },
 
   /**
    * 用户点击右上角分享
    */
   onShareAppMessage: function() {
-
+    return {
+      imageUrl: app.globalData.shareImg,
+    }
   },
   // 跳转发现详情
-  find:function(){
+  find: function(e) {
+    console.info(e.currentTarget.dataset.lid)
     wx.navigateTo({
-      url: '../findask/findask',
+      url: '../findask/findask?lid=' + e.currentTarget.dataset.lid,
     })
-  }
+  },
 
 })

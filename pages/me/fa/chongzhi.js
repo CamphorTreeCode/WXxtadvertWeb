@@ -7,11 +7,18 @@ Page({
    * 页面的初始数据
    */
   data: {
+    //页面显示金额
     val: '',
+    //页面金额不能编辑
     dis: '',
-    page:"",
-    memberId:"",
-
+    //那个页面进来充值
+    page:'',
+    //会员id
+    memberId:'',
+    //活动会员id
+    activityMemberLevelId:'',
+    //会员展示
+    HuiYuan:true,
   },
 
   /**
@@ -26,12 +33,15 @@ Page({
         dis: options.dis,
         page: options.page,
         memberId: options.memberId,
+        YuanJia: options.YuanJia,
+        HuiYuan:false,
       })
     }else{
       this.setData({
         val: options.memberMoney,
         dis: options.dis,
         page: options.page,
+        activityMemberLevelId: options.activityMemberLevelId,
       })
     }
     
@@ -88,13 +98,16 @@ Page({
   },
 
   chongzhi: function(){
-    console.info(this.data.page)
+    // console.info(this.data.page)
     if (this.data.page =="HuoDong") {
+      var openId = app.returnOpenId();
+      var val = this.data.val;
+      var activityMemberLevelId = this.data.activityMemberLevelId;
       //工作台充值
       wx.request({
-        url: app.globalData.appUrl + 'WXBuyerAccount/RechargeBalance',
+        url: app.globalData.appUrl + 'WXActivityMemberLevel/rechargeActivityMembershipBalance',
         data: {
-          openId: "oBfPD5HiCQxV7UteHr1BeGbpqTXs",
+          openId: openId,
           total_fee: 1,
           body: "享投发广告活动会员余额充值"
         },
@@ -104,14 +117,12 @@ Page({
         },
         method: 'get',
         success: function (res) {
-
           console.info(res)
-
           PayUtils(
             res.data.prepay_id.prepay_id,
-            app.globalData.appUrl + "WXBuyerAccount/addRechargeBalance",
-            { openId: "oBfPD5HiCQxV7UteHr1BeGbpqTXs", total_fee: 1 },
-            "/pages/me/fa/gongzuotai"
+            app.globalData.appUrl + "WXActivityMemberLevel/addRechargeActivityMembershipBalance",
+            { openId: openId, total_fee: val, activityMemberLevelId: activityMemberLevelId},
+            "/pages/index/index"
           );
 
         }
@@ -120,8 +131,8 @@ Page({
       console.info("会员充值")
       //会员充值
       console.info(this.data.page)
-      console.info(this.data.memberMoney)
-      console.info(app.returnOpenId())
+      // console.info(this.data.memberMoney)
+      // console.info(app.returnOpenId())
       var memberId = this.data.memberId;
       var openId = app.returnOpenId();
       wx.request({
@@ -137,14 +148,12 @@ Page({
         },
         method: 'get',
         success: function (res) {
-
           console.info(res)
-          
           PayUtils(
             res.data.prepay_id.prepay_id,
             app.globalData.appUrl + "WXMemberLevel/addRechargeMembershipBalance",
             { openId: openId, total_fee: 5800, memberId: memberId},
-            "/pages/me/member?roles=1"
+            "/pages/me/wode"
           );
 
         }
