@@ -24,6 +24,7 @@ page {
   border-radius: 10rpx;
   padding: 5rpx 8rpx;
   font-size: 25rpx;
+  margin:5rpx;
 }
 .you {
   width: 42%;

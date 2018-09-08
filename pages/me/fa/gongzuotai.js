@@ -222,29 +222,33 @@ Page({
 
   //跳转已完成页面
   yiwancheng: function(){
+    var buyerAccountId = this.data.BuyerInfo.buyerAccount.buyerAccountId;
     wx.navigateTo({
-      url: '/pages/me/fa/yiwancheng',
+      url: '/pages/me/fa/yiwancheng?key=ywc' + '&buyerAccountId=' + buyerAccountId,
     })
   },
 
   //跳转已投放页面
   yitoufang: function(){
+    var buyerAccountId = this.data.BuyerInfo.buyerAccount.buyerAccountId;
     wx.navigateTo({
-      url: '/pages/me/fa/yitoufang',
+      url: '/pages/me/fa/yitoufang?key=ytf' + '&buyerAccountId=' + buyerAccountId,
     })
   },
 
   //跳转已支付页面
   yizhifu: function(){
+    var buyerAccountId = this.data.BuyerInfo.buyerAccount.buyerAccountId;
     wx.navigateTo({
-      url: '/pages/me/fa/yizhifu',
+      url: '/pages/me/fa/yizhifu?key=yzf' + '&buyerAccountId=' + buyerAccountId,
     })
   },
 
   //跳转待支付页面
   daizhifu: function(){
+    var buyerAccountId = this.data.BuyerInfo.buyerAccount.buyerAccountId;
     wx.navigateTo({
-      url: '/pages/me/fa/daizhifu',
+      url: '/pages/me/fa/daizhifu?key=dzf' + '&buyerAccountId=' + buyerAccountId,
     })
   },
 

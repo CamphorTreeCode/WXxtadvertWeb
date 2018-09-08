@@ -6,12 +6,19 @@ Page({
    * 页面的初始数据
    */
   data: {
-    //用户是否填写商家信息
+    //买家用户是否填写商家信息
     Info: true,
-    //用户是否注册
+    //买家用户是否注册
     Reg: true,
-    //用户商户信息是否审核通过
+    //买家用户商户信息是否审核通过
     BuyerInfoState: true,
+
+    //卖家用户是否填写商家信息
+    SellerInfo: true,
+    //卖家用户是否注册
+    SellerReg: true,
+    //卖家用户商户信息是否审核通过
+    SellerInfoState: true,
   },
 
   /**
@@ -41,7 +48,7 @@ Page({
         xcxuser_name: "xcxuser_name"
       },
       success: function(res) {
-        console.info("下面查询用户是否填写商家信息：")
+        console.info("下面查询买家用户是否填写商家信息：")
         console.info(res.data)
         if (res.data.BuyerInfoState == true || res.data.BuyerInfoState == false) {
           that.setData({
@@ -49,7 +56,13 @@ Page({
             Reg: res.data.Reg,
             BuyerInfoState: res.data.BuyerInfoState,
           })
-        } else {
+        } else if (res.data.BuyerInfoState == 2){
+          that.setData({
+            Info: res.data.Info,
+            Reg: res.data.Reg,
+            BuyerInfoState: res.data.BuyerInfoState,
+          })
+        }else{
           that.setData({
             Info: res.data.Info,
             Reg: res.data.Reg,
@@ -58,6 +71,38 @@ Page({
       }
     })
     //查询用户是否填写买家商家账号信息end
+
+    //查询用户是否填写卖家商家账号信息start
+    wx.request({
+      url: app.globalData.appUrl + 'WXSellerInfo/findSellerRegAndInfo?openId=' + app.returnOpenId() + '',
+      header: {
+        'content-type': 'application/x-www-form-urlencoded',
+        xcxuser_name: "xcxuser_name"
+      },
+      success: function (res) {
+        console.info("下面查询卖家用户是否填写商家信息：")
+        console.info(res.data)
+        if (res.data.SellerInfoState == true || res.data.SellerInfoState == false) {
+          that.setData({
+            SellerInfo: res.data.SellerInfo,
+            SellerReg: res.data.SellerReg,
+            SellerInfoState: res.data.SellerInfoState,
+          })
+        } else if (res.data.SellerInfoState == 2) {
+          that.setData({
+            SellerInfo: res.data.SellerInfo,
+            SellerReg: res.data.SellerReg,
+            SellerInfoState: res.data.SellerInfoState,
+          })
+        } else {
+          that.setData({
+            SellerInfo: res.data.SellerInfo,
+            SellerReg: res.data.SellerReg,
+          })
+        }
+      }
+    })
+    //查询用户是否填写卖家商家账号信息end
   },
 
   /**
@@ -148,6 +193,11 @@ Page({
         wx.navigateTo({
           url: '/pages/me/fa/tijiaoSuccess',
         })
+      } else if (Reg == true && Info == true && BuyerInfoState == 2) {
+        //信息全部填写完整，审核不通过进入信息页面
+        wx.navigateTo({
+          url: '/pages/me/fa/message',
+        })
       }else if (Reg == true && Info == false) {
         //注册但没填写信息
         wx.navigateTo({
@@ -173,8 +223,50 @@ Page({
   },
   //我要接广告
   jie: function() {
-    wx.navigateTo({
-      url: '/pages/me/jie/login?roles=' + app.globalData.UserRoles,
-    })
+    var roles = app.globalData.UserRoles;
+    var SellerInfo = this.data.SellerInfo;
+    var SellerReg = this.data.SellerReg;
+    var SellerInfoState = this.data.SellerInfoState;
+    console.info(roles + "," + SellerReg + "," + SellerInfo + "," + SellerInfoState)
+    //根据用户身份状态判断跳转页面
+    if (roles == 0) {
+      //用户游客状态了，判断用户填写信息
+      if (SellerReg == true && SellerInfo == true && SellerInfoState == true) {
+        //信息全部填写完整，进入登陆页面
+        wx.navigateTo({
+          url: '/pages/me/jie/login',
+        })
+      } else if (SellerReg == true && SellerInfo == true && SellerInfoState == false) {
+        //信息全部填写完整，没有审核进入待审核页面
+        wx.navigateTo({
+          url: '/pages/me/jie/tijiaoSuccess',
+        })
+      } else if (SellerReg == true && SellerInfo == true && SellerInfoState == 2) {
+        //信息全部填写完整，审核不通过进入信息页面
+        wx.navigateTo({
+          url: '/pages/me/jie/message',
+        })
+      } else if (SellerReg == true && SellerInfo == false) {
+        //注册但没填写信息
+        wx.navigateTo({
+          url: '/pages/me/jie/zhuceSuccess',
+        })
+      } else if (SellerReg == false && SellerInfo == false) {
+        //没有注册，没有填写信息
+        wx.navigateTo({
+          url: '/pages/me/jie/login',
+        })
+      }
+    } else if (roles == 2) {
+      //用户登陆发广告状态
+      wx.navigateTo({
+        url: '/pages/me/jie/gongzuotai',
+      })
+    } else if (roles == 1) {
+      //用户登陆接广告身份
+      wx.navigateTo({
+        url: '/pages/me/jie/login',
+      })
+    }
   }
 })

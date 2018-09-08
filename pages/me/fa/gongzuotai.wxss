@@ -70,12 +70,12 @@ page {
 }
 .shu {
   position: absolute;
-  top: 6rpx;
+  top: -5rpx;
   right: 6rpx;
   text-align: center;
-  width: 35rpx;
-  height: 35rpx;
-  line-height: 35rpx;
+  width: 50rpx;
+  height: 50rpx;
+  line-height: 45rpx;
   border-radius: 50%;
   background-color: #FF1055;
   color: #fff; 

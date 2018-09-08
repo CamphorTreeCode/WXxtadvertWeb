@@ -25,6 +25,7 @@ image{
   float: right;
   width: 88%;
   border: 1rpx solid bule;
+  font-size:26rpx;
 }
 .teshu input {
   width: 58%;
@@ -49,4 +50,7 @@ image{
   background-color: #ccc;
   margin: 40rpx 40rpx 0 40rpx;
   border-radius: 50rpx;
+}
+.mobile {
+background-color: #FFD800;
 }

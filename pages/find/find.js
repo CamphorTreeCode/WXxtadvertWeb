@@ -31,13 +31,11 @@ function findAllDiscoverMsg(that) {
         }
         that.setData({
           DiscoverList: DiscoverList,
-          showLoading: true,
         })
         console.info(DiscoverList);
       }else{
         that.setData({
           bottomText: false,
-          showLoading: true
         })
       }
     }
@@ -112,9 +110,6 @@ Page({
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function() {
-    this.setData({
-      showLoading: false
-    })
     console.log(1)
     findAllDiscoverMsg(this)
   },

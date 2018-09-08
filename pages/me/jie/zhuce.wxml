@@ -3,28 +3,29 @@
 <view style='text-align: center; margin: 50rpx 0;'>
   <image src='https://www.chuanshoucs.com/ServerImg/2018-08-01/08df4a7c-fea3-417d-ac13-9f18d4af928e.png'></image>
 </view>
-
+<form bindsubmit="formSubmit">
 <view class='hang'>
   <image src='https://www.chuanshoucs.com/ServerImg/2018-08-01/c8824c0e-8e8a-4f73-b644-01b3f306af90.png'></image>
-  <input placeholder-style='color: #CCC;' placeholder='请输入手机号'></input>
+  <input placeholder-style='color: #CCC;' placeholder='请输入手机号' name="phoneNo" bindblur="shouji"></input>
 </view>
 <view class='hang teshu'>
   <image src='https://www.chuanshoucs.com/ServerImg/2018-08-01/caa64b37-ab7b-4963-89ae-c97ffa1c3d9a.png'></image>
   <button style='{{hasPhone==true?"background-color: #FFD800":"background-color: #ccc"}}' bindtap='ma' disabled='{{buttonClicked}}'>{{msg}}</button>
-  <input placeholder-style='color: #CCC;' placeholder='请输入验证码'></input>
+  <input placeholder-style='color: #CCC;' placeholder='请输入验证码' name="verificationCode"></input>
 </view>
 <view class='hang'>
   <image src='https://www.chuanshoucs.com/ServerImg/2018-08-01/c7120ad7-7994-4fa3-bf2a-4528564bfc6c.png'></image>
-  <input placeholder-style='color: #CCC;' placeholder='请设置账号'></input>
+  <input placeholder-style='color: #CCC;' placeholder='请设置账号名称(数字与字母混合，最少六位)' name="accountName"></input>
 </view>
 <view class='hang'>
   <image src='https://www.chuanshoucs.com/ServerImg/2018-08-01/48f2f3de-ef4a-48fe-bc79-d283b579e73e.png'></image>
-  <input placeholder-style='color: #CCC;' placeholder='请设置密码' password='true'></input>
+  <input placeholder-style='color: #CCC;' placeholder='请设置密码(最少六位)' password='true' name="accountPassword"></input>
 </view>
 <view class='hang'>
   <image src='https://www.chuanshoucs.com/ServerImg/2018-08-01/48f2f3de-ef4a-48fe-bc79-d283b579e73e.png'></image>
-  <input placeholder-style='color: #CCC;' placeholder='请再次输入密码' password='true'></input>
+  <input placeholder-style='color: #CCC;' placeholder='请再次输入密码' password='true' bindblur="Matchpwd"></input>
 </view>
 <view class='wu' bindtap='tiao'>已有账号？去登录</view>
-<button class='btn2 {{feikong==true?"mobile":" "}}' bindtap='zhuce'>注册</button>
+<button class='btn2 mobile' formType="submit">注册</button>
+</form>
 

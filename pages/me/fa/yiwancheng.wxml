@@ -1,18 +1,18 @@
 <!--pages/me/fa/yiwancheng.wxml-->
-<view class='zong'>
+<view class='zong' wx:for="{{YWCMsg}}">
   <view class='shang'>
     <view class='zuo'>
-      <view style='font-size: 40rpx; margin-bottom: 20rpx;'>永辉超市/5屏</view>
-      <text class='biao'>人流量：400/天</text>
-      <view style='margin-top: 20rpx; color: #999'>投放时间：7.29-8.08</view> 
+      <view style='font-size: 40rpx; margin-bottom: 20rpx;'>{{item.sellerAdvertise.sellerInfo.sellerName}}</view>
+      <text class='biao'wx:for="{{item.sellerAdvertise.lableList}}" wx:for-item="lable">{{lable}}</text>
+      <view style='margin-top: 20rpx; color: #999'>投放时间：{{item.orderDate}}</view> 
     </view>
     <view class='you'>
-      <view style='color: #FC7F00;'>￥2000</view>
+      <view style='color: #FC7F00;'>￥{{item.orderAmount}}</view>
       <view style='margin-top: 92rpx; font-size: 30rpx; color: #FFD302;'>投放周期已完成</view>
     </view>
   </view>
   <view class='xia'>
     <text style='float: left;'>订单号</text>
-    <text style='float:right;'>20180726105149</text>
+    <text style='float:right;'>{{item.orderNumber}}</text>
   </view>
 </view>

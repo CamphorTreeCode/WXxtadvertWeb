@@ -1,18 +1,65 @@
 // pages/me/fa/yizhifu.js
+var app = getApp();
+function findBuyerOrderMsg(that) {
+  wx.request({
+    url: app.globalData.appUrl + 'WXOrderList/findBuyerOrderMsg', //仅为示例，并非真实的接口地址
+    data: {
+      currentPage: ++that.data.pageSize,
+      buyerAccountId: that.data.buyerAccountId,
+      key: that.data.key,
+    },
+    method: "GET",
+    header: {
+      'content-type': 'application/x-www-form-urlencoded', // 默认值
+      xcxuser_name: "xcxuser_name"
+    },
+    success: function (res) {
+      console.info("下面是已支付列表数据:")
+      console.info(res)
+      if (res.data[0].lists.length > 0) {
+        var YZFMsg = that.data.YZFMsg
+        for (var i = 0; i < res.data[0].lists.length; i++) {
+          YZFMsg.push(res.data[0].lists[i])
+        }
+        console.info(YZFMsg);
+        that.setData({
+          YZFMsg: YZFMsg,
+        })
+      }
+
+    }
+  })
+}
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    state: false
+    //控制电话弹框  false隐藏   true显示
+    state: false,
+    //页码
+    pageSize: 0,
+    //待支付key
+    key: '',
+    //买家账号id
+    buyerAccountId: '',
+    //已支付数据
+    YZFMsg: [],
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-  
+    var buyerAccountId = options.buyerAccountId;
+    var key = options.key;
+    console.info(key)
+    console.info(buyerAccountId)
+    this.setData({
+      buyerAccountId: buyerAccountId,
+      key: key,
+    })
   },
 
   /**
@@ -26,7 +73,12 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-  
+    var that = this;
+    that.setData({
+      pageSize: 0,
+      YZFMsg: [],
+    })
+    findBuyerOrderMsg(that);
   },
 
   /**
@@ -54,7 +106,7 @@ Page({
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-  
+    findBuyerOrderMsg(this);
   },
 
   /**
@@ -63,19 +115,23 @@ Page({
   onShareAppMessage: function () {
   
   },
+
+  //没收到电话弹框
   call: function(){
     this.setData({
       state: true
     })
   },
+  //隐藏电话弹框
   quxiao: function(){
     this.setData({
       state: false
     })
   },
+  //拨打电话
   queding: function(){
     wx.makePhoneCall({
-      phoneNumber: '13688886666'
+      phoneNumber: '021-57630970'
     })
   }
 })
