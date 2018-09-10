@@ -33,7 +33,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 23,
+			"current": 24,
 			"list": [
 				{
 					"id": -1,
@@ -176,7 +176,13 @@
 				{
 					"id": -1,
 					"name": "接广告商家信息",
-					"pathName": "pages/me/jie/message"
+					"pathName": "pages/me/jie/message",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "接广告登陆",
+					"pathName": "pages/me/jie/login"
 				}
 			]
 		}

@@ -161,6 +161,7 @@ Page({
       url: '/pages/me/fa/zhuce',
     })
   },
+  //忘记密码跳转
   wangji: function(){
     wx.navigateTo({
       url: '/pages/me/fa/wangji',

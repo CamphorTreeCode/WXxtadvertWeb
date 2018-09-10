@@ -3,22 +3,24 @@
   <image src='https://www.chuanshoucs.com/ServerImg/2018-08-01/08df4a7c-fea3-417d-ac13-9f18d4af928e.png'></image>
 </view>
 
+<form bindsubmit="formSubmit">
 <view class='hang'>
   <image src='https://www.chuanshoucs.com/ServerImg/2018-08-01/c8824c0e-8e8a-4f73-b644-01b3f306af90.png'></image>
-  <input placeholder-style='color: #CCC;' placeholder='请输入账号'></input>
+  <input placeholder-style='color: #CCC;' placeholder='请输入账号' name="accountName"></input>
 </view>
 <view class='hang'>
   <image src='https://www.chuanshoucs.com/ServerImg/2018-08-01/48f2f3de-ef4a-48fe-bc79-d283b579e73e.png'></image>
-  <input placeholder-style='color: #CCC;' placeholder='请输入密码' password='true'></input>
+  <input placeholder-style='color: #CCC;' placeholder='请输入密码' password='true' name="accountPassword"></input>
 </view>
 <view class='wu' bindtap='tiao'>忘记密码？点击这里找回</view>
-<button class='btn1' bindtap='login'>登录</button>
+<button class='btn1' formType="submit">登录</button>
+</form>
 <button class='btn2' bindtap='zhuce'>新用户注册</button>
 <!-- 登录身份判断 -->
 <view class='shadow {{tankuang==true?"kuang":" "}}'></view>
 <view class='tan {{tankuang==true?"kuang":" "}}'>
   <image src='https://www.chuanshoucs.com/ServerImg/2018-08-01/7049f187-2604-439b-a685-55949809d4d8.png'></image>
-  <view>检测到您有账号以另外一个身份</view>
+  <view>检测到您有账号以另外一个身份</view> 
   <view>登录，请退出登录后再进行此操作</view>
   <button bindtap='zhidao'>知道了</button>
 </view>

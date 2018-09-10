@@ -3,7 +3,7 @@
   <view class='hang' style='border-top: 10rpx solid #f5f5f5;'>
     <image src='https://www.chuanshoucs.com/ServerImg/2018-08-02/9360ea3c-b6b7-4740-bd1a-4a56c2c255fc.png' mode="aspectFill"></image>
     <text>商家名称</text>
-    <input placeholder-style='color: #ccc;' placeholder='请输入商家名称'></input>
+    <input placeholder-style='color: #ccc;' placeholder='请输入商家名称' name="sellerName" value="{{sellerInfo.sellerName}}"></input>
   </view>
   <!-- 加 -->
   <view class='hang'>
@@ -14,22 +14,22 @@
   </view>
   <!-- 状态控制 -->
   <view style='{{guang==true?"display:none;":"display: block;"}}' class='qian'>
-    <text data-index="{{index}}" wx:for="{{array}}" class='{{shu==index?"active":" "}}' bindtap='qian'>{{item.message}}</text>
+    <text data-index="{{index}}" wx:for="{{advertiseTypeList}}" class='{{shu==index?"active":" "}}' data-lid="{{item.advertiseTypeId}}" bindtap='qian'>{{item.advertiseTypeName}}</text>
   </view>
   <view class='hang'>
     <image src='https://www.chuanshoucs.com/ServerImg/2018-08-02/0aa433d1-a905-4f9a-a2c5-6cd2e1be7311.png' mode="aspectFill"></image>
     <text>联系人姓名</text>
-    <input placeholder-style='color: #ccc;' placeholder='请输入联系人姓名'></input>
+    <input placeholder-style='color: #ccc;' placeholder='请输入联系人姓名' name="sellerUserName" value="{{sellerInfo.sellerUserName}}"></input>
   </view>
   <view class='hang'>
     <image src='https://www.chuanshoucs.com/ServerImg/2018-08-02/6f7abb04-2ecc-4011-b738-c996c43ffb1b.png' mode="aspectFill"></image>
     <text>联系人电话</text>
-    <input placeholder-style='color: #ccc;' placeholder='请输入联系人电话'></input>
+    <input placeholder-style='color: #ccc;' placeholder='请输入联系人电话' name="sellerPhone" value="{{sellerInfo.sellerPhone}}"></input>
   </view>
   <view class='hang'>
     <image src='https://www.chuanshoucs.com/ServerImg/2018-08-02/e70e7f49-ee37-4da2-8a71-030fa5d12ca0.png' mode="aspectFill"></image>
     <text>联系地址</text>
-    <input class='dizhi' disabled='true' placeholder-style='color: #ccc;' placeholder='请选择地址' value='{{address}}'></input>
+    <input class='dizhi' disabled='true' placeholder-style='color: #ccc;' placeholder='请选择联系地址' value='{{SellerAddress}}'></input>
     <image bindtap='dizhi' class='zhankai' src='https://www.chuanshoucs.com/ServerImg/2018-08-02/70321424-a61b-4872-b3a5-9fdba2b7ffbc.png' mode="aspectFill"></image>
   </view>
   <!-- 加 -->
@@ -37,7 +37,7 @@
     <image src='https://www.chuanshoucs.com/ServerImg/2018-08-03/d6dd8f60-a76c-47ea-b584-ee082b0041e8.png' mode="aspectFill"></image>
     <text>广告位简介</text>
   </view>
-  <textarea placeholder-style='color: #ccc;' class='bbb jianjie' placeholder='请填写广告位简介' maxlength='100' style='font-size: 32rpx;'>
+  <textarea placeholder-style='color: #ccc;' class='bbb jianjie' placeholder='请填写广告位简介' name="advertiseIntro" maxlength='100' style='font-size: 32rpx;' value="{{sellerInfo.advertiseIntro}}">
   </textarea>
 
   <view class='sc'>

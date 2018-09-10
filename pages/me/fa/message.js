@@ -407,7 +407,7 @@ Page({
                 success: function (res) {
                   console.info("下面是提交商家信息返回的结果：")
                   console.info(res)
-                  if (res.data.addBuyerInfoMsg == true) {
+                  if (res.data.BuyerInfoUpdate == true) {
                     //提交成功
                     wx.showToast({
                       title: '提交成功',

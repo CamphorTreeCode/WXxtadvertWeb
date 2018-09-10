@@ -1,4 +1,5 @@
 // pages/me/jie/login.js
+var app = getApp();
 Page({
 
   /**
@@ -68,42 +69,124 @@ Page({
   onShareAppMessage: function () {
   
   },
+
   //登录按钮
-  login: function () {
-    // 身份正确跳转
-    if (this.data.shenfen) {
-      wx.reLaunch({
-        url: '/pages/me/jie/gongzuotai',
-      })
+  formSubmit: function (e) {
+    var that = this;
+    console.info(e)
+    var accountName = e.detail.value.accountName;
+    var accountPassword = e.detail.value.accountPassword;
+    //表单验证
+    function yanzheng(accountName, accountPassword) {
+      if (accountName == '') {
+        wx.showToast({
+          title: '账号名称不能为空',
+          icon: 'none',
+          duration: 1000
+        })
+        return false;
+      }
+      if (accountPassword == '') {
+        wx.showToast({
+          title: '账号密码不能为空',
+          icon: 'none',
+          duration: 1000
+        })
+        return false;
+      } else {
+        return true;
+      }
     }
-    //另外一个身份正在登录，请退出再登录
-    if (this.data.tankuang) {
-      this.setData({
-        tankuang: true
-      })
+    if (yanzheng(accountName, accountPassword)) {
+      //验证成功
+      if (app.globalData.UserRoles == 1) {
+        //当前登陆发广告身份
+        that.setData({
+          tankuang: true
+        })
+      } else {
+        wx.request({
+          url: app.globalData.appUrl + 'WXSellerAccount/sellerAccountLogin',
+          data: {
+            accountName: accountName,
+            accountPassword: accountPassword,
+            openId: app.returnOpenId(),
+          },
+          header: {
+            'content-type': 'application/x-www-form-urlencoded',
+            xcxuser_name: "xcxuser_name"
+          },
+          success: function (res) {
+            console.info("下面是查询登陆信息：")
+            console.info(res)
+            if (res.data.frozenState == true) {
+              //账号冻结
+              wx.showModal({
+                title: '',
+                content: '您的账号涉嫌违规操作现已冻结，请联系客服',
+                showCancel: false,
+                confirmColor: '#FF7B88'
+              })
+            } else if (res.data.loginCheck == true) {
+              //登陆成功
+              wx.showToast({
+                title: '登陆成功',
+                icon: 'success',
+                duration: 1000
+              })
+              wx.reLaunch({
+                url: '/pages/me/jie/gongzuotai',
+              })
+            } else if (res.data.loginCheck == false) {
+              //账号密码错误
+              wx.showToast({
+                title: '账号密码错误',
+                icon: 'none',
+                duration: 1000
+              })
+            }
+          }
+        })
+      }
     }
-    //账号冻结
-    if (this.data.dongjie) {
-      wx.showModal({
-        title: '',
-        content: '您的账号涉嫌违规操作现已冻结，请联系客服',
-        showCancel: false,
-        confirmColor: '#FF7B88'
-      })
-    }  
+    // // 身份正确跳转
+    // if (this.data.shenfen) {
+    //   wx.reLaunch({
+    //     url: '/pages/me/jie/gongzuotai',
+    //   })
+    // }
+    // //另外一个身份正在登录，请退出再登录
+    // if (this.data.tankuang) {
+    //   this.setData({
+    //     tankuang: true
+    //   })
+    // }
+    // //账号冻结
+    // if (this.data.dongjie) {
+    //   wx.showModal({
+    //     title: '',
+    //     content: '您的账号涉嫌违规操作现已冻结，请联系客服',
+    //     showCancel: false,
+    //     confirmColor: '#FF7B88'
+    //   })
+    // }  
   },
+
   //登录失败弹窗知道了
   zhidao: function () {
     this.setData({
       tankuang: false
     })
   },
+
   //注册
   zhuce: function () {
     wx.navigateTo({
       url: '/pages/me/jie/zhuce',
     })
   },
+  
+  //忘记密码
   tiao: function () {
     wx.navigateTo({
       url: '/pages/me/jie/wangji',

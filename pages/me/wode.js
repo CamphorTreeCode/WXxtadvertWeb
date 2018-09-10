@@ -216,6 +216,32 @@ Page({
       })
     } else if (roles == 2) {
       //用户登陆接广告身份
+      if (Reg == true && Info == true && BuyerInfoState == true) {
+        //信息全部填写完整，进入登陆页面
+        wx.navigateTo({
+          url: '/pages/me/fa/login',
+        })
+      } else if (Reg == true && Info == true && BuyerInfoState == false) {
+        //信息全部填写完整，没有审核进入待审核页面
+        wx.navigateTo({
+          url: '/pages/me/fa/tijiaoSuccess',
+        })
+      } else if (Reg == true && Info == true && BuyerInfoState == 2) {
+        //信息全部填写完整，审核不通过进入信息页面
+        wx.navigateTo({
+          url: '/pages/me/fa/message',
+        })
+      } else if (Reg == true && Info == false) {
+        //注册但没填写信息
+        wx.navigateTo({
+          url: '/pages/me/fa/zhuceSuccess',
+        })
+      } else if (Reg == false && Info == false) {
+        //没有注册，没有填写信息
+        wx.navigateTo({
+          url: '/pages/me/fa/login',
+        })
+      }
       wx.navigateTo({
         url: '/pages/me/fa/login',
       })
@@ -258,15 +284,38 @@ Page({
         })
       }
     } else if (roles == 2) {
-      //用户登陆发广告状态
+      //用户登陆接广告状态
       wx.navigateTo({
         url: '/pages/me/jie/gongzuotai',
       })
     } else if (roles == 1) {
-      //用户登陆接广告身份
-      wx.navigateTo({
-        url: '/pages/me/jie/login',
-      })
+      //用户登陆发广告身份
+      if (SellerReg == true && SellerInfo == true && SellerInfoState == true) {
+        //信息全部填写完整，进入登陆页面
+        wx.navigateTo({
+          url: '/pages/me/jie/login',
+        })
+      } else if (SellerReg == true && SellerInfo == true && SellerInfoState == false) {
+        //信息全部填写完整，没有审核进入待审核页面
+        wx.navigateTo({
+          url: '/pages/me/jie/tijiaoSuccess',
+        })
+      } else if (SellerReg == true && SellerInfo == true && SellerInfoState == 2) {
+        //信息全部填写完整，审核不通过进入信息页面
+        wx.navigateTo({
+          url: '/pages/me/jie/message',
+        })
+      } else if (SellerReg == true && SellerInfo == false) {
+        //注册但没填写信息
+        wx.navigateTo({
+          url: '/pages/me/jie/zhuceSuccess',
+        })
+      } else if (SellerReg == false && SellerInfo == false) {
+        //没有注册，没有填写信息
+        wx.navigateTo({
+          url: '/pages/me/jie/login',
+        })
+      }
     }
   }
 })
