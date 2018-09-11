@@ -3,34 +3,33 @@
 <!--pages/me/fa/gongzuotai.wxml-->
 <!-- 上 -->
 <view class='shang'>
-  <image src='https://www.chuanshoucs.com/ServerImg/2018-08-02/94eaab23-3f67-42ba-9a74-1711241ca81c.png' class='shouye'  bindtap='tuichu'></image>
-  <image class='logo' src='{{logo}}'></image>
-  <view>{{name}}</view>
-  <!-- <image bindtap='hui' class='hui' src='https://www.chuanshoucs.com/ServerImg/2018-08-03/3e0201c5-c1a0-46ed-a9e4-1af4de4afdba.png'></image> -->
+  <image src='https://www.chuanshoucs.com/ServerImg/2018-08-02/94eaab23-3f67-42ba-9a74-1711241ca81c.png' class='shouye' bindtap='tuichu' mode="aspectFill"></image>
+  <image class='logo' src='{{SellerInfo.advertiseLogo}}' mode="aspectFill"></image>
+  <view>{{SellerInfo.sellerName}}</view>
 </view>
 <view class='xia'>
   <view class='hang'>
-    <image src='https://www.chuanshoucs.com/ServerImg/2018-08-03/91b624af-708a-4526-98ba-2926b0715dd0.png'></image>
+    <image src='https://www.chuanshoucs.com/ServerImg/2018-08-03/91b624af-708a-4526-98ba-2926b0715dd0.png' mode="aspectFill"></image>
     <text>财务管理</text>
   </view>
   <view class='kuai'>
     <view style='text-align: right;padding-right: 10rpx;'>今日收益</view>
-    <view style="padding:0 0 30rpx 20rpx; font-weight:700; color: #FF6702;">7890</view>
+    <view style="padding:0 0 30rpx 20rpx; font-weight:700; color: #FF6702;">{{todayIncome}}</view>
   </view>
   <view class='kuai'>
     <view style='text-align: right;padding-right: 10rpx;'>总计收益</view>
-    <view style="padding:0 0 30rpx 20rpx; font-weight:700; color: #FF6702;">6250</view>
+    <view style="padding:0 0 30rpx 20rpx; font-weight:700; color: #FF6702;">{{totalIncome}}</view>
   </view>
-    <view class='kuai'>
+  <view class='kuai'>
     <view style='text-align: right;padding-right: 10rpx;'>订单金额</view>
-    <view style="padding:0 0 30rpx 20rpx; font-weight:700; color: #FF6702;">3390</view>
+    <view style="padding:0 0 30rpx 20rpx; font-weight:700; color: #FF6702;">{{ordermoney}}</view>
   </view>
   <view class='kuai'>
     <view style='text-align: right;padding-right: 10rpx;'>余额</view>
-    <view style="padding:0 0 30rpx 20rpx; font-weight:700; color: #FF6702;">3390</view>
+    <view style="padding:0 0 30rpx 20rpx; font-weight:700; color: #FF6702;">{{balance}}</view>
   </view>
   <view class='kuai money' bindtap='tixian'>
-    <image src='https://www.chuanshoucs.com/ServerImg/2018-08-03/455ce78c-e95e-4185-ab54-e13f1efd89f2.png'></image>
+    <image src='https://www.chuanshoucs.com/ServerImg/2018-08-03/455ce78c-e95e-4185-ab54-e13f1efd89f2.png' mode="aspectFill"></image>
     <view class='btn'>我要提现</view>
   </view>
 </view>
@@ -41,12 +40,10 @@
 <!-- 退出登录弹框 -->
 <view class='shadow {{state==true?"kuang":" "}}'></view>
 <view class='tan {{state==true?"kuang":" "}}'>
-  <image src='https://www.chuanshoucs.com/ServerImg/2018-08-03/2a7479a5-07ca-4d83-8f8b-9127b3d7bd45.png'></image>
+  <image src='https://www.chuanshoucs.com/ServerImg/2018-08-03/2a7479a5-07ca-4d83-8f8b-9127b3d7bd45.png' mode="aspectFill"></image>
   <view>确认退出登录吗</view>
   <view class='anniu'>
     <view class='quxiao' bindtap='quxiao'>取消</view>
     <view class='queding' bindtap='queding'>确定</view>
   </view>
 </view>
-
-

@@ -33,7 +33,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 24,
+			"current": 28,
 			"list": [
 				{
 					"id": -1,
@@ -182,7 +182,31 @@
 				{
 					"id": -1,
 					"name": "接广告登陆",
-					"pathName": "pages/me/jie/login"
+					"pathName": "pages/me/jie/login",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "接广告忘记密码",
+					"pathName": "pages/me/jie/wangji",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "接广告工作台",
+					"pathName": "pages/me/jie/gongzuotai",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "接广告设置提现密码",
+					"pathName": "pages/me/jie/mima",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "接广告提现余额",
+					"pathName": "pages/me/jie/tixian"
 				}
 			]
 		}

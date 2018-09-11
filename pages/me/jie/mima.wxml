@@ -1,18 +1,19 @@
 <!--pages/me/jie/mima.wxml-->
+<form bindsubmit="formSubmit">
 <view class='zong'>
   <view class='gong'>
-    <input password='true'  placeholder-style='color: #ccc;' placeholder='请输入注册手机号码'></input>
+    <input placeholder-style='color: #ccc;' placeholder='请输入注册手机号码' name="phoneNo" bindblur="shouji"></input>
   </view>
   <view class='one gong'>
-    <input placeholder-style='color: #ccc;' placeholder='请输入验证码'></input>
+    <input placeholder-style='color: #ccc;' placeholder='请输入验证码' name="verificationCode"></input>
     <button style='background-color: {{hasPhone==true?"#FFD800":"#ccc"}}' disabled="{{buttonClicked}}" bindtap='ma'>{{msg}}</button>
   </view>
   <view class='gong'>
-    <input password='true'  placeholder-style='color: #ccc;' placeholder='设置密码'></input>
+    <input password='true'  placeholder-style='color: #ccc;' placeholder='设置密码(长度为6的纯数字)' name="withdrawPassword"></input>
   </view>
   <view class='gong'>
-    <input password='true' placeholder-style='color: #ccc;' placeholder='请再次输入密码'></input>
+    <input password='true' placeholder-style='color: #ccc;' placeholder='请再次输入密码' bindblur="Matchpwd"></input>
   </view>
 </view>
-<button class='zzz' style='{{state==true?"background-color: #FFCC00":"background-color: #CCC"}}' bindtap='tijiao'>提交</button>
-
+<button class='zzz' style='background-color: #FFCC00' formType="submit">提交</button>
+</form>
