@@ -27,6 +27,7 @@ Page({
     //价格
     jiage: "block",
     price: ["40元/1天", "200元/5天", "400元/10天", "800元/20天", "1200元/30天"],
+
     priceindex: 0,
     //单价
     unitPrice:0,
@@ -291,11 +292,12 @@ Page({
   textjiage: function(e) {
     // console.log(e)
     var index = e.target.dataset.index;
-    this.setData({
-      priceindex: index
-    })
     //选择的天数和对应的总价格
-    var price = this.data.price[index]
+    var price = this.data.price[index];
+    this.setData({
+      priceindex: index,
+      // choosePrice: price,
+    })
     //总价格
     this.data.totalPrice = price.substring(0, price.indexOf("元"))
     //天
@@ -387,11 +389,45 @@ Page({
     //身份正常，可以加入购物车
     if (app.globalData.UserRoles == 1) {
       if (this.data.Shopping == true && this.data.Shoppinged == false) {
-        this.setData({
-          Shopping: false,
-          ShoppingCart: true,
-          Shoppinged: true
+        //加入购物车start
+        var shoppingDate;
+        console.info(that.data.period.orderDate)
+        console.info(that.data.totalPrice)
+        if (that.data.period.orderDate != undefined){
+          shoppingDate = that.data.period.orderDate;
+        }else{
+          shoppingDate = '';
+        }
+        var shoppingCart = {};
+        shoppingCart.unitPrice = that.data.totalPrice;
+        shoppingCart.shoppingDate = shoppingDate;
+        shoppingCart.sellerAdvertiseId = that.data.sellerAdvertiseId;
+        shoppingCart.openId = app.returnOpenId();
+        console.info(shoppingCart)
+        wx.request({
+          url: app.globalData.appUrl + 'WXShopCar/addShoppingCartInfo',
+          data: shoppingCart,
+          header: {
+            'content-type': 'application/x-www-form-urlencoded', // 默认值
+            xcxuser_name: "xcxuser_name"
+          },
+          success: function (res) {
+            console.info("增加购物车返回的信息")
+            console.info(res);
+            // that.setData({
+            //   collection: false,
+            //   Tcollection: true
+            // })
+          }
+
         })
+          //加入购物车end
+
+        // this.setData({
+        //   Shopping: false,
+        //   ShoppingCart: true,
+        //   Shoppinged: true
+        // })
       } else if (this.data.Shopping == false || this.data.Shopping == true) {
         this.setData({
           Shopping: true,

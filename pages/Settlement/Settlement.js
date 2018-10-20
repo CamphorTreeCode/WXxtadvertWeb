@@ -128,7 +128,8 @@ Page({
             content: res.data.error,
           })
         }else{
-          PayUtils(res.data.prepay_id, app.globalData.appUrl + 'WXPay/SellerAdvertisePaySuccess', { orderListId: res.data.orderId, orderday: JSON.stringify(that.data.data.orderday)},'/pages/index/index')
+          PayUtils(res.data.prepay_id, app.globalData.appUrl + 'WXPay/SellerAdvertisePaySuccess', 
+              { orderListId: res.data.orderId, orderday: JSON.stringify(that.data.data.orderday)},'/pages/index/index')
         }
 
       }
