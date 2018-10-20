@@ -147,7 +147,7 @@ Page({
    *点击换一批
    */
   rotate: function() {
-    a = a + 1;
+    a += 1;
     this.animation.rotate(a * 180).step();
     this.setData({
       animation: this.animation.export()

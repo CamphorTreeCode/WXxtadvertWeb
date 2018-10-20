@@ -198,7 +198,7 @@ Page({
         console.info("下面是用户退出登陆返回的信息：")
         console.info(res)
         if (res.data.Logout == true){
-          wx.redirectTo({
+          wx.reLaunch({
             url: '/pages/me/wode',
           })
         } else if (res.data.Logout == false){

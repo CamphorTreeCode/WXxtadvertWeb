@@ -147,28 +147,31 @@ Page({
       url: '/pages/me/member?roles=' + app.globalData.UserRoles,
     })
   },
-  // 联系
+  // 联系我们
   contact: function() {
     wx.makePhoneCall({
       phoneNumber: '021-57630970'
     })
   },
-  //反馈
+  //意见反馈
   fankui: function() {
     wx.navigateTo({
       url: '/pages/me/fankui',
     })
   },
+  //关于我们
   about: function() {
     wx.navigateTo({
       url: '/pages/me/about',
     })
   },
+  //开发小程序
   more: function() {
     wx.navigateTo({
       url: '/pages/me/more',
     })
   },
+  //收藏
   collect: function() {
     wx.navigateTo({
       url: '/pages/me/shoucang?roles=' + app.globalData.UserRoles,

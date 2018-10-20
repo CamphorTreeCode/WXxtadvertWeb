@@ -230,6 +230,20 @@ swiper {
   background: #ffd800;
 }
 
+/* 已失效 */
+.foter .shixiao {
+  width: 90%;
+  margin: 0 5%;
+  height: 100rpx;
+  color: #fff;
+  line-height: 100rpx;
+  text-align: center;
+  float: right;
+  border-radius: 15rpx;
+  background-color: #999;
+  
+}
+
 /* 返回主页悬浮窗 */
 
 .homebanner {
@@ -558,4 +572,51 @@ swiper {
 
 .zhanwei {
   border-top: 300rpx solid #f5f5f5;
+}
+
+.close{
+position: absolute;
+bottom: 2rem;
+line-height: 2.5rem;
+height: 2.5rem;
+width: 95%;
+text-align: center;
+background: #33A1FF;
+margin: 0 2.5%;
+overflow: hidden;
+color: #fff;
+}
+
+.canvas {
+  background-color: #fff;
+  position: fixed;
+  left: 5%;
+  top: 40rpx;
+  border-radius: 10rpx;
+  z-index: 999;
+  overflow: hidden;
+  }
+.canvas image{
+  width: 50rpx;
+  height: 50rpx;
+  float: right;
+  margin: 20rpx;
+}
+  canvas{
+  width: 90%;
+  height:70%;
+  margin: 100rpx auto 0;
+  box-shadow:#ccc 0rpx 0rpx 13px; 
+  border-radius:10rpx;
+}
+
+.dibu {
+  width:100%;
+  text-align: center;
+  font-size: 32rpx;
+  color: #999;
+  margin-top: 60rpx;
+}
+.aaa {
+  margin-top:10rpx;
 }

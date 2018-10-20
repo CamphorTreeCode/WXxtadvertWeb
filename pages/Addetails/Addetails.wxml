@@ -161,29 +161,30 @@
 <!-- 同屏推荐 end -->
 <!-- 底部 -->
 <view class='foter' style='display:{{foter}}'>
-  <view class='f_shoucang' bindtap='collection'>
+  <view class='f_shoucang' wx:if="{{isinvalid==0}}" bindtap='collection' data-sellerAdvertiseId="{{sellerAdvertiseId}}" data-buyerCollectionId="{{buyerCollectionId}}"> 
     <view class='f_center'>
       <image wx:if="{{collection==false}}" src='/img/detail/weishoucang.png'></image>
       <image wx:else="{{collection==true}}" src='/img/detail/yishoucang.png'></image>
     </view>
   </view>
-  <view class='f_gouwu' bindtap='ShoppingCart'>
+  <view class='f_gouwu' wx:if="{{isinvalid==0}}" bindtap='ShoppingCart'>
     <view class='f_center'>
       <image src='/img/detail/jiarugouwuche.png'></image>
     </view>
   </view>
-  <view class='f_yuyue' bindtap='appointment'>
+  <view class='f_yuyue' wx:if="{{isinvalid==0}}" bindtap='appointment'>
     <view class='f_left'>
       <image src='/img/detail/yuyue.png'></image>
       <text>立即预约</text>
     </view>
   </view>
-  <view class='f_zhuanfa' bindtap='forward'>
+  <view class='f_zhuanfa' wx:if="{{isinvalid==0}}" bindtap='forward'>
     <view class='f_left'>
       <image src='/img/detail/zhuanfa.png'></image>
       <text>转发</text>
     </view>
   </view>
+  <view class='shixiao' wx:if="{{isinvalid==1}}">已失效</view>
 </view>
 
 <!-- 返回主页悬浮窗 -->
@@ -217,18 +218,28 @@
 </view>
 
 
-<!-- 海报 -->
+<!--转发&生成海报end-->
 <view class='poster' hidden='{{poster == false}}'>
-  <view class='poster_left'>
+  <button openType="share" class='poster_left'>
     <image src='/img/detail/wechat.png'></image>
     <text>分享给好友</text>
-  </view>
-  <view class='poster_right'>
-    <image src='/img/detail/fenxianghaibao.png'></image>
+  </button>
+  <button bindtap="getGoodsQrcode" class='poster_right'>
+    <image src='/img/detail/fenxianghaibao.png' mode='aspectFill'></image>
     <text>生成海报</text>
-  </view>
+  </button>
 </view>
-
+<!--转发&生成海报end-->
 <view class='poster_quxiao' bindtap='postercancel' hidden='{{poster == false}}'>
   取消
 </view>
+
+<view wx:if="{{haibao==false}}" class="canvas" style='width:{{width}}px;height:{{height}}px'>
+  <image mode='aspectFill' src="/img/detail/cha.png" catchtap='closeHaiBao'></image>
+  <canvas canvas-id="shareCanvas" disable-scroll="true" bindtouchstart="touchStart" bindtouchmove="touchMove" bindtouchend="touchEnd" catchtap='preview_img'></canvas>
+  <!-- <button catchtap="saveImage" class='btn' >保存图片</button> -->
+  <view class='dibu'>点击预览大图就可以了保存至相册</view>
+  <view class='dibu aaa'>您可以分享到朋友圈或者好友啦</view>
+</view>
+
+<!-- <view class='shade' style='display:{{shade}}' disable-scroll="true" bindtouchstart="touchStart" bindtouchmove="touchMove" bindtouchend="touchEnd"></view> -->

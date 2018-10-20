@@ -215,41 +215,47 @@ Page({
     withdrawMoney.sellerAccountId = that.data.sellerAccountId;
     console.info(withdrawMoney)
 
+    if (e.detail.value.withdrawPassword == ''){
+      wx.showToast({
+        title: '请输入提现密码',
+        icon: 'none',
+        duration: 1000
+      })
+    }else{
 
-
-    //用户提现start
-    wx.request({
-      url: app.globalData.appUrl + 'WXWithdrawMoney/sellerWithdrawMoney',
-      data: withdrawMoney,
-      header: {
-        'content-type': 'application/x-www-form-urlencoded', // 默认值
-        xcxuser_name: "xcxuser_name"
-      },
-      method: 'get',
-      success: function (res) {
-        console.info("下面是用户提现返回的信息：")
-        console.info(res)
-        if (res.data.addSellerWithdrawMoney == true){
-          wx.showToast({
-            title: '提交审核成功',
-            icon: 'success',
-            duration: 1000
-          })
-          setTimeout(function () {
-            wx.reLaunch({
-              url: '/pages/me/jie/gongzuotai',
+      //用户提现start
+      wx.request({
+        url: app.globalData.appUrl + 'WXWithdrawMoney/sellerWithdrawMoney',
+        data: withdrawMoney,
+        header: {
+          'content-type': 'application/x-www-form-urlencoded', // 默认值
+          xcxuser_name: "xcxuser_name"
+        },
+        method: 'get',
+        success: function (res) {
+          console.info("下面是用户提现返回的信息：")
+          console.info(res)
+          if (res.data.addSellerWithdrawMoney == true) {
+            wx.showToast({
+              title: '提交审核成功',
+              icon: 'success',
+              duration: 1000
             })
-          }, 1000)
-        } else if (res.data.withdrawPassword == false){
-          wx.showToast({
-            title: '密码错误，请重新输入',
-            icon: 'none',
-            duration: 1000
-          })
+            setTimeout(function () {
+              wx.reLaunch({
+                url: '/pages/me/jie/gongzuotai',
+              })
+            }, 1000)
+          } else if (res.data.withdrawPassword == false) {
+            wx.showToast({
+              title: '密码错误，请重新输入',
+              icon: 'none',
+              duration: 1000
+            })
+          }
         }
-      }
-    })
+      })
     //用户提现end
-
+    }
   }
 })

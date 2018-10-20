@@ -1,9 +1,11 @@
 /* pages/me/shoucang.wxss */
+
 page {
-  background-color: #F9F9F9;
+  background-color: #f9f9f9;
   width: 100%;
   height: 100%;
 }
+
 .mei {
   width: 100%;
   height: 100%;
@@ -11,24 +13,27 @@ page {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  color: #9A9A9A;
+  color: #9a9a9a;
 }
-.mei image{
+
+.mei image {
   width: 244rpx;
   height: 244rpx;
   margin-bottom: 20rpx;
 }
 
-
 /* 有收藏 */
+
 .zzz {
   position: relative;
   overflow: hidden;
 }
+
 .zong {
+  display: flex;
   background-color: #fff;
   padding: 20rpx 0;
-  border-top: 5rpx solid #F9F9F9;
+  border-top: 5rpx solid #f9f9f9;
   overflow: hidden;
   position: relative;
   -webkit-transform: translateX(0rpx);
@@ -36,34 +41,81 @@ page {
   -webkit-transition: all 0.5s;
   transition: all 0.5s;
 }
-.zong image {
-  width: 220rpx;
-  height: 200rpx;
-  border-radius: 30rpx;
-  float: left;
-  margin-left: 15rpx;
 
-}
-.zhong {
+.label {
+  width: 30%;
+  height: 200rpx;
+  margin-left: 15rpx;
+  border-radius: 20rpx;
+  overflow: hidden;
+  /* border: 1rpx solid #ff7372; */
+  position: relative;
   float: left;
-  font-size: 30rpx;
+}
+
+.label image {
+  width: 100%;
+  height: 100%;
+}
+
+.label .label_bottom {
+  color: #fff;
+  font-size: 35rpx;
+  width: 100%;
+  height: 50rpx;
+  line-height: 50rpx;
+  text-align: center;
+  background: rgba(0, 0, 0, 0.3);
   position: absolute;
-  top: 50%;
-  left: 55%;
-  transform: translateX(-50%) translateY(-50%);
+  left: 0;
+  bottom: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.zhong {
+  width: 45%;
+  margin: 0 2%;
+  font-size: 30rpx;
+}
+
+.none{
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.site {
+  margin: 20rpx 0 10rpx 0;
+  color: #999;
+  font-size: 26rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.btn {
+  width: 25%;
+  height: 200rpx;
+  display: flex;
+  align-items: center;
+}
+
+.noshow{
+  background: #999;
 }
 button {
-  width: 150rpx;
+  width: 90%;
+  line-height: 60rpx;
+  padding: 0 5%;
   font-size: 30rpx;
   color: #fff;
-  background-color: #FFD200;
-  position: absolute;
-  top: 50%;
-  left: 87%;
-  transform: translateX(-50%) translateY(-50%);
+  background-color: #ffd200;
 }
+
 .yincang {
-  background-color: #FF7372;
+  background-color: #ff7372;
   color: #fff;
   font-size: 36rpx;
   width: 200rpx;
@@ -79,11 +131,13 @@ button {
   -webkit-transition: all 0.5s;
   transition: all 0.5s;
 }
+
 .hua .zong {
   -webkit-transform: translateX(-200rpx);
- transform: translateX(-200rpx);
+  transform: translateX(-200rpx);
 }
+
 .hua .yincang {
- -webkit-transform: translateX(0);
- transform: translateX(0);
+  -webkit-transform: translateX(0);
+  transform: translateX(0);
 }
