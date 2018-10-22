@@ -160,6 +160,7 @@ select {
   font-size: 30rpx;
   overflow: hidden;
   white-space: nowrap;
+  text-overflow:ellipsis;
 }
 
 /* listbox end */

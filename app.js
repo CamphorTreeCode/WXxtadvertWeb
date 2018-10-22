@@ -80,5 +80,7 @@ App({
     UserRoles:0,
     //收藏的广告位信息
     collectionContent:{},
+    //导航栏跳转的lableId
+    lableId:0,
   }
 })

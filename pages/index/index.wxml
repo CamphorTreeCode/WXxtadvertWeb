@@ -34,7 +34,7 @@
   <image src='{{vip_banner}}' mode='aspectFill' class='vip_banner' bindtap='vip_banner' hidden="{{vipIsShow}}"></image>
   <!-- 广告 end -->
 
-  <!-- 广告位推荐 -->
+  <!-- 广告位推荐 --> 
   <view class='advertising'>
     <!-- 广告位推荐头部 -->
     <view class='advertising_top clearfix'>
@@ -50,7 +50,7 @@
 
     <!-- 推荐岗位 -->
     <view class='post clearfix'>
-      <view class='superior' wx:for="{{referrer}}" style='background-image:url({{item.img}})'>
+      <view class='superior' wx:for="{{referrer}}" catchtap='detail' data-sellerAdvertiseId='{{item.sellerAdvertiseId}}' style='background-image:url({{item.img}})'>
         <!-- 地址 -->
         <view class='superior_address'>{{item.sellerName}}</view>
         <!-- 人流量 -->
@@ -100,11 +100,11 @@
           <!-- 计算 -->
           <view class='listbox_box_computer'>
             <!-- 减 -->
-            <image src='{{item.subtract}}' class='listbox_box_subtract' data-index='{{index}}' style='display:{{item.hide}}' catchtap='subtraction'></image>
+            <image src='{{item.subtract}}' class='listbox_box_subtract' data-index='{{index}}' data-sellerAdvertiseId='{{item.sellerAdvertiseId}}' style='display:{{item.hide}}' catchtap='subtraction'></image>
             <!-- 数量 -->
             <view class='listbox_box_quantity' style='display:{{item.hide}}'>{{item.quantity}}</view>
             <!-- 加 -->
-            <image src='{{item.plus}}' class='listbox_box_plus' catchtap='addition' data-index='{{index}}'></image>
+            <image src='{{item.plus}}' class='listbox_box_plus' catchtap='addition' data-index='{{index}}' data-sellerAdvertiseId='{{item.sellerAdvertiseId}}' data-unitPrice='{{item.unitPrice}}'></image>
           </view>
           <!-- 地址 -->
           <view class='listbox_box_site'>松江区</view>

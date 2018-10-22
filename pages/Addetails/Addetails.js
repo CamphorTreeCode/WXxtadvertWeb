@@ -30,12 +30,12 @@ Page({
 
     priceindex: 0,
     //单价
-    unitPrice:0,
+    unitPrice: 0,
     //选择的天数和总价
     daynum: 1,
     totalPrice: '',
     //标签集合
-    lableList:[],
+    lableList: [],
     //广告类型
     advertiseTypeName: '广告类型',
     //地址
@@ -51,9 +51,9 @@ Page({
     // 收藏弹出框
     Tcollection: false,
     //收藏id
-    buyerCollectionId:null,
+    buyerCollectionId: null,
     //收藏对象
-    buyerCollection:{},
+    buyerCollection: {},
     // 购物车
     Shopping: true,
     // 购物车弹窗
@@ -69,10 +69,10 @@ Page({
     foter: 'block',
     recommend: '同屏推荐',
     listbox: [],
-    adv:[],
-    collectionContent:[],
+    adv: [],
+    collectionContent: [],
     //收藏是否失效
-    isinvalid:0,
+    isinvalid: 0,
     shade: 'none',
   },
 
@@ -99,7 +99,7 @@ Page({
         //'content-type': 'application/json', // 默认值
         xcxuser_name: "xcxuser_name"
       },
-      success: function (res) {
+      success: function(res) {
         console.info("下面是该用户收藏状态：1:已收藏  0:未收藏")
         console.log(res.data)
         if (res.data != "") {
@@ -123,80 +123,80 @@ Page({
     //根据传入的广告位id查询对应的广告位
     if (!options.collectionContent) {
       console.info("不是页面传的广告位")
-    wx.request({
-      url: app.globalData.appUrl + 'WXSellerAdvertise/findById',
-      data: {
-        SellerAdvertiseId: options.sellerAdvertiseId,
-        openId: app.returnOpenId(),
-      },
-      success: function(res) {
-        console.info("下面是广告位详情信息：")
-        console.info(res)
-        var adv = res.data;
-        that.data.collectionContent.push(adv);
-        //渲染广告位详细信息
-        that.setData({
-          sellerAdvertiseId: adv.sellerAdvertiseId,
-          swiper: JSON.parse(adv.sellerInfo.advertiseImgs),
-          sellerName: adv.sellerInfo.sellerName,
-          put: adv.sellerVolume == undefined ? 0 : adv.sellerVolume,
-          price: [adv.unitPrice + "元/1天", adv.unitPrice * 5 + "元/5天", adv.unitPrice * 10 + "元/10天", adv.unitPrice * 20 + "元/20天", adv.unitPrice * 30 + "元/30天"],
-          totalPrice: adv.unitPrice,
-          advertiseTypeName: adv.sellerInfo.advertiseType.advertiseTypeName,
-          sellerAddress: adv.sellerInfo.sellerAddress,
-          advertiseIntro: adv.sellerInfo.advertiseIntro,
-          advertiseBrowser: adv.advertiseBrowser,
-          userImgList: adv.userImgList,
-          unitPrice: adv.unitPrice,
-          lableList: adv.lableList,
-          // adv:adv,
-        })
-        //渲染同屏推荐
-        wx.getLocation({
-          success: function(res) {
-            wx.request({
-              url: app.globalData.appUrl + 'WXSellerAdvertise/findSameScreen',
-              data: {
-                sellerAdvertiseId: adv.sellerAdvertiseId,
-                advertId: adv.advertId,
-                sellerLatitude: res.latitude,
-                sellerLongitude: res.longitude
-              },
-              success: function(res) {
-                console.info("下面是同屏推荐信息")
-                console.info(res.data)
-                for (var i = 0; i < res.data.length; i++) {
-                  //循环设定广告位对应的广告位信息的第一张图片
-                  res.data[i].sellerInfo.advertiseImgs = JSON.parse(res.data[i].sellerInfo.advertiseImgs)
-                  //循环设定广告位距用户的距离
-                  res.data[i].distances = (res.data[i].distances / 1000).toFixed(1)
-                  //比对广告位是否在购物车中  
-                  if (app.globalData.shopCarAdvertise.indexOf(res.data[i].sellerAdvertiseId) != -1) {
-                    res.data[i].hide = 'block'
-                    res.data[i].quantity = 1
-                    res.data[i].plus = '/img/detail/hjia.png'
-                    res.data[i].subtract = '/img/detail/yjian.png'
-                  }
-                  //如果广告屏不在购物车中不显示减号和数量为
-                  else {
-                    res.data[i].plus = '/img/detail/yjia.png'
-                    res.data[i].subtract = '/img/detail/yjian.png'
-                    res.data[i].hide = 'none'
-                    res.data[i].quantity = 0
+      wx.request({
+        url: app.globalData.appUrl + 'WXSellerAdvertise/findById',
+        data: {
+          SellerAdvertiseId: options.sellerAdvertiseId,
+          openId: app.returnOpenId(),
+        },
+        success: function(res) {
+          console.info("下面是广告位详情信息：")
+          console.info(res)
+          var adv = res.data;
+          that.data.collectionContent.push(adv);
+          //渲染广告位详细信息
+          that.setData({
+            sellerAdvertiseId: adv.sellerAdvertiseId,
+            swiper: JSON.parse(adv.sellerInfo.advertiseImgs),
+            sellerName: adv.sellerInfo.sellerName,
+            put: adv.sellerVolume == undefined ? 0 : adv.sellerVolume,
+            price: [adv.unitPrice + "元/1天", adv.unitPrice * 5 + "元/5天", adv.unitPrice * 10 + "元/10天", adv.unitPrice * 20 + "元/20天", adv.unitPrice * 30 + "元/30天"],
+            totalPrice: adv.unitPrice,
+            advertiseTypeName: adv.sellerInfo.advertiseType.advertiseTypeName,
+            sellerAddress: adv.sellerInfo.sellerAddress,
+            advertiseIntro: adv.sellerInfo.advertiseIntro,
+            advertiseBrowser: adv.advertiseBrowser,
+            userImgList: adv.userImgList,
+            unitPrice: adv.unitPrice,
+            lableList: adv.lableList,
+            // adv:adv,
+          })
+          //渲染同屏推荐
+          wx.getLocation({
+            success: function(res) {
+              wx.request({
+                url: app.globalData.appUrl + 'WXSellerAdvertise/findSameScreen',
+                data: {
+                  sellerAdvertiseId: adv.sellerAdvertiseId,
+                  advertId: adv.advertId,
+                  sellerLatitude: res.latitude,
+                  sellerLongitude: res.longitude
+                },
+                success: function(res) {
+                  console.info("下面是同屏推荐信息")
+                  console.info(res.data)
+                  for (var i = 0; i < res.data.length; i++) {
+                    //循环设定广告位对应的广告位信息的第一张图片
+                    res.data[i].sellerInfo.advertiseImgs = JSON.parse(res.data[i].sellerInfo.advertiseImgs)
+                    //循环设定广告位距用户的距离
+                    res.data[i].distances = (res.data[i].distances / 1000).toFixed(1)
+                    //比对广告位是否在购物车中  
+                    if (app.globalData.shopCarAdvertise.indexOf(res.data[i].sellerAdvertiseId) != -1) {
+                      res.data[i].hide = 'block'
+                      res.data[i].quantity = 1
+                      res.data[i].plus = '/img/detail/hjia.png'
+                      res.data[i].subtract = '/img/detail/yjian.png'
+                    }
+                    //如果广告屏不在购物车中不显示减号和数量为
+                    else {
+                      res.data[i].plus = '/img/detail/yjia.png'
+                      res.data[i].subtract = '/img/detail/yjian.png'
+                      res.data[i].hide = 'none'
+                      res.data[i].quantity = 0
+                    }
+
                   }
 
+                  that.setData({
+                    listbox: res.data
+                  })
+                  that.data.collectionContent.push(res.data);
                 }
-                
-                that.setData({
-                  listbox: res.data
-                })
-                that.data.collectionContent.push(res.data);
-              }
-            })
-          },
-        })
-      }
-    })
+              })
+            },
+          })
+        }
+      })
     } else {
       console.log("页面传的广告位：")
       console.log(options)
@@ -267,13 +267,13 @@ Page({
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function (options) {
+  onShareAppMessage: function(options) {
     console.log(options)
     var sellerName = this.data.sellerName;
     var advertiseTypeName = this.data.advertiseTypeName;
     var price = this.data.price[0];
     return {
-      title: "火热广告位"+"【" + sellerName + " 】" + "，地点： " + advertiseTypeName + "，单价：" + price,
+      title: "火热广告位" + "【" + sellerName + " 】" + "，地点： " + advertiseTypeName + "，单价：" + price,
     }
   },
   //价格
@@ -318,11 +318,11 @@ Page({
     var collectionContent = that.data.collectionContent;
     var buyerCollectionId = e.currentTarget.dataset.buyercollectionid;
     buyerCollection.sellerAdvertiseId = e.currentTarget.dataset.selleradvertiseid;
-    buyerCollection.collectionContent = JSON.stringify(collectionContent) ;
+    buyerCollection.collectionContent = JSON.stringify(collectionContent);
     buyerCollection.openId = app.returnOpenId();
     console.info("下面是收藏信息")
     console.info(buyerCollection);
-    
+
     // 改变当前收藏状态
     if (that.data.collection == false) {
       //未收藏，点击收藏
@@ -336,15 +336,15 @@ Page({
           'content-type': 'application/x-www-form-urlencoded', // 默认值
           xcxuser_name: "xcxuser_name"
         },
-        success: function (res) {
-            console.info(res);
+        success: function(res) {
+          console.info(res);
           console.info(res.data.buyerCollectionId)
-            console.log("收藏成功")
-            that.setData({
-              collection: true,
-              Tcollection: true,
-              buyerCollectionId: res.data.buyerCollectionId,
-            })
+          console.log("收藏成功")
+          that.setData({
+            collection: true,
+            Tcollection: true,
+            buyerCollectionId: res.data.buyerCollectionId,
+          })
         }
       })
       //请求收藏接口 start
@@ -361,15 +361,15 @@ Page({
           'content-type': 'application/x-www-form-urlencoded', // 默认值
           xcxuser_name: "xcxuser_name"
         },
-        success: function (res) {
+        success: function(res) {
           console.info("取消收藏成功")
           console.info(res);
-            that.setData({
-              collection: false,
-              Tcollection: true
-            })
-          } 
-        
+          that.setData({
+            collection: false,
+            Tcollection: true
+          })
+        }
+
       })
       //取消收藏接口 end
     }
@@ -393,9 +393,9 @@ Page({
         var shoppingDate;
         console.info(that.data.period.orderDate)
         console.info(that.data.totalPrice)
-        if (that.data.period.orderDate != undefined){
+        if (that.data.period.orderDate != undefined) {
           shoppingDate = that.data.period.orderDate;
-        }else{
+        } else {
           shoppingDate = '';
         }
         var shoppingCart = {};
@@ -411,28 +411,29 @@ Page({
             'content-type': 'application/x-www-form-urlencoded', // 默认值
             xcxuser_name: "xcxuser_name"
           },
-          success: function (res) {
+          success: function(res) {
             console.info("增加购物车返回的信息")
             console.info(res);
-            // that.setData({
-            //   collection: false,
-            //   Tcollection: true
-            // })
+            if (res.data.shopCartRepeat == true){
+              that.setData({
+                Shopping: true,
+                ShoppingCart: true,
+                Shoppinged: true
+              })
+            } else if (res.data.shopCartRepeat == false){
+              that.setData({
+                Shopping: false,
+                ShoppingCart: true,
+                Shoppinged: true
+              })
+            }
           }
-
         })
-          //加入购物车end
-
-        // this.setData({
-        //   Shopping: false,
-        //   ShoppingCart: true,
-        //   Shoppinged: true
-        // })
+        //加入购物车end
       } else if (this.data.Shopping == false || this.data.Shopping == true) {
         this.setData({
           Shopping: true,
           ShoppingCart: true
-
         })
       }
       setTimeout(function() {
@@ -440,7 +441,7 @@ Page({
           ShoppingCart: false
         })
       }, 1000);
-    } 
+    }
     // else if (this.data.identit == "1") {
     //   that.setData({
     //     notshopping: true,
@@ -493,7 +494,7 @@ Page({
     //   })
     // }
     console.info(that.data.period)
-    
+
     var that = this
     if (that.data.period.orderday == undefined) {
 
@@ -547,12 +548,12 @@ Page({
       orderDate: that.data.period.orderDate,
       orderday: orderday,
       daynum: that.data.daynum,
-      
+
     };
     wx.navigateTo({
-      url: '/pages/Settlement/Settlement?data='+JSON.stringify(date),
+      url: '/pages/Settlement/Settlement?data=' + JSON.stringify(date),
     })
-    
+
   },
   // 海报转发
   forward: function() {
@@ -564,7 +565,7 @@ Page({
   },
 
   //生成海报事件start
-  getGoodsQrcode: function () {
+  getGoodsQrcode: function() {
     wx.showLoading({
       title: '正在生成海报...',
       mask: true,
@@ -586,7 +587,7 @@ Page({
         //'content-type': 'application/json', // 默认值
         xcxuser_name: "xcxuser_name"
       },
-      success: function (res) {
+      success: function(res) {
         console.info("返回的小程序码为：")
         console.log(res.data)
         var localCode = res.data;
@@ -594,14 +595,14 @@ Page({
 
         wx.downloadFile({
           url: res.data,
-          success: function (QRCode) {
+          success: function(QRCode) {
             console.info(QRCode.tempFilePath)
             that.setData({
               Img: QRCode.tempFilePath,
             })
             wx.downloadFile({
               url: that.data.swiper[0],
-              success: function (jobImage) {
+              success: function(jobImage) {
                 that.setData({
                   //岗位图片下载缓存
                   jobImage: jobImage.tempFilePath,
@@ -644,7 +645,7 @@ Page({
                 ctx.drawImage("/img/detail/background.jpg", 0, 0, scrollWidth * 0.9, scrollHeight * 0.9);
                 ctx.drawImage(jobImage, 12.5, 35, scrollWidth * 0.9 - 23, scrollWidth * 0.9 - 90);
                 ctx.fillText(sellerName, 12.5, scrollWidth * 0.9 - 25)
-                ctx.fillText("单价：" + price , 12.5, scrollWidth * 0.9 - 5)
+                ctx.fillText("单价：" + price, 12.5, scrollWidth * 0.9 - 5)
                 ctx.fillText("广告类型：" + advertiseTypeName, 12.5, scrollWidth * 0.9 + 15)
                 ctx.fillStyle = '#999';
                 ctx.setFontSize(12)
@@ -654,12 +655,12 @@ Page({
                 ctx.draw()
 
                 wx.hideLoading()
-                setTimeout(function () {
+                setTimeout(function() {
                   wx.canvasToTempFilePath({
                     x: 0,
                     y: 0,
                     canvasId: 'shareCanvas',
-                    success: function (res) {
+                    success: function(res) {
                       console.log('朋友圈分享图生成成功:' + res.tempFilePath)
 
                       that.setData({
@@ -675,12 +676,12 @@ Page({
                           'content-type': 'application/x-www-form-urlencoded', // 默认值
                           xcxuser_name: "xcxuser_name"
                         },
-                        success: function (res) {
+                        success: function(res) {
                           console.info(res)
                         }
                       })
                     },
-                    fail: function (err) {
+                    fail: function(err) {
                       console.log('失败')
                       console.log(err)
                     }
@@ -696,7 +697,7 @@ Page({
   //生成海报事件start
 
   //预览图片
-  preview_img: function () { //图片预览函数
+  preview_img: function() { //图片预览函数
     var that = this;
     console.info(that.data.filePath);
     wx.previewImage({
@@ -705,7 +706,7 @@ Page({
     })
   },
 
-  touchStart: function () {
+  touchStart: function() {
     var that = this;
     console.info(that.data.filePath);
     wx.previewImage({
@@ -725,7 +726,7 @@ Page({
   },
 
   //关闭海报
-  closeHaiBao: function () {
+  closeHaiBao: function() {
     var that = this;
     console.info("关闭海报事件触发")
     that.setData({
@@ -740,10 +741,29 @@ Page({
   addition: function(e) {
     const that = this;
     const index = e.target.dataset.index;
-
+    var shoppingCart = {};
+    shoppingCart.openId = app.returnOpenId();
+    shoppingCart.unitPrice = e.currentTarget.dataset.unitprice;
+    // shoppingCart.shoppingDate = shoppingDate;
+    shoppingCart.sellerAdvertiseId = e.currentTarget.dataset.selleradvertiseid;
+      // console.info(shoppingCart)
     if (that.data.listbox[index].quantity < 1) {
       that.data.listbox[index].quantity++;
-      that.data.listbox[index].hide = 'block'
+      that.data.listbox[index].hide = 'block';
+      //加入购物车start
+      wx.request({
+        url: app.globalData.appUrl + 'WXShopCar/addShoppingCartInfo',
+        data: shoppingCart,
+        header: {
+          'content-type': 'application/x-www-form-urlencoded', // 默认值
+          xcxuser_name: "xcxuser_name"
+        },
+        success: function (res) {
+          console.info("增加购物车返回的信息")
+          console.info(res);
+        }
+      })
+        //加入购物车end
       that.setData({
         listbox: that.data.listbox
       })
@@ -761,7 +781,22 @@ Page({
   subtraction: function(e) {
     const that = this;
     const index = e.target.dataset.index;
-
+    var sellerAdvertiseId = e.currentTarget.dataset.selleradvertiseid;
+    var openId = app.returnOpenId();
+    //删除购物车start
+    wx.request({
+      url: app.globalData.appUrl + 'WXShopCar/removeShoppingCartInfo',
+      data: { openId: openId, sellerAdvertiseId: sellerAdvertiseId },
+      header: {
+        'content-type': 'application/x-www-form-urlencoded', // 默认值
+        xcxuser_name: "xcxuser_name"
+      },
+      success: function (res) {
+        console.info("删除购物车返回的信息")
+        console.info(res);
+      }
+    })
+      //删除购物车end
     that.data.listbox[index].quantity--;
     that.setData({
       listbox: that.data.listbox
@@ -782,7 +817,7 @@ Page({
     })
   },
   //跳转详情页
-  detail: function (e) {
+  detail: function(e) {
     console.info(e)
     wx.navigateTo({
       url: '/pages/Addetails/Addetails?sellerAdvertiseId=' + e.currentTarget.dataset.selleradvertiseid

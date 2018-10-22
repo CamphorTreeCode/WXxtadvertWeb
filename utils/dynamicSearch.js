@@ -14,6 +14,8 @@ export default function dynamicSearch(that, data,app) {
         url: app.globalData.appUrl + 'WXSellerAdvertise/findPage',
         data: data,
         success: function (res) {
+          console.info("下面是广告位列表返回的数据：")
+          console.info(res)
           for (var i = 0; i < res.data.length; i++) {
             //循环设定广告位对应的广告位信息的第一张图片
             res.data[i].sellerInfo.advertiseImgs = JSON.parse(res.data[i].sellerInfo.advertiseImgs)
@@ -35,9 +37,11 @@ export default function dynamicSearch(that, data,app) {
             }
 
           }
+          console.info("刷新了")
           that.setData({
             listbox: res.data
           })
+          console.info(that.data.listbox)
         }
       })
 

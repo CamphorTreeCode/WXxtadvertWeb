@@ -149,11 +149,12 @@
       <!-- 计算 -->
       <view class='listbox_box_computer'>
         <!-- 减 -->
-        <image src='{{item.subtract}}' class='listbox_box_subtract' data-index='{{index}}' style='display:{{item.hide}}' catchtap='subtraction'></image>
+        <image src='{{item.subtract}}' class='listbox_box_subtract' data-index='{{index}}' style='display:{{item.hide}}' 
+        data-sellerAdvertiseId='{{item.sellerAdvertiseId}}' catchtap='subtraction'></image>
         <!-- 数量 -->
          <view class='listbox_box_quantity' style='display:{{item.hide}}'>{{item.quantity}}</view>
         <!-- 加 -->
-        <image src='{{item.plus}}' class='listbox_box_plus' catchtap='addition' data-index='{{index}}'></image>
+        <image src='{{item.plus}}' class='listbox_box_plus' catchtap='addition' data-index='{{index}}' data-sellerAdvertiseId='{{item.sellerAdvertiseId}}' data-unitPrice='{{item.unitPrice}}'></image>
       </view>
       <!-- 地址 -->
       <view class='listbox_box_site'>{{item.sellerInfo.sellerAddress}}</view>

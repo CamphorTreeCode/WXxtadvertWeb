@@ -4,7 +4,6 @@ var QQMapWX = require('../../map/qqmap-wx-jssdk.js');
 import dynamicSearch from '../../utils/dynamicSearch.js'
 var qqmapsdk;
 var a = 0;
-var app = getApp()
 Page({
 
   /**
@@ -16,6 +15,7 @@ Page({
     //首页活动会员展示图
     vip_banner:'',
     site: '',
+    //导航栏
     HomeNavigation:[],
     advertising_top_left: [{
       img: '/img/lefthand.png',
@@ -87,6 +87,8 @@ Page({
     wx.request({
       url: app.globalData.appUrl + 'WXNavigation/findAll',
       success:function(res){
+        console.info("下面是首页导航栏的信息：")
+        console.info(res)
         that.setData({
           HomeNavigation: res.data
         })
@@ -159,7 +161,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function() {
-
+    this.onLoad();
   },
 
   /**
@@ -210,9 +212,10 @@ Page({
   },
   // 跳转到最新
   news: function(e) {
-    var lableId = e.currentTarget.dataset.lableid
+    var lableId = e.currentTarget.dataset.lableid;
+    app.globalData.lableId = lableId;
     wx.navigateTo({
-      url: '../news/news?lableId=' + lableId,
+      url: '../news/news',
     })
   },
   // 跳转到推荐
@@ -233,32 +236,70 @@ Page({
       url: '../native/native',
     })
   },
-  // 加
+  // 加入购物车
     addition: function(e) {
       const that = this;
       const index = e.target.dataset.index;
-
+      // console.info(e)
+      var shoppingCart = {};
+      shoppingCart.openId = app.returnOpenId();
+      shoppingCart.unitPrice = e.currentTarget.dataset.unitprice;
+      // shoppingCart.shoppingDate = shoppingDate;
+      shoppingCart.sellerAdvertiseId = e.currentTarget.dataset.selleradvertiseid;
+      // console.info(shoppingCart)
+      //没有加入购物车
       if (that.data.listbox[index].quantity < 1) {
         that.data.listbox[index].quantity++;
-        that.data.listbox[index].hide = 'block'
+        that.data.listbox[index].hide = 'block';
+        //加入购物车start
+        wx.request({
+          url: app.globalData.appUrl + 'WXShopCar/addShoppingCartInfo',
+          data: shoppingCart,
+          header: {
+            'content-type': 'application/x-www-form-urlencoded', // 默认值
+            xcxuser_name: "xcxuser_name"
+          },
+          success: function (res) {
+            console.info("增加购物车返回的信息")
+            console.info(res);
+          }
+        })
+        //加入购物车end
         that.setData({
           listbox: that.data.listbox
         })
       }
+      //已经加入购物车了
       if (that.data.listbox[index].quantity >= 1) {
         that.data.listbox[index].plus = 'https://www.chuanshoucs.com/ServerImg/2018-08-03/f7c71b12-4149-4277-ad92-f334d3194f39.png'
         that.setData({
           listbox: that.data.listbox
         });
       }
-
     },
 
     // 减
     subtraction: function(e) {
       const that = this;
       const index = e.target.dataset.index;
-
+      console.info(e)
+      console.info(app.globalData.shopCarAdvertise)
+      var sellerAdvertiseId = e.currentTarget.dataset.selleradvertiseid;
+      var openId = app.returnOpenId();
+      //删除购物车start
+      wx.request({
+        url: app.globalData.appUrl + 'WXShopCar/removeShoppingCartInfo',
+        data: { openId: openId, sellerAdvertiseId: sellerAdvertiseId},
+        header: {
+          'content-type': 'application/x-www-form-urlencoded', // 默认值
+          xcxuser_name: "xcxuser_name"
+        },
+        success: function (res) {
+          console.info("删除购物车返回的信息")
+          console.info(res);
+        }
+      })
+      //删除购物车end
       that.data.listbox[index].quantity--;
       that.setData({
         listbox: that.data.listbox
@@ -271,8 +312,6 @@ Page({
           listbox: that.data.listbox
         })
       }
-
-
 
     },
   enter: function (event) {
@@ -311,11 +350,13 @@ Page({
     wx.request({
       url: app.globalData.appUrl + 'WXSellerAdvertise/findTwoRandomSellerAdvertise',
       success: function (res) {
+        console.info(res)
         var referrer = that.data.referrer;
         for (var i = 0; i < res.data.length; i++) {
-          referrer[i].sellerName = res.data[i].sellerInfo.sellerName
-          referrer[i].lableList = res.data[i].lableList
-          referrer[i].unitPrice = res.data[i].unitPrice
+          referrer[i].sellerName = res.data[i].sellerInfo.sellerName;
+          referrer[i].lableList = res.data[i].lableList;
+          referrer[i].unitPrice = res.data[i].unitPrice;
+          referrer[i].sellerAdvertiseId = res.data[i].sellerAdvertiseId;
         }
         that.setData({
           referrer: referrer

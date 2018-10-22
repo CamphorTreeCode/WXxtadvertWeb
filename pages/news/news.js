@@ -27,13 +27,29 @@ Page({
    */
   onLoad: function(options) {
 
-    console.info(options.lableId)
-    var that = this
+    // console.info(options)
+    var that = this;
+    var LableId = app.globalData.lableId;
+    console.info(LableId);
     that.setData({
-      LableId: options.lableId
+      LableId: LableId
     })
     
-    dynamicSearch(that, { LableId: options.lableId},app)
+    dynamicSearch(that, { LableId: LableId},app)
+
+    /*获取用户购物车对应的广告位*/
+    wx.request({
+      url: app.globalData.appUrl + 'WXShopCar/findListByOpenId',
+      data: { openId: app.returnOpenId() },
+      success: function (res) {
+        var shopCarAdvertise = [];
+        for (var i = 0; i < res.data.length; i++) {
+          shopCarAdvertise.push(res.data[i].sellerAdvertiseId)
+        }
+        app.globalData.shopCarAdvertise = shopCarAdvertise
+      }
+    })
+    
   },
 
   /**
@@ -45,7 +61,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function() {
-
+    this.onLoad();
   },
 
   /**
@@ -87,10 +103,29 @@ Page({
   addition: function(e) {
     const that = this;
     const index = e.target.dataset.index;
-
+    var shoppingCart = {};
+    shoppingCart.openId = app.returnOpenId();
+    shoppingCart.unitPrice = e.currentTarget.dataset.unitprice;
+    // shoppingCart.shoppingDate = shoppingDate;
+    shoppingCart.sellerAdvertiseId = e.currentTarget.dataset.selleradvertiseid;
+      // console.info(shoppingCart)
     if (that.data.listbox[index].quantity < 1) {
       that.data.listbox[index].quantity++;
-      that.data.listbox[index].hide = 'block'
+      that.data.listbox[index].hide = 'block';
+      //加入购物车start
+      wx.request({
+        url: app.globalData.appUrl + 'WXShopCar/addShoppingCartInfo',
+        data: shoppingCart,
+        header: {
+          'content-type': 'application/x-www-form-urlencoded', // 默认值
+          xcxuser_name: "xcxuser_name"
+        },
+        success: function (res) {
+          console.info("增加购物车返回的信息")
+          console.info(res);
+        }
+      })
+        //加入购物车end
       that.setData({
         listbox: that.data.listbox
       })
@@ -108,7 +143,22 @@ Page({
   subtraction: function(e) {
     const that = this;
     const index = e.target.dataset.index;
-
+    var sellerAdvertiseId = e.currentTarget.dataset.selleradvertiseid;
+    var openId = app.returnOpenId();
+    //删除购物车start
+    wx.request({
+      url: app.globalData.appUrl + 'WXShopCar/removeShoppingCartInfo',
+      data: { openId: openId, sellerAdvertiseId: sellerAdvertiseId },
+      header: {
+        'content-type': 'application/x-www-form-urlencoded', // 默认值
+        xcxuser_name: "xcxuser_name"
+      },
+      success: function (res) {
+        console.info("删除购物车返回的信息")
+        console.info(res);
+      }
+    })
+      //删除购物车end
     that.data.listbox[index].quantity--;
     that.setData({
       listbox: that.data.listbox
@@ -122,6 +172,7 @@ Page({
       })
     }
   },
+
   enter:function(event){
     var that = this
     var returnDate = event.detail
