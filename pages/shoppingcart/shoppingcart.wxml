@@ -9,7 +9,7 @@
 <!-- 正常模式 -->
 <view>
   <!-- 头部清空 -->
-  <view class='clear'>
+  <view class='clear' wx:if='{{clear == false}}'>
     <image src='/img/shopping/qingchu.png'></image>
     <text>清空</text>
   </view>
@@ -18,13 +18,14 @@
     <view class='choice'>
       <image data-index='{{index}}' bindtap='checkout' wx:if='{{itemName.check == false}}' src='/img/shopping/kong.png'></image>
       <image data-index='{{index}}' bindtap='checkout' wx:else='{{itemName.check == true}}' src='/img/shopping/gou.png'></image>
-      <image data-index='{{index}}' catchtap="del" style='float:right;' src='https://www.chuanshoucs.com/ServerImg/2018-08-03/14092e66-d1b7-4349-8aa0-56d3836ba3df.png'></image>
+      <image data-index='{{index}}' catchtap="del" style='float:right;' src='https://www.chuanshoucs.com/ServerImg/2018-08-03/14092e66-d1b7-4349-8aa0-56d3836ba3df.png' mode="aspectFill"></image>
     </view>
     <view class="touch-item {{itemName.isTouchMove ? 'touch-move-active' : ''}}" data-index="{{index}}" bindtouchstart="touchstart" bindtouchmove="touchmove" wx:key="">
       <view class="content">
         <!-- 左侧图片 -->
         <view class='c_left'>
-          <image src='/img/cat.jpg'></image>
+          <image src='/img/cat.jpg' mode="aspectFill"></image>
+          <view class='label_bottom'>哈哈哈哈</view>
         </view>
         <!-- 中间描述 -->
         <view class='c_center'>
@@ -35,15 +36,6 @@
           <view class='dizhi'>距离:1.5km</view>
           <view class='jiagep'>20元/1天</view>
         </view>
-        <!-- 右面加减 -->
-        <!-- <view class='c_right'>
-          <view class='surplus'>剩余：5</view>
-          <view class='tupian'>
-            <image data-index='{{index}}' catchtap='reduce' class='jian' src='/img/shopping/jian1.png'></image>
-            <text>{{itemName.number}}</text>
-            <image data-index='{{index}}' catchtap='addpush' class='jia' src='/img/shopping/jia1.png'></image>
-          </view>
-        </view> -->
       </view>
       <!-- 左滑删除按钮 -->
       <view class="del" catchtap="del" data-index="{{index}}">移出</view>
@@ -72,7 +64,7 @@
   </view>
 </view>
 <!-- 去结算 -->
-<view class='jiesuan'>
+<view class='jiesuan' wx:if='{{jiesuan == false}}'>
   <view catchtap='payment'>
     <text>去结算</text>
     <image class='j_a' src='/img/shopping/quzhifu.png'></image>
@@ -81,15 +73,15 @@
 </view>
 
 <!-- 账号不符和 -->
-<view class='Nonconformity' style='display:none'>
+<view class='Nonconformity' style='{{Nonconformity}}'>
   <image src='/img/shopping/shenfenbufu.png'></image>
   <text>购物车只有(我要发广告)账户才可以使用哦</text>
 </view>
 
 <!-- 游客未登录 -->
-<view class='tourist' style='display:none'>
+<view class='tourist' style='{{tourist}}'>
   <text>你还未登陆哦</text>
-  <view>去登陆
+  <view catchtap='goLogin'>去登陆
     <image src='/img/shopping/qudenglu.png'></image>
   </view>
 </view>

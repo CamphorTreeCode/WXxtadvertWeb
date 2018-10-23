@@ -1,3 +1,4 @@
+var app = getApp();
 Page({
 
   data: {
@@ -27,18 +28,90 @@ Page({
         check: false
       }
     ],
+    //去结算显示
+    jiesuan: false,
+    //清空显示
+    clear: false,
     startX: 0, //开始坐标
-    startY: 0
+    startY: 0,
+    //用户购物车集合
+    ShoppingCart: {},
+    //账号不符合的样式
+    Nonconformity: 'display:none',
+    //需要登录的样式
+    tourist: 'display:none',
   },
   onLoad: function(option) {
-    //   var x=0;
-    // var time=  setInterval(function(){
-    //       x++;
-    //       console.log(x)
-    //       if(x>=60){
-    //           clearInterval(time)
-    //       }
-    //   },1000)
+    var that = this;
+    //判断用户身份，来显示不用的页面
+    console.info(app.globalData.UserRoles)
+    var roles = app.globalData.UserRoles;
+    if (roles == 2) {
+      console.info("我是发广告的")
+      //发广告的
+      that.setData({
+        jiesuan: true,
+        clear: true,
+        items: {},
+        Nonconformity: 'display:block'
+      })
+    } else if (roles == 0) {
+      console.info("我是游客")
+      //未登录，游客
+      that.setData({
+        jiesuan: true,
+        clear: true,
+        items: {},
+        tourist: 'display:block'
+      })
+    } else if (roles == 1) {
+      console.info("我是接广告的")
+      //查询用户全部购物车信息start
+      wx.getLocation({
+        success: function(res) {
+          var data = {};
+          data.sellerLatitude = res.latitude;
+          data.sellerLongitude = res.longitude;
+          data.openId = app.returnOpenId();
+          wx.request({
+            url: app.globalData.appUrl + 'WXShopCar/findUserAllShoppingCartInfo',
+            data: data,
+            header: {
+              'content-type': 'application/x-www-form-urlencoded',
+              xcxuser_name: "xcxuser_name"
+            },
+            success: function(res) {
+              console.info("下面是查询用户购物车返回的信息：")
+              console.info(res)
+              if (res.data.length > 0) {
+                for (var i = 0; i < res.data.length; i++) {
+                  //循环设定广告位对应的广告位信息的第一张图片
+                  res.data[i].sellerAdvertise.sellerInfo.advertiseImgs = JSON.parse(res.data[i].sellerAdvertise.sellerInfo.advertiseImgs);
+                  //循环设定广告位距用户的距离
+                  res.data[i].sellerAdvertise.distances = (res.data[i].sellerAdvertise.distances / 1000).toFixed(1);
+                  res.data[i].isTouchMove = false;
+                  res.data[i].flag = true;
+                  res.data[i].priceindex = 0;
+                  res.data[i].number = 1;
+                  res.data[i].check = false;
+                  res.data[i].price = [res.data[i].sellerAdvertise.unitPrice + "元/1天", res.data[i].sellerAdvertise.unitPrice * 5 + "元/5天", res.data[i]                                        .sellerAdvertise.unitPrice * 10 + "元/10天", res.data[i].sellerAdvertise.unitPrice * 20 + "元/20天", res.data[i]                                           .sellerAdvertise.unitPrice * 30 + "元/30天"];
+                }
+              }
+              that.setData({
+                ShoppingCart: res.data,
+                jiesuan: false,
+                clear: false,
+                tourist: 'display:none',
+                Nonconformity: 'display:none',
+              })
+              console.info("下面是购物陈高转换好的信息;")
+              console.info(that.data.ShoppingCart)
+            }
+          })
+        }
+      })
+      //查询用户全部购物车信息end
+    }
   },
   onShow: function() {
 
@@ -188,7 +261,14 @@ Page({
   //日期
   riqi: function() {
     wx.navigateTo({
-      url: '/pages/Addetailspage/Addetailspage',
+      url: '/pages/Addetailspage/Addetailspage?daynum=' + 5 + "&sellerAdvertiseId=" + 52,
     })
-  }
+  },
+
+  //去登陆，跳转到我要发广告页面
+  goLogin: function() {
+    wx.navigateTo({
+      url: '/pages/me/wode',
+    })
+  },
 })
