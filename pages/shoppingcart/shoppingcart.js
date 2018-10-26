@@ -1,4 +1,21 @@
 var app = getApp();
+
+function findall(a, x) {
+  var results = [],
+    len = a.length,
+    pos = 0;
+  while (pos < len) {
+    pos = a.indexOf(x, pos);
+    if (pos === -1) {//未找到就退出循环完成搜索
+      break;
+    }
+    results.push(pos);//找到就存储索引
+    pos += 1;//并从下个位置开始搜索
+  }
+  return results;
+}
+
+
 Page({
 
   data: {
@@ -40,11 +57,22 @@ Page({
     Nonconformity: 'display:none',
     //需要登录的样式
     tourist: 'display:none',
+    //购物车id
+    shoppingCartId:'',
+    //无内容显示
+    sclength:false,
+    //价格选中状态下标
+    // idx:0,
+    //价格数组
+    priceNum:0,
+    //投放周期
+    period: {},
   },
   onLoad: function(option) {
     var that = this;
     //判断用户身份，来显示不用的页面
     console.info(app.globalData.UserRoles)
+    console.info(that.data.period)
     var roles = app.globalData.UserRoles;
     if (roles == 2) {
       console.info("我是发广告的")
@@ -82,30 +110,67 @@ Page({
             },
             success: function(res) {
               console.info("下面是查询用户购物车返回的信息：")
-              console.info(res)
+              console.info(res);              
               if (res.data.length > 0) {
                 for (var i = 0; i < res.data.length; i++) {
                   //循环设定广告位对应的广告位信息的第一张图片
                   res.data[i].sellerAdvertise.sellerInfo.advertiseImgs = JSON.parse(res.data[i].sellerAdvertise.sellerInfo.advertiseImgs);
                   //循环设定广告位距用户的距离
                   res.data[i].sellerAdvertise.distances = (res.data[i].sellerAdvertise.distances / 1000).toFixed(1);
+                  if (res.data[i].shoppingDate == undefined){
+                    res.data[i].shoppingDate = '请选择';
+                  }else{
+                    res.data[i].shoppingDate = JSON.parse(res.data[i].shoppingDate);
+                  }
+                  
                   res.data[i].isTouchMove = false;
                   res.data[i].flag = true;
-                  res.data[i].priceindex = 0;
+                  res.data[i].priceindex = findall([
+                                                    res.data[i].sellerAdvertise.unitPrice,
+                                                    res.data[i].sellerAdvertise.unitPrice * 5,
+                                                    res.data[i].sellerAdvertise.unitPrice * 10,
+                                                    res.data[i].sellerAdvertise.unitPrice * 20,
+                                                    res.data[i].sellerAdvertise.unitPrice * 30], res.data[i].shopuUnitPrice);
                   res.data[i].number = 1;
                   res.data[i].check = false;
-                  res.data[i].price = [res.data[i].sellerAdvertise.unitPrice + "元/1天", res.data[i].sellerAdvertise.unitPrice * 5 + "元/5天", res.data[i]                                        .sellerAdvertise.unitPrice * 10 + "元/10天", res.data[i].sellerAdvertise.unitPrice * 20 + "元/20天", res.data[i]                                           .sellerAdvertise.unitPrice * 30 + "元/30天"];
+                  // res.data[i].priceNum = findall([
+                  //                                 res.data[i].sellerAdvertise.unitPrice,
+                  //                                 res.data[i].sellerAdvertise.unitPrice * 5,
+                  //                                 res.data[i].sellerAdvertise.unitPrice * 10,
+                  //                                 res.data[i].sellerAdvertise.unitPrice * 20,
+                  //                                 res.data[i].sellerAdvertise.unitPrice * 30], res.data[i].shopuUnitPrice);
+                  res.data[i].shopuUnitPrice = 
+                                  res.data[i].shopuUnitPrice + "元/" + res.data[i].shopuUnitPrice / res.data[i].sellerAdvertise.unitPrice + "天";
+                  res.data[i].price = [
+                                        res.data[i].sellerAdvertise.unitPrice + "元/1天", 
+                                        res.data[i].sellerAdvertise.unitPrice * 5 + "元/5天", 
+                                        res.data[i].sellerAdvertise.unitPrice * 10 + "元/10天", 
+                                        res.data[i].sellerAdvertise.unitPrice * 20 + "元/20天", 
+                                        res.data[i].sellerAdvertise.unitPrice * 30 + "元/30天"
+                                      ];
+                  res.data[i].daynum = res.data[i].shopuUnitPrice.substring(res.data[i].shopuUnitPrice.indexOf("/") + 1, res.data[i].shopuUnitPrice.indexOf("天"))                    
+                  
                 }
+                that.setData({
+                  ShoppingCart: res.data,
+                  jiesuan: false,
+                  clear: false,
+                  tourist: 'display:none',
+                  Nonconformity: 'display:none',
+                  sclength:true,
+                  
+                })
+                console.info("下面是购物陈高转换好的信息;")
+                console.info(that.data.ShoppingCart);
+              }else{
+                //没有数据
+                that.setData({
+                  sclength:false,
+                  jiesuan: true,
+                  clear: true,
+                })
               }
-              that.setData({
-                ShoppingCart: res.data,
-                jiesuan: false,
-                clear: false,
-                tourist: 'display:none',
-                Nonconformity: 'display:none',
-              })
-              console.info("下面是购物陈高转换好的信息;")
-              console.info(that.data.ShoppingCart)
+              
             }
           })
         }
@@ -114,14 +179,14 @@ Page({
     }
   },
   onShow: function() {
-
+    this.onLoad();
   },
 
   //手指触摸动作开始 记录起点X坐标
   touchstart: function(e) {
 
     //开始触摸时 重置所有删除
-    this.data.items.forEach(function(v, i) {
+    this.data.ShoppingCart.forEach(function(v, i) {
       if (v.isTouchMove) //只操作为true的
         v.isTouchMove = false;
     })
@@ -129,7 +194,7 @@ Page({
     this.setData({
       startX: e.changedTouches[0].clientX,
       startY: e.changedTouches[0].clientY,
-      items: this.data.items
+      ShoppingCart: this.data.ShoppingCart
     })
 
   },
@@ -153,7 +218,7 @@ Page({
         Y: touchMoveY
       });
 
-    that.data.items.forEach(function(v, i) {
+    that.data.ShoppingCart.forEach(function(v, i) {
       v.isTouchMove = false
 
       //滑动超过30度角 return
@@ -169,7 +234,7 @@ Page({
 
     //更新数据 
     that.setData({
-      items: that.data.items
+      ShoppingCart: that.data.ShoppingCart
     })
   },
 
@@ -187,44 +252,104 @@ Page({
 
   //删除事件 
   del: function(e) {
-    this.data.items.splice(e.currentTarget.dataset.index, 1)
-    this.setData({
-      items: this.data.items
+    var that = this;
+    wx.showModal({
+      title: '提示',
+      content: '确定删除本条信息吗？',
+      success: function (res) {
+        if (res.confirm) {
+          console.log('用户点击确定')
+          var shoppingCartId = e.currentTarget.dataset.shoppingcartid;
+          //删除购物车start
+          wx.request({
+            url: app.globalData.appUrl + 'WXShopCar/removeShoppingCartInfoById',
+            data: {
+              shoppingCartId: shoppingCartId
+            },
+            header: {
+              'content-type': 'application/x-www-form-urlencoded', // 默认值
+              xcxuser_name: "xcxuser_name"
+            },
+            success: function (res) {
+              console.info("购物车删除成功")
+              console.info(res);
+              if (res.data == 1) {
+                that.data.ShoppingCart.splice(e.currentTarget.dataset.index, 1)
+                that.setData({
+                  ShoppingCart: that.data.ShoppingCart
+                })
+                that.onLoad();
+              }
+            }
+
+          })
+    //删除购物车end
+        } else if (res.cancel) {
+          console.log('用户点击取消')
+        }
+      }
     })
+    console.info(e)
+    
+    
   },
-  // //加号 
-  // addpush: function(e) {
-  //   var index = e.target.dataset.index;
-  //   this.data.items[index].number++
-  //     this.setData({
-  //       items: this.data.items
-  //     })
-  // },
-  // //减号 
-  // reduce: function(e) {
-  //   var index = e.target.dataset.index;
-  //   this.data.items[index].number--
-  //     this.setData({
-  //       items: this.data.items
-  //     })
-  // },
+
+  //清空购物车
+  clearAll:function(){
+    var that = this;
+    wx.showModal({
+      title: '提示',
+      content: '确定清空购物车吗？',
+      success: function (res) {
+        if (res.confirm) {
+          console.log('用户点击确定')
+          //删除全部购物车start
+          wx.request({
+            url: app.globalData.appUrl + 'WXShopCar/removeShoppingCartAllInfo',
+            header: {
+              'content-type': 'application/x-www-form-urlencoded', // 默认值
+              xcxuser_name: "xcxuser_name"
+            },
+            success: function (res) {
+              console.info("购物车删除成功")
+              console.info(res);
+              that.setData({
+                ShoppingCart: [],
+              })
+              that.onLoad();
+            }
+
+          })
+        //删除全部购物车end
+        } else if (res.cancel) {
+          console.log('用户点击取消')
+        }
+      }
+    })  
+  },
+
   //选择价格 
   textjiage: function(e) {
     var that = this;
     var data = e.target.dataset.data;
     var index = e.target.dataset.index;
-    that.data.items[data].priceindex = index
-    // console.log(that.data.price[index]); 
-    // console.log(that.data.items[data].money);
-    that.data.items[data].money == that.data.price[index];
+    // console.info(data)
+    // console.info(index)
+    that.data.ShoppingCart[data].priceindex = index;
+    // console.log(that.data.ShoppingCart[data].price[index]);
+    // console.log(that.data.ShoppingCart[data].sellerAdvertise.unitPrice);
+    that.data.ShoppingCart[data].shopuUnitPrice == that.data.ShoppingCart[data].price[index];
     // "items[" + data + "].money";
-    var key = "items[" + data + "].money";
+    var key = "ShoppingCart[" + data + "].shopuUnitPrice";
     // var key = that.data.items[data].money
-    var item = that.data.price[index]
+    var item = that.data.ShoppingCart[data].price[index]
+    // console.info(key)
+    // console.info(item.substring(item.indexOf("/"), item.indexOf("天")))
     that.setData({
-      items: that.data.items,
+      ShoppingCart: that.data.ShoppingCart,
       [key]: item //选择的价格
     })
+    // console.info(that.data.ShoppingCart)
   },
   // 价格显示 
   // jiageshow: function(e) {
@@ -251,17 +376,22 @@ Page({
   },
   // 勾选状态
   checkout: function(e) {
+    console.info(e)
     var index = e.target.dataset.index;
-    var state = this.data.items[index].check;
-    this.data.items[index].check = !state
+    var state = this.data.ShoppingCart[index].check;
+    this.data.ShoppingCart[index].check = !state
     this.setData({
-      items: this.data.items
+      ShoppingCart: this.data.ShoppingCart
     })
   },
   //日期
-  riqi: function() {
+  riqi: function(e) {
+    console.info(e)
+    var index = e.currentTarget.dataset.index;
+    var daynum = this.data.ShoppingCart[index].daynum;
+    var sellerAdvertiseId = this.data.ShoppingCart[index].sellerAdvertiseId;
     wx.navigateTo({
-      url: '/pages/Addetailspage/Addetailspage?daynum=' + 5 + "&sellerAdvertiseId=" + 52,
+      url: '/pages/Addetailspage/Addetailspage?daynum=' + daynum + "&sellerAdvertiseId=" + sellerAdvertiseId,
     })
   },
 

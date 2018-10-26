@@ -70,7 +70,7 @@ Page({
         monthlist.push(montha + x);
       }
     }
-
+    console.info("三个月的集合："+monthlist)
     //循环每月有多少天，放进每个月对应的数组里面
     var arr1 = [],
       arr2 = [],
@@ -190,8 +190,10 @@ Page({
         }
       }
     }
-
-
+    console.info("每个月的天数：")
+    console.info(arr1)
+    console.info(arr2)
+    console.info(arr3)
 
 
     this.setData({
@@ -224,8 +226,10 @@ Page({
           url: app.globalData.appUrl +'Index/showcurrenttime',
           success:function(req){
              
-              
+            console.info("下面是查找广告位库存返回的结果：")
             console.log(res)
+            console.info("下面是查询当前服务器时间：")
+            console.info(req)
             successList = res.data
             var datails = [];
 
@@ -249,13 +253,13 @@ Page({
               // var data = '2018-03-09 12:00:00'
               // var countDown = Date.parse(new Date(data))
               // var ddt = Date.parse(new Date(datatime));
-              var dt = new Date(req.data.data)
+              var dt = new Date(req.data.data);
               // console.log("时间")              
               // console.log(dt, datatime)
               dt.setDate(dt.getDate() + x + 4);
               // var dd
               // var riqi = dt.toLocaleDateString()
-              // console.log(dt.getDate())
+              console.log(dt.getDate())
               var datearr = []
               // datearr = riqi.split("/")
               var yearonly = dt.getUTCFullYear()
@@ -741,7 +745,8 @@ Page({
       var arr2 = this.data.date2
       var arr3 = this.data.date3
       var arr1 = arr1.concat(arr2,arr3);
-      
+      console.info("下面是合并后的日期：")
+      console.info(arr1)
     var arrdatelist = []
     var arrdate = []
 
@@ -768,10 +773,10 @@ Page({
       if(arr1[x].state == 2){
         arrdatelist.push(arr1[x].date)
       }
-
-      
     }
-
+    console.info("下面是选择的日期列表：")
+    console.info(arrdate)
+    console.info(arrdatelist)
 
     // for (var x = 0; x < arr2.length; x++) {
     //   // var startdate = ''

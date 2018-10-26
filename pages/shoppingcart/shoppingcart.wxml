@@ -11,53 +11,53 @@
   <!-- 头部清空 -->
   <view class='clear' wx:if='{{clear == false}}'>
     <image src='/img/shopping/qingchu.png'></image>
-    <text>清空</text>
+    <text catchtap='clearAll'>清空</text>
   </view>
   <!-- 循环购物车商品 -->
-  <view class="container" wx:for="{{items}}" wx:for-item="itemName">
+  <view class="container" wx:for="{{ShoppingCart}}" wx:for-item="itemName">
     <view class='choice'>
-      <image data-index='{{index}}' bindtap='checkout' wx:if='{{itemName.check == false}}' src='/img/shopping/kong.png'></image>
-      <image data-index='{{index}}' bindtap='checkout' wx:else='{{itemName.check == true}}' src='/img/shopping/gou.png'></image>
-      <image data-index='{{index}}' catchtap="del" style='float:right;' src='https://www.chuanshoucs.com/ServerImg/2018-08-03/14092e66-d1b7-4349-8aa0-56d3836ba3df.png' mode="aspectFill"></image>
+      <image data-index='{{index}}' bindtap='checkout' data-shoppingCartId='{{itemName.shoppingCartId}}' wx:if='{{itemName.check == false}}' src='/img/shopping/kong.png'></image>
+      <image data-index='{{index}}' bindtap='checkout' data-shoppingCartId='{{itemName.shoppingCartId}}' wx:else='{{itemName.check == true}}' src='/img/shopping/gou.png'></image>
+      <image data-index='{{index}}' catchtap="del" data-shoppingCartId='{{itemName.shoppingCartId}}' style='float:right;' src='https://www.chuanshoucs.com/ServerImg/2018-08-03/14092e66-d1b7-4349-8aa0-56d3836ba3df.png' mode="aspectFill"></image>
     </view>
     <view class="touch-item {{itemName.isTouchMove ? 'touch-move-active' : ''}}" data-index="{{index}}" bindtouchstart="touchstart" bindtouchmove="touchmove" wx:key="">
       <view class="content">
         <!-- 左侧图片 -->
         <view class='c_left'>
-          <image src='/img/cat.jpg' mode="aspectFill"></image>
-          <view class='label_bottom'>哈哈哈哈</view>
+          <image src='{{itemName.sellerAdvertise.sellerInfo.advertiseImgs[0]}}' mode="aspectFill"></image>
+          <view class='label_bottom'>{{itemName.sellerAdvertise.sellerInfo.advertiseType.advertiseTypeName}}</view>
         </view>
         <!-- 中间描述 -->
         <view class='c_center'>
-          <view class='title'>上海松江区万达广告位</view>
+          <view class='title'>{{itemName.sellerAdvertise.sellerInfo.sellerName}}-{{itemName.sellerAdvertise.advertiseSN}}</view>
           <view class='label'>
-            <text>人流量:900/天</text>
+            <text wx:for="{{itemName.sellerAdvertise.lableList}}" wx:for-item="ll">{{ll}}</text>
           </view>
-          <view class='dizhi'>距离:1.5km</view>
-          <view class='jiagep'>20元/1天</view>
+          <view class='dizhi'>距离:{{itemName.sellerAdvertise.distances}}km</view>
+          <view class='jiagep'>{{itemName.sellerAdvertise.unitPrice}}元/1天</view>
         </view>
       </view>
       <!-- 左滑删除按钮 -->
-      <view class="del" catchtap="del" data-index="{{index}}">移出</view>
+      <view class="del" catchtap="del" data-index="{{index}}" data-shoppingCartId='{{itemName.shoppingCartId}}'>移出</view>
     </view>
     <!-- 选择价格 -->
     <view class='price' data-index='{{index}}' catchtap='jiageshow'>
       <text class='p_left' catchtap='jiageshow' data-index='{{index}}'>选择价格</text>
       <view class='p_right' catchtap='jiageshow' data-data='{{index}}'>
         <!-- 显示金额 -->
-        {{itemName.money}}
+        {{itemName.shopuUnitPrice}}
         <image src='/img/shopping/shouqi.png'></image>
       </view>
     </view>
     <!-- 价格循环 -->
     <view class='jiage' hidden='{{itemName.flag==false}}'>
-      <text wx:for="{{price}}" bindtap='textjiage' wx:for-index="idx" data-data='{{index}}' data-index='{{idx}}' class="{{itemName.priceindex==idx?'juse':''}}">{{item}}</text>
+      <text wx:for="{{itemName.price}}" bindtap='textjiage' wx:for-index="idx" data-data='{{index}}' data-index='{{idx}}' class="{{itemName.priceindex==idx?'juse':''}}">{{item}}</text>
     </view>
     <!-- 投放时间 -->
     <view class='price'>
       <text class='p_left'>选择投放时间</text>
-      <view class='p_right' bindtap='riqi'>
-        7.29-8.3
+      <view class='p_right' bindtap='riqi' data-index='{{index}}'>
+        {{itemName.shoppingDate}}
         <image src='/img/shopping/shouqi.png'></image>
       </view>
     </view>
@@ -87,7 +87,7 @@
 </view>
 
 
-<view class='correct' wx:if="{{items.length == 0}}">
+<view class='correct' wx:if="{{sclength == false}}">
   <image src='/img/shopping/wuneirong.png'></image>
   <text>没有任何信息，快去四处看看吧</text>
 </view>

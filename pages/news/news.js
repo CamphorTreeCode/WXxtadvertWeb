@@ -105,7 +105,7 @@ Page({
     const index = e.target.dataset.index;
     var shoppingCart = {};
     shoppingCart.openId = app.returnOpenId();
-    shoppingCart.unitPrice = e.currentTarget.dataset.unitprice;
+    shoppingCart.shopuUnitPrice = e.currentTarget.dataset.unitprice;
     // shoppingCart.shoppingDate = shoppingDate;
     shoppingCart.sellerAdvertiseId = e.currentTarget.dataset.selleradvertiseid;
       // console.info(shoppingCart)

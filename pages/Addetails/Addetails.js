@@ -399,7 +399,7 @@ Page({
           shoppingDate = '';
         }
         var shoppingCart = {};
-        shoppingCart.unitPrice = that.data.totalPrice;
+        shoppingCart.shopuUnitPrice = that.data.totalPrice;
         shoppingCart.shoppingDate = shoppingDate;
         shoppingCart.sellerAdvertiseId = that.data.sellerAdvertiseId;
         shoppingCart.openId = app.returnOpenId();
