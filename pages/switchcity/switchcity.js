@@ -1,16 +1,17 @@
 var city = require('../../utils/city.js');
-
+var QQMapWX = require('../../map/qqmap-wx-jssdk.js');
+var qqmapsdk;
 //欢迎关注:http://www.wxapp-union.com/portal.php
 //CSDN微信小程序开发专栏:http://blog.csdn.net/column/details/13721.html
 Page({
   data: {
-    dw:'当前城市/位置',
-    hotcity:'热门城市',
-    top_title:'上海',
-    top_text:[{
-      city:'上海',
-      region:'施惠路'
-    }],
+    hotcity: '热门城市',
+    //城市名
+    top_title: '上海',
+    //当前城市
+    nowCity: '',
+    //当前街道
+    nowRegion: '',
     searchLetter: [],
     showLetter: "",
     winHeight: 0,
@@ -31,6 +32,13 @@ Page({
     }]
   },
   onLoad: function(options) {
+    console.info("下面是页面传值：")
+    console.info(options)
+    this.setData({
+      top_title: options.site,
+      nowCity: options.site,
+      nowRegion: options.addressDetail,
+    })
     // 生命周期函数--监听页面加载
     var searchLetter = city.searchLetter;
     var cityList = city.cityList();
@@ -175,11 +183,23 @@ Page({
     })
   },
   bindCity: function(e) {
+    var that = this;
+    console.info("用户选择城市信息：")
+    console.info(e)
     var city = e.currentTarget.dataset.city;
-    // wx.navigateTo({
-    //   url: '',
-    // })
-    // console.log(city)
-    // this.setData({ city: city })
+    var pages = getCurrentPages(); // 获取页面栈
+    var currPage = pages[pages.length - 1]; // 当前页面
+    var prevPage = pages[pages.length - 2]; // 上一个页面
+    prevPage.setData({
+      site: city,
+    })
+
+    //增加热门城市start
+
+    //增加热门城市end
+
+    wx.navigateBack({
+      delta: 1
+    })
   }
 })

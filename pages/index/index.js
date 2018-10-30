@@ -31,6 +31,12 @@ Page({
       img: '/img/round2.png',
     }],
     listbox: [],
+    //定位的街道
+    addressDetail:'',
+    //选择地址的纬度
+    latitude1: '',
+    //选择地址的经度
+    longitude1: '',
   },
   /**
    * 生命周期函数--监听页面加载
@@ -40,6 +46,7 @@ Page({
     var that = this;
     wx.getLocation({
       success: function(res) {
+        console.info(res)
         // 纬度
         var latitude = res.latitude
         console.log('纬度 :', latitude);
@@ -52,12 +59,16 @@ Page({
             latitude: latitude
           },
           success: function(res) {
+            console.info("地址信息：")
+            console.info(res)
             this.site = res.result.address_component.city;
             console.log(this);
             console.log(res.result.address_component.city + res.result.address_component.district);
+            var addressDetail = res.result.address_component.street;
             // console.log(this.site);
             that.setData({
-              site: this.site
+              site: this.site,
+              addressDetail: addressDetail,
             })
           }
         })
@@ -70,66 +81,7 @@ Page({
       key: 'MR3BZ-43WC2-CQQUD-CSUJU-4YVME-OLBLK'
     });
 
-    /*获取用户购物车对应的广告位*/
-    wx.request({
-      url: app.globalData.appUrl + 'WXShopCar/findListByOpenId',
-      data: { openId: app.returnOpenId() },
-      success: function (res) {
-        var shopCarAdvertise = [];
-        for (var i = 0; i < res.data.length;i++){
-          shopCarAdvertise.push(res.data[i].sellerAdvertiseId)
-        }
-        app.globalData.shopCarAdvertise = shopCarAdvertise
-      }
-    })
-
-    /*获取首页导航栏*/
-    wx.request({
-      url: app.globalData.appUrl + 'WXNavigation/findAll',
-      success:function(res){
-        console.info("下面是首页导航栏的信息：")
-        console.info(res)
-        that.setData({
-          HomeNavigation: res.data
-        })
-      }
-    })
     
-    //广告位列表
-    dynamicSearch(that, {}, app)
-    
-    //随机两个广告位
-    that.roundTwoAdvertise(that)
-
-    //首页活动会员图片start
-    wx.request({
-      url: app.globalData.appUrl + 'WXActivityMemberLevel/findAllActivityMemberLevel',
-      header: {
-        'content-type': 'application/x-www-form-urlencoded',
-        xcxuser_name: "xcxuser_name"
-      },
-      success: function (res) {
-        console.info("下面是查询活动会员信息：")
-        console.info(res)
-        res.data.ActivityMemberLevel.activityMemberIcon = JSON.parse(res.data.ActivityMemberLevel.activityMemberIcon)[0]
-        res.data.ActivityMemberLevel.specialActivitiesImg = JSON.parse(res.data.ActivityMemberLevel.specialActivitiesImg)[0]
-        var isOpen = res.data.ActivityMemberLevel.isOpen;
-        if (isOpen == 1){
-          //活动开启
-          that.setData({
-            vipIsShow:false,
-            vip_banner: res.data.ActivityMemberLevel.specialActivitiesImg,
-          })
-        } else if (isOpen == 0){
-          //活动关闭
-          that.setData({
-            vipIsShow: true,
-          })
-        }
-        
-      }
-    })
-    //首页活动会员图片end
 
 
   },
@@ -161,7 +113,85 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function() {
-    this.onLoad();
+    // this.onLoad();
+    var that = this;
+    /*获取用户购物车对应的广告位*/
+    wx.request({
+      url: app.globalData.appUrl + 'WXShopCar/findListByOpenId',
+      data: { openId: app.returnOpenId() },
+      success: function (res) {
+        var shopCarAdvertise = [];
+        for (var i = 0; i < res.data.length; i++) {
+          shopCarAdvertise.push(res.data[i].sellerAdvertiseId)
+        }
+        app.globalData.shopCarAdvertise = shopCarAdvertise
+      }
+    })
+
+    /*获取首页导航栏*/
+    wx.request({
+      url: app.globalData.appUrl + 'WXNavigation/findAll',
+      success: function (res) {
+        console.info("下面是首页导航栏的信息：")
+        console.info(res)
+        that.setData({
+          HomeNavigation: res.data
+        })
+      }
+    })
+
+    //地址转换坐标
+    qqmapsdk.geocoder({
+      address: that.data.site,
+      success: function (res) {
+        console.log(res);
+        that.setData({
+          latitude1: res.result.location.lat,
+          longitude1: res.result.location.lng,
+        })
+        console.info("当前位置时&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&")
+        console.info(that.data.site)
+        //广告位列表
+        dynamicSearch(that, {}, app)
+      },
+    });
+    console.info("当前位置时&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&")
+    console.info(that.data.site)
+    //广告位列表
+    dynamicSearch(that, {}, app)
+
+    //随机两个广告位
+    that.roundTwoAdvertise(that)
+
+    //首页活动会员图片start
+    wx.request({
+      url: app.globalData.appUrl + 'WXActivityMemberLevel/findAllActivityMemberLevel',
+      header: {
+        'content-type': 'application/x-www-form-urlencoded',
+        xcxuser_name: "xcxuser_name"
+      },
+      success: function (res) {
+        console.info("下面是查询活动会员信息：")
+        console.info(res)
+        res.data.ActivityMemberLevel.activityMemberIcon = JSON.parse(res.data.ActivityMemberLevel.activityMemberIcon)[0]
+        res.data.ActivityMemberLevel.specialActivitiesImg = JSON.parse(res.data.ActivityMemberLevel.specialActivitiesImg)[0]
+        var isOpen = res.data.ActivityMemberLevel.isOpen;
+        if (isOpen == 1) {
+          //活动开启
+          that.setData({
+            vipIsShow: false,
+            vip_banner: res.data.ActivityMemberLevel.specialActivitiesImg,
+          })
+        } else if (isOpen == 0) {
+          //活动关闭
+          that.setData({
+            vipIsShow: true,
+          })
+        }
+
+      }
+    })
+    //首页活动会员图片end
   },
 
   /**
@@ -201,7 +231,7 @@ Page({
   // 跳转到 city
   jump: function() {
     wx.navigateTo({
-      url: '../switchcity/switchcity'
+      url: '../switchcity/switchcity?site=' + this.data.site + '&addressDetail=' + this.data.addressDetail,
     })
   },
   // 跳转到搜索

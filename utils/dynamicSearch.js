@@ -4,16 +4,23 @@
  * data传入的参数
  * app全局变量
  */
-export default function dynamicSearch(that, data,app) {
-
+export default function dynamicSearch(that, data, app) {
+  console.info("hahahahahahahahahahaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa")
+  console.info(that.data.latitude1)
+  console.info(that.data.longitude1)
   wx.getLocation({
-    success: function (res) {
-      data.sellerLatitude = res.latitude,
-        data.sellerLongitude = res.longitude
+    success: function(res) {
+      if (that.data.latitude1 != '') {
+        data.sellerLatitude = that.data.latitude1;
+        data.sellerLongitude = that.data.longitude1;
+      } else {
+        data.sellerLatitude = res.latitude,
+          data.sellerLongitude = res.longitude
+      }
       wx.request({
         url: app.globalData.appUrl + 'WXSellerAdvertise/findPage',
         data: data,
-        success: function (res) {
+        success: function(res) {
           console.info("下面是广告位列表返回的数据：")
           console.info(res)
           for (var i = 0; i < res.data.length; i++) {

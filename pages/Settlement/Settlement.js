@@ -8,7 +8,7 @@ Page({
    */
   data: {
       flag:false,
-      flage:false ,
+      flage:false , 
       eyu:false,
       // distances:'',
       // lableList:[],
