@@ -1,29 +1,16 @@
 // pages/search/search.js
+import dynamicSearch from '../../utils/dynamicSearch.js';
+var app = getApp();
 Page({
-
   /**
    * 页面的初始数据
    */
   data: {
-    placeholder: '搜索投放点地址、名称',
-    ss: 'https://www.chuanshoucs.com/ServerImg/2018-08-03/df843ac6-b2ce-44bb-b7c9-7cc05c0bcf1f.png',
-    history_search: '历史搜索',
-    hot_search: '热门搜索',
-    eliminate: '清除',
-    history: [{
-      city: '陆家嘴'
-    }, {
-      city: '东方明珠'
-    }, {
-      city: '交通大学'
-    }],
-    hot: [{
-      city: '北京'
-    }, {
-      city: '上海'
-    }, {
-      city: '驻马店'
-    }],
+    //用户搜索历史
+    history: [],
+    //热门搜索
+    hot: [],
+    //用户索索内容
     value: ''
   },
 
@@ -32,6 +19,45 @@ Page({
    */
   onLoad: function(options) {
 
+    var that = this;
+    //获取用户历史搜索记录前四个start
+    wx.request({
+      url: app.globalData.appUrl + 'WXSearch/findSearchByOpenId',
+      data: { openId: app.returnOpenId()},
+      header: {
+        'content-type': 'application/x-www-form-urlencoded',
+        xcxuser_name: "xcxuser_name"
+      },
+      success: function (res) {
+        console.info("下面是用户历史搜索记录返回的信息：")
+        console.info(res)
+        if (res.data.length > 0) {
+          that.setData({
+            history:res.data,
+          })
+        }
+      }
+    })
+    //获取用户历史搜索记录前四个end
+
+    //获取全部搜索记录次数最多的前四个start
+    wx.request({
+      url: app.globalData.appUrl + 'WXSearch/findSearchByCount',
+      header: {
+        'content-type': 'application/x-www-form-urlencoded',
+        xcxuser_name: "xcxuser_name"
+      },
+      success: function (res) {
+        console.info("下面是全部搜索记录次数最多返回的信息：")
+        console.info(res)
+        if (res.data.length > 0) {
+          that.setData({
+            hot:res.data,
+          })
+        }
+      }
+    })
+    //获取全部搜索记录次数最多的前四个end
   },
 
   /**
@@ -82,16 +108,74 @@ Page({
   onShareAppMessage: function() {
 
   },
-  // 清空
+
+  //获取输入框用户搜索内容
+  searchDetail: function(e) {
+    this.setData({
+      value: e.detail.value
+    })
+    console.info(this.data.value)
+  },
+
+  //搜索
+  sousuo: function() {
+    var that = this;
+    var searchHot = {};
+    searchHot.searchHotName = that.data.value;
+    searchHot.openId = app.returnOpenId();
+    //增加搜索次数start
+    wx.request({
+      url: app.globalData.appUrl + 'WXSearch/addSearch',
+      data: searchHot,
+      header: {
+        'content-type': 'application/x-www-form-urlencoded',
+        xcxuser_name: "xcxuser_name"
+      },
+      success: function(res) {
+        console.info("下面是增加搜索内容返回的信息：")
+        console.info(res)
+      }
+    })
+    //增加搜索次数end
+    wx.reLaunch({
+      url: '/pages/index/index?search=' + that.data.value,
+    })
+  },
+
+  // 清空用户输入内容
   empty: function() {
     this.setData({
       value: ''
     })
   },
+
   // 清除历史搜索
   eliminate: function() {
-    this.setData({
+    //清空用户搜索start
+    wx.request({
+      url: app.globalData.appUrl + 'WXSearch/modifySearchByOpenId',
+      data: { openId: app.returnOpenId() },
+      header: {
+        'content-type': 'application/x-www-form-urlencoded',
+        xcxuser_name: "xcxuser_name"
+      },
+      success: function (res) {
+        console.info("下面是用户历史搜索记录返回的信息：")
+        console.info(res)
+        if(res.data == 1){
+          wx.showToast({
+            title: '清空成功',
+            icon: 'success',
+            duration: 2000
+          })
+          
+        }
+
+      }
+    })
+    this.setData({ 
       history: ''
     })
-  }
+  },
+
 })

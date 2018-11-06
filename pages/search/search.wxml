@@ -5,11 +5,11 @@
   <view class='header'>
     <!-- 搜索框 -->
     <view class='search'>
-      <input type='text' placeholder-class="place-holder" placeholder='{{placeholder}}' value='{{value}}' class='search_input' maxlength='12'></input>
-      <image src='{{ss}}' class='ss' bindtap='empty'></image>
+      <input type='text' placeholder-class="place-holder" placeholder='搜索投放点地址、名称' value='{{value}}' bindblur="searchDetail" class='search_input' maxlength='12'></input>
+      <image src='https://www.chuanshoucs.com/ServerImg/2018-08-03/df843ac6-b2ce-44bb-b7c9-7cc05c0bcf1f.png' class='ss' bindtap='empty'></image>
     </view>
     <!-- 搜索 -->
-    <view class='sou'>搜索</view>
+    <view class='sou' catchtap='sousuo'>搜索</view>
   </view>
 
 
@@ -18,13 +18,13 @@
     <!-- 历史搜索头部 -->
     <view class='history_t clearfix'>
       <!-- left -->
-      <view class='history_t_l'>{{history_search}}</view>
+      <view class='history_t_l'>历史搜索</view>
       <!-- right -->
-      <view class='history_t_r' bindtap='eliminate'>{{eliminate}}</view>
+      <view class='history_t_r' bindtap='eliminate'>清除</view>
     </view>
     <!-- 模块 -->
     <view class='mm'>
-      <text wx:for='{{history}}' class='model'>{{item.city}}</text>
+      <text wx:for='{{history}}' class='model'>{{item.searchHotName}}</text>
     </view>
   </view>
 
@@ -34,21 +34,13 @@
     <!-- 热门搜索头部 -->
     <view class='history_t clearfix'>
       <!-- left -->
-      <view class='history_t_l hot_t_l'>{{hot_search}}</view>
+      <view class='history_t_l hot_t_l'>热门搜索</view>
       <!-- right -->
       <!-- <view class='history_t_r'>{{eliminate}}</view> -->
     </view>
     <!-- 模块 -->
     <view class='mm'>
-      <text wx:for='{{hot}}' class='model'>{{item.city}}</text>
+      <text wx:for='{{hot}}' class='model'>{{item.searchHotName}}</text>
     </view>
   </view>
-
-
-
-
-
-
-
-
 </view>

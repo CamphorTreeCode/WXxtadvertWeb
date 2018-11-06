@@ -11,12 +11,12 @@ Page({
    */
   data: {
     //首页活动会员banner是否显示
-    vipIsShow:true,
+    vipIsShow: true,
     //首页活动会员展示图
-    vip_banner:'',
+    vip_banner: '',
     site: '',
     //导航栏
-    HomeNavigation:[],
+    HomeNavigation: [],
     advertising_top_left: [{
       img: '/img/lefthand.png',
       text: '广告位推荐'
@@ -32,18 +32,31 @@ Page({
     }],
     listbox: [],
     //定位的街道
-    addressDetail:'',
+    addressDetail: '',
     //选择地址的纬度
     latitude1: '',
     //选择地址的经度
     longitude1: '',
+    //搜索内容
+    search: '',
   },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-    // 实时获取用户坐标
     var that = this;
+    console.info("页面传值的搜索内容" + options.search);
+    if (options.search != undefined && options.search != " ") {
+      that.setData({
+        search: options.search
+      })
+    } else {
+      that.setData({
+        search: ""
+      })
+    }
+
+    // 实时获取用户坐标
     wx.getLocation({
       success: function(res) {
         console.info(res)
@@ -74,14 +87,14 @@ Page({
         })
 
       },
-      
+
     });
     // 实例化API核心类
     qqmapsdk = new QQMapWX({
       key: 'MR3BZ-43WC2-CQQUD-CSUJU-4YVME-OLBLK'
     });
 
-    
+
 
 
   },
@@ -118,8 +131,10 @@ Page({
     /*获取用户购物车对应的广告位*/
     wx.request({
       url: app.globalData.appUrl + 'WXShopCar/findListByOpenId',
-      data: { openId: app.returnOpenId() },
-      success: function (res) {
+      data: {
+        openId: app.returnOpenId()
+      },
+      success: function(res) {
         var shopCarAdvertise = [];
         for (var i = 0; i < res.data.length; i++) {
           shopCarAdvertise.push(res.data[i].sellerAdvertiseId)
@@ -131,7 +146,7 @@ Page({
     /*获取首页导航栏*/
     wx.request({
       url: app.globalData.appUrl + 'WXNavigation/findAll',
-      success: function (res) {
+      success: function(res) {
         console.info("下面是首页导航栏的信息：")
         console.info(res)
         that.setData({
@@ -143,7 +158,7 @@ Page({
     //地址转换坐标
     qqmapsdk.geocoder({
       address: that.data.site,
-      success: function (res) {
+      success: function(res) {
         console.log(res);
         that.setData({
           latitude1: res.result.location.lat,
@@ -152,13 +167,20 @@ Page({
         console.info("当前位置时&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&")
         console.info(that.data.site)
         //广告位列表
-        dynamicSearch(that, {}, app)
+        // dynamicSearch(that, {}, app)
       },
     });
     console.info("当前位置时&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&")
     console.info(that.data.site)
-    //广告位列表
-    dynamicSearch(that, {}, app)
+
+    if (that.data.search != '' || that.data.search != undefined) {
+      var data1 = {};
+      data1.search = that.data.search;
+      dynamicSearch(that, data1, app)
+    } else {
+      //广告位列表
+      dynamicSearch(that, {}, app)
+    }
 
     //随机两个广告位
     that.roundTwoAdvertise(that)
@@ -170,7 +192,7 @@ Page({
         'content-type': 'application/x-www-form-urlencoded',
         xcxuser_name: "xcxuser_name"
       },
-      success: function (res) {
+      success: function(res) {
         console.info("下面是查询活动会员信息：")
         console.info(res)
         res.data.ActivityMemberLevel.activityMemberIcon = JSON.parse(res.data.ActivityMemberLevel.activityMemberIcon)[0]
@@ -212,7 +234,10 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function() {
-
+    // this.onLoad()
+    wx.reLaunch({
+      url: '/pages/index/index'
+    })
   },
 
   /**
@@ -231,7 +256,8 @@ Page({
   // 跳转到 city
   jump: function() {
     wx.navigateTo({
-      url: '../switchcity/switchcity?site=' + this.data.site + '&addressDetail=' + this.data.addressDetail,
+      // url: '../switchcity/switchcity?site=' + this.data.site + '&addressDetail=' + this.data.addressDetail,
+      url: '../switchcity/switchcity',
     })
   },
   // 跳转到搜索
@@ -267,93 +293,96 @@ Page({
     })
   },
   // 加入购物车
-    addition: function(e) {
-      const that = this;
-      const index = e.target.dataset.index;
-      // console.info(e)
-      var shoppingCart = {};
-      shoppingCart.openId = app.returnOpenId();
-      shoppingCart.shopuUnitPrice = e.currentTarget.dataset.unitprice;
-      // shoppingCart.shoppingDate = shoppingDate;
-      shoppingCart.sellerAdvertiseId = e.currentTarget.dataset.selleradvertiseid;
-      // console.info(shoppingCart)
-      //没有加入购物车
-      if (that.data.listbox[index].quantity < 1) {
-        that.data.listbox[index].quantity++;
-        that.data.listbox[index].hide = 'block';
-        //加入购物车start
-        wx.request({
-          url: app.globalData.appUrl + 'WXShopCar/addShoppingCartInfo',
-          data: shoppingCart,
-          header: {
-            'content-type': 'application/x-www-form-urlencoded', // 默认值
-            xcxuser_name: "xcxuser_name"
-          },
-          success: function (res) {
-            console.info("增加购物车返回的信息")
-            console.info(res);
-          }
-        })
-        //加入购物车end
-        that.setData({
-          listbox: that.data.listbox
-        })
-      }
-      //已经加入购物车了
-      if (that.data.listbox[index].quantity >= 1) {
-        that.data.listbox[index].plus = 'https://www.chuanshoucs.com/ServerImg/2018-08-03/f7c71b12-4149-4277-ad92-f334d3194f39.png'
-        that.setData({
-          listbox: that.data.listbox
-        });
-      }
-    },
-
-    // 减
-    subtraction: function(e) {
-      const that = this;
-      const index = e.target.dataset.index;
-      console.info(e)
-      console.info(app.globalData.shopCarAdvertise)
-      var sellerAdvertiseId = e.currentTarget.dataset.selleradvertiseid;
-      var openId = app.returnOpenId();
-      //删除购物车start
+  addition: function(e) {
+    const that = this;
+    const index = e.target.dataset.index;
+    // console.info(e)
+    var shoppingCart = {};
+    shoppingCart.openId = app.returnOpenId();
+    shoppingCart.shopuUnitPrice = e.currentTarget.dataset.unitprice;
+    // shoppingCart.shoppingDate = shoppingDate;
+    shoppingCart.sellerAdvertiseId = e.currentTarget.dataset.selleradvertiseid;
+    // console.info(shoppingCart)
+    //没有加入购物车
+    if (that.data.listbox[index].quantity < 1) {
+      that.data.listbox[index].quantity++;
+      that.data.listbox[index].hide = 'block';
+      //加入购物车start
       wx.request({
-        url: app.globalData.appUrl + 'WXShopCar/removeShoppingCartInfo',
-        data: { openId: openId, sellerAdvertiseId: sellerAdvertiseId},
+        url: app.globalData.appUrl + 'WXShopCar/addShoppingCartInfo',
+        data: shoppingCart,
         header: {
           'content-type': 'application/x-www-form-urlencoded', // 默认值
           xcxuser_name: "xcxuser_name"
         },
-        success: function (res) {
-          console.info("删除购物车返回的信息")
+        success: function(res) {
+          console.info("增加购物车返回的信息")
           console.info(res);
         }
       })
-      //删除购物车end
-      that.data.listbox[index].quantity--;
+      //加入购物车end
       that.setData({
         listbox: that.data.listbox
       })
+    }
+    //已经加入购物车了
+    if (that.data.listbox[index].quantity >= 1) {
+      that.data.listbox[index].plus = 'https://www.chuanshoucs.com/ServerImg/2018-08-03/f7c71b12-4149-4277-ad92-f334d3194f39.png'
+      that.setData({
+        listbox: that.data.listbox
+      });
+    }
+  },
 
-      if (that.data.listbox[index].quantity < 1) {
-        that.data.listbox[index].hide = 'none'
-        that.data.listbox[index].plus = 'https://www.chuanshoucs.com/ServerImg/2018-08-03/becb94a2-2ac3-4947-927d-e54b94604017.png'
-        that.setData({
-          listbox: that.data.listbox
-        })
+  // 减
+  subtraction: function(e) {
+    const that = this;
+    const index = e.target.dataset.index;
+    console.info(e)
+    console.info(app.globalData.shopCarAdvertise)
+    var sellerAdvertiseId = e.currentTarget.dataset.selleradvertiseid;
+    var openId = app.returnOpenId();
+    //删除购物车start
+    wx.request({
+      url: app.globalData.appUrl + 'WXShopCar/removeShoppingCartInfo',
+      data: {
+        openId: openId,
+        sellerAdvertiseId: sellerAdvertiseId
+      },
+      header: {
+        'content-type': 'application/x-www-form-urlencoded', // 默认值
+        xcxuser_name: "xcxuser_name"
+      },
+      success: function(res) {
+        console.info("删除购物车返回的信息")
+        console.info(res);
       }
+    })
+    //删除购物车end
+    that.data.listbox[index].quantity--;
+    that.setData({
+      listbox: that.data.listbox
+    })
 
-    },
-  enter: function (event) {
+    if (that.data.listbox[index].quantity < 1) {
+      that.data.listbox[index].hide = 'none'
+      that.data.listbox[index].plus = 'https://www.chuanshoucs.com/ServerImg/2018-08-03/becb94a2-2ac3-4947-927d-e54b94604017.png'
+      that.setData({
+        listbox: that.data.listbox
+      })
+    }
+
+  },
+  enter: function(event) {
     var that = this
     var returnDate = event.detail
     console.info(returnDate)
 
-    if (returnDate == 'error'){
+    if (returnDate == 'error') {
       return false;
     }
     var qqdata = {}
-    
+
     if (returnDate.distance != null) {
       qqdata.distance = returnDate.distance
     }
@@ -376,10 +405,10 @@ Page({
 
   },
   //随机两个广告位
-  roundTwoAdvertise:function(that){
+  roundTwoAdvertise: function(that) {
     wx.request({
       url: app.globalData.appUrl + 'WXSellerAdvertise/findTwoRandomSellerAdvertise',
-      success: function (res) {
+      success: function(res) {
         console.info(res)
         var referrer = that.data.referrer;
         for (var i = 0; i < res.data.length; i++) {
@@ -396,7 +425,7 @@ Page({
   },
 
   //跳转详情页
-  detail: function (e) {
+  detail: function(e) {
     console.info(e)
     wx.navigateTo({
       url: '/pages/Addetails/Addetails?sellerAdvertiseId=' + e.currentTarget.dataset.selleradvertiseid

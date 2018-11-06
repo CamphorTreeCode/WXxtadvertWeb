@@ -84,8 +84,9 @@
 }
 
 .model {
+  display: inline-block;
   color: #ccc;
-  margin-right: 20rpx;
+  margin: 0 20rpx 20rpx 0;
   padding: 10rpx 20rpx;
   border: 1rpx solid #ccc;
   border-radius: 15rpx;

@@ -1,11 +1,11 @@
 var city = require('../../utils/city.js');
 var QQMapWX = require('../../map/qqmap-wx-jssdk.js');
 var qqmapsdk;
+var app = getApp();
 //欢迎关注:http://www.wxapp-union.com/portal.php
 //CSDN微信小程序开发专栏:http://blog.csdn.net/column/details/13721.html
 Page({
   data: {
-    hotcity: '热门城市',
     //城市名
     top_title: '上海',
     //当前城市
@@ -20,25 +20,57 @@ Page({
     startPageY: 0,
     cityList: [],
     isShowLetter: false,
-    scrollTop: 0,
-    hot: [{
-      city: "北京"
-    }, {
-      city: "上海"
-    }, {
-      city: "郑州"
-    }, {
-      city: "驻马店"
-    }]
+    //热门城市
+    hot: [],
   },
   onLoad: function(options) {
+    var that = this;
     console.info("下面是页面传值：")
     console.info(options)
-    this.setData({
+    that.setData({
       top_title: options.site,
       nowCity: options.site,
       nowRegion: options.addressDetail,
     })
+
+    // 实时获取用户当前位置start
+    wx.getLocation({
+      success: function (res) {
+        console.info(res)
+        // 纬度
+        var latitude = res.latitude
+        console.log('纬度 :', latitude);
+        // 经度
+        var longitude = res.longitude;
+        console.log('经度 ：', longitude);
+        qqmapsdk.reverseGeocoder({
+          location: {
+            longitude: longitude,
+            latitude: latitude
+          },
+          success: function (res) {
+            console.info("地址信息：")
+            console.info(res)
+            this.site = res.result.address_component.city;
+            console.log(this);
+            console.log(res.result.address_component.city + res.result.address_component.district);
+            var addressDetail = res.result.address_component.street;
+            // console.log(this.site);
+            that.setData({
+              top_title: this.site,
+              // addressDetail: addressDetail,
+            })
+          }
+        })
+      },
+    });
+
+    // 实例化API核心类
+    qqmapsdk = new QQMapWX({
+      key: 'MR3BZ-43WC2-CQQUD-CSUJU-4YVME-OLBLK'
+    });
+    // 实时获取用户当前位置end
+
     // 生命周期函数--监听页面加载
     var searchLetter = city.searchLetter;
     var cityList = city.cityList();
@@ -60,14 +92,41 @@ Page({
       tempObj.push(temp)
     }
 
-    this.setData({
+    that.setData({
       winHeight: winHeight,
       itemH: itemH,
       searchLetter: tempObj,
       cityList: cityList
     })
 
-    // console.log(this.data.cityInfo);
+    //查询热门城市次数最多的前四个start
+    wx.request({
+      url: app.globalData.appUrl + 'WXHotCity/findHotCity',
+      header: {
+        'content-type': 'application/x-www-form-urlencoded',
+        xcxuser_name: "xcxuser_name"
+      },
+      success: function(res) {
+        console.info("下面是查询热门城市返回的信息：")
+        console.info(res)
+        var hot = that.data.hot;
+        if (res.data.length > 0) {
+          // for (var i = 0; i < res.data.length; i++) {
+          //   console.info("11111")
+          //   if (res.data[i].hotCityName.length > 7) {
+          //     res.data[i].hotCityName = res.data[i].hotCityName.slice(0, 7) + "...";
+          //   }
+          //   hot.push(res.data[i])
+          // }
+          that.setData({
+            hot: res.data
+          })
+          console.info(hot)
+        }
+      }
+    })
+    //查询热门城市次数最多的前四个end
+
   },
   onReady: function() {
     // 生命周期函数--监听页面初次渲染完成
@@ -193,13 +252,58 @@ Page({
     prevPage.setData({
       site: city,
     })
-
+    var hotCity = {};
+    hotCity.hotCityName = city;
     //增加热门城市start
-
+    wx.request({
+      url: app.globalData.appUrl + 'WXHotCity/addHotCity',
+      data: hotCity,
+      header: {
+        'content-type': 'application/x-www-form-urlencoded',
+        xcxuser_name: "xcxuser_name"
+      },
+      success: function(res) {
+        console.info("下面是点击城市返回的信息：")
+        console.info(res)
+      }
+    })
     //增加热门城市end
 
     wx.navigateBack({
       delta: 1
     })
-  }
+  },
+
+  //热门城市点击事件
+  hotEvent:function(e){
+    console.info(e)
+    var city = e.currentTarget.dataset.hotcityname;
+    var hotcityId = e.currentTarget.dataset.hotcityid;
+    var pages = getCurrentPages(); // 获取页面栈
+    var currPage = pages[pages.length - 1]; // 当前页面
+    var prevPage = pages[pages.length - 2]; // 上一个页面
+    prevPage.setData({
+      site: city,
+    })
+    var hotCity = {};
+    hotCity.hotCityName = city;
+    //增加热门城市start
+    wx.request({
+      url: app.globalData.appUrl + 'WXHotCity/addHotCity',
+      data: hotCity,
+      header: {
+        'content-type': 'application/x-www-form-urlencoded',
+        xcxuser_name: "xcxuser_name"
+      },
+      success: function (res) {
+        console.info("下面是点击城市返回的信息：")
+        console.info(res)
+      }
+    })
+    //增加热门城市end
+
+    wx.navigateBack({
+      delta: 1
+    })
+  },
 })

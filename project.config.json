@@ -33,7 +33,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 31,
+			"current": 32,
 			"list": [
 				{
 					"id": -1,
@@ -224,7 +224,13 @@
 				{
 					"id": -1,
 					"name": "购物车",
-					"pathName": "pages/shoppingcart/shoppingcart"
+					"pathName": "pages/shoppingcart/shoppingcart",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "city",
+					"pathName": "pages/switchcity/switchcity"
 				}
 			]
 		}

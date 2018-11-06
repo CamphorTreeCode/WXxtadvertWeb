@@ -11,7 +11,7 @@
     </view>
     <!-- search -->
     <view class='search' bindtap='search'>
-      <input type='text' placeholder-class="place-holder" placeholder='搜索投放点名称、地址' value='' class='search' maxlength='12'></input>
+      <input type='text' placeholder-class="place-holder" placeholder='搜索投放点名称、地址' value='{{search}}' class='search' maxlength='12'></input>
       <image src='/img/sousuo.png' class='ss'></image>
     </view>
     <!-- head end -->

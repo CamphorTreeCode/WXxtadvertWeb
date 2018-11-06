@@ -13,7 +13,7 @@
 
 scroll-view {
   position: fixed;
-  top: 290rpx;
+  /* top: 330rpx; */
 }
 
 .touchClass {
@@ -92,14 +92,15 @@ scroll-view {
 .top_city {
   padding: 23rpx;
 }
-
+ 
 .top_city text {
-  font-size: 36rpx;
+  display: inline-block;
+  font-size: 30rpx;
   padding: 5rpx 20rpx;
   border: 1px solid #999;
   border-radius: 10rpx;
   color: black;
-  margin-right: 20rpx;
+  margin: 0 23rpx 23rpx 0;
 }
 
 .top_map {

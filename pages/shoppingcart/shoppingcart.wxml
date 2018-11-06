@@ -7,7 +7,7 @@
 <tabbar num="{{num}}" gouwuche="{{true}}" class="foter"></tabbar>
 
 <!-- 正常模式 -->
-<view>
+<view class='main'>
   <!-- 头部清空 -->
   <view class='clear' wx:if='{{clear == false}}'>
     <image src='/img/shopping/qingchu.png'></image>

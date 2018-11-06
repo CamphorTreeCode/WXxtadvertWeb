@@ -4,7 +4,8 @@
     "tablebar": "/pages/tabbar/tabbar",
     "slideshow": "/pages/swipe/swipe",
     "select": "/pages/list/list",
-    "shouquan":"/utils/getUserTemplate/getUserTemplate"
-
-  }
+    "shouquan": "/utils/getUserTemplate/getUserTemplate"
+  },
+  "enablePullDownRefresh": true,
+  "onReachBottomDistance": 50
 }
