@@ -1,3 +1,6 @@
 {
-  "navigationBarTitleText": "选择时间"
+  "navigationBarTitleText": "选择时间",
+  "usingComponents": {
+    "shouquan": "/utils/getUserTemplate/getUserTemplate"
+  }
 }

@@ -1,6 +1,7 @@
 {
   "usingComponents": {
-    "tabbar": "/pages/zujian/zujian"
+    "tabbar": "/pages/zujian/zujian",
+    "shouquan": "/utils/getUserTemplate/getUserTemplate"
   },
   "navigationBarTitleText": "接单广告位"
 }

@@ -1,4 +1,6 @@
 <!-- pages/find/findask.wxml-->
+<shouquan>
+</shouquan>
 <view class='find'>
 
   <!-- find_content start -->
@@ -30,12 +32,14 @@
       <!-- find_main_examine -->
       <!-- <view class='find_main_examine'>{{item.examine}}</view> -->
       <!-- video -->
-         <view class='video'>
+      <view class='video'>
         <i wx:if="{{item.discoverVideo!=''}}">
           <video id='myVideo' src='{{item.discoverVideo}}' controls='{{false}}' custom-cache="{{false}}"></video>
         </i>
         <i wx:if="{{item.discoverVideo ==''}}">
-        <image src="{{item.discoverImgs}}" class='video_img' data-index='{{index}}' mode="aspectFill"></image>
+          <block wx:for='{{item.discoverImgs}}'wx:for-item="itemName">
+            <image src="{{itemName}}" class='video_img' data-index='{{index}}' mode="aspectFill"></image>
+          </block>
         </i>
       </view>
     </view>

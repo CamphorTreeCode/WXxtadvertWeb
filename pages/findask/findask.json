@@ -1,3 +1,6 @@
 {
-  "navigationBarTitleText": "发现详情"
+  "navigationBarTitleText": "发现详情",
+  "usingComponents": {
+    "shouquan": "/utils/getUserTemplate/getUserTemplate"
+  }
 }

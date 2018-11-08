@@ -1,6 +1,7 @@
 {
   "navigationBarTitleText": "最新",
   "usingComponents": {
-    "select": "/pages/list/list"
+    "select": "/pages/list/list",
+    "shouquan": "/utils/getUserTemplate/getUserTemplate"
   }
 }

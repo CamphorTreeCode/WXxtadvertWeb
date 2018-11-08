@@ -1,4 +1,6 @@
 <!--pages/me/jie/gongzuotai.wxml-->
+<shouquan>
+</shouquan>
 <tabbar num="{{num}}" shouye="{{true}}" class="foter"></tabbar>
 <!--pages/me/fa/gongzuotai.wxml-->
 <!-- 上 -->

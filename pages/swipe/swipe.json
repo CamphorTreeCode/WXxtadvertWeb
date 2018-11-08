@@ -1,6 +1,7 @@
 {
   "component":true,
   "usingComponents": {
-    "slideshow": "/pages/swipe/swipe"
+    "slideshow": "/pages/swipe/swipe",
+    "shouquan": "/utils/getUserTemplate/getUserTemplate"
   }
 }

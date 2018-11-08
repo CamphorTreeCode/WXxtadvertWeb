@@ -1,4 +1,6 @@
 <!--pages/Settlement/Settlement.wxml-->
+<shouquan>
+</shouquan>
 <view class='top'>
   <image src='/img/cat.jpg'></image>
   <view class='t_left'>

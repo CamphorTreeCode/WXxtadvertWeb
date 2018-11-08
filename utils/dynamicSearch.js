@@ -10,7 +10,7 @@ export default function dynamicSearch(that, data, app) {
   console.info(that.data.longitude1)
   wx.getLocation({
     success: function(res) {
-      if (that.data.latitude1 != '') {
+      if (that.data.latitude1 != '' && that.data.latitude1 != undefined) {
         data.sellerLatitude = that.data.latitude1;
         data.sellerLongitude = that.data.longitude1;
       } else {

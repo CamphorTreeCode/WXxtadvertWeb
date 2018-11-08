@@ -1,3 +1,6 @@
 {
-  "navigationBarTitleText": "结算"
+  "navigationBarTitleText": "结算",
+  "usingComponents": {
+    "shouquan": "/utils/getUserTemplate/getUserTemplate"
+  }
 }

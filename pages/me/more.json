@@ -1,3 +1,6 @@
 {
-  "navigationBarTitleText": "开发小程序"
+  "navigationBarTitleText": "开发小程序",
+  "usingComponents": {
+    "shouquan": "/utils/getUserTemplate/getUserTemplate"
+  }
 }

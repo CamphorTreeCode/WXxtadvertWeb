@@ -1,5 +1,7 @@
 <!--pages/me/member.wxml-->
 <!-- 不是会员 -->
+<shouquan>
+</shouquan>
 <view class='fou' wx:if="{{huiyuan}}">
   <image src='https://www.chuanshoucs.com/ServerImg/2018-08-03/63b8c5f2-6efb-4ce7-beba-f1c85d1fb473.png'></image>
   <block wx:if="{{jie}}">

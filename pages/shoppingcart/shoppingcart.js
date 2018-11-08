@@ -81,16 +81,18 @@ Page({
         jiesuan: true,
         clear: true,
         items: {},
-        Nonconformity: 'display:block'
+        Nonconformity: 'display:block',
+        sclength: true,
       })
-    } else if (roles == 0) {
+    } else if (roles == 0 ||roles == '') {
       console.info("我是游客")
       //未登录，游客
       that.setData({
         jiesuan: true,
         clear: true,
         items: {},
-        tourist: 'display:block'
+        tourist: 'display:block',
+        sclength: true,
       })
     } else if (roles == 1) {
       console.info("我是接广告的")
@@ -117,7 +119,7 @@ Page({
                   res.data[i].sellerAdvertise.sellerInfo.advertiseImgs = JSON.parse(res.data[i].sellerAdvertise.sellerInfo.advertiseImgs);
                   //循环设定广告位距用户的距离
                   res.data[i].sellerAdvertise.distances = (res.data[i].sellerAdvertise.distances / 1000).toFixed(1);
-                  if (res.data[i].shoppingDate == undefined){
+                  if (res.data[i].shoppingDate == undefined ||res.data[i].shoppingDate == ''){
                     res.data[i].shoppingDate = '请选择';
                   }else{
                     res.data[i].shoppingDate = JSON.parse(res.data[i].shoppingDate);

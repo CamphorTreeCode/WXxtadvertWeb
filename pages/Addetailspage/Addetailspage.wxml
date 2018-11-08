@@ -1,4 +1,6 @@
 <!--pages/Addetailspage/Addetailspage.wxml-->
+<shouquan>
+</shouquan>
 <view class='top'>
   <text class='day'>日</text>
   <text>一</text>

@@ -1,4 +1,6 @@
 <!--pages/me/fa/yitoufang.wxml-->
+<shouquan>
+</shouquan>
 <view class='zong' wx:for="{{YTFMsg}}">
   <view class='shang'>
     <view class='zuo'>

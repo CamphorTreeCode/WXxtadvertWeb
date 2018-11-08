@@ -1,5 +1,7 @@
 <!-- <video src='/img/movie.ogg'></video> -->
 <!-- 遮罩层 -->
+<shouquan>
+</shouquan>
 <view class='mask' hidden='{{flag==false}}' catchtouchmove="preventTouchMove"></view>
 
 <!-- 轮播图 -->

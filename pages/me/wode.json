@@ -1,6 +1,7 @@
 {
   "usingComponents": {
-    "tabbar": "/pages/tabbar/tabbar"
+    "tabbar": "/pages/tabbar/tabbar",
+    "shouquan": "/utils/getUserTemplate/getUserTemplate"
   },
   "navigationBarTitleText": "享投"
 }

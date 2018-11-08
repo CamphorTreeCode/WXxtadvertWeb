@@ -1,4 +1,6 @@
 <!--pages/Paymentsuccess/Paymentsuccess.wxml-->
+<shouquan>
+</shouquan>
 <view class='top'>
   <image src='/img/shopping/dagou.png'></image>
   <text>支付成功</text>

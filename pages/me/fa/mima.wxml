@@ -1,4 +1,6 @@
 <!--pages/me/fa/mima.wxml-->
+<shouquan>
+</shouquan>
 <form bindsubmit="formSubmit">
 <view class='zong'>
   <view class='gong'>

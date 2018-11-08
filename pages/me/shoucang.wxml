@@ -1,5 +1,7 @@
 <!--pages/me/shoucang.wxml-->
 <!-- 没有收藏显示的内容 -->
+<shouquan>
+</shouquan>
 <view class='mei' style="{{aaa==true?'display:none':''}}">
   <image src='https://www.chuanshoucs.com/ServerImg/2018-07-24/af372fa5-d13a-4685-ab43-d83434073ff8.png'></image>
   <view wx:if='{{jie}}'>接广告暂未开放</view>

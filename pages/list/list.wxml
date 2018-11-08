@@ -1,4 +1,6 @@
 <!-- 下拉选择 -->
+<shouquan>
+</shouquan>
 <view style='position:{{position}};top:0rpx;z-index:3'>
   <!-- 点击下拉 -->
   <view class='select'>

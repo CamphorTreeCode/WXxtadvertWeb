@@ -1,5 +1,7 @@
 <!--pages/me/fa/gongzuotai.wxml-->
 <!-- 上 -->
+<shouquan>
+</shouquan>
 <view class='shang'>
   <image src='https://www.chuanshoucs.com/ServerImg/2018-08-02/94eaab23-3f67-42ba-9a74-1711241ca81c.png' class='shouye'  bindtap='tuichu' mode="aspectFill"></image>
   <image class='logo' src='{{BuyerInfo.advertiseLogo}}' mode="aspectFill"></image>

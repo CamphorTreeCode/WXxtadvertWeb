@@ -1,4 +1,6 @@
 <!--pages/me/fa/daizhifu.wxml-->
+<shouquan>
+</shouquan>
 <view class='zong'>
   <view class='shang'wx:for="{{DZFMsg}}">
     <view class='zuo' >

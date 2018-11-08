@@ -266,7 +266,7 @@ Page({
       url: '../search/search',
     })
   },
-  // 跳转到最新
+  // 跳转导航栏分类页面
   news: function(e) {
     var lableId = e.currentTarget.dataset.lableid;
     app.globalData.lableId = lableId;

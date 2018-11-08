@@ -1,5 +1,7 @@
 <!--pages/me/jie/zhuce.wxml-->
 <!--pages/me/fa/zhuce.wxml-->
+<shouquan>
+</shouquan>
 <view style='text-align: center; margin: 50rpx 0;'>
   <image src='https://www.chuanshoucs.com/ServerImg/2018-08-01/08df4a7c-fea3-417d-ac13-9f18d4af928e.png'></image>
 </view>

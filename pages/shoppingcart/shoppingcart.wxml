@@ -2,7 +2,8 @@
 <!-- <view class='scroll_view_border'>
   <view class="srcoll_view" bindtap="textclick">这武器那都好，就是不吃药只能战斗15秒，15秒内不是你死就是我亡，这才是90级史诗该有的王者风范!</view>
 </view> -->
-
+<shouquan>
+</shouquan>
 <!-- 导航栏组件 -->
 <tabbar num="{{num}}" gouwuche="{{true}}" class="foter"></tabbar>
 

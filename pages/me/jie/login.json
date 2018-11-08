@@ -1,3 +1,6 @@
 {
-  "navigationBarTitleText": "我要接单"
+  "navigationBarTitleText": "我要接单",
+  "usingComponents": {
+    "shouquan": "/utils/getUserTemplate/getUserTemplate"
+  }
 }

@@ -1,3 +1,6 @@
 {
-  "navigationBarTitleText": "已支付"
+  "navigationBarTitleText": "已支付",
+  "usingComponents": {
+    "shouquan": "/utils/getUserTemplate/getUserTemplate"
+  }
 }

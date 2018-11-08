@@ -1,4 +1,6 @@
 <!--pages/me/fa/chongzhi.wxml-->
+<shouquan>
+</shouquan>
 <view class='zong'>
   <view class='shang'>
     <view class='one'>

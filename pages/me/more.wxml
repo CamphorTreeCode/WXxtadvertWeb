@@ -1,4 +1,6 @@
 <!--pages/me/more.wxml-->
+<shouquan>
+</shouquan>
 <view style='height: 10rpx; background-color: #f5f5f5;'></view>
 <view style='text-align: center; margin:40rpx 0;'>选择您要开发的小程序类型</view>
 <view class='liebiao'>

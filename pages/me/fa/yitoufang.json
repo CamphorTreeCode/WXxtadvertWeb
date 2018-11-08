@@ -1,3 +1,6 @@
 {
-  "navigationBarTitleText": "已投放"
+  "navigationBarTitleText": "已投放",
+  "usingComponents": {
+    "shouquan": "/utils/getUserTemplate/getUserTemplate"
+  }
 }

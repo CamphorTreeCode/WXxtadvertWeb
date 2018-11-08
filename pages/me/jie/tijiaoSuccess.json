@@ -1,3 +1,6 @@
 {
-  "navigationBarTitleText": "我要接广告"
+  "navigationBarTitleText": "我要接广告",
+  "usingComponents": {
+    "shouquan": "/utils/getUserTemplate/getUserTemplate"
+  }
 }

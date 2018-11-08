@@ -1,3 +1,5 @@
+<shouquan>
+</shouquan>
 <view class="num-controller">
   <!-- <view class="goods-num" hidden="{{num<1}}">{{num}}</view> -->
   <view class='tab' data-id="3" bindtap='navigation'>

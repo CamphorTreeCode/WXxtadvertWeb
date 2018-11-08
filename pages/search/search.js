@@ -23,17 +23,19 @@ Page({
     //获取用户历史搜索记录前四个start
     wx.request({
       url: app.globalData.appUrl + 'WXSearch/findSearchByOpenId',
-      data: { openId: app.returnOpenId()},
+      data: {
+        openId: app.returnOpenId()
+      },
       header: {
         'content-type': 'application/x-www-form-urlencoded',
         xcxuser_name: "xcxuser_name"
       },
-      success: function (res) {
+      success: function(res) {
         console.info("下面是用户历史搜索记录返回的信息：")
         console.info(res)
         if (res.data.length > 0) {
           that.setData({
-            history:res.data,
+            history: res.data,
           })
         }
       }
@@ -47,12 +49,12 @@ Page({
         'content-type': 'application/x-www-form-urlencoded',
         xcxuser_name: "xcxuser_name"
       },
-      success: function (res) {
+      success: function(res) {
         console.info("下面是全部搜索记录次数最多返回的信息：")
         console.info(res)
         if (res.data.length > 0) {
           that.setData({
-            hot:res.data,
+            hot: res.data,
           })
         }
       }
@@ -114,11 +116,10 @@ Page({
     this.setData({
       value: e.detail.value
     })
-    console.info(this.data.value)
   },
 
   //搜索
-  sousuo: function() {
+  sousuo: function(e) {
     var that = this;
     var searchHot = {};
     searchHot.searchHotName = that.data.value;
@@ -141,7 +142,7 @@ Page({
       url: '/pages/index/index?search=' + that.data.value,
     })
   },
-
+ 
   // 清空用户输入内容
   empty: function() {
     this.setData({
@@ -154,26 +155,28 @@ Page({
     //清空用户搜索start
     wx.request({
       url: app.globalData.appUrl + 'WXSearch/modifySearchByOpenId',
-      data: { openId: app.returnOpenId() },
+      data: {
+        openId: app.returnOpenId()
+      },
       header: {
         'content-type': 'application/x-www-form-urlencoded',
         xcxuser_name: "xcxuser_name"
       },
-      success: function (res) {
+      success: function(res) {
         console.info("下面是用户历史搜索记录返回的信息：")
         console.info(res)
-        if(res.data == 1){
+        if (res.data == 1) {
           wx.showToast({
             title: '清空成功',
             icon: 'success',
             duration: 2000
           })
-          
+
         }
 
       }
     })
-    this.setData({ 
+    this.setData({
       history: ''
     })
   },

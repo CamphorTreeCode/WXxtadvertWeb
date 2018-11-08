@@ -1,6 +1,7 @@
 {
   "navigationBarTitleText": "本地",
   "usingComponents": {
-    "select": "/pages/list/list"
+    "select": "/pages/list/list",
+    "shouquan": "/utils/getUserTemplate/getUserTemplate"
   }
 }

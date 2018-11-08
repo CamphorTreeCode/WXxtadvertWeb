@@ -1,3 +1,5 @@
+<shouquan>
+</shouquan>
 <tabbar num="{{num}}" wo="{{true}}" class="foter"></tabbar>
 <!-- 上 -->
 <view class='up' bindtap='member'>

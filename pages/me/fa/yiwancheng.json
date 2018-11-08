@@ -1,3 +1,6 @@
 {
-  "navigationBarTitleText": "已完成"
+  "navigationBarTitleText": "已完成",
+  "usingComponents": {
+    "shouquan": "/utils/getUserTemplate/getUserTemplate"
+  }
 }

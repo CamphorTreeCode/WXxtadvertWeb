@@ -1,4 +1,6 @@
 <!--pages/me/jie/message.wxml-->
+<shouquan>
+</shouquan>
 <form bind:submit="formSubmit" report-submit="true">
   <view class='hang' style='border-top: 10rpx solid #f5f5f5;'>
     <image src='https://www.chuanshoucs.com/ServerImg/2018-08-02/9360ea3c-b6b7-4740-bd1a-4a56c2c255fc.png' mode="aspectFill"></image>

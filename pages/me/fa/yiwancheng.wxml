@@ -1,4 +1,6 @@
 <!--pages/me/fa/yiwancheng.wxml-->
+<shouquan>
+</shouquan>
 <view class='zong' wx:for="{{YWCMsg}}">
   <view class='shang'>
     <view class='zuo'>

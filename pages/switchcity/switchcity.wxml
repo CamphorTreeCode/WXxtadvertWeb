@@ -1,3 +1,5 @@
+<shouquan>
+</shouquan>
 <view class="searchLetter touchClass">
   <view wx:for="{{searchLetter}}" style="height:{{itemH}}px" wx:key="index" data-letter="{{item.name}}" catchtouchstart="searchStart" catchtouchmove="searchMove" catchtouchend="searchEnd">{{item.name}}</view>
 </view>

@@ -1,6 +1,7 @@
 {
   "navigationBarTitleText": "购物车",
     "usingComponents": {
-      "tabbar": "/pages/tabbar/tabbar"
+      "tabbar": "/pages/tabbar/tabbar",
+      "shouquan": "/utils/getUserTemplate/getUserTemplate"
     }
 }

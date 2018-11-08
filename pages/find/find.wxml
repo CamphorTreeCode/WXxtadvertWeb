@@ -1,4 +1,6 @@
 <!-- pages/find/find.wxml-->
+<shouquan>
+</shouquan>
 <view class='find'>
 
   <!-- find_content start -->
