@@ -4,7 +4,7 @@
 <view class='find'>
 
   <!-- find_content start -->
-  <view class='find_content' wx:for='{{DiscoverList}}' bindtap='find' data-lid="{{item.discoverId}}">
+  <view class='find_content' wx:for='{{DiscoverList}}'>
 
     <!-- find_content_top start -->
     <view class='find_top'>
@@ -30,15 +30,15 @@
       <!-- find_content_main text -->
       <view class='find_main_text'>{{item.discoverDeatils}}</view>
       <!-- find_main_examine -->
-      <view class='find_main_examine'>查看详情</view>
+      <view class='find_main_examine' catchtap='find' data-lid="{{item.discoverId}}">查看详情</view>
       <!-- video -->
       <view class='video'>
         <i wx:if="{{item.discoverVideo!=''}}">
-          <video id='myVideo' src='{{item.discoverVideo}}'  custom-cache="{{false}}" show-center-play-btn='{{false}}'></video>
+          <video id='myVideo' src='{{item.discoverVideo}}' custom-cache="{{false}}" show-center-play-btn='{{false}}'></video>
         </i>
         <i wx:if="{{item.discoverVideo ==''}}">
           <block wx:for="{{item.discoverImgs}}" wx:for-item="img">
-          <image src="{{img}}" class='video_img' data-index='{{index}}' mode="aspectFill"></image>
+            <image src="{{img}}" class='video_img' data-index='{{index}}' mode="aspectFill"></image>
           </block>
         </i>
       </view>
@@ -56,5 +56,3 @@
   </view>
   <!-- find_content end -->
 </view>
-<tablebar faxian="{{true}}" class="foter"></tablebar>
-<!-- poster='http://img.storage.17wanba.org.cn/game/2016/05/12/9310a65403902b6e286b93997172548f.jpg'

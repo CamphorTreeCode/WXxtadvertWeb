@@ -449,13 +449,13 @@ Page({
     //     Stxt: "你所注册的账号还在审核中,稍后将告知你结果"
     //   })
     // } 
-    else if (this.data.identit == 2) {
+    else if (app.globalData.UserRoles == 2) {
       that.setData({
         notshopping: true,
         flag: true,
         Stxt: "你所登陆的账号身份不符,不能加入购物车.如需加入购物车,请登录（我要发广告）"
       })
-    } else if (this.data.identit == 0) {
+    } else if (app.globalData.UserRoles == 0) {
       that.setData({
         notshopping: true,
         flag: true,
@@ -533,7 +533,7 @@ Page({
 
     //   }
     // })
-    var date = {
+    var date = [{
       swiper: that.data.swiper,
       sellerName: that.data.sellerName,
       lableList: that.data.lableList,
@@ -544,12 +544,12 @@ Page({
       // total_fee: that.data.totalPrice,
       total_fee: 1,
       body: '享投广告屏购买',
-      buyerAccountId: 5,
+      buyerAccountId: 21,
       orderDate: that.data.period.orderDate,
       orderday: orderday,
       daynum: that.data.daynum,
 
-    };
+    }];
     wx.navigateTo({
       url: '/pages/Settlement/Settlement?data=' + JSON.stringify(date),
     })

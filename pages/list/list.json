@@ -1,7 +1,6 @@
 {
   "component": true,
   "usingComponents": {
-    "slideshow": "/pages/list/list",
-    "shouquan": "/utils/getUserTemplate/getUserTemplate"
+    "slideshow": "/pages/list/list"
   }
 }

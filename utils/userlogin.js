@@ -7,7 +7,7 @@ function login(that) {
       wx.getUserInfo({
         success: function (res) {
           var app = getApp()
-          console.log(res)
+          // console.log(res)
           var WeChatUser = res.userInfo
 
           getOpenid()
@@ -22,7 +22,7 @@ function login(that) {
             },
             method: "post",
             success: function (res) {
-              console.log(res)
+              // console.log(res)
             }
           })
         }
@@ -41,7 +41,7 @@ function getOpenid() {
       var app = getApp()
       try {
         var value = wx.getStorageSync('openid')
-        console.info(res.code)
+        // console.info(res.code)
         if (value) {
 
         } else {

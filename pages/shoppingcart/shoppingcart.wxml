@@ -5,7 +5,7 @@
 <shouquan>
 </shouquan>
 <!-- 导航栏组件 -->
-<tabbar num="{{num}}" gouwuche="{{true}}" class="foter"></tabbar>
+<!-- <tabbar num="{{num}}" gouwuche="{{true}}" class="foter"></tabbar> -->
 
 <!-- 正常模式 -->
 <view class='main'>
@@ -18,7 +18,7 @@
   <view class="container" wx:for="{{ShoppingCart}}" wx:for-item="itemName">
     <view class='choice'>
       <image data-index='{{index}}' bindtap='checkout' data-shoppingCartId='{{itemName.shoppingCartId}}' wx:if='{{itemName.check == false}}' src='/img/shopping/kong.png'></image>
-      <image data-index='{{index}}' bindtap='checkout' data-shoppingCartId='{{itemName.shoppingCartId}}' wx:else='{{itemName.check == true}}' src='/img/shopping/gou.png'></image>
+      <image data-index='{{index}}' bindtap='checkout' wx:else='{{itemName.check == true}}' src='/img/shopping/gou.png'></image>
       <image data-index='{{index}}' catchtap="del" data-shoppingCartId='{{itemName.shoppingCartId}}' style='float:right;' src='https://www.chuanshoucs.com/ServerImg/2018-08-03/14092e66-d1b7-4349-8aa0-56d3836ba3df.png' mode="aspectFill"></image>
     </view>
     <view class="touch-item {{itemName.isTouchMove ? 'touch-move-active' : ''}}" data-index="{{index}}" bindtouchstart="touchstart" bindtouchmove="touchmove" wx:key="">

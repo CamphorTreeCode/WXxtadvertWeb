@@ -26,9 +26,9 @@ Page({
       text: '换一批'
     }],
     referrer: [{
-      img: '/img/round1.png',
+      img: 'https://www.chuanshoucs.com/ServerImg/2018-10-30/db1e600b-2c9c-40f3-8d53-7c243932c8f7.png',
     }, {
-      img: '/img/round2.png',
+        img: 'https://www.chuanshoucs.com/ServerImg/2018-10-30/48a874c7-d2a3-4183-b79c-0a6421c4ad21.png', 
     }],
     listbox: [],
     //定位的街道
@@ -269,7 +269,9 @@ Page({
   // 跳转导航栏分类页面
   news: function(e) {
     var lableId = e.currentTarget.dataset.lableid;
+    var navigationName = e.currentTarget.dataset.navigationname;
     app.globalData.lableId = lableId;
+    app.globalData.navigationName = navigationName;
     wx.navigateTo({
       url: '../news/news',
     })

@@ -1,5 +1,4 @@
-<shouquan>
-</shouquan>
+
 <view class="swiper-container">
   <swiper autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" circular='{{circular}}' current="{{swiperCurrent}}" bindchange="swiperChange" class="swiper">
     <block wx:for="{{slider}}" wx:key="unique">

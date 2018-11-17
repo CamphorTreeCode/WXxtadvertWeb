@@ -1,5 +1,5 @@
 {
-  "pages":[
+  "pages": [
     "pages/index/index",
     "pages/swipe/swipe",
     "pages/list/list",
@@ -12,21 +12,18 @@
     "pages/find/find",
     "pages/findask/findask",
     "pages/vipbanner/vipbanner",
-
     "pages/shoppingcart/shoppingcart",
     "utils/getUserTemplate/getUserTemplate",
     "pages/Settlement/Settlement",
     "pages/Paymentsuccess/Paymentsuccess",
     "pages/Addetails/Addetails",
     "pages/Addetailspage/Addetailspage",
-
     "pages/me/wode",
     "pages/me/member",
     "pages/me/fankui",
     "pages/me/about",
     "pages/me/more",
     "pages/me/shoucang",
-
     "pages/me/fa/login",
     "pages/me/fa/zhuceSuccess",
     "pages/me/fa/zhuce",
@@ -40,7 +37,6 @@
     "pages/me/fa/mima",
     "pages/me/fa/wangji",
     "pages/me/fa/chongzhi",
-
     "pages/me/jie/login",
     "pages/me/jie/zhuce",
     "pages/me/jie/zhuceSuccess",
@@ -52,10 +48,40 @@
     "pages/me/jie/mima",
     "pages/me/jie/guanggaowei"
   ],
-  "window":{
-    "backgroundTextStyle":"light",
+  "window": {
+    "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#fff",
     "navigationBarTitleText": "WeChat",
-    "navigationBarTextStyle":"black"
+    "navigationBarTextStyle": "black"
+  },
+  "tabBar": {
+    "color": "#ccc",
+    "selectedColor": "#000000",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "首页",
+        "iconPath": "/img/tabbar/shouye2.png",
+        "selectedIconPath": "/img/tabbar/shouye1.png"
+      },
+      {
+        "pagePath": "pages/find/find",
+        "text": "发现",
+        "iconPath": "/img/tabbar/faxian2.png",
+        "selectedIconPath": "/img/tabbar/faxian1.png"
+      },
+      {
+        "pagePath": "pages/shoppingcart/shoppingcart",
+        "text": "购物车",
+        "iconPath": "/img/tabbar/gouwuche2.png",
+        "selectedIconPath": "/img/tabbar/gouwuche1.png"
+      },
+      {
+        "pagePath": "pages/me/wode",
+        "text": "我的",
+        "iconPath": "/img/tabbar/wo2.png",
+        "selectedIconPath": "/img/tabbar/wo1.png"
+      }
+    ]
   }
 }

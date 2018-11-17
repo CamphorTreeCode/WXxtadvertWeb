@@ -30,7 +30,7 @@
   <view class='message'>
     <image src='/img/wode/didian.png'></image>
     <text>所在地区</text>
-    <picker mode="region" name="region" value="{{region}}" custom-item="{{customItem}}">
+    <picker mode="region" name="region" value="{{region}}" bindchange="bindRegionChange" custom-item="{{customItem}}">
     <view class="picker">
       {{region}}
     </view>

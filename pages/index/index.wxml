@@ -23,7 +23,7 @@
   <view class='collagen clearfix'>
     <!-- 最新 -->
     <i wx:for="{{HomeNavigation}}">
-      <view class='quarter' bindtap='news' data-lableid='{{item.lableId}}'>
+      <view class='quarter' bindtap='news' data-lableid='{{item.lableId}}' data-navigationName='{{item.navigationName}}'>
         <image src='{{item.navigationIcon}}' mode='aspectFit'></image>
         <view>{{item.navigationName}}</view>
       </view>
@@ -115,5 +115,4 @@
   </view>
 
   <!-- tablebr -->
-  <tablebar shouye="{{true}}" class="foter"></tablebar>
 </view>

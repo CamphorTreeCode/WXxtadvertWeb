@@ -40,6 +40,21 @@ Page({
    */
   onShow: function() {
     var that = this;
+
+    //查询用户当前身份
+    wx.request({
+      url: app.globalData.appUrl + 'WXLoginStatus/findUserRoles?openId=' + app.returnOpenId() + '',
+      header: {
+        'content-type': 'application/x-www-form-urlencoded',
+        xcxuser_name: "xcxuser_name"
+      },
+      success: function(res) {
+        console.info("下面是查询用户的身份信息：")
+        console.info(res.data.UserRoles)
+        app.globalData.UserRoles = res.data.UserRoles;
+      }
+    })
+
     //查询用户是否填写买家商家账号信息start
     wx.request({
       url: app.globalData.appUrl + 'WXBuyerInfo/findUserRegAndInfo?openId=' + app.returnOpenId() + '',
@@ -56,13 +71,13 @@ Page({
             Reg: res.data.Reg,
             BuyerInfoState: res.data.BuyerInfoState,
           })
-        } else if (res.data.BuyerInfoState == 2){
+        } else if (res.data.BuyerInfoState == 2) {
           that.setData({
             Info: res.data.Info,
             Reg: res.data.Reg,
             BuyerInfoState: res.data.BuyerInfoState,
           })
-        }else{
+        } else {
           that.setData({
             Info: res.data.Info,
             Reg: res.data.Reg,
@@ -79,7 +94,7 @@ Page({
         'content-type': 'application/x-www-form-urlencoded',
         xcxuser_name: "xcxuser_name"
       },
-      success: function (res) {
+      success: function(res) {
         console.info("下面查询卖家用户是否填写商家信息：")
         console.info(res.data)
         if (res.data.SellerInfoState == true || res.data.SellerInfoState == false) {
@@ -201,7 +216,7 @@ Page({
         wx.navigateTo({
           url: '/pages/me/fa/message',
         })
-      }else if (Reg == true && Info == false) {
+      } else if (Reg == true && Info == false) {
         //注册但没填写信息
         wx.navigateTo({
           url: '/pages/me/fa/zhuceSuccess',

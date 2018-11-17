@@ -35,7 +35,9 @@ App({
         }
       }
     })
-
+    console.info("^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^")
+    console.info(wx.getStorageSync('openid'))
+    console.info("^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^")
     //查询用户当前身份
     var that = this;
     wx.request({
@@ -82,5 +84,7 @@ App({
     collectionContent:{},
     //导航栏跳转的lableId
     lableId:0,
+    //首页导航栏名称
+    navigationName:'',
   }
 })

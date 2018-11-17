@@ -70,7 +70,7 @@ Page({
         monthlist.push(montha + x);
       }
     }
-    console.info("三个月的集合："+monthlist)
+    // console.info("三个月的集合："+monthlist)
     //循环每月有多少天，放进每个月对应的数组里面
     var arr1 = [],
       arr2 = [],
@@ -190,10 +190,10 @@ Page({
         }
       }
     }
-    console.info("每个月的天数：")
-    console.info(arr1)
-    console.info(arr2)
-    console.info(arr3)
+    // console.info("每个月的天数：")
+    // console.info(arr1)
+    // console.info(arr2)
+    // console.info(arr3)
 
 
     this.setData({

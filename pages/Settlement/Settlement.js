@@ -7,29 +7,30 @@ Page({
    * 页面的初始数据
    */
   data: {
-      flag:false,
-      flage:false , 
-      eyu:false,
-      // distances:'',
-      // lableList:[],
-      // sellerName:'',
-      // swiper:'',
-      // unitPrice:'',
-      // total_fee:0,
-      // daynum:0,
-      // orderDate:''
-      qqdata:{}
+    flag: false,
+    flage: false,
+    eyu: false,
+    // distances:'',
+    // lableList:[],
+    // sellerName:'',
+    // swiper:'',
+    // unitPrice:'',
+    // total_fee:0,
+    // daynum:0,
+    // orderDate:''
+    qqdata: {},
+    data: [],
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
-    
+  onLoad: function(options) {
+
     var data = JSON.parse(options.data);
     console.info(data)
     this.setData({
-      data:data
+      data: data
     })
 
   },
@@ -37,99 +38,115 @@ Page({
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady: function () {
-    
+  onReady: function() {
+
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function () {
-      
+  onShow: function() {
+
   },
 
   /**
    * 生命周期函数--监听页面隐藏
    */
-  onHide: function () {
-  
+  onHide: function() {
+
   },
 
   /**
    * 生命周期函数--监听页面卸载
    */
-  onUnload: function () {
-  
+  onUnload: function() {
+
   },
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
-  onPullDownRefresh: function () {
-  
+  onPullDownRefresh: function() {
+
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
-  onReachBottom: function () {
+  onReachBottom: function() {
 
   },
-  
+
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function () {
+  onShareAppMessage: function() {
 
   },
   // 支付成功跳转
-  payment:function(){
+  payment: function() {
     this.data.flag = !this.data.flag;
     this.setData({
       flag: this.data.flag
     })
   },
-  close:function(){
+  close: function() {
     this.setData({
       flag: false
     })
   },
-  quxiao:function(){
+  quxiao: function() {
     this.setData({
       flage: false,
-      eyu:false
+      eyu: false
     })
   },
-  Smallchange:function(){
+  Smallchange: function() {
     this.setData({
       flag: false,
       flage: true
     })
   },
-  yue:function(){
+  yue: function() {
     this.setData({
-      flag:false,
-      eyu:true
+      flag: false,
+      eyu: true
     })
   },
-  WXPAY:function(){
+  WXPAY: function() {
     var that = this
-    var data = this.data.data;
-    data.payMode = 0;
-
+    var data = that.data.data;
+    for (var i = 0; i < data.length; i++) {
+      data[i].payMode = 0;
+    }
+    // data.payMode = 0;
+    // console.info(JSON.stringify(data))
+    console.info("下面是data中的数据：")
+    console.info(data)
     wx.request({
       url: app.globalData.appUrl + 'WXPay/SellerAdvertisePay',
-      data: data,
+      data: { payScreen:data},
+      header: {
+        'content-type': 'application/json', // 默认值
+        xcxuser_name: "xcxuser_name"
+      },
+      method: 'get',
       success: function(res) {
+        console.info("下面是购买商品返回的信息：")
+        console.info(res.data)
+        console.info(JSON.parse(res.data.prepay_id))
+        var data = JSON.parse(res.data.prepay_id);
         if (res.data.error != undefined) {
 
           wx.showModal({
             title: '提示',
             content: res.data.error,
           })
-        }else{
-          PayUtils(res.data.prepay_id, app.globalData.appUrl + 'WXPay/SellerAdvertisePaySuccess', 
-              { orderListId: res.data.orderId, orderday: JSON.stringify(that.data.data.orderday)},'/pages/index/index')
+        } else {
+          PayUtils(data.prepay_id, app.globalData.appUrl + 'WXPay/SellerAdvertisePaySuccess', {
+            orderListId: data.orderId,
+            orderday: data.orderday
+          }, '/pages/index/index')
         }
 
       }

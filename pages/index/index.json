@@ -1,7 +1,6 @@
 {
   "navigationBarTitleText": "享投",
   "usingComponents": {
-    "tablebar": "/pages/tabbar/tabbar",
     "slideshow": "/pages/swipe/swipe",
     "select": "/pages/list/list",
     "shouquan": "/utils/getUserTemplate/getUserTemplate"

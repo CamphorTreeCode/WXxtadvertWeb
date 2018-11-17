@@ -1,40 +1,41 @@
 <!--pages/Settlement/Settlement.wxml-->
 <shouquan>
 </shouquan>
-<view class='top'>
-  <image src='/img/cat.jpg'></image>
+<view wx:for="{{data}}">
+<view class='top' >
+  <image src='{{item.swiper[0]}}' mode='aspectFill'></image>
   <view class='t_left'>
-    <view class='title'>{{data.sellerName}}</view>
+    <view class='title'>{{item.sellerName}}</view>
     <view class='label'>
-      <i wx:for="{{data.lableList}}">
-       <text>{{item}}</text>
+      <i wx:for="{{item.lableList}}" wx:for-item="itemName">
+       <text>{{itemName}}</text>
       </i>
     </view>
-    <view class='dizhi'>距离:{{data.distances}}km</view>
-    <view class='jiagep'>{{data.unitPrice}}元/1天</view>
+    <view class='dizhi'>距离:{{item.distances}}km</view>
+    <view class='jiagep'>{{item.unitPrice}}元/1天</view>
   </view>
 </view>
 <view class='list'>
   价格
-  <text>{{data.unitPrice}}元/{{data.daynum}}天</text>
+  <text>{{item.unitPrice*item.daynum}}元/{{item.daynum}}天</text>
 </view>
 <view class='list'>
   投放时间
-  <i wx:for="{{data.orderDate}}">
-  <text>{{item}}</text>
+  <i wx:for="{{item.orderDate}}" wx:for-item="order">
+  <text>{{order}}</text>
   </i>
 </view>
 
 <!-- 底部 -->
 <view class='footer'>
   合计 :
-  <text>￥{{data.total_fee}}</text>
+  <text>￥{{item.total_fee}}</text>
   <view bindtap='payment'>
     <image src='/img/shopping/quzhifu.png'></image>
     <text class='zhifu'>支付</text>
   </view>
 </view>
-
+</view>
 <!-- 遮罩层 -->
 <view class='mask' hidden='{{flag == false}}' catchtouchmove="preventTouchMove"></view>
 

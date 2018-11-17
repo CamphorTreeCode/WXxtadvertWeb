@@ -37,7 +37,7 @@ Page({
    */
   data: {
     state: false,
-    region: ["江苏省", "南京市", "玄武区"],
+    region: ["请选择地区"],
     customItem: '全部',
     //全部小程序信息
     MiniProgram:[],
@@ -184,5 +184,13 @@ Page({
     }
     
   },
+
+  //用户选择的地区信息
+  bindRegionChange: function (e) {
+    console.log('picker发送选择改变，携带值为', e.detail.value)
+    this.setData({
+      region: e.detail.value
+    })
+  }
   
 })

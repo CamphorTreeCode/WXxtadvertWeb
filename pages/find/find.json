@@ -1,7 +1,6 @@
 {
   "navigationBarTitleText": "发现",
   "usingComponents": {
-    "tablebar": "/pages/tabbar/tabbar",
     "shouquan": "/utils/getUserTemplate/getUserTemplate"
   }
 }

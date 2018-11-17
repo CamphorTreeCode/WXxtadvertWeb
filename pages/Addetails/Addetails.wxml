@@ -60,7 +60,7 @@
     <image src='/img/detail/zhouqi.png'></image>
     <text>投放周期</text>
   </view>
-  <view wx:if="{{period.orderDate == undefined}}" class='c_right c_rightp' style='color:#FFD801'>
+  <view wx:if="{{period.orderDate == undefined}}" class='c_right c_rightp' style='color:#FFD801'> 
      请选择
     <image src='/img/detail/shouqi.png'></image>
   </view>

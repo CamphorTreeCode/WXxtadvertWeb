@@ -45,6 +45,7 @@ view {
   padding: 0rpx 5rpx;
   font-size: 28rpx;
   border: 1rpx solid #4daafe;
+  margin-right:5rpx;
 }
 
 .dizhi {
