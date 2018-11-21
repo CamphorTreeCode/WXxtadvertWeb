@@ -78,11 +78,28 @@ Page({
     shopIndexArr: [],
     //结算的对象数组
     shopObjArr: [],
-
+    //用户账号id
+    buyerAccountId:"",
   },
   onLoad: function(option) {
     var that = this;
     console.info(that.data.shopuUnitPrice1)
+    //查询用户的账号Id
+    wx.request({
+      url: app.globalData.appUrl + 'WXShopCar/findUserBuyerAccountId?openId=' + app.returnOpenId() + '',
+      header: {
+        'content-type': 'application/x-www-form-urlencoded',
+        xcxuser_name: "xcxuser_name"
+      },
+      success: function (res) {
+        console.info(res.data)
+        that.setData({
+          buyerAccountId:res.data,
+        })
+      }
+    })
+    //查询用户的账号Id
+
     //查询用户当前身份
     wx.request({
       url: app.globalData.appUrl + 'WXLoginStatus/findUserRoles?openId=' + app.returnOpenId() + '',
@@ -441,23 +458,27 @@ Page({
     } else{
       //有信息，跳转
       console.info("有东西哎")
+      
       var data = [];
       var data1 = {};
       for (var i = 0; i < that.data.shopObjArr.length; i++) {
-        data1.swiper = that.data.shopObjArr[i].sellerAdvertise.sellerInfo.advertiseImgs;
-        data1.sellerName = that.data.shopObjArr[i].sellerAdvertise.sellerInfo.sellerName;
-        data1.lableList = that.data.shopObjArr[i].sellerAdvertise.lableList;
-        data1.distances = that.data.shopObjArr[i].sellerAdvertise.distances;
-        data1.unitPrice = that.data.shopObjArr[i].sellerAdvertise.unitPrice;
-        data1.sellerAdvertiseId = that.data.shopObjArr[i].sellerAdvertiseId;
-        data1.openid = app.returnOpenId();
-        data1.total_fee = 1;
-        data1.body = '享投广告屏购买';
-        data1.buyerAccountId = 21;
-        data1.orderDate = that.data.period.orderDate;
-        data1.orderday = that.data.period.orderday;
-        data1.daynum = that.data.shopObjArr[i].shopuUnitPrice.substring(that.data.shopObjArr[i].shopuUnitPrice.indexOf("/") + 1, that.data.shopObjArr[i].shopuUnitPrice.indexOf("天"));
-        if (that.data.period.orderday.length != data1.daynum) {
+        console.info("下面是从缓存中拿到的数据;" + that.data.shopObjArr[i].sellerAdvertiseId)
+        console.info(wx.getStorageSync(that.data.shopObjArr[i].sellerAdvertiseId+""))
+        data1[i] = {};
+        data1[i].swiper = that.data.shopObjArr[i].sellerAdvertise.sellerInfo.advertiseImgs;
+        data1[i].sellerName = that.data.shopObjArr[i].sellerAdvertise.sellerInfo.sellerName;
+        data1[i].lableList = that.data.shopObjArr[i].sellerAdvertise.lableList;
+        data1[i].distances = that.data.shopObjArr[i].sellerAdvertise.distances;
+        data1[i].unitPrice = that.data.shopObjArr[i].sellerAdvertise.unitPrice;
+        data1[i].sellerAdvertiseId = that.data.shopObjArr[i].sellerAdvertiseId;
+        data1[i].openid = app.returnOpenId();
+        data1[i].total_fee = 1;
+        data1[i].body = '享投广告屏购买';
+        data1[i].buyerAccountId = that.data.buyerAccountId;
+        data1[i].orderDate = that.data.shopObjArr[i].shoppingDate;
+        data1[i].orderday = wx.getStorageSync(that.data.shopObjArr[i].sellerAdvertiseId + "");
+        data1[i].daynum = that.data.shopObjArr[i].shopuUnitPrice.substring(that.data.shopObjArr[i].shopuUnitPrice.indexOf("/") + 1, that.data.shopObjArr[i].shopuUnitPrice.indexOf("天"));
+        if (wx.getStorageSync(that.data.shopObjArr[i].sellerAdvertiseId+"").length != data1[i].daynum) {
           wx.showToast({
             title: '请重新选择投放时间',
             icon: 'none',
@@ -465,7 +486,7 @@ Page({
           })
           return;
         } else{
-          data.push(data1);
+          data.push(data1[i]);
         }
         
       }
@@ -530,6 +551,7 @@ Page({
   riqi: function(e) {
     console.info(e)
     var index = e.currentTarget.dataset.index;
+    console.info(index)
     this.setData({
       shopCartIndex: index,
     })

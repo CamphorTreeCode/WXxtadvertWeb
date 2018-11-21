@@ -20,6 +20,8 @@ Page({
     // orderDate:''
     qqdata: {},
     data: [],
+    //结算商品总价
+    Total_fee: '',
   },
 
   /**
@@ -28,8 +30,14 @@ Page({
   onLoad: function(options) {
 
     var data = JSON.parse(options.data);
+    console.info("支付页面的传值：")
     console.info(data)
+    var fee = 0;
+    for (var i = 0; i < data.length; i++) {
+      fee += data[i].unitPrice * data[i].daynum;
+    }
     this.setData({
+      Total_fee: fee,
       data: data
     })
 
@@ -123,34 +131,46 @@ Page({
     // console.info(JSON.stringify(data))
     console.info("下面是data中的数据：")
     console.info(data)
-    wx.request({
-      url: app.globalData.appUrl + 'WXPay/SellerAdvertisePay',
-      data: { payScreen:data},
-      header: {
-        'content-type': 'application/json', // 默认值
-        xcxuser_name: "xcxuser_name"
-      },
-      method: 'get',
-      success: function(res) {
-        console.info("下面是购买商品返回的信息：")
-        console.info(res.data)
-        console.info(JSON.parse(res.data.prepay_id))
-        var data = JSON.parse(res.data.prepay_id);
-        if (res.data.error != undefined) {
+    console.info(data.length)
+    if (data.length > 1) {
+      //多个商品结算
+      console.info("多个商品结算哦")
+    } else {
+      //单个商品结算
+      console.info("单个商品结算哦")
+      wx.request({
+        url: app.globalData.appUrl + 'WXPay/SellerAdvertisePayOne',
+        data: {
+          payScreen: data
+        },
+        header: {
+          'content-type': 'application/json', // 默认值
+          xcxuser_name: "xcxuser_name"
+        },
+        method: 'get',
+        success: function(res) {
+          console.info("下面是购买商品返回的信息：")
+          console.info(res.data)
+          console.info(res.data.length)
+          console.info(res.data.prepay_id)
+          var data = res.data.prepay_id;
+          if (res.data.error != undefined) {
+            wx.showModal({
+              title: '提示',
+              content: res.data.error,
+            })
+          } else {
+            //循环调用支付成功函数
+            PayUtils(data.prepay_id, app.globalData.appUrl + 'WXPay/SellerAdvertisePaySuccess', {
+              orderListId: data.orderId,
+              orderday: data.orderday
+            }, '/pages/index/index')
+          }
 
-          wx.showModal({
-            title: '提示',
-            content: res.data.error,
-          })
-        } else {
-          PayUtils(data.prepay_id, app.globalData.appUrl + 'WXPay/SellerAdvertisePaySuccess', {
-            orderListId: data.orderId,
-            orderday: data.orderday
-          }, '/pages/index/index')
         }
+      })
+    }
 
-      }
-    })
 
   }
 })

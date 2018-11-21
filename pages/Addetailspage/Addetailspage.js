@@ -14,7 +14,9 @@ Page({
         dates: "2018-10-7",
         number: "5"
       }
-    ]
+    ],
+    //选择日期的广告位id
+    sellerAdvertiseId:'',
   },
 
   /**
@@ -26,7 +28,8 @@ Page({
 
     //获取屏幕对应的库存
     this.setData({
-      optionaldays: options.daynum
+      optionaldays: options.daynum,
+      sellerAdvertiseId: options.sellerAdvertiseId,
     })
     var that= this
     var successList = {}
@@ -804,7 +807,12 @@ Page({
 
 
     // }
+    try{
+      wx.setStorageSync(this.data.sellerAdvertiseId, arrdatelist);
+    }catch(e){
 
+    }
+    
     return { "orderDate": arrdate, "orderday": arrdatelist }
     // for (var x = 0; x < arr3.length; x++) {
     //   // var startdate = ''

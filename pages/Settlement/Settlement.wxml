@@ -29,7 +29,7 @@
 <!-- 底部 -->
 <view class='footer'>
   合计 :
-  <text>￥{{item.total_fee}}</text>
+  <text>￥{{Total_fee}}</text>
   <view bindtap='payment'>
     <image src='/img/shopping/quzhifu.png'></image>
     <text class='zhifu'>支付</text>

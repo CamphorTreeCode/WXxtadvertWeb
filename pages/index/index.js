@@ -320,6 +320,11 @@ Page({
         success: function(res) {
           console.info("增加购物车返回的信息")
           console.info(res);
+          wx.showToast({
+            title: '加入购物车成功！',
+            icon: 'success',
+            duration: 1500
+          });          
         }
       })
       //加入购物车end
@@ -358,6 +363,11 @@ Page({
       success: function(res) {
         console.info("删除购物车返回的信息")
         console.info(res);
+        wx.showToast({
+          title: '取消加入购物车！',
+          icon: 'success',
+          duration: 1500
+        }); 
       }
     })
     //删除购物车end
