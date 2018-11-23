@@ -249,7 +249,6 @@ Page({
   },
   onShow: function() {
     this.onLoad();
-
   },
 
   //手指触摸动作开始 记录起点X坐标

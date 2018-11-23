@@ -126,6 +126,7 @@ Page({
     var data = that.data.data;
     for (var i = 0; i < data.length; i++) {
       data[i].payMode = 0;
+      data[i].amount_fee = that.data.Total_fee;
     }
     // data.payMode = 0;
     // console.info(JSON.stringify(data))
@@ -135,6 +136,41 @@ Page({
     if (data.length > 1) {
       //多个商品结算
       console.info("多个商品结算哦")
+      wx.request({
+        url: app.globalData.appUrl + 'WXPay/SellerAdvertisePayMore',
+        data: {
+          payScreen: data
+        },
+        header: {
+          'content-type': 'application/json', // 默认值
+          xcxuser_name: "xcxuser_name"
+        },
+        method: 'get',
+        success: function (res) {
+          console.info("下面是购买商品返回的信息：")
+          for (var i = 0; i < that.data.data.length; i++){
+            console.info("返回的结果"+i)
+            console.info(res.data[i])
+          }
+          console.info(res.data)
+          console.info(res.data.length)
+          console.info(res.data.prepay_id)
+          var data = res.data.prepay_id;
+          if (res.data.error != undefined) {
+            wx.showModal({
+              title: '提示',
+              content: res.data.error,
+            })
+          } else {
+            //循环调用支付成功函数
+            PayUtils(data.prepay_id, app.globalData.appUrl + 'WXPay/SellerAdvertisePaySuccess', {
+              orderListId: data.orderId,
+              orderday: data.orderday
+            }, '/pages/Paymentsuccess/Paymentsuccess');
+          }
+
+        }
+      })
     } else {
       //单个商品结算
       console.info("单个商品结算哦")
@@ -164,13 +200,12 @@ Page({
             PayUtils(data.prepay_id, app.globalData.appUrl + 'WXPay/SellerAdvertisePaySuccess', {
               orderListId: data.orderId,
               orderday: data.orderday
-            }, '/pages/index/index')
+            }, '/pages/Paymentsuccess/Paymentsuccess');
           }
 
         }
       })
+
     }
-
-
   }
 })
