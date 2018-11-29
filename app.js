@@ -78,6 +78,8 @@ App({
     userInfo: null,
     appUrl: "http://192.168.6.137/xtadvert/",
     // appUrl: "http://localhost/xtadvert/",
+    
+    // appUrl: "https://www.chuanshoucs.com/xtadvert/",
     shareImg:"https://www.chuanshoucs.com/ServerImg/2018-08-03/97086b2d-b18e-4d57-a30d-70e0b8ddeedc.jpg",
     UserRoles:0,
     //收藏的广告位信息

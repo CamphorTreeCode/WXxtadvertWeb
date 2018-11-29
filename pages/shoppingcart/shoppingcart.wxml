@@ -55,23 +55,27 @@
       <text wx:for="{{itemName.price}}" bindtap='textjiage' wx:for-index="idx" data-data='{{index}}' data-index='{{idx}}' class="{{itemName.priceindex==idx?'juse':''}}">{{item}}</text>
     </view>
     <!-- 投放时间 -->
-    <view class='price'>
+    <view class='price' catchtap='riqi' data-index='{{index}}'>
       <text class='p_left'>选择投放时间</text>
-      <view class='p_right' bindtap='riqi' data-index='{{index}}'>
+      <view class='p_right'>
         {{itemName.shoppingDate}}
         <image src='/img/shopping/shouqi.png'></image>
       </view>
     </view>
+    <view class='JS' catchtap='payment' data->
+      <image class='J1' src='/img/shopping/quzhifu.png'></image>
+      <!-- <image class='J2' src='/img/shopping/jiesuan.png'></image> -->
+    </view>
   </view>
 </view>
 <!-- 去结算 -->
-<view class='jiesuan' wx:if='{{jiesuan == false}}'>
+<!-- <view class='jiesuan' wx:if='{{jiesuan == false}}'>
   <view catchtap='payment'>
     <text>去结算</text>
     <image class='j_a' src='/img/shopping/quzhifu.png'></image>
     <image class='j_b' src='/img/shopping/jiesuan.png'></image>
   </view>
-</view>
+</view> -->
 
 <!-- 账号不符和 -->
 <view class='Nonconformity' style='{{Nonconformity}}'>

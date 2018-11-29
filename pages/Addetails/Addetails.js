@@ -533,6 +533,7 @@ Page({
 
     //   }
     // })
+    var key ="ljyy";
     var date = [{
       swiper: that.data.swiper,
       sellerName: that.data.sellerName,
@@ -548,10 +549,10 @@ Page({
       orderDate: that.data.period.orderDate,
       orderday: orderday,
       daynum: that.data.daynum,
-
+      orderDateNum :that.data.daynum,
     }];
     wx.navigateTo({
-      url: '/pages/Settlement/Settlement?data=' + JSON.stringify(date),
+      url: '/pages/Settlement/Settlement?data=' + JSON.stringify(date) + "&key=" + key,
     })
 
   },

@@ -32,7 +32,7 @@
   <text>￥{{Total_fee}}</text>
   <view bindtap='payment'>
     <image src='/img/shopping/quzhifu.png'></image>
-    <text class='zhifu'>支付</text>
+    <text class='zhifu'></text>
   </view>
 </view>
 </view>

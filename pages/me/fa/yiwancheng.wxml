@@ -4,9 +4,9 @@
 <view class='zong' wx:for="{{YWCMsg}}">
   <view class='shang'>
     <view class='zuo'>
-      <view style='font-size: 40rpx; margin-bottom: 20rpx;'>{{item.sellerAdvertise.sellerInfo.sellerName}}</view>
+      <view style='font-size: 40rpx; margin-bottom: 20rpx;'>{{item.sellerAdvertise.sellerInfo.sellerName}}-{{item.sellerAdvertise.advertiseSN}}</view>
       <text class='biao'wx:for="{{item.sellerAdvertise.lableList}}" wx:for-item="lable">{{lable}}</text>
-      <view style='margin-top: 20rpx; color: #999'>投放时间：{{item.orderDate}}</view> 
+      <view style='margin-top: 20rpx; color: #999'>投放时间：{{item.orderDateNum}}天</view> 
     </view>
     <view class='you'>
       <view style='color: #FC7F00;'>￥{{item.orderAmount}}</view>

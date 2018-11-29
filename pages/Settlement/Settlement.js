@@ -14,7 +14,7 @@ Page({
     // lableList:[],
     // sellerName:'',
     // swiper:'',
-    // unitPrice:'',
+    // unitPrice:'', 
     // total_fee:0,
     // daynum:0,
     // orderDate:''
@@ -22,13 +22,15 @@ Page({
     data: [],
     //结算商品总价
     Total_fee: '',
+    //不同页面之间传值标识
+    key: "",
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-
+    console.info(options.key)
     var data = JSON.parse(options.data);
     console.info("支付页面的传值：")
     console.info(data)
@@ -37,6 +39,7 @@ Page({
       fee += data[i].unitPrice * data[i].daynum;
     }
     this.setData({
+      key: options.key,
       Total_fee: fee,
       data: data
     })
@@ -146,10 +149,10 @@ Page({
           xcxuser_name: "xcxuser_name"
         },
         method: 'get',
-        success: function (res) {
+        success: function(res) {
           console.info("下面是购买商品返回的信息：")
-          for (var i = 0; i < that.data.data.length; i++){
-            console.info("返回的结果"+i)
+          for (var i = 0; i < that.data.data.length; i++) {
+            console.info("返回的结果" + i)
             console.info(res.data[i])
           }
           console.info(res.data)
@@ -189,7 +192,7 @@ Page({
           console.info(res.data)
           console.info(res.data.length)
           console.info(res.data.prepay_id)
-          var data = res.data.prepay_id;
+          var data1 = res.data.prepay_id;
           if (res.data.error != undefined) {
             wx.showModal({
               title: '提示',
@@ -197,10 +200,45 @@ Page({
             })
           } else {
             //循环调用支付成功函数
-            PayUtils(data.prepay_id, app.globalData.appUrl + 'WXPay/SellerAdvertisePaySuccess', {
-              orderListId: data.orderId,
-              orderday: data.orderday
+            PayUtils(data1.prepay_id, app.globalData.appUrl + 'WXPay/SellerAdvertisePaySuccess', {
+              orderListId: data1.orderId,
+              orderday: data1.orderday
             }, '/pages/Paymentsuccess/Paymentsuccess');
+            if (that.data.key == "gwc") {
+              //购物车页面传值
+              console.info("购物车页面传值")
+              //删除购物车start
+              console.info("执行删除购物车了：：：：：")
+              console.info(data)
+              console.info(data[0].sellerAdvertiseId)
+              wx.request({
+                url: app.globalData.appUrl + 'WXShopCar/removeShoppingCartInfo',
+                data: {
+                  openId: app.returnOpenId(),
+                  sellerAdvertiseId: data[0].sellerAdvertiseId,
+                },
+                header: {
+                  'content-type': 'application/x-www-form-urlencoded', // 默认值
+                  xcxuser_name: "xcxuser_name"
+                },
+                success: function(res) {
+                  console.info("删除购物车返回的信息")
+                  console.info(res);
+                }
+              })
+              //删除购物车end
+            } else {
+              //另外连个页面传值
+              console.info("另外两个页面传值")
+            }
+            //清除本地缓存
+            wx.removeStorage({
+              key: data[0].sellerAdvertiseId + "",
+              success: function (res) {
+                console.info("清除缓存成功", res)
+              }
+            })
+
           }
 
         }

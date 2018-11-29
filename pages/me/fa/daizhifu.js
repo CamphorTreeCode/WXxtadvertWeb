@@ -19,6 +19,7 @@ function findBuyerOrderMsg(that){
       if (res.data[0].lists.length > 0) {
         var DZFMsg = that.data.DZFMsg
         for (var i = 0; i < res.data[0].lists.length; i++) {
+          res.data[0].lists[i].orderDate = JSON.parse(res.data[0].lists[i].orderDate);
           DZFMsg.push(res.data[0].lists[i])
         }
         console.info(DZFMsg);
@@ -113,28 +114,32 @@ Page({
   onShareAppMessage: function () {
   
   },
-  quzhifu: function(){
-    // var that = this;
-    // var date = {
-    //   swiper: that.data.swiper,
-    //   sellerName: that.data.sellerName,
-    //   lableList: that.data.lableList,
-    //   distances: that.data.listbox[0].distances,
-    //   unitPrice: that.data.unitPrice,
-    //   sellerAdvertiseId: that.data.sellerAdvertiseId,
-    //   openid: app.returnOpenId(),
-    //   // total_fee: that.data.totalPrice,
-    //   total_fee: 1,
-    //   body: '享投广告屏购买',
-    //   buyerAccountId: 5,
-    //   orderDate: that.data.period.orderDate,
-    //   orderday: orderday,
-    //   daynum: that.data.daynum,
-
-    // };
+  quzhifu: function(e){
+    var that = this;
+    console.info(e)
+    var index = e.currentTarget.dataset.index;
+    console.info(index)
+    console.info(that.data.DZFMsg[index])
+    var key = "dzf";
+    var date = [{
+      swiper: JSON.parse(that.data.DZFMsg[index].sellerAdvertise.sellerInfo.advertiseImgs),
+      sellerName: that.data.DZFMsg[index].sellerAdvertise.sellerInfo.sellerName,
+      lableList: that.data.DZFMsg[index].sellerAdvertise.lableList,
+      distances: that.data.DZFMsg[index].sellerAdvertise.distances,
+      unitPrice: that.data.DZFMsg[index].sellerAdvertise.unitPrice,
+      sellerAdvertiseId: that.data.DZFMsg[index].sellerAdvertiseId,
+      openid: app.returnOpenId(),
+      // total_fee: that.data.DZFMsg[index].orderAmount,
+      total_fee: 1,
+      body: '享投广告屏购买',
+      buyerAccountId: that.data.DZFMsg[index].buyerAccountId,
+      orderDate: that.data.DZFMsg[index].orderDate,
+      orderday: that.data.DZFMsg[index].orderday,
+      daynum: that.data.DZFMsg[index].orderDateNum,
+    }];
+    console.info(date)
     wx.navigateTo({
-      // url: '/pages/Settlement/Settlement?data=' + JSON.stringify(date),
-      url: '/pages/Settlement/Settlement',
+      url: '/pages/Settlement/Settlement?data=' + JSON.stringify(date) + "&key=" + key,
     })
   }
 })

@@ -31,11 +31,16 @@ export default function WXUnifiedOrder(prepay_id, calbackUrl, calbackdata,naviga
            wx.redirectTo({
              url: navigateTo,
            })
+           console.info("用支付成功了")
         }
       })
     },
     'fail': function (res) {
       console.log(res)
+      console.info("用户取消支付了")
+      wx.reLaunch({
+        url: '/pages/index/index'
+      })
     }
   })
 

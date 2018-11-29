@@ -248,6 +248,8 @@ Page({
 
   },
   onShow: function() {
+    // this.data.ShoppingCart = [];
+    console.info("重新加载了")
     this.onLoad();
   },
 
@@ -457,7 +459,7 @@ Page({
     } else{
       //有信息，跳转
       console.info("有东西哎")
-      
+      var key = "gwc";
       var data = [];
       var data1 = {};
       for (var i = 0; i < that.data.shopObjArr.length; i++) {
@@ -477,6 +479,7 @@ Page({
         data1[i].orderDate = that.data.shopObjArr[i].shoppingDate;
         data1[i].orderday = wx.getStorageSync(that.data.shopObjArr[i].sellerAdvertiseId + "");
         data1[i].daynum = that.data.shopObjArr[i].shopuUnitPrice.substring(that.data.shopObjArr[i].shopuUnitPrice.indexOf("/") + 1, that.data.shopObjArr[i].shopuUnitPrice.indexOf("天"));
+        data1[i].orderDateNum = that.data.shopObjArr[i].shopuUnitPrice.substring(that.data.shopObjArr[i].shopuUnitPrice.indexOf("/") + 1, that.data.shopObjArr[i].shopuUnitPrice.indexOf("天"));
         if (wx.getStorageSync(that.data.shopObjArr[i].sellerAdvertiseId+"").length != data1[i].daynum) {
           wx.showToast({
             title: '请重新选择投放时间',
@@ -491,7 +494,7 @@ Page({
       }
       console.info(data)
       wx.navigateTo({
-        url: '/pages/Settlement/Settlement?data=' + JSON.stringify(data),
+        url: '/pages/Settlement/Settlement?data=' + JSON.stringify(data) + "&key=" + key,
       })
     }
 
