@@ -34,7 +34,7 @@
   <view class='tan'>
     <view style='margin-top: 40rpx;'>提现总额</view>
     <view style='margin: 30rpx 0; color: #FFD802;'>￥{{withdrawAll}}</view>
-    <input placeholder='请输入支付密码' placeholder-style='color: #ccc;' password='true' type='digit' name="withdrawPassword"></input>
+    <input placeholder='请输入提现密码' placeholder-style='color: #ccc;' password='true' type='digit' name="withdrawPassword"></input>
     <button formType="submit">确认提现</button>
   </view>
   <view style='margin-top: 40rpx; color: #fff;' bindtap='quxiao'>取消</view>

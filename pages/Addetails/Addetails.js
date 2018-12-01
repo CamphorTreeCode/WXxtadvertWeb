@@ -312,74 +312,90 @@ Page({
   // 收藏
   collection: function(e) {
     var that = this;
-    console.info("下面是收藏传值信息：")
-    console.info(e)
-    var buyerCollection = that.data.buyerCollection;
-    var collectionContent = that.data.collectionContent;
-    var buyerCollectionId = e.currentTarget.dataset.buyercollectionid;
-    buyerCollection.sellerAdvertiseId = e.currentTarget.dataset.selleradvertiseid;
-    buyerCollection.collectionContent = JSON.stringify(collectionContent);
-    buyerCollection.openId = app.returnOpenId();
-    console.info("下面是收藏信息")
-    console.info(buyerCollection);
+    if (app.globalData.UserRoles == 1) {
+      //身份正常买家，可以收藏
+      console.info("下面是收藏传值信息：")
+      console.info(e)
+      var buyerCollection = that.data.buyerCollection;
+      var collectionContent = that.data.collectionContent;
+      var buyerCollectionId = e.currentTarget.dataset.buyercollectionid;
+      buyerCollection.sellerAdvertiseId = e.currentTarget.dataset.selleradvertiseid;
+      buyerCollection.collectionContent = JSON.stringify(collectionContent);
+      buyerCollection.openId = app.returnOpenId();
+      console.info("下面是收藏信息")
+      console.info(buyerCollection);
 
-    // 改变当前收藏状态
-    if (that.data.collection == false) {
-      //未收藏，点击收藏
-      console.info("未收藏，点击收藏")
-      //请求收藏接口 start
-      wx.request({
-        url: app.globalData.appUrl + 'WXBuyerController/addBuyerCollectionMsg',
-        data: buyerCollection,
-        method: "post",
-        header: {
-          'content-type': 'application/x-www-form-urlencoded', // 默认值
-          xcxuser_name: "xcxuser_name"
-        },
-        success: function(res) {
-          console.info(res);
-          console.info(res.data.buyerCollectionId)
-          console.log("收藏成功")
-          that.setData({
-            collection: true,
-            Tcollection: true,
-            buyerCollectionId: res.data.buyerCollectionId,
-          })
-        }
-      })
-      //请求收藏接口 start
-    } else if (that.data.collection == true) {
-      //已经收藏，点击取消收藏
-      console.info("已经收藏，点击取消收藏")
-      //取消收藏接口 start
-      wx.request({
-        url: app.globalData.appUrl + 'WXBuyerController/removeBuyerCollection',
-        data: {
-          buyerCollectionId: buyerCollectionId
-        },
-        header: {
-          'content-type': 'application/x-www-form-urlencoded', // 默认值
-          xcxuser_name: "xcxuser_name"
-        },
-        success: function(res) {
-          console.info("取消收藏成功")
-          console.info(res);
-          that.setData({
-            collection: false,
-            Tcollection: true
-          })
-        }
+      // 改变当前收藏状态
+      if (that.data.collection == false) {
+        //未收藏，点击收藏
+        console.info("未收藏，点击收藏")
+        //请求收藏接口 start
+        wx.request({
+          url: app.globalData.appUrl + 'WXBuyerController/addBuyerCollectionMsg',
+          data: buyerCollection,
+          method: "post",
+          header: {
+            'content-type': 'application/x-www-form-urlencoded', // 默认值
+            xcxuser_name: "xcxuser_name"
+          },
+          success: function(res) {
+            console.info(res);
+            console.info(res.data.buyerCollectionId)
+            console.log("收藏成功")
+            that.setData({
+              collection: true,
+              Tcollection: true,
+              buyerCollectionId: res.data.buyerCollectionId,
+            })
+          }
+        })
+        //请求收藏接口 start
+      } else if (that.data.collection == true) {
+        //已经收藏，点击取消收藏
+        console.info("已经收藏，点击取消收藏")
+        //取消收藏接口 start
+        wx.request({
+          url: app.globalData.appUrl + 'WXBuyerController/removeBuyerCollection',
+          data: {
+            buyerCollectionId: buyerCollectionId
+          },
+          header: {
+            'content-type': 'application/x-www-form-urlencoded', // 默认值
+            xcxuser_name: "xcxuser_name"
+          },
+          success: function(res) {
+            console.info("取消收藏成功")
+            console.info(res);
+            that.setData({
+              collection: false,
+              Tcollection: true
+            })
+          }
 
+        })
+        //取消收藏接口 end
+      }
+
+      // 收藏弹出框
+      setTimeout(function() {
+        that.setData({
+          Tcollection: false
+        })
+      }, 1000);
+    } else if (app.globalData.UserRoles == 2) {
+      that.setData({
+        notshopping: true,
+        flag: true,
+        Stxt: "你所登陆的账号身份不符,不能收藏此信息.如需收藏此信息,请登录（我要发广告）"
       })
-      //取消收藏接口 end
+    } else if (app.globalData.UserRoles == 0) {
+      that.setData({
+        notshopping: true,
+        flag: true,
+        Stxt: "你还是游客,不能进行此操作。如需收藏此信息,请登录（我要发广告）"
+      })
     }
 
-    // 收藏弹出框
-    setTimeout(function() {
-      that.setData({
-        Tcollection: false
-      })
-    }, 1000);
   },
   // 购物车
   ShoppingCart: function() {
@@ -414,13 +430,13 @@ Page({
           success: function(res) {
             console.info("增加购物车返回的信息")
             console.info(res);
-            if (res.data.shopCartRepeat == true){
+            if (res.data.shopCartRepeat == true) {
               that.setData({
                 Shopping: true,
                 ShoppingCart: true,
                 Shoppinged: true
               })
-            } else if (res.data.shopCartRepeat == false){
+            } else if (res.data.shopCartRepeat == false) {
               that.setData({
                 Shopping: false,
                 ShoppingCart: true,
@@ -494,66 +510,52 @@ Page({
     //   })
     // }
     console.info(that.data.period)
+    if (app.globalData.UserRoles == 1) {
+      if (that.data.period.orderday == undefined) {
 
-    var that = this
-    if (that.data.period.orderday == undefined) {
-
-      wx.showModal({
-        title: '提示',
-        content: '请选择投放周期',
+        wx.showModal({      
+          title: '提示',
+          content: '请选择投放周期',
+        })
+        return false;
+      }
+      var orderDate = that.data.period.orderDate
+      var orderday = that.data.period.orderday
+      var key = "ljyy";
+      var date = [{
+        swiper: that.data.swiper,
+        sellerName: that.data.sellerName,
+        lableList: that.data.lableList,
+        distances: that.data.listbox[0].distances,
+        unitPrice: that.data.unitPrice,
+        sellerAdvertiseId: that.data.sellerAdvertiseId,
+        openid: app.returnOpenId(),
+        // total_fee: that.data.totalPrice,
+        total_fee: 1,
+        body: '享投广告屏购买',
+        buyerAccountId: 21,
+        orderDate: that.data.period.orderDate,
+        orderday: orderday,
+        daynum: that.data.daynum,
+        orderDateNum: that.data.daynum,
+      }];
+      wx.navigateTo({
+        url: '/pages/Settlement/Settlement?data=' + JSON.stringify(date) + "&key=" + key,
       })
-      return false;
+    } else if (app.globalData.UserRoles == 2) {
+      that.setData({
+        notshopping: true,
+        flag: true,
+        Stxt: "你所登陆的账号身份不符,如需预约,请退出当前账号，登录（我要发广告）账号"
+      })
+    } else if (app.globalData.UserRoles == 0) {
+      that.setData({
+        notshopping: true,
+        flag: true,
+        Stxt: "你还是游客,不能进行此操作。如需预约,请登录（我要发广告）"
+      })
     }
-    var orderDate = that.data.period.orderDate
-    var orderday = that.data.period.orderday
-    // wx.request({
-    //   url: app.globalData.appUrl + 'WXPay/SellerAdvertisePay',
-    //   data: {
-    //     sellerAdvertiseId: that.data.sellerAdvertiseId,
-    //     orderDate: JSON.stringify(that.data.period.orderDate),
-    //     orderday: orderday,
-    //     SellerAdvertiseBody: "对应的广告位信息",
-    //     openid: app.returnOpenId(),
-    //     // total_fee: that.data.totalPrice,
-    //     total_fee: 1,
-    //     body: '享投广告屏购买',
-    //     payMode: 0,
-    //     buyerAccountId: 10,
-    //   },
-    //   success: function(res) {
-    //     if (res.data.error != undefined) {
 
-    //       wx.showModal({
-    //         title: '提示',
-    //         content: res.data.error,
-    //       })
-    //     }else{
-    //       PayUtils(res.data.prepay_id, app.globalData.appUrl + 'WXPay/SellerAdvertisePaySuccess', { orderListId: res.data.orderId, orderday: JSON.stringify(that.data.period.orderday)},'/pages/index/index')
-    //     }
-
-    //   }
-    // })
-    var key ="ljyy";
-    var date = [{
-      swiper: that.data.swiper,
-      sellerName: that.data.sellerName,
-      lableList: that.data.lableList,
-      distances: that.data.listbox[0].distances,
-      unitPrice: that.data.unitPrice,
-      sellerAdvertiseId: that.data.sellerAdvertiseId,
-      openid: app.returnOpenId(),
-      // total_fee: that.data.totalPrice,
-      total_fee: 1,
-      body: '享投广告屏购买',
-      buyerAccountId: 21,
-      orderDate: that.data.period.orderDate,
-      orderday: orderday,
-      daynum: that.data.daynum,
-      orderDateNum :that.data.daynum,
-    }];
-    wx.navigateTo({
-      url: '/pages/Settlement/Settlement?data=' + JSON.stringify(date) + "&key=" + key,
-    })
 
   },
   // 海报转发
@@ -747,7 +749,7 @@ Page({
     shoppingCart.unitPrice = e.currentTarget.dataset.unitprice;
     // shoppingCart.shoppingDate = shoppingDate;
     shoppingCart.sellerAdvertiseId = e.currentTarget.dataset.selleradvertiseid;
-      // console.info(shoppingCart)
+    // console.info(shoppingCart)
     if (that.data.listbox[index].quantity < 1) {
       that.data.listbox[index].quantity++;
       that.data.listbox[index].hide = 'block';
@@ -759,12 +761,12 @@ Page({
           'content-type': 'application/x-www-form-urlencoded', // 默认值
           xcxuser_name: "xcxuser_name"
         },
-        success: function (res) {
+        success: function(res) {
           console.info("增加购物车返回的信息")
           console.info(res);
         }
       })
-        //加入购物车end
+      //加入购物车end
       that.setData({
         listbox: that.data.listbox
       })
@@ -787,17 +789,20 @@ Page({
     //删除购物车start
     wx.request({
       url: app.globalData.appUrl + 'WXShopCar/removeShoppingCartInfo',
-      data: { openId: openId, sellerAdvertiseId: sellerAdvertiseId },
+      data: {
+        openId: openId,
+        sellerAdvertiseId: sellerAdvertiseId
+      },
       header: {
         'content-type': 'application/x-www-form-urlencoded', // 默认值
         xcxuser_name: "xcxuser_name"
       },
-      success: function (res) {
+      success: function(res) {
         console.info("删除购物车返回的信息")
         console.info(res);
       }
     })
-      //删除购物车end
+    //删除购物车end
     that.data.listbox[index].quantity--;
     that.setData({
       listbox: that.data.listbox

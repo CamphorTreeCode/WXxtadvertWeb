@@ -36,7 +36,7 @@
   </view>
 </view>
 <view class='lingqian' bindtap='mima'>
-  <text style='float:left; margin-left: 20rpx;'>设置支付密码</text>
+  <text style='float:left; margin-left: 20rpx;'>设置提现密码</text>
   <text style='float:right; margin-right: 20rpx;'>></text>
 </view>
 <!-- 退出登录弹框 -->

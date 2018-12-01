@@ -79,7 +79,7 @@ Page({
     //结算的对象数组
     shopObjArr: [],
     //用户账号id
-    buyerAccountId:"",
+    buyerAccountId: "",
   },
   onLoad: function(option) {
     var that = this;
@@ -91,10 +91,10 @@ Page({
         'content-type': 'application/x-www-form-urlencoded',
         xcxuser_name: "xcxuser_name"
       },
-      success: function (res) {
+      success: function(res) {
         console.info(res.data)
         that.setData({
-          buyerAccountId:res.data,
+          buyerAccountId: res.data,
         })
       }
     })
@@ -456,7 +456,7 @@ Page({
         icon: 'none',
         duration: 1500
       })
-    } else{
+    } else {
       //有信息，跳转
       console.info("有东西哎")
       var key = "gwc";
@@ -464,7 +464,7 @@ Page({
       var data1 = {};
       for (var i = 0; i < that.data.shopObjArr.length; i++) {
         console.info("下面是从缓存中拿到的数据;" + that.data.shopObjArr[i].sellerAdvertiseId)
-        console.info(wx.getStorageSync(that.data.shopObjArr[i].sellerAdvertiseId+""))
+        console.info(wx.getStorageSync(that.data.shopObjArr[i].sellerAdvertiseId + ""))
         data1[i] = {};
         data1[i].swiper = that.data.shopObjArr[i].sellerAdvertise.sellerInfo.advertiseImgs;
         data1[i].sellerName = that.data.shopObjArr[i].sellerAdvertise.sellerInfo.sellerName;
@@ -480,17 +480,17 @@ Page({
         data1[i].orderday = wx.getStorageSync(that.data.shopObjArr[i].sellerAdvertiseId + "");
         data1[i].daynum = that.data.shopObjArr[i].shopuUnitPrice.substring(that.data.shopObjArr[i].shopuUnitPrice.indexOf("/") + 1, that.data.shopObjArr[i].shopuUnitPrice.indexOf("天"));
         data1[i].orderDateNum = that.data.shopObjArr[i].shopuUnitPrice.substring(that.data.shopObjArr[i].shopuUnitPrice.indexOf("/") + 1, that.data.shopObjArr[i].shopuUnitPrice.indexOf("天"));
-        if (wx.getStorageSync(that.data.shopObjArr[i].sellerAdvertiseId+"").length != data1[i].daynum) {
+        if (wx.getStorageSync(that.data.shopObjArr[i].sellerAdvertiseId + "").length != data1[i].daynum) {
           wx.showToast({
             title: '请重新选择投放时间',
             icon: 'none',
             duration: 1500
           })
           return;
-        } else{
+        } else {
           data.push(data1[i]);
         }
-        
+
       }
       console.info(data)
       wx.navigateTo({
@@ -504,50 +504,58 @@ Page({
     console.info(e)
     var that = this;
     var index = e.target.dataset.index;
-    var shoppingDate = that.data.ShoppingCart[index].shoppingDate;
-    if (shoppingDate == "请选择") {
-      wx.showToast({
-        title: '请选择投放时间',
-        icon: 'none',
-        duration: 1500
-      })
-    } else {
-      var state = that.data.ShoppingCart[index].check;
-      that.data.ShoppingCart[index].check = !state
-      that.setData({
-        ShoppingCart: that.data.ShoppingCart
-      })
-
-      // 查询数组
-      // Array.prototype.indexOf = function(val) {
-      //   for (var i = 0; i < this.length; i++) {
-      //     if (this[i] == val) return i;
-      //   }
-      //   return -1;
-      // };
-      // Array.prototype.remove = function(val) {
-      //   var index = this.indexOf(val);
-      //   if (index != -1) {
-      //     this.splice(index, 1);
-      //   }
-      // };
-
-
-
-      if (that.data.shopIndexArr.indexOf(index) == -1) {
-        //该信息不存在，添加
-        that.data.shopIndexArr.push(index);
-        that.data.shopObjArr.push(that.data.ShoppingCart[index]);
+    if (that.data.shopObjArr == '') {
+      //没有选中任何一个
+      var shoppingDate = that.data.ShoppingCart[index].shoppingDate;
+      if (shoppingDate == "请选择") {
+        wx.showToast({
+          title: '请选择投放时间',
+          icon: 'none',
+          duration: 1500
+        })
       } else {
-        that.data.shopIndexArr.splice(that.data.shopIndexArr.indexOf(index), 1);
-        that.data.shopObjArr.splice(that.data.shopObjArr.indexOf(that.data.ShoppingCart[index]), 1);
-        //该信息存在，取消选择
-        // that.data.shopIndexArr.remove(index);
-        // that.data.shopObjArr.remove(that.data.ShoppingCart[index]);
+        var state = that.data.ShoppingCart[index].check;
+        that.data.ShoppingCart[index].check = !state
+        that.setData({
+          ShoppingCart: that.data.ShoppingCart
+        })
+
+        if (that.data.shopIndexArr.indexOf(index) == -1) {
+          //该信息不存在，添加
+          that.data.shopIndexArr.push(index);
+          that.data.shopObjArr.push(that.data.ShoppingCart[index]);
+        } else {
+          that.data.shopIndexArr.splice(that.data.shopIndexArr.indexOf(index), 1);
+          that.data.shopObjArr.splice(that.data.shopObjArr.indexOf(that.data.ShoppingCart[index]), 1);
+          //该信息存在，取消选择
+        }
       }
-      console.info(that.data.shopIndexArr)
-      console.info(that.data.shopObjArr)
+    } else {
+      //存在选中信息
+      if(index == that.data.shopIndexArr[0]){
+        //是同一条破信息
+        console.info("是同一条信息")
+        if (that.data.shopIndexArr.indexOf(index) == -1) {
+          //该信息不存在，添加
+          that.data.shopIndexArr.push(index);
+          that.data.shopObjArr.push(that.data.ShoppingCart[index]);
+        } else {
+          that.data.shopIndexArr.splice(that.data.shopIndexArr.indexOf(index), 1);
+          that.data.shopObjArr.splice(that.data.shopObjArr.indexOf(that.data.ShoppingCart[index]), 1);
+          //该信息存在，取消选择
+        }
+      }else{
+        wx.showToast({
+          title: '请先结算选中的商品',
+          icon: 'none',
+          duration: 1500
+        })
+      }
+      
     }
+    console.info(that.data.shopIndexArr)
+    console.info(that.data.shopObjArr)
+
   },
   //日期
   riqi: function(e) {

@@ -34,7 +34,7 @@
       <!-- video -->
       <view class='video'>
         <i wx:if="{{item.discoverVideo!=''}}">
-          <video id='myVideo' src='{{item.discoverVideo}}' custom-cache="{{false}}" show-center-play-btn='{{false}}'></video>
+          <video id='myVideo' src='{{item.discoverVideo}}'></video>
         </i>
         <i wx:if="{{item.discoverVideo ==''}}">
           <block wx:for="{{item.discoverImgs}}" wx:for-item="img">

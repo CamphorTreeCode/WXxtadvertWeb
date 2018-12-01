@@ -34,9 +34,15 @@ Component({
       else if (event.currentTarget.dataset.id == 3) {
         link = '/pages/index/index';
       }
-      wx.navigateTo({
-        url: link,
-      })
+      if (event.currentTarget.dataset.id == 3){
+        wx.switchTab({
+          url: link,
+        })
+      }else{
+        wx.navigateTo({
+          url: link,
+        })
+      }
     }
   }
 })

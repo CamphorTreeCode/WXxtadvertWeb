@@ -254,7 +254,7 @@ Page({
 
   //点击充值跳转会员页面
   GZTchongzhi: function(){
-    wx.navigateTo({
+    wx.reLaunch({
       url: '/pages/me/member?roles=' + app.globalData.UserRoles,
     })
   },

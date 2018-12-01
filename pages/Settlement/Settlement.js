@@ -10,20 +10,14 @@ Page({
     flag: false,
     flage: false,
     eyu: false,
-    // distances:'',
-    // lableList:[],
-    // sellerName:'',
-    // swiper:'',
-    // unitPrice:'', 
-    // total_fee:0,
-    // daynum:0,
-    // orderDate:''
     qqdata: {},
     data: [],
     //结算商品总价
     Total_fee: '',
     //不同页面之间传值标识
     key: "",
+    //用户输入的支付密码
+    payPassword:'',
   },
 
   /**
@@ -94,36 +88,62 @@ Page({
   onShareAppMessage: function() {
 
   },
-  // 支付成功跳转
+
+  // 支付弹出支付方式
   payment: function() {
+    console.info("弹出支付方式")
     this.data.flag = !this.data.flag;
     this.setData({
       flag: this.data.flag
     })
   },
+
+  //关闭支付方式页面按钮
   close: function() {
+    cosole.info("支付页面关闭了")
     this.setData({
       flag: false
     })
   },
+
+  //取消支付按钮事件
   quxiao: function() {
+    conbsole.info("取消支付")
     this.setData({
       flage: false,
       eyu: false
     })
   },
+
+  //获取用户输入的支付密码
+  passWdInput:function(e){
+    console.info(e)
+  },
+
+  //用户点击活动会员支付方式
   Smallchange: function() {
+    console.info("活动会员支付")
     this.setData({
       flag: false,
       flage: true
     })
   },
+
+  //用户点击会员余额支付方式
   yue: function() {
+    conbsole.info("会员余额支付")
     this.setData({
       flag: false,
       eyu: true
     })
   },
+
+  //确认支付
+  confirmPay:function(){
+    console.info("确认支付了")
+  },
+
+  //微信支付
   WXPAY: function() {
     var that = this
     var data = that.data.data;
@@ -238,12 +258,9 @@ Page({
                 console.info("清除缓存成功", res)
               }
             })
-
           }
-
         }
       })
-
     }
   }
 })

@@ -35,7 +35,7 @@
     <text class='zhifu'></text>
   </view>
 </view>
-</view>
+
 <!-- 遮罩层 -->
 <view class='mask' hidden='{{flag == false}}' catchtouchmove="preventTouchMove"></view>
 
@@ -54,9 +54,9 @@
 <view class='mack' hidden='{{flage == false}}'>
   <view class='viw'>
     <text>商品总额</text>
-    <text class='price'>￥2000</text>
-    <input type='number' password='true' maxlength='6' placeholder='请输入支付密码'></input>
-    <text class='payment'>确认支付</text>
+    <text class='price'>￥{{Total_fee}}</text>
+    <input type='number' password='true' maxlength='6' placeholder='请输入支付密码' name='payPassword' bindinput="passWdInput"></input>
+    <text class='payment' catchtap='confirmPay'>确认支付</text>
     <text class='quxiao' bindtap='quxiao'>取消</text>
   </view>
 </view>
@@ -65,9 +65,10 @@
 <view class='mack' hidden='{{eyu == false}}'>
   <view class='viw'>
     <text>商品总额</text>
-    <text class='price'>￥2000</text>
+    <text class='price'>￥{{Total_fee}}</text>
     <input type='number' password='true' maxlength='6' placeholder='请输入支付密码'></input>
     <text class='payment'>确认支付</text>
     <text class='quxiao' bindtap='quxiao'>取消</text>
   </view>
+</view>
 </view>

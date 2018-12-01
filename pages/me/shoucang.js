@@ -90,7 +90,13 @@ Page({
         aaa:false,
         jie:true,
       })
-    } else if (that.data.roles == 0){
+    } else if (that.data.roles == 0 ){
+      //游客
+      that.setData({
+        aaa: false,
+        jie: false,
+      })
+    } else if (that.data.roles == 1) {
       //游客
       that.setData({
         aaa: false,

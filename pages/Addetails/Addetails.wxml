@@ -2,6 +2,7 @@
 <!-- 遮罩层 -->
 <shouquan>
 </shouquan>
+<view style='overflow:hidden'>
 <view class='mask' hidden='{{flag==false}}' catchtouchmove="preventTouchMove"></view>
 
 <!-- 轮播图 -->
@@ -248,5 +249,5 @@
   <view class='dibu'>点击预览大图就可以了保存至相册</view>
   <view class='dibu aaa'>您可以分享到朋友圈或者好友啦</view>
 </view>
-
+</view>
 <!-- <view class='shade' style='display:{{shade}}' disable-scroll="true" bindtouchstart="touchStart" bindtouchmove="touchMove" bindtouchend="touchEnd"></view> -->

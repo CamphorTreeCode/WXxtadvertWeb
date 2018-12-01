@@ -116,6 +116,9 @@ Page({
         return false;
       } else {
         //发送验证码start
+        that.setData({
+          buttonClicked: true,
+        })
         console.info("发送验证码")
         wx.request({
           url: app.globalData.appUrl + 'WXSellerAccount/findphoneNoByopenId',
@@ -135,6 +138,9 @@ Page({
                 title: '请输入注册手机号码',
                 icon: 'none',
                 duration: 1000
+              })
+              that.setData({
+                buttonClicked: false,
               })
             } else if (res.data.phoneNoRight == true) {
               wx.showToast({

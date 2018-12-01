@@ -116,6 +116,9 @@ Page({
         return false;
       } else{
         //发送验证码start
+        that.setData({
+          buttonClicked: true,
+        })
         console.info("发送验证码")
         wx.request({
           url: app.globalData.appUrl + 'WXBuyerAccount/findphoneNoByopenId',
@@ -136,6 +139,9 @@ Page({
                 icon: 'none',
                 duration: 1000
               })
+              that.setData({
+                buttonClicked: false,
+              })
             } else if (res.data.phoneNoRight == true) {
               wx.showToast({
                 title: '发送成功',
@@ -147,6 +153,7 @@ Page({
                 buttonClicked: true,
                 verificationCode: res.data.verificationCode,
               })
+              
               var inter = setInterval(function () {
                 that.setData({
                   msg: "重新发送(" + that.data.snsMsgWait + ")",

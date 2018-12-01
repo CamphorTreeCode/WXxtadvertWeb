@@ -126,6 +126,9 @@ Page({
         return false;
       } else{
         //发送验证码start
+        that.setData({
+          buttonClicked: true,
+        })
         wx.request({
           url: app.globalData.appUrl + 'WXSellerAccount/checkSellerPhone',
           data: {
@@ -144,6 +147,9 @@ Page({
                 title: '这个手机号已被注册，请更换手机号',
                 icon: 'none',
                 duration: 1000
+              })
+              that.setData({
+                buttonClicked: false,
               })
             } else if (res.data.phoneNoRepeat == false) {
               //手机号可用,验证码倒计时开始
